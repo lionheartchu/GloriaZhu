@@ -1,0 +1,320 @@
+/* Project Pages Specific Styling */
+:root {
+    --project-spacing: 5rem;
+}
+
+/* Project Hero Section */
+.project-hero {
+    padding: 120px 10% 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    padding-top: 6rem;
+}
+
+.project-hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.project-title-area {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.project-hero .project-category {
+    font-size: 1rem;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.project-hero .project-title {
+    font-family: var(--font-title);
+    font-size: 3.5rem;
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.project-hero .project-year {
+    font-size: 1.2rem;
+    color: var(--light-text);
+}
+
+.project-intro p {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    max-width: 90%;
+    color: var(--text-color);
+}
+
+.project-cover {
+    aspect-ratio: 1/1;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    transition: var(--transition);
+}
+
+.project-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.project-cover:hover img {
+    transform: scale(1.03);
+}
+
+/* Project Content Styling */
+.project-content {
+    padding: 0 10% var(--project-spacing);
+}
+
+.project-overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin: var(--project-spacing) 0;
+    padding: 3rem;
+    background-color: var(--secondary-color);
+    border-radius: 12px;
+}
+
+.overview-column h3 {
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.overview-column p {
+    line-height: 1.6;
+}
+
+.project-section {
+    margin-bottom: var(--project-spacing);
+}
+
+.project-section h2 {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.project-section h2:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color);
+}
+
+.project-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    max-width: 800px;
+}
+
+/* Project Images */
+.project-image-full {
+    width: 100%;
+    margin: 3rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin-bottom: 3rem;
+}
+
+.project-image-full:last-child {
+    margin-bottom: 0;
+}
+
+.project-image-full img {
+    width: 100%;
+    display: block;
+}
+
+.image-caption {
+    display: block;
+    text-align: center;
+    color: var(--light-text);
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.project-image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.project-image-grid.three-col {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.grid-item {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.grid-item img {
+    width: 100%;
+    display: block;
+}
+
+/* Smaller Centered Project Images */
+.project-image-small {
+    width: 80%; /* 1/5 of the original size */
+    margin: 3rem auto; /* Center horizontally and add vertical spacing */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    display: block; /* Needed for margin auto to work */
+}
+
+.project-image-small img {
+    width: 100%;
+    display: block;
+}
+
+/* Project Navigation */
+.project-navigation {
+    margin-top: var(--project-spacing);
+    padding-top: 3rem;
+    border-top: 1px solid var(--secondary-color);
+}
+
+.next-project {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-decoration: none;
+    padding: 2rem;
+    border-radius: 12px;
+    background-color: var(--secondary-color);
+    transition: var(--transition);
+}
+
+.next-project:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-5px);
+}
+
+.next-project:hover * {
+    color: white;
+}
+
+.next-project span {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--light-text);
+    margin-bottom: 0.5rem;
+}
+
+.next-project h3 {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.next-project i {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+}
+
+/* Clean, Futuristic Back Arrow */
+.back-arrow {
+    position: absolute;
+    top: 120px;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--accent-color);
+    font-weight: 500;
+    transition: var(--transition);
+    z-index: 90;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+
+/* Custom arrow using borders like the scroll hint */
+.back-arrow::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-left: 2px solid var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+    transform: rotate(45deg);
+    margin-right: 12px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.back-arrow:hover {
+    color: var(--accent-color);
+    opacity: 0.8;
+    background: transparent;
+    box-shadow: none;
+}
+
+.back-arrow:hover::before {
+    transform: rotate(45deg) translate(-3px, 0);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .project-hero {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .project-overview {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .project-image-grid.three-col {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-cover {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-hero .project-title {
+        font-size: 2.5rem;
+    }
+    
+    .project-intro p {
+        font-size: 1.2rem;
+    }
+    
+    .project-image-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-section h2 {
+        font-size: 1.8rem;
+    }
+} 

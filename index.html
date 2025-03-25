@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Gloria Zhu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">GZ</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#welcome">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header>
+
+    <!-- Welcome Section - Completely Redesigned -->
+    <section id="welcome">
+        <!-- Intro Text Animation -->
+        <div class="intro-animation">
+            <div class="hi-text intro-element">Hi :)</div>
+            <div class="welcome-message intro-element"></div>
+        </div>
+
+        <!-- Main Name Display (initially hidden) -->
+        <div class="name-container main-element">
+            <h1 class="gloria">Gloria</h1>
+            <h1 class="zhu">Zhu</h1>
+        </div>
+        
+        <!-- Titles (initially hidden) -->
+        <div class="title-container main-element">
+            <div class="title-item">Interaction Designer</div>
+            <div class="title-item">Creative Technologist</div>
+            <div class="title-item">UI/UX Designer</div>
+        </div>
+        
+        <div class="scroll-indicator main-element">
+            <div class="arrow"></div>
+        </div>
+    </section>
+    
+    <!-- Let's Talk Section -->
+    <div class="lets-talk">
+        <div class="talk-text">Let's Talk • Let's Talk • Let's Talk • Let's Talk • Let's Talk • Let's Talk • Let's Talk • Let's Talk • </div>
+        <div class="talk-text">Let's Talk • Let's Talk • Let's Talk • Let's Talk • Let's Talk • Let's Talk • Let's Talk • Let's Talk • </div>
+    </div>
+
+    <!-- Projects Section with Updated Links -->
+    <section id="projects">
+        <h2 class="section-title">My Projects</h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="featured">Featured</button>
+            <button class="filter-btn" data-filter="uiux">UI/UX</button>
+            <button class="filter-btn" data-filter="installation">Installation</button>
+            <button class="filter-btn" data-filter="product">Product</button>
+            <button class="filter-btn" data-filter="games">Games/3D</button>
+        </div>
+        <div class="projects-container">
+            <!-- Project 1: Glucosphere (Featured, UI/UX, Product) -->
+            <div class="project-card" data-category="featured uiux product">
+                <div class="project-img-container">
+                    <img src="image/glusp-cover.png" alt="Glucosphere Project" class="project-img">
+                </div>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <p class="project-category">UI/UX & Product Design</p>
+                        <h3 class="project-title">Glucosphere</h3>
+                        <p class="project-time">2024</p>
+                    </div>
+                    <p class="project-desc">A comprehensive diabetes management system combining hardware and software for seamless glucose monitoring and lifestyle tracking.</p>
+                    <a href="uiux/glucosphere.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Project 2: Befree (UI/UX) -->
+            <div class="project-card" data-category="uiux">
+                <div class="project-img-container">
+                    <img src="image/bef-cover.png" alt="Befree Project" class="project-img">
+                </div>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <p class="project-category">UI/UX Design</p>
+                        <h3 class="project-title">Befree</h3>
+                        <p class="project-time">2022</p>
+                    </div>
+                    <p class="project-desc">A digital platform designed to help users break free from daily constraints and achieve better work-life balance through intuitive interface design.</p>
+                    <a href="uiux/befree.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Project 3: Berich (UI/UX) -->
+            <div class="project-card" data-category="uiux">
+                <div class="project-img-container">
+                    <img src="image/ber-cover.png" alt="Berich Project" class="project-img">
+                </div>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <p class="project-category">UI/UX Design</p>
+                        <h3 class="project-title">Berich</h3>
+                        <p class="project-time">2021</p>
+                    </div>
+                    <p class="project-desc">A financial education and investment platform with a user-friendly interface designed to simplify complex financial concepts for beginners.</p>
+                    <a href="uiux/berich.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Project: Otherworld (Featured, Installation, Games) -->
+            <div class="project-card" data-category="featured installation games">
+                <div class="project-img-container">
+                    <img src="image/ow-cover.png" alt="Otherworld Project" class="project-img">
+                </div>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <p class="project-category">Interactive Installation & Game</p>
+                        <h3 class="project-title">Otherworld</h3>
+                        <p class="project-time">2024</p>
+                    </div>
+                    <p class="project-desc">An immersive interactive installation that blends physical and digital environments to create a unique sensory experience.</p>
+                    <a href="installation/otherw.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Project: YU (Installation) -->
+            <div class="project-card" data-category="installation">
+                <div class="project-img-container">
+                    <img src="image/yu-cover.png" alt="YU Project" class="project-img">
+                </div>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <p class="project-category">Installation</p>
+                        <h3 class="project-title">YU</h3>
+                        <p class="project-time">2021</p>
+                    </div>
+                    <p class="project-desc">A responsive installation exploring the relationship between sound, space, and human interaction.</p>
+                    <a href="installation/yu.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Project: Vital (Installation) -->
+            <div class="project-card" data-category="installation">
+                <div class="project-img-container">
+                    <img src="image/vit-cover.png" alt="Vital Project" class="project-img">
+                </div>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <p class="project-category">Installation</p>
+                        <h3 class="project-title">Vital</h3>
+                        <p class="project-time">2021</p>
+                    </div>
+                    <p class="project-desc">A biometric installation that visualizes vital signs and bodily rhythms, creating a connection between biological data and visual art.</p>
+                    <a href="installation/vital.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Let's Talk About Your Project</h3>
+                <p>I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>gloria.zhu@example.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (123) 456-7890</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>New York, NY, USA</span>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-behance"></i></a>
+                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <a href="#" class="footer-logo">Gloria Zhu</a>
+            <ul class="footer-links">
+                <li><a href="#welcome">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <p class="copyright">© 2024 Gloria Zhu. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
