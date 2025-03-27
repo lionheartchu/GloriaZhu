@@ -215,27 +215,91 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Simplified location toggle functionality
+// Improved location toggle functionality with debugging and error handling
 document.addEventListener('DOMContentLoaded', function() {
-    // Click event for location labels
-    document.querySelectorAll('.location-label').forEach(label => {
-        label.addEventListener('click', function() {
+    console.log("DOM loaded, initializing location toggle");
+    
+    // First check if the elements exist
+    const locationLabels = document.querySelectorAll('.location-label');
+    const usInfo = document.querySelectorAll('.us-info');
+    const chinaInfo = document.querySelectorAll('.china-info');
+    
+    if (locationLabels.length === 0) {
+        console.error("Location labels not found");
+        return;
+    }
+    
+    console.log(`Found ${locationLabels.length} location labels, ${usInfo.length} US info elements, ${chinaInfo.length} China info elements`);
+    
+    // Click event for location labels with improved error handling
+    locationLabels.forEach(label => {
+        label.addEventListener('click', function(e) {
+            console.log(`Location label clicked: ${this.dataset.location}`);
+            e.preventDefault();
+            
             // Skip if already active
-            if (this.classList.contains('active')) return;
+            if (this.classList.contains('active')) {
+                console.log("Already active, skipping");
+                return;
+            }
             
-            const isUS = this.dataset.location === 'us';
-            const usInfo = document.querySelectorAll('.us-info');
-            const chinaInfo = document.querySelectorAll('.china-info');
-            
-            // Toggle active class
-            document.querySelectorAll('.location-label').forEach(l => {
-                l.classList.remove('active');
-            });
-            this.classList.add('active');
-            
-            // Toggle visibility
-            usInfo.forEach(el => el.style.display = isUS ? 'flex' : 'none');
-            chinaInfo.forEach(el => el.style.display = isUS ? 'none' : 'flex');
+            try {
+                const isUS = this.dataset.location === 'us';
+                
+                // Toggle active class
+                locationLabels.forEach(l => {
+                    l.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Toggle visibility
+                usInfo.forEach(el => el.style.display = isUS ? 'flex' : 'none');
+                chinaInfo.forEach(el => el.style.display = isUS ? 'none' : 'flex');
+                
+                console.log(`Switched to ${isUS ? 'US' : 'China'} contact info`);
+            } catch (error) {
+                console.error("Error in location toggle:", error);
+            }
         });
+        
+        console.log(`Added click listener to ${label.dataset.location} label`);
     });
-}); 
+    
+    // Alternative approach: add a backup direct implementation
+    const usLabel = document.querySelector('.location-label[data-location="us"]');
+    const cnLabel = document.querySelector('.location-label[data-location="china"]');
+    
+    if (usLabel && cnLabel) {
+        // Direct approach as backup
+        usLabel.onclick = function() {
+            usLabel.classList.add('active');
+            cnLabel.classList.remove('active');
+            usInfo.forEach(el => el.style.display = 'flex');
+            chinaInfo.forEach(el => el.style.display = 'none');
+            console.log("Switched to US via direct method");
+            return false;
+        };
+        
+        cnLabel.onclick = function() {
+            cnLabel.classList.add('active');
+            usLabel.classList.remove('active');
+            usInfo.forEach(el => el.style.display = 'none');
+            chinaInfo.forEach(el => el.style.display = 'flex');
+            console.log("Switched to China via direct method");
+            return false;
+        };
+        
+        console.log("Added direct click handlers as backup");
+    }
+});
+
+// Backup onload handler in case DOMContentLoaded doesn't fire
+window.onload = function() {
+    console.log("Window loaded");
+    if (!document.querySelector('.location-label.active')) {
+        console.log("Location toggle not initialized by DOMContentLoaded, initializing now");
+        // Trigger the DOMContentLoaded handler manually
+        const event = new Event('DOMContentLoaded');
+        document.dispatchEvent(event);
+    }
+};
