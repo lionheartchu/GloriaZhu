@@ -213,4 +213,29 @@ document.addEventListener('DOMContentLoaded', () => {
             talkContainer.appendChild(clone);
         }
     }
+});
+
+// Simplified location toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Click event for location labels
+    document.querySelectorAll('.location-label').forEach(label => {
+        label.addEventListener('click', function() {
+            // Skip if already active
+            if (this.classList.contains('active')) return;
+            
+            const isUS = this.dataset.location === 'us';
+            const usInfo = document.querySelectorAll('.us-info');
+            const chinaInfo = document.querySelectorAll('.china-info');
+            
+            // Toggle active class
+            document.querySelectorAll('.location-label').forEach(l => {
+                l.classList.remove('active');
+            });
+            this.classList.add('active');
+            
+            // Toggle visibility
+            usInfo.forEach(el => el.style.display = isUS ? 'flex' : 'none');
+            chinaInfo.forEach(el => el.style.display = isUS ? 'none' : 'flex');
+        });
+    });
 }); 
