@@ -303,3 +303,194 @@ window.onload = function() {
         document.dispatchEvent(event);
     }
 };
+
+// Refined aurora effect with smoother transitions and post-animation display
+document.addEventListener('DOMContentLoaded', function() {
+    const aurora = document.querySelector('.aurora-container');
+    const welcomeSection = document.getElementById('welcome');
+    
+    if (!aurora || !welcomeSection) return;
+    
+    // Hide aurora initially
+    aurora.style.opacity = '0';
+    aurora.style.transition = 'opacity 1.5s ease';
+    
+    // Position aurora container correctly in the welcome section
+    aurora.style.height = welcomeSection.offsetHeight + 'px';
+    
+    // Update aurora height on window resize
+    window.addEventListener('resize', function() {
+        aurora.style.height = welcomeSection.offsetHeight + 'px';
+    });
+    
+    // Show aurora after welcome animation completes (approx 2.5 seconds)
+    setTimeout(() => {
+        aurora.style.opacity = '1';
+        initializeAurora();
+    }, 3000); // Wait for the hi/welcome animation to complete
+    
+    // Add subtle aurora to other sections
+    addSubtleAuroraToSections();
+    
+    function initializeAurora() {
+        // Subtle mouse movement effect
+        document.addEventListener('mousemove', function(e) {
+            // Only apply effect when mouse is in the welcome section
+            const rect = welcomeSection.getBoundingClientRect();
+            if (e.clientY < rect.bottom) {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                const layers = document.querySelectorAll('.aurora-layer');
+                
+                // Create subtle movement based on mouse position
+                layers.forEach((layer, index) => {
+                    const speed = (index + 1) * 2;
+                    const offsetX = (x - 0.5) * speed;
+                    const offsetY = (y - 0.5) * speed;
+                    
+                    layer.style.transform = `translate(${offsetX}%, ${offsetY}%) scale(${1 + (index * 0.1)})`;
+                });
+            }
+        });
+        
+        // Extra smooth color changes with the same rich palette
+        function changeAuroraColors() {
+            const colors = [
+                // Deep blue to cyan to white
+                ['rgba(12, 25, 180, 0.9)', 'rgba(76, 201, 240, 0.7)', 'rgba(255, 255, 255, 0.8)'],
+                
+                // Electric blue to white to light blue
+                ['rgba(67, 97, 238, 0.8)', 'rgba(255, 255, 255, 0.6)', 'rgba(58, 134, 255, 0.7)'],
+                
+                // Deep navy to bright cyan
+                ['rgba(0, 41, 107, 0.8)', 'rgba(0, 119, 182, 0.7)', 'rgba(3, 206, 243, 0.9)'],
+                
+                // White to pale blue to deep blue
+                ['rgba(255, 255, 255, 0.7)', 'rgba(173, 216, 230, 0.6)', 'rgba(0, 53, 102, 0.8)'],
+                
+                // Deep blue to white to dark cyan
+                ['rgba(0, 68, 136, 0.9)', 'rgba(255, 255, 255, 0.7)', 'rgba(0, 141, 151, 0.8)']
+            ];
+            
+            const directions = ['120deg', '-60deg', '30deg', '170deg', '-30deg', '60deg'];
+            
+            const layers = document.querySelectorAll('.aurora-layer');
+            layers.forEach((layer, index) => {
+                const randomColors = colors[Math.floor(Math.random() * colors.length)];
+                const direction = directions[Math.floor(Math.random() * directions.length)];
+                
+                // Apply new colors with a much slower transition
+                layer.style.transition = 'background 18s ease-in-out'; // Even slower transition (18s instead of 12s)
+                layer.style.background = `linear-gradient(${direction}, ${randomColors[0]}, ${randomColors[1]}, ${randomColors[2]})`;
+            });
+            
+            // Change colors less frequently for more gradual effect
+            setTimeout(changeAuroraColors, Math.random() * 10000 + 18000); // Between 18-28 seconds
+        }
+        
+        // Initial call with slightly longer delay
+        setTimeout(changeAuroraColors, 2000);
+        
+        // Set initial colors without transition
+        const layers = document.querySelectorAll('.aurora-layer');
+        layers.forEach((layer, index) => {
+            layer.style.transition = 'none'; // No transition for initial setup
+            
+            const colors = [
+                // Deep blue to cyan to white
+                ['rgba(12, 25, 180, 0.9)', 'rgba(76, 201, 240, 0.7)', 'rgba(255, 255, 255, 0.8)'],
+                // Electric blue to white to light blue
+                ['rgba(67, 97, 238, 0.8)', 'rgba(255, 255, 255, 0.6)', 'rgba(58, 134, 255, 0.7)'],
+                // Deep navy to bright cyan
+                ['rgba(0, 41, 107, 0.8)', 'rgba(0, 119, 182, 0.7)', 'rgba(3, 206, 243, 0.9)']
+            ];
+            
+            const randomColors = colors[index % colors.length]; // Use deterministic colors for initial state
+            const direction = ['120deg', '-60deg', '30deg'][index % 3];
+            
+            layer.style.background = `linear-gradient(${direction}, ${randomColors[0]}, ${randomColors[1]}, ${randomColors[2]})`;
+            
+            // Re-enable transitions after a short delay
+            setTimeout(() => {
+                layer.style.transition = 'background 18s ease-in-out';
+            }, 100);
+        });
+    }
+    
+    // Add subtle aurora effect to other sections
+    function addSubtleAuroraToSections() {
+        const sections = document.querySelectorAll('section:not(#welcome)');
+        
+        sections.forEach((section, sectionIndex) => {
+            // Create subtle aurora container
+            const subtleAurora = document.createElement('div');
+            subtleAurora.className = 'subtle-aurora-container';
+            
+            // Create layers
+            for (let i = 0; i < 2; i++) {
+                const layer = document.createElement('div');
+                layer.className = `subtle-aurora-layer subtle-aurora-${i+1}`;
+                subtleAurora.appendChild(layer);
+            }
+            
+            // Insert before first child of section
+            section.insertBefore(subtleAurora, section.firstChild);
+            
+            // Position correctly
+            subtleAurora.style.height = section.offsetHeight + 'px';
+            
+            // Update height on window resize
+            window.addEventListener('resize', function() {
+                subtleAurora.style.height = section.offsetHeight + 'px';
+            });
+            
+            // Set initial colors without transition
+            const layers = subtleAurora.querySelectorAll('.subtle-aurora-layer');
+            layers.forEach((layer, index) => {
+                const colors = [
+                    // Very subtle variations of white and pale blue
+                    ['rgba(255, 255, 255, 0.4)', 'rgba(240, 248, 255, 0.2)', 'rgba(248, 249, 250, 0.3)'],
+                    ['rgba(240, 248, 255, 0.3)', 'rgba(255, 255, 255, 0.2)', 'rgba(230, 240, 250, 0.2)']
+                ];
+                
+                layer.style.transition = 'none';
+                const direction = ['120deg', '-60deg'][index % 2];
+                layer.style.background = `linear-gradient(${direction}, ${colors[index][0]}, ${colors[index][1]}, ${colors[index][2]})`;
+                
+                // Enable transitions after initialization
+                setTimeout(() => {
+                    layer.style.transition = 'background 30s ease-in-out';
+                }, 100);
+            });
+            
+            // Very subtle color changes for other sections
+            function changeSubtleColors(subtleAurora) {
+                const colors = [
+                    // Extremely subtle variations - almost white with hints of blue
+                    ['rgba(255, 255, 255, 0.4)', 'rgba(240, 248, 255, 0.15)', 'rgba(248, 249, 250, 0.3)'],
+                    ['rgba(240, 248, 255, 0.2)', 'rgba(255, 255, 255, 0.3)', 'rgba(230, 240, 250, 0.15)'],
+                    ['rgba(248, 249, 250, 0.25)', 'rgba(240, 248, 255, 0.2)', 'rgba(255, 255, 255, 0.3)'],
+                    ['rgba(245, 250, 255, 0.2)', 'rgba(255, 255, 255, 0.25)', 'rgba(235, 245, 250, 0.15)']
+                ];
+                
+                const directions = ['120deg', '-60deg', '30deg', '170deg'];
+                
+                const layers = subtleAurora.querySelectorAll('.subtle-aurora-layer');
+                layers.forEach((layer, index) => {
+                    const randomColors = colors[Math.floor(Math.random() * colors.length)];
+                    const direction = directions[Math.floor(Math.random() * directions.length)];
+                    
+                    layer.style.transition = 'background 30s ease-in-out';
+                    layer.style.background = `linear-gradient(${direction}, ${randomColors[0]}, ${randomColors[1]}, ${randomColors[2]})`;
+                });
+                
+                // Change colors very infrequently for subtle sections
+                setTimeout(() => changeSubtleColors(subtleAurora), Math.random() * 15000 + 25000);
+            }
+            
+            // Start subtle color changes after a random delay
+            setTimeout(() => changeSubtleColors(subtleAurora), Math.random() * 5000 + 5000);
+        });
+    }
+});

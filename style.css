@@ -111,6 +111,7 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
 }
 
 .btn {
@@ -387,6 +388,49 @@ header {
     padding: 8px 16px;
     border-radius: 30px;
     font-size: 0.9rem;
+}
+
+/* Improved Resume Link Styles */
+.resume-container {
+    margin: 1.2rem 0;
+}
+
+.resume-button {
+    display: inline-block;
+    color: #4361ee; /* Your theme blue */
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+    font-size: 0.95rem; /* Smaller font size */
+    padding: 0.15rem 0;
+}
+
+.resume-button:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1.5px; /* Slightly thinner line for smaller text */
+    bottom: -2px;
+    left: 0;
+    background-color: #4361ee;
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.resume-button:hover {
+    color: #3a56e4;
+}
+
+.resume-button:hover:after {
+    transform: scaleX(1.1);
+    background-color: #3a56e4;
+}
+
+.resume-button i {
+    margin-right: 10px; /* Slightly reduced spacing for smaller text */
+    font-size: 0.9rem; /* Smaller icon */
 }
 
 /* Projects Section with Fixed Heights and Smoother Transitions */
@@ -945,4 +989,167 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+/* Enhanced Aurora Background Effect - More Visible */
+.aurora-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.aurora-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    mix-blend-mode: screen;
+    filter: blur(30px); /* Reduced blur for more visibility */
+}
+
+.aurora-1 {
+    background: linear-gradient(120deg, 
+        rgba(67, 97, 238, 0.8), /* Increased opacity */
+        rgba(76, 201, 240, 0.6), /* Increased opacity */
+        rgba(58, 134, 255, 0.7)); /* Increased opacity */
+    animation: aurora-movement-1 25s ease infinite;
+    transform-origin: center;
+}
+
+.aurora-2 {
+    background: linear-gradient(-60deg, 
+        rgba(36, 123, 160, 0.7), /* Increased opacity */
+        rgba(112, 193, 255, 0.5), /* Increased opacity */
+        rgba(2, 108, 223, 0.6)); /* Increased opacity */
+    animation: aurora-movement-2 30s ease infinite;
+    opacity: 0.8; /* Increased from 0.5 */
+    transform-origin: top left;
+}
+
+.aurora-3 {
+    background: linear-gradient(30deg, 
+        rgba(33, 158, 188, 0.6), /* Increased opacity */
+        rgba(142, 202, 230, 0.5), /* Increased opacity */
+        rgba(76, 201, 240, 0.7)); /* Increased opacity */
+    animation: aurora-movement-3 35s ease infinite;
+    opacity: 0.7; /* Increased from 0.3 */
+    transform-origin: bottom right;
+}
+
+/* Add a 4th layer for more visible depth */
+.aurora-4 {
+    background: linear-gradient(180deg, 
+        rgba(0, 119, 182, 0.7),
+        rgba(3, 206, 243, 0.6),
+        rgba(48, 135, 227, 0.8));
+    animation: aurora-movement-4 20s ease infinite;
+    opacity: 0.7;
+    transform-origin: bottom left;
+}
+
+@keyframes aurora-movement-1 {
+    0% { transform: translate(3%, -5%) scale(1.2); }
+    50% { transform: translate(-3%, 5%) scale(1.4); } /* Larger scale */
+    100% { transform: translate(3%, -5%) scale(1.2); }
+}
+
+@keyframes aurora-movement-2 {
+    0% { transform: translate(-5%, 3%) scale(1.3); } /* More movement */
+    50% { transform: translate(5%, -3%) scale(1.2); }
+    100% { transform: translate(-5%, 3%) scale(1.3); }
+}
+
+@keyframes aurora-movement-3 {
+    0% { transform: translate(0%, 0%) scale(1.1); }
+    50% { transform: translate(-7%, -5%) scale(1.3); } /* More movement */
+    100% { transform: translate(0%, 0%) scale(1.1); }
+}
+
+@keyframes aurora-movement-4 {
+    0% { transform: translate(-3%, -3%) scale(1.2); }
+    50% { transform: translate(3%, 3%) scale(1.3); }
+    100% { transform: translate(-3%, -3%) scale(1.2); }
+}
+
+/* Make the welcome section relative to contain the aurora */
+#welcome {
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Adjust text to be more visible against the aurora */
+.gloria, .zhu, .title-item {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Additional CSS for subtle aurora in other sections */
+.subtle-aurora-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    opacity: 0.3; /* Very subtle */
+}
+
+.subtle-aurora-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    mix-blend-mode: screen;
+    filter: blur(50px); /* More blur for subtlety */
+}
+
+.subtle-aurora-1 {
+    background: linear-gradient(120deg, 
+        rgba(255, 255, 255, 0.4), 
+        rgba(240, 248, 255, 0.2), 
+        rgba(248, 249, 250, 0.3));
+    animation: subtle-aurora-movement-1 40s ease infinite;
+    opacity: 0.3;
+}
+
+.subtle-aurora-2 {
+    background: linear-gradient(-60deg, 
+        rgba(240, 248, 255, 0.3), 
+        rgba(255, 255, 255, 0.2), 
+        rgba(230, 240, 250, 0.2));
+    animation: subtle-aurora-movement-2 50s ease infinite;
+    opacity: 0.2;
+}
+
+@keyframes subtle-aurora-movement-1 {
+    0% { transform: translate(1%, -1%) scale(1.05); }
+    50% { transform: translate(-1%, 1%) scale(1.1); }
+    100% { transform: translate(1%, -1%) scale(1.05); }
+}
+
+@keyframes subtle-aurora-movement-2 {
+    0% { transform: translate(-1%, 1%) scale(1.1); }
+    50% { transform: translate(1%, -1%) scale(1.05); }
+    100% { transform: translate(-1%, 1%) scale(1.1); }
+}
+
+/* Make sure other sections have position relative */
+section {
+    position: relative;
+}
+
+/* Make the original aurora fade in smoothly */
+.aurora-container {
+    opacity: 0;
+    transition: opacity 1.5s ease;
 } 
