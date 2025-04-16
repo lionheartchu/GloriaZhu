@@ -148,25 +148,26 @@ section {
     background: var(--accent-color);
 }
 
-/* Header with Color - Reduced Brightness */
+/* Header - Shorter and Less Obvious */
 header {
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
-    padding: 1.5rem 10%;
+    padding: 1.1rem 10%; /* Reduced vertical padding from 1.5rem to 0.8rem */
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    background-color: rgba(67, 97, 238, 0.03); /* Much lighter blue tint */
-    backdrop-filter: blur(8px); /* Slightly reduced blur */
+    background-color: rgba(67, 97, 238, 0.02); /* Much lighter blue tint */
+    backdrop-filter: blur(8px);
     transition: var(--transition);
-    box-shadow: 0 5px 15px var(--subtle-shadow);
+    box-shadow: 0 2px 10px rgba(151, 161, 186, 0.05); /* Lighter shadow */
+    border-bottom: 1px solid rgba(67, 97, 238, 0.03); /* Very subtle border */
 }
 
 .logo {
-    font-size: 1.8rem;
+    font-size: 1.5rem; /* Reduced from 1.8rem */
     font-weight: 700;
     text-decoration: none;
     color: var(--accent-color);
@@ -183,6 +184,7 @@ header {
     color: var(--text-color);
     font-weight: 500;
     transition: var(--transition);
+    font-size: 0.9rem; /* Added smaller font size */
 }
 
 .nav-links li a:hover, .nav-links li a.active {
@@ -717,7 +719,7 @@ footer {
     }
     
     header {
-        padding: 1.5rem 5%;
+        padding: 0.6rem 5%; /* Even smaller on mobile */
     }
     
     .nav-links {
@@ -744,12 +746,13 @@ footer {
     
     .nav-links li a {
         margin-left: 0;
-        font-size: 1.2rem;
+        font-size: 0.85rem;
     }
     
     .hamburger {
         display: block;
         z-index: 1001;
+        transform: scale(0.85); /* Make hamburger slightly smaller */
     }
     
     .bar {

@@ -217,7 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Improved location toggle functionality with debugging and error handling
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("DOM loaded, initializing location toggle");
     
     // First check if the elements exist
     const locationLabels = document.querySelectorAll('.location-label');
@@ -228,8 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error("Location labels not found");
         return;
     }
-    
-    console.log(`Found ${locationLabels.length} location labels, ${usInfo.length} US info elements, ${chinaInfo.length} China info elements`);
+
     
     // Click event for location labels with improved error handling
     locationLabels.forEach(label => {
@@ -261,8 +259,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error("Error in location toggle:", error);
             }
         });
-        
-        console.log(`Added click listener to ${label.dataset.location} label`);
     });
     
     // Alternative approach: add a backup direct implementation
@@ -288,8 +284,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log("Switched to China via direct method");
             return false;
         };
-        
-        console.log("Added direct click handlers as backup");
     }
 });
 
@@ -493,4 +487,63 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => changeSubtleColors(subtleAurora), Math.random() * 5000 + 5000);
         });
     }
+});
+
+// Create a more visible mouse halo with deeper blues
+document.addEventListener('DOMContentLoaded', function() {
+    // Remove the existing halo if present
+    const existingHalo = document.querySelector('.new-projects-halo');
+    if (existingHalo) {
+        existingHalo.remove();
+    }
+    
+    const projectsSection = document.getElementById('projects');
+    if (!projectsSection) return;
+    
+    // Create a halo with deeper blues and smaller white section
+    const halo = document.createElement('div');
+    halo.className = 'new-projects-halo';
+    halo.style.cssText = `
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: radial-gradient(circle, 
+            rgba(255,255,255,0.9) 0%,
+            rgba(255,255,255,0.7) 8%, /* Smaller white section (was 15%) */
+            rgba(67,97,238,0.85) 25%, /* Deeper blue with higher opacity */
+            rgba(45,75,205,0.6) 50%, /* Added deeper mid-blue */
+            rgba(30,60,180,0.4) 70%, /* Added even deeper outer blue */
+            rgba(0,0,0,0) 90%);
+        pointer-events: none;
+        z-index: 5;
+        filter: blur(12px);
+        transform: translate(-50%, -50%);
+        mix-blend-mode: screen;
+        box-shadow: 0 0 40px rgba(45,75,205,0.7); /* Deeper blue glow */
+    `;
+    
+    // Add to body instead of projects section for absolute positioning
+    document.body.appendChild(halo);
+    
+    // Track mouse
+    document.addEventListener('mousemove', function(e) {
+        const rect = projectsSection.getBoundingClientRect();
+        
+        // Check if mouse is in projects section
+        if (e.clientY >= rect.top && 
+            e.clientY <= rect.bottom && 
+            e.clientX >= rect.left && 
+            e.clientX <= rect.right) {
+            
+            // Mouse in projects section - show and position halo
+            halo.style.opacity = '1';
+            halo.style.left = e.clientX + 'px';
+            halo.style.top = (e.clientY + window.scrollY) + 'px';
+            
+        } else {
+            // Hide halo outside projects section
+            halo.style.opacity = '0';
+        }
+    });
 });
