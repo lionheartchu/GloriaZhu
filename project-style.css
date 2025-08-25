@@ -167,7 +167,7 @@
 }
 
 .grid-item {
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
@@ -181,7 +181,7 @@
 .project-image-small {
     width: 80%; /* 1/5 of the original size */
     margin: 3rem auto; /* Center horizontally and add vertical spacing */
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     display: block; /* Needed for margin auto to work */

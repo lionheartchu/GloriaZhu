@@ -7,7 +7,7 @@
     --light-text: #6c757d; /* Original medium gray text */
     --subtle-shadow: rgba(151, 161, 186, 0.1); /* Soft blue-tinted shadow */
     --transition: all 0.3s ease;
-    --font-main: 'Montserrat', sans-serif; /* Updated to Montserrat */
+    --font-main: 'Safiro', 'Montserrat', sans-serif; /* Updated to Safiro */
     --font-alt: 'Monument Extended', sans-serif;
     --font-title: 'Futura', 'Century Gothic', 'Arial', sans-serif;
 }
@@ -22,7 +22,6 @@
     font-weight: normal;
     font-style: normal;
 }
-
 @font-face {
     font-family: 'POLYA';
     src: url('POLYA.otf') format('opentype');
@@ -50,11 +49,19 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Safiro';
+    src: url('safiro.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: var(--font-main);
+    font-family: 'Safiro', var(--font-main);
 }
 
 html {
@@ -66,7 +73,7 @@ body {
     background-color: var(--primary-color);
     color: var(--text-color);
     overflow-x: hidden;
-    font-family: var(--font-main);
+    font-family: 'Safiro', var(--font-main);
     line-height: 1.6;
 }
 
@@ -251,17 +258,6 @@ header {
     transform: translate(-50%, -50%);
     text-align: center;
     width: 100%;
-}
-
-.gloria, .zhu {
-    font-family: 'POLYA', var(--font-alt);
-    font-size: 6.5rem;
-    font-weight: 600;
-    display: block;
-    letter-spacing: 8px;
-    line-height: 1.1;
-    color: var(--accent-color); /* Blue accent color */
-    text-align: center;
 }
 
 /* Fixed Titles at Bottom */
@@ -459,7 +455,7 @@ header {
 .project-img-container {
     overflow: hidden;
     position: relative;
-    border-radius: 4px;
+    border-radius: 8px;
     height: 100%;
 }
 
@@ -467,7 +463,7 @@ header {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 8px;
     transition: transform 0.5s ease;
 }
 
@@ -694,11 +690,6 @@ footer {
         max-width: 500px;
         margin: 0 auto;
     }
-    
-    .gloria, .zhu {
-        font-size: 12vw;
-    }
-    
     .hi-text {
         font-size: 3rem;
     }
@@ -858,11 +849,11 @@ body:before {
 /* Name in blue accent color */
 .gloria, .zhu {
     font-family: 'POLYA', var(--font-alt);
-    font-size: 6.5rem;
+    font-size: 9rem;
     font-weight: 600;
     display: block;
-    letter-spacing: 8px;
-    line-height: 1.1;
+    letter-spacing: 1rem;
+    line-height: 1.2;
     color: var(--accent-color); /* Blue accent color */
     text-align: center;
 }
@@ -1156,3 +1147,281 @@ section {
     opacity: 0;
     transition: opacity 1.5s ease;
 } 
+
+/* --- Alternating layout & poster overlay --- */
+
+/* 交替排版：偶数卡片左右反转 */
+.project-card:nth-child(even) .project-img-container { order: 2; }
+.project-card:nth-child(even) .project-info { order: 1; }
+
+/* 为了覆盖海报内容，需要确保可定位 */
+.project-img-container { position: relative; }
+
+/* 海报叠层：默认轻微可见，hover 更强调 */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.25rem;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 85%);
+  opacity: 0.0;          /* 初始几乎不可见，保持干净 */
+  transition: opacity .35s ease;
+  pointer-events: none;   /* 不挡住底下的链接点击 */
+  border-radius: 4px;
+}
+
+.project-card:hover .card-overlay { opacity: 1; }
+
+.card-overlay .overlay-inner {
+  width: 100%;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.overlay-title {
+  font-family: 'Futura','Century Gothic','Arial',sans-serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  line-height: 1.15;
+  letter-spacing: .02em;
+  font-weight: 600;
+  text-shadow: 0 4px 14px rgba(0,0,0,.35);
+}
+
+.overlay-meta {
+  font-size: .8rem;
+  opacity: .9;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+
+/* 右下角箭头按钮（视觉指示“可点入”） */
+.overlay-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .9rem;
+  font-weight: 500;
+  color: #fff;
+  opacity: .95;
+  transform: translateY(2px);
+}
+
+.overlay-cta i { transition: transform .25s ease; }
+.project-card:hover .overlay-cta i { transform: translateX(4px); }
+
+/* 略微缩短卡片固定高度，增强“海报”比例 */
+@media (min-width: 993px) {
+    /* 卡片改为单列舞台，保持固定高度可自适应一点，避免“愣” */
+    .project-card {
+        position: relative;
+        grid-template-columns: 1fr;                  /* 默认只显示图片，不再两列 */
+        height: clamp(380px, 42vw, 520px);           /* 比原 400px 更灵活:contentReference[oaicite:3]{index=3} */
+        overflow: hidden;
+      }
+    
+      /* 桌面端隐藏右侧原生文本块，避免非 hover 时出现小小的 View Project */
+      .project-info { display: none; } /* 移动端仍会显示（见下） */
+    
+      /* 图片：默认居中；hover 时把图片滑到一侧（奇偶交替方向），形成空白区 */
+      .project-img-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;                                   /* 居中 */
+        transform: translate(-50%, -50%) scale(1);
+        width: min(62%, 750px);                       /* 大图主角感 */
+        height: 84%;
+        transition: left .45s ease, transform .45s ease;
+      }
+      .project-card:hover .project-img-container {
+        left: 32%;                                   /* 奇数卡：图左移 */
+        transform: translate(-50%, -50%) scale(1.02);
+      }
+      .project-card:nth-child(even):hover .project-img-container {
+        left: 62%;                                   /* 偶数卡：图右移 */
+      }
+    
+      /* 贴底描述面板：默认隐藏，hover 渐显。奇偶决定在左还是右。 */
+      .slide-panel {
+        position: absolute;
+        bottom: 0;
+        right: 6%;                                   /* 奇数卡在右侧出现 */
+        width: 34%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;                   /* 贴底 ✅ */
+        gap: .75rem;
+        padding: 0 0 1.25rem 0;
+        opacity: 0;
+        transform: translateX(24px);
+        transition: opacity .35s ease, transform .35s ease;
+        pointer-events: none;                        /* 不挡图片点击 */
+      }
+      .project-card:nth-child(even) .slide-panel {
+        right: auto; left: 6%;                       /* 偶数卡在左侧出现 */
+        transform: translateX(-24px);
+      }
+      .project-card:hover .slide-panel {
+        opacity: 1; transform: translateX(0);
+      }
+    
+      /* 描述文本：三行截断，灰一点，贴底 */
+      .slide-desc {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--light-text);
+        display: -webkit-box;
+        -webkit-line-clamp: 3;                       /* 只露几行 */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    
+      /* 如果你保留了图片上的 overlay（“View”按钮），它会继续工作:contentReference[oaicite:4]{index=4}。
+         若希望 hover 时隐藏图片上的 CTA，解除下面的注释：
+      */
+      /* .project-card:hover .overlay-cta { opacity: 0; visibility: hidden; } */
+    }
+
+/* --- Fix: hover 描述不与图片重叠 & 贴底但不被裁，长文可见 --- */
+@media (min-width: 993px) {
+    /* 让图片 hover 时再“让”出更多空白区域（奇数左、偶数右） */
+    .project-img-container { z-index: 1; }
+    .project-card:hover .project-img-container {
+      left: 34%;                                 /* 原来 38%，再多让出空白 */
+      transform: translate(-50%, -50%) scale(1.02);
+      transition: left .45s ease, transform .45s ease;
+    }
+    .project-card:nth-child(even):hover .project-img-container { left: 66%; }
+  
+    /* 在图片外侧加一条侧边渐变，避免文字跟图硬贴在一起 */
+    .project-img-container::after {
+      content: '';
+      position: absolute; top: 0; bottom: 0; right: -1px; width: 10%;
+      background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.28) 100%);
+      opacity: 0; transition: opacity .35s ease; pointer-events: none;
+    }
+    .project-card:nth-child(even) .project-img-container::after {
+      right: auto; left: -1px;
+      background: linear-gradient(270deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.28) 100%);
+    }
+    .project-card:hover .project-img-container::after { opacity: 1; }
+  
+    /* 贴底描述面板：抬高 1rem，限制宽度和最高高度，层级盖在图之上 */
+    .slide-panel {
+      position: absolute;
+      bottom: 1rem;                               /* ↑离底 1rem，避免被裁 */
+      right: 5%;
+      width: clamp(280px, 24%, 420px);            /* 别超过让出的空白区 */
+      max-height: min(44%, 240px);                /* 上限，防止太长溢出 */
+      display: flex; flex-direction: column; justify-content: flex-end;
+      gap: .75rem; padding: 0 0 1.25rem 0;
+      opacity: 0; transform: translateX(24px);
+      transition: opacity .35s ease, transform .35s ease;
+      pointer-events: none; z-index: 3;
+    }
+    .project-card:nth-child(even) .slide-panel { left: 6%; right: auto; transform: translateX(-24px); }
+    .project-card:hover .slide-panel { opacity: 1; transform: translateX(0); }
+  
+    /* 描述：多显示几行，仍然优雅截断 */
+    .slide-desc{
+      font-size: 1.05rem; line-height: 1.7; color: var(--light-text);
+      display: -webkit-box; -webkit-box-orient: vertical;
+      -webkit-line-clamp: 6;                      /* 原 3 行 → 5 行 */
+      overflow: hidden;
+    }
+  }
+  
+/* 移动端：海报叠层始终可见一点点，避免看不清标题 */
+@media (max-width: 768px) {
+  .card-overlay { opacity: .9; }
+  .card-overlay { display: none; }
+  .slide-panel { display: none; }
+  .project-info { display: block; } 
+}
+
+
+/* -------- Projects Head: Eyebrow + Big Title -------- */
+#projects .section-title{
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+    letter-spacing: .01em;
+    margin-bottom: 2rem;              /* 给分段控件留空间 */
+    position: relative;
+  }
+  #projects .section-title::before{
+    content: "Selected Work";
+    position: absolute; left: 0; top: -1.1rem;
+    font-size: .78rem; letter-spacing: .18em;
+    color: var(--light-text); text-transform: uppercase;
+    opacity: .8;
+  }
+  #projects .section-title::after{
+    content:"";
+    position: absolute; left: 0; bottom: -.6rem;
+    width: 78px; height: 4px; border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent-color), rgba(67,97,238,0));
+  }
+  
+
+  /* 可选：让整条分段控件在 Projects 区域内轻微吸顶 */
+  @media (min-width: 993px){
+    #projects .filter-buttons{
+      position: sticky; top: 72px;
+      z-index: 20;
+    }
+  }
+  
+  /* --- Projects: text tabs with underline --- */
+#projects .filter-buttons{
+    position: relative;
+    display: inline-flex;
+    gap: 1.2rem;
+    padding-bottom: .6rem;        /* 给底部下划线让位 */
+    background: none;             /* 去掉大胶囊底 */
+    box-shadow: none;
+    border-radius: 0;
+    isolation: isolate;           /* 便于控制层级 */
+  }
+  
+  /* 共享下划线（由 JS 注入 .filter-underline 元素） */
+  .filter-underline{
+    position: absolute;
+    left: 0; bottom: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-color), rgba(67,97,238,.6));
+    border-radius: 2px;
+    transform: translateX(0);
+    width: 0;
+    transition: transform .28s ease, width .28s ease, opacity .2s ease;
+    pointer-events: none;
+    z-index: 0;                   /* 在文字下方，不会遮挡 */
+  }
+  
+  /* 文本按钮：无边框无底色 */
+  .filter-btn{
+    border: none !important;
+    background: transparent !important;
+    color: var(--light-text);
+    padding: 0 .2rem;
+    height: auto;
+    border-radius: 0;
+    font-weight: 600;
+    letter-spacing: .01em;
+    transition: color .2s ease, transform .12s ease;
+    position: relative;
+    z-index: 1;                  /* 保证在下划线上方 */
+  }
+  .filter-btn:hover{ color: var(--text-color); transform: translateY(-1px); }
+  .filter-btn.active{ color: var(--accent-color); }
+  
+  /* 无障碍：键盘聚焦 */
+  .filter-btn:focus-visible{
+    outline: none;
+    box-shadow: 0 2px 0 var(--accent-color);
+    border-radius: 0;
+  }
+  
