@@ -48,13 +48,50 @@
             </div>
         </div>
         <div class="project-cover">
-            <img src="../image/maya-cover.jpg" alt="Maya 3D Projects">
+            <img src="../image/maya-aquapus.jpg" alt="Maya 3D Projects">
         </div>
     </section>
 
     <!-- Project Content -->
     <section class="project-content">
         <div class="project-section">
+            <h2>Aquapus: Original Character</h2>
+            
+            <div class="two-column" style="margin-top: 20px; display: flex; align-items: flex-start; gap: 30px;">
+                <div class="left-half" style="flex: 2;">
+                    <img src="../image/maya-aquapus1.jpg" alt="Aquapus Character Front View" class="project-image-full">
+                    <h3 style="text-align: center; margin-top: -30px;">Aquapus Character - Front View</h3>
+                </div>
+                <div class="right-half" style="flex: 1; padding-top: 40px;">
+                    <p>Aquapus is an originally designed character--an agendered humanoid that lives 6000 meters undersea. All the texture are self made in Substance 3D Painter.</p>
+                    
+                    <div style="margin-top: 20px;">
+                        <span id="storyToggle" style="color: var(--accent-color); text-decoration: underline; cursor: pointer; font-weight: 500; transition: color 0.3s ease;" 
+                              onclick="toggleStory()">
+                            More about background story
+                        </span>
+                        <div id="storyContent" style="max-height: 0; overflow: hidden; margin-top: 15px; padding: 0 15px; background-color: var(--secondary-color); border-radius: 8px; text-align: left; line-height: 1.6; font-size: 0.9rem; transition: all 0.4s ease;">
+                            <div style="padding: 15px 0;">
+                                <p>Instead of hands and feet, Aquapus has eight octopus arms and several jellyfish tentacles to support its movement. It can survive out of the water, but without feet, it cannot leave the sea. It moves quite slowly—probably takes a month to swim to the sea surface.</p>
+                                <p style="margin-top: 15px;">Aquapus is friendly, in some sense. But it sometimes wakes up to realize it ruined several ships, which bothers it a lot.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="image-with-caption" style="margin-top: 20px;">
+                <img src="../image/maya-aquapus2.jpg" alt="Aquapus Character Detail 2" class="project-image-full">
+                <h3 style="text-align: center; margin-top: -30px;">Aquapus Character - Detail View </h3>
+            </div>
+
+            <div class="image-with-caption">
+                <img src="../image/maya-aquapus.jpg" alt="Aquapus Character" class="project-image-full">
+                <h3 style="text-align: center; margin-top: -30px;">Aquapus Character - Scene</h3>
+            </div>
+        </div>
+
+        <div class="project-section" style="margin-top: 40px;">
             <h2>The Nautilus</h2>
             <div class="image-with-caption">
                 <img src="../image/maya-nau1.jpg" alt="The Nautilus 3D Model" class="project-image-full">
@@ -78,6 +115,8 @@
                 <img src="../image/maya-cover.jpg" alt="Undersea Scene" class="project-image-full">
             </div>
         </div>
+
+
 
         <div class="project-section" style="margin-top: 40px;">
             <h2>House Project</h2>
@@ -124,5 +163,19 @@
 
     <!-- JavaScript -->
     <script src="../script.js"></script>
+    <script>
+        function toggleStory() {
+            const content = document.getElementById('storyContent');
+            const toggle = document.getElementById('storyToggle');
+            
+            if (content.style.maxHeight === '0px' || content.style.maxHeight === '') {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                toggle.textContent = 'Hide background story';
+            } else {
+                content.style.maxHeight = '0px';
+                toggle.textContent = 'More about background story';
+            }
+        }
+    </script>
 </body>
 </html>

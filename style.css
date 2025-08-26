@@ -1425,3 +1425,56 @@ section {
     border-radius: 0;
   }
   
+  /* --- Whispers v3: gradient text + simple fade (no bottom-only line) --- */
+.whispers{
+    position: relative;
+    padding: 20px 10%;
+    min-height: 64px;
+    display: flex; align-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(120% 120% at 0% 0%, rgba(67,97,238,.08), transparent 60%),
+      radial-gradient(120% 120% at 100% 100%, rgba(76,201,240,.06), transparent 60%),
+      var(--secondary-color);
+    border-top: 1px solid rgba(0,0,0,.04);
+    border-bottom: 1px solid rgba(0,0,0,.04);
+    z-index: 1;
+  }
+  .whispers::after{ display: none !important; }
+  
+  /* 让文本参与正常文档流（不再绝对定位），并做渐变文字 */
+  .whisper{
+    position: static !important;
+    display: block;
+    width: 100%;
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    line-height: 1.6;
+    letter-spacing: .01em;
+    /* 渐变文字（Safari 兼容） */
+    background: linear-gradient(90deg, #0d47a1 0%, #4361ee 50%, #00bcd4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    /* 淡入淡出 */
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity .45s ease, transform .45s ease;
+  }
+  
+  /* 退场时稍微上移，显得轻 */
+  .whisper.is-fading-out{
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  
+  /* 进入时从下方轻轻上来 */
+  .whisper.is-fading-in{
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  
+  @media (max-width: 768px){
+    .whispers{ padding: 18px 5%; min-height: 56px; }
+  }
+  

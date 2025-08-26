@@ -40,7 +40,7 @@
     <section id="welcome">
         <!-- Intro Text Animation -->
         <div class="intro-animation">
-            <div class="hi-text intro-element">Hi :)</div>
+            <div class="hi-text intro-element">Welcome :)</div>
             <div class="welcome-message intro-element"></div>
         </div>
 
@@ -63,25 +63,45 @@
     </section>
     
     <!-- Let's Talk Section -->
-    <div class="lets-talk">
+    <!-- <div class="lets-talk">
         <div class="talk-text">What's in your mind today? • Let's Talk • What's in your mind today? • Let's Talk • What's in your mind today? • Let's Talk • What's in your mind today? • Let's Talk • </div>
         <div class="talk-text">What's in your mind today? • Let's Talk • What's in your mind today? • Let's Talk • What's in your mind today? • Let's Talk • What's in your mind today? • Let's Talk • </div>
-    </div>
+    </div> -->
+
+    <!-- Whispers: calm, rotating one-liners -->
+<div class="whispers" aria-live="polite">
+    <span class="whisper">A gentle selection of recent projects</span>
+  </div>
+  
 
     <!-- Projects Section with Updated Links -->
     <section id="projects">
         <h2 class="section-title">Projects</h2>
         <div class="filter-buttons">
-            <button class="filter-btn active" data-filter="featured">Featured</button>
-            <button class="filter-btn" data-filter="uiux">UI/UX</button>
-            <button class="filter-btn" data-filter="installation">Installation</button>
-            <button class="filter-btn" data-filter="product">Product</button>
+            <button class="filter-btn active" data-filter="featured">Recent</button>
+            <button class="filter-btn" data-filter="uxproduct">UX/Product</button>
             <button class="filter-btn" data-filter="medarts">Media Arts</button>
             <button class="filter-btn" data-filter="games">Games/3D</button>
         </div>
         <div class="projects-container">
-            <!-- Project: The Next Port (Featured, Product) -->
-            <div class="project-card" data-category="featured product">
+            <!-- Maya 3D Projects (Featured, Games/3D) -->
+            <div class="project-card" data-category="featured games">
+                <div class="project-img-container">
+                    <img src="image/maya-aquapus.jpg" alt="Maya 3D Projects" class="project-img">
+                </div>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <p class="project-category">3D Modeling and Animation</p>
+                        <h3 class="project-title">Maya 3D Projects</h3>
+                        <p class="project-time">2024-2025</p>
+                    </div>
+                    <p class="project-desc">A collection of 3D models and animations created using Autodesk Maya, exploring various techniques and styles in 3D design.</p>
+                    <a href="3d/maya3d.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Project: The Next Port (Featured, UX/Product) -->
+            <div class="project-card" data-category="featured uxproduct">
                 <div class="project-img-container">
                     <img src="image/tnp-cover.png" alt="The Next Port Project" class="project-img">
                 </div>
@@ -96,8 +116,8 @@
                 </div>
             </div>
             
-            <!-- Project 1: Glucosphere (Featured, UI/UX, Product) -->
-            <div class="project-card" data-category="featured uiux product">
+            <!-- Project 1: Glucosphere (Featured, UX/Product) -->
+            <div class="project-card" data-category="featured uxproduct">
                 <div class="project-img-container">
                     <img src="image/glusp-cover.png" alt="Glucosphere Project" class="project-img">
                 </div>
@@ -112,8 +132,8 @@
                 </div>
             </div>
             
-            <!-- Project 2: Befree (UI/UX) -->
-            <div class="project-card" data-category="uiux">
+            <!-- Project 2: Befree (UX/Product) -->
+            <div class="project-card" data-category="uxproduct">
                 <div class="project-img-container">
                     <img src="image/bef-cover.png" alt="Befree Project" class="project-img">
                 </div>
@@ -128,8 +148,8 @@
                 </div>
             </div>
             
-            <!-- Project 3: Berich (UI/UX) -->
-            <div class="project-card" data-category="uiux">
+            <!-- Project 3: Berich (UX/Product) -->
+            <div class="project-card" data-category="uxproduct">
                 <div class="project-img-container">
                     <img src="image/ber-cover.png" alt="Berich Project" class="project-img">
                 </div>
@@ -144,8 +164,24 @@
                 </div>
             </div>
 
-            <!-- Project: Otherworld (Featured, Installation, Games) -->
-            <div class="project-card" data-category="featured installation games">
+            <!-- Data Skinware (Featured, Media Arts) -->
+            <div class="project-card" data-category="featured medarts">
+                <div class="project-img-container">
+                    <img src="image/ds-cover.png" alt="Data Skinware Project" class="project-img">
+                </div>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <p class="project-category">Data Visualization & Future Design</p>
+                        <h3 class="project-title">Data Skinware</h3>
+                        <p class="project-time">2024</p>
+                    </div>
+                    <p class="project-desc">A creative exploration of data protection through visualization, examining how our vulnerable data can be conceptually protected through a "data skin" metaphor.</p>
+                    <a href="medarts/dataskin.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Project: Otherworld (Featured, Media Arts, Games) -->
+            <div class="project-card" data-category="featured medarts games">
                 <div class="project-img-container">
                     <img src="image/ow-cover.png" alt="Otherworld Project" class="project-img">
                 </div>
@@ -160,21 +196,55 @@
                 </div>
             </div>
 
-            <!-- Maya 3D Projects (Games/3D) - MOVED AFTER OTHERWORLD -->
-            <div class="project-card" data-category="games">
+            <!-- Project: YU (Media Arts) -->
+            <div class="project-card" data-category="medarts">
                 <div class="project-img-container">
-                    <img src="image/maya-cover.jpg" alt="Maya 3D Projects" class="project-img">
+                    <img src="image/yu-cover.png" alt="YU Project" class="project-img">
                 </div>
                 <div class="project-info">
                     <div class="project-meta">
-                        <p class="project-category">3D Modeling and Animation</p>
-                        <h3 class="project-title">Maya 3D Projects</h3>
-                        <p class="project-time">2024-2025</p>
+                        <p class="project-category">Installation</p>
+                        <h3 class="project-title">YU</h3>
+                        <p class="project-time">2021</p>
                     </div>
-                    <p class="project-desc">A collection of 3D models and animations created using Autodesk Maya, exploring various techniques and styles in 3D design.</p>
-                    <a href="3d/maya3d.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    <p class="project-desc">A responsive installation exploring the relationship between sound, space, and human interaction.</p>
+                    <a href="installation/yu.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
+
+            <!-- Creative Coding: p5.js projects (Media Arts) -->
+            <div class="project-card" data-category="medarts">
+                <div class="project-img-container">
+                    <img src="image/p5-cover.png" alt="P5.js Creative Coding Projects" class="project-img">
+                </div>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <p class="project-category">Creative Coding</p>
+                        <h3 class="project-title">P5.js Projects</h3>
+                        <p class="project-time">2022-2023</p>
+                    </div>
+                    <p class="project-desc">Interactive digital sketches created with p5.js, exploring data visualization and creative camera effects.</p>
+                    <a href="medarts/creativecoding.html" class="project-link">View Projects <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Project: Vital (Media Arts) -->
+            <div class="project-card" data-category="medarts">
+                <div class="project-img-container">
+                    <img src="image/vit-cover.png" alt="Vital Project" class="project-img">
+                </div>
+                <div class="project-info">
+                    <div class="project-meta">
+                        <p class="project-category">Installation</p>
+                        <h3 class="project-title">Vital</h3>
+                        <p class="project-time">2021</p>
+                    </div>
+                    <p class="project-desc">A biometric installation that visualizes vital signs and bodily rhythms, creating a connection between biological data and visual art.</p>
+                    <a href="installation/vital.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+
 
             <!-- Survivor Simulator (Games/3D) -->
             <div class="project-card" data-category="games">
@@ -208,69 +278,10 @@
                 </div>
             </div>
 
-            <!-- Data Skinware (Featured, Media Arts) - MOVED ABOVE P5.JS -->
-            <div class="project-card" data-category="featured medarts">
-                <div class="project-img-container">
-                    <img src="image/ds-cover.png" alt="Data Skinware Project" class="project-img">
-                </div>
-                <div class="project-info">
-                    <div class="project-meta">
-                        <p class="project-category">Data Visualization & Future Design</p>
-                        <h3 class="project-title">Data Skinware</h3>
-                        <p class="project-time">2024</p>
-                    </div>
-                    <p class="project-desc">A creative exploration of data protection through visualization, examining how our vulnerable data can be conceptually protected through a "data skin" metaphor.</p>
-                    <a href="medarts/dataskin.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
 
-            <!-- Creative Coding: p5.js projects (Media Arts) - MOVED BELOW DATA SKINWARE -->
-            <div class="project-card" data-category="medarts">
-                <div class="project-img-container">
-                    <img src="image/p5-cover.png" alt="P5.js Creative Coding Projects" class="project-img">
-                </div>
-                <div class="project-info">
-                    <div class="project-meta">
-                        <p class="project-category">Creative Coding</p>
-                        <h3 class="project-title">P5.js Projects</h3>
-                        <p class="project-time">2022-2023</p>
-                    </div>
-                    <p class="project-desc">Interactive digital sketches created with p5.js, exploring data visualization and creative camera effects.</p>
-                    <a href="medarts/creativecoding.html" class="project-link">View Projects <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
 
-            <!-- Project: YU (Installation) -->
-            <div class="project-card" data-category="installation">
-                <div class="project-img-container">
-                    <img src="image/yu-cover.png" alt="YU Project" class="project-img">
-                </div>
-                <div class="project-info">
-                    <div class="project-meta">
-                        <p class="project-category">Installation</p>
-                        <h3 class="project-title">YU</h3>
-                        <p class="project-time">2021</p>
-                    </div>
-                    <p class="project-desc">A responsive installation exploring the relationship between sound, space, and human interaction.</p>
-                    <a href="installation/yu.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
 
-            <!-- Project: Vital (Installation) -->
-            <div class="project-card" data-category="installation">
-                <div class="project-img-container">
-                    <img src="image/vit-cover.png" alt="Vital Project" class="project-img">
-                </div>
-                <div class="project-info">
-                    <div class="project-meta">
-                        <p class="project-category">Installation</p>
-                        <h3 class="project-title">Vital</h3>
-                        <p class="project-time">2021</p>
-                    </div>
-                    <p class="project-desc">A biometric installation that visualizes vital signs and bodily rhythms, creating a connection between biological data and visual art.</p>
-                    <a href="installation/vital.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
+
         </div>
     </section>
 
@@ -348,7 +359,7 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
-        <p class="copyright">© 2024 Gloria Zhu. All rights reserved.</p>
+        <p class="copyright">© 2025 Gloria Zhu. All rights reserved.</p>
     </footer>
 
     <!-- JavaScript -->

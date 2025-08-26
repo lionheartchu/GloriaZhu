@@ -135,8 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
         welcomeMessage.textContent = '';
         
         // Text for typing animations
-        const hiString = "Hi :)";
-        const welcomeString = "Welcome to my site.";
+        const hiString = "Welcome :)";
+        const welcomeString = "Here’s a slice of what I’m making.";
         let hiIndex = 0;
         let welcomeIndex = 0;
         
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (hiIndex < hiString.length) {
                     hiText.textContent += hiString.charAt(hiIndex);
                     hiIndex++;
-                    setTimeout(typeHi, 100);
+                    setTimeout(typeHi, 70);
                 } else {
                     // Step 2: After typing "Hi :)", start typing "Welcome to my site."
                     setTimeout(() => {
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (welcomeIndex < welcomeString.length) {
                                 welcomeMessage.textContent += welcomeString.charAt(welcomeIndex);
                                 welcomeIndex++;
-                                setTimeout(typeWelcome, 40);
+                                setTimeout(typeWelcome, );
                             } else {
                                 // Step 3: After typing completes, quickly fade out intro
                                 setTimeout(() => {
@@ -190,12 +190,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         
                         typeWelcome();
-                    }, 300);
+                    }, 400);
                 }
             }
             
             typeHi(); // Start the animation sequence
-        }, 300);
+        }, 400);
     }
     
     // Text duplicator for Let's Talk section
@@ -668,4 +668,42 @@ document.addEventListener('DOMContentLoaded', () => {
       if (active) moveUnderline(active);
     });
   });
+  
+// --- Whispers v3: single-node fade in/out with gradient text ---
+document.addEventListener('DOMContentLoaded', () => {
+    const el = document.querySelector('.whispers .whisper');
+    if (!el) return;
+  
+    const lines = [
+      'Some freshly brewed projects',
+      'Glad you’re here!',
+      'Experiments with steady intention',
+      'Please enjoy:)',
+    ];
+    let i = 0;
+  
+    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return; // 减少动画用户直接静态显示
+  
+    function fadeSwap(nextText){
+      // 先淡出
+      el.classList.add('is-fading-out');
+      setTimeout(() => {
+        // 切文案并标记“将要淡入”的初始状态
+        el.textContent = nextText;
+        el.classList.remove('is-fading-out');
+        el.classList.add('is-fading-in');
+        // 触发重排以确保动画
+        void el.offsetWidth;
+        // 再淡入
+        el.classList.remove('is-fading-in');
+      }, 220);
+    }
+  
+    setInterval(() => {
+      i = (i + 1) % lines.length;
+      fadeSwap(lines[i]);
+    }, 5000);
+  });
+  
   
