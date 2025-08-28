@@ -505,8 +505,8 @@ document.addEventListener('DOMContentLoaded', function() {
     halo.className = 'new-projects-halo';
     halo.style.cssText = `
         position: absolute;
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
         border-radius: 50%;
         background: radial-gradient(circle, 
             rgba(255,255,255,0.9) 0%,
@@ -703,7 +703,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(() => {
       i = (i + 1) % lines.length;
       fadeSwap(lines[i]);
-    }, 5000);
+    }, 7000);
   });
   
   
