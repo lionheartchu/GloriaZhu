@@ -68,41 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Skip if no project cards (not on projects page)
     if (projectCards.length === 0) return;
     
-    // Add event listeners to each card
+    // Simple hover effects - no need for complex blur effects
     projectCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            // Blur all other cards
-            projectCards.forEach(otherCard => {
-                if (otherCard !== card) {
-                    otherCard.style.filter = 'blur(3px)';
-                    otherCard.style.opacity = '0.7';
-                    otherCard.style.transform = 'scale(0.98)';
-                }
-            });
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            // Reset this specific card when mouse leaves
-            projectCards.forEach(otherCard => {
-                if (otherCard !== card) {
-                    otherCard.style.filter = '';
-                    otherCard.style.opacity = '';
-                    otherCard.style.transform = '';
-                }
-            });
-        });
+        // Basic hover effects are handled by CSS
     });
-    
-    // Reset all cards when mouse leaves the container
-    if (projectsContainer) {
-        projectsContainer.addEventListener('mouseleave', () => {
-            projectCards.forEach(card => {
-                card.style.filter = '';
-                card.style.opacity = '';
-                card.style.transform = '';
-            });
-        });
-    }
 });
 
 // Scroll animations
@@ -549,83 +518,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // --- Auto-build poster overlays on project images ---
-document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.project-card');
-    cards.forEach(card => {
-      try {
-        const imgWrap = card.querySelector('.project-img-container');
-        const titleEl = card.querySelector('.project-title');
-        const catEl = card.querySelector('.project-category');
-        const yearEl = card.querySelector('.project-time');
-        const linkEl = card.querySelector('.project-link');
-  
-        if (!imgWrap || !titleEl) return;
-  
-        // 组装叠层 DOM
-        const overlay = document.createElement('div');
-        overlay.className = 'card-overlay';
-        overlay.setAttribute('aria-hidden','true');
-  
-        const inner = document.createElement('div');
-        inner.className = 'overlay-inner';
-  
-        const left = document.createElement('div');
-        const title = document.createElement('div');
-        title.className = 'overlay-title';
-        title.textContent = titleEl.textContent.trim();
-  
-        const meta = document.createElement('div');
-        meta.className = 'overlay-meta';
-        const cat = catEl ? catEl.textContent.trim() : '';
-        const yr = yearEl ? yearEl.textContent.trim() : '';
-        meta.textContent = [cat, yr].filter(Boolean).join(' • ');
-  
-        left.appendChild(title);
-        if (cat || yr) left.appendChild(meta);
-  
-        const right = document.createElement('div');
-        right.className = 'overlay-cta';
-        right.innerHTML = `View <i class="fas fa-arrow-right"></i>`;
-  
-        // 让整个图片可点击（复用已有链接）
-        if (linkEl && linkEl.getAttribute('href')) {
-          // 只在图片区域增加点击，不盖住原有按钮
-          imgWrap.style.cursor = 'pointer';
-          imgWrap.addEventListener('click', () => {
-            window.location.href = linkEl.getAttribute('href');
-          });
-        }
-  
-        inner.appendChild(left);
-        inner.appendChild(right);
-        overlay.appendChild(inner);
-        imgWrap.appendChild(overlay);
-      } catch (e) {
-        console.warn('overlay build failed for a project-card:', e);
-      }
-    });
-  });
+// Disabled - no longer showing overlays on project images
   
 
-  // --- Build bottom-anchored slide panel with description on hover ---
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.project-card').forEach(card => {
-      const imgWrap = card.querySelector('.project-img-container');
-      const descEl  = card.querySelector('.project-desc'); // 取原描述文本:contentReference[oaicite:9]{index=9}
-      if (!imgWrap) return;
-  
-      const panel = document.createElement('div');
-      panel.className = 'slide-panel';
-  
-      const desc = document.createElement('p');
-      desc.className = 'slide-desc';
-      desc.textContent = descEl ? descEl.textContent.trim() : '';
-  
-      panel.appendChild(desc);
-      // 放在 card 内（与图片同级），便于绝对定位
-      card.appendChild(panel);
-    });
-  });
   
   // --- Underline indicator for project filter tabs ---
 document.addEventListener('DOMContentLoaded', () => {
