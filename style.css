@@ -858,14 +858,25 @@ body:before {
 /* Name in blue accent color */
 .gloria, .zhu {
     font-family: 'POLYA', var(--font-alt);
-    font-size: 9rem;
+    font-size: 10rem;
     font-weight: 600;
     display: block;
     letter-spacing: 1rem;
-    line-height: 1.2;
     color: var(--accent-color); /* Blue accent color */
     text-align: center;
+    font-size: clamp(8rem, 12vw, 11rem);
+    letter-spacing: clamp(0.4rem, 1vw, 1.2rem); /* 放大时把字距稍微收一点，避免挤出屏 */
+    line-height: 1; /* 两行更紧凑更有冲击力 */
+    text-transform: none;
 }
+@media (max-width: 768px){
+    #welcome .gloria,
+    #welcome .zhu{
+      font-size: clamp(3.2rem, 12vw, 5.2rem);
+      letter-spacing: clamp(0.2rem, 1.6vw, 0.6rem);
+      line-height: 0.95;
+    }
+  }
 
 /* Keep font consistent on buttons and inputs */
 .btn, .filter-btn, .form-control, .submit-btn {
@@ -1272,7 +1283,7 @@ section {
     font-weight: 700;
     font-size: clamp(2.4rem, 3.2vw, 3.6rem);
     letter-spacing: .01em;
-    margin-bottom: 2rem;              /* 给分段控件留空间 */
+    margin-bottom: 2rem;
     position: relative;
   }
   #projects .section-title::before{
@@ -1400,4 +1411,243 @@ section {
   @media (max-width: 768px){
     .whispers{ padding: 18px 5%; min-height: 56px; }
   }
+  
+
+  /* === Sticky Projects v2: image-first, then content reveal === */
+
+/* 每张卡的“停留时长”（越高停留越久） */
+.sticky-block {
+    height: 220vh;               /* 可调：160~240vh */
+    position: relative;
+  }
+  
+  /* 让 project-card 变成全屏 sticky 面板（仅在 sticky 模式下生效） */
+  .project-card.sticky-panel {
+    position: sticky;
+    top: 0;                      /* 如需避开固定头部，可改 top:64px; */
+    min-height: 100vh;
+    height: auto;
+    display: block;
+    padding: 0;
+    border-bottom: none;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  
+  /* 背景图层：绝对定位全屏，先只看图 */
+  .project-card.sticky-panel .project-img-container {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    display: block;
+  }
+  .project-card.sticky-panel .project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(calc(1 + var(--progress, 0) * 0.08));
+    filter: brightness(calc(0.95 - var(--progress, 0) * 0.15))
+            blur(var(--img-blur, 0px));
+    transition: transform 0.12s linear, filter 0.12s linear;
+    will-change: transform, filter;
+  }
+  
+  /* 底部渐变遮罩，保证文字可读；随滚动稍增强 */
+  .project-card.sticky-panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.0) 60%),
+      radial-gradient(60% 40% at 50% 100%, rgba(0,0,0,0.2), transparent 70%);
+    opacity: calc(0.35 + var(--progress, 0) * 0.35);
+    pointer-events: none;
+  }
+  
+  /* 文字层：初始隐藏，随着滚动渐显并上浮 */
+  .project-card.sticky-panel .project-info {
+    position: absolute;
+    inset: auto 0 0 0; /* 贴底部（更像作品海报） */
+    padding: min(8vh, 80px) clamp(16px, 6vw, 80px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    opacity: var(--content-alpha, 0);                      /* 0→1 */
+    transform: translateY(calc((1 - var(--content-alpha, 0)) * 40px - var(--text-shift, 0px)));
+    transition: opacity 0.12s linear, transform 0.12s linear, filter 0.12s linear;
+    filter: blur(calc((1 - var(--content-alpha, 0)) * 6px));
+    will-change: opacity, transform, filter;
+    z-index: 1;
+  }
+  
+  /* sticky 模式下的文字配色（白色） */
+  .project-card.sticky-panel .project-category,
+  .project-card.sticky-panel .project-title,
+  .project-card.sticky-panel .project-desc,
+  .project-card.sticky-panel .project-time,
+  .project-card.sticky-panel .project-link {
+    color: #fff;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.45);
+  }
+  
+  /* 保持容器正常文档流 */
+  #projects .projects-container { position: relative; }
+  
+  /* 移动端禁用 sticky（避免滚动被劫持感） */
+  @media (max-width: 768px) {
+    .sticky-block { height: auto; }
+    .project-card.sticky-panel {
+      position: static;
+      min-height: auto;
+    }
+    .project-card.sticky-panel .project-img-container,
+    .project-card.sticky-panel .project-info {
+      position: static;
+      inset: auto;
+      transform: none;
+      opacity: 1;
+      filter: none;
+    }
+    .project-card.sticky-panel::after { display: none; }
+  }
+  
+  /* 尊重“减少动态”的系统偏好 */
+  @media (prefers-reduced-motion: reduce) {
+    .sticky-block { height: auto !important; }
+    .project-card.sticky-panel { position: static !important; }
+    .project-card.sticky-panel .project-img { transform: none !important; filter: none !important; }
+    .project-card.sticky-panel .project-info { opacity: 1 !important; transform: none !important; filter: none !important; }
+    .project-card.sticky-panel::after { opacity: 0 !important; }
+  }
+  
+  #projects { 
+    padding-left: 0; 
+    padding-right: 0; 
+  }
+
+  /* ===== Split 50/50, sticky, right pure-color panel ===== */
+:root{ --header-h:72px; --intro-surface:#0f1115; }  /* 右半的纯色，可改浅色 */
+
+#intro-fb{ padding:0; margin:0; }
+.fb-sticky{ height: 160vh; position: relative; }    /* 控滚动时长，160~200vh */
+
+.fb-hero{
+  position: sticky; top: var(--header-h);
+  min-height: calc(100vh - var(--header-h));        /* 修掉“底部空隙” */
+  display: grid; grid-template-columns: 1fr 1fr;
+  isolation: isolate; overflow: clip; background:#000; /* 背景不露底色 */
+}
+
+/* 左列：图片轮播（轻模糊，确保文字对比） */
+.fb-media{ position: relative; height: 100%; }
+.fb-media img{
+  position: absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  opacity:0; transition: opacity .8s ease;
+  filter: blur(var(--bg-blur, 6px)) brightness(.95) saturate(.95);
+}
+.fb-media img.is-active{ opacity:1; }
+
+/* 右列：纯色面板 */
+.fb-panel{
+  background: var(--intro-surface);                 /* 纯色，无渐变 */
+  display: grid; place-items: center;               /* 文案垂直居中 */
+}
+
+/* 文案：轻微“上浮”且渐显（无停顿） */
+.fb-content{
+  color:#eaeef6; max-width: 720px;
+  padding: clamp(24px, 6vw, 56px);
+  transform: translateY(calc((1 - var(--fb-p, 0)) * 22px));
+  opacity: calc(.72 + var(--fb-p,0) * .28);
+  transition: transform .12s linear, opacity .12s linear;
+}
+.intro-fb .eyebrow{ font-size:.82rem; letter-spacing:.18em; text-transform:uppercase; color:#b5bdcf; margin-bottom:.6rem; }
+.fb-title{ font-family:var(--font-title); font-weight:800; letter-spacing:.01em;
+  font-size: clamp(1.8rem, 4vw, 3rem); line-height:1.15; margin:0 0 .9rem 0; }
+.fb-lede{ color:#cfd6e6; opacity:.9; margin-bottom:1.1rem; }
+
+/* 去掉之前为可读性叠的渐变（若你有 .fb-hero::before 请删掉/注释掉） */
+
+/* 移动端：上下堆叠，仍保持纯色面板可读 */
+@media (max-width: 768px){
+  .fb-sticky{ height:auto; }
+  .fb-hero{ position: static; min-height:auto; grid-template-columns:1fr; }
+  .fb-panel{ order:2; }
+  .fb-content{ transform:none; opacity:1; }
+}
+
+/* 若你想让下一个 section 紧跟上来，避免大间距： */
+#projects{ padding-top: 2.5rem; }  /* 可再小一些 */
+
+/* ===== Simple (low-CPU) theme for intro-fb ===== */
+.intro-fb.simple .fb-hero{
+    /* 右侧纯色面板：固定蓝青渐变（未来感但不冷） */
+    background:#000; /* 防止露底 */
+  }
+  
+  .intro-fb.simple .fb-panel{
+    background: linear-gradient(160deg, #0f172a 0%, #0a2e3b 100%); /* 深靛蓝 -> 青蓝 */
+    color: #eaf2ff;
+  }
+  
+  /* 左侧图：固定轻模糊，不随滚动变 */
+  .intro-fb.simple .fb-media img{
+    filter: blur(5px) brightness(.96) saturate(.95);
+  }
+  
+  /* 修掉 sticky 底部空隙（若未加） */
+  :root{ --header-h:72px; }
+  #intro-fb .fb-hero{ min-height: calc(100vh - var(--header-h)); }
+  
+  /* 如果你之前加过任何噪点/混合层，建议注释掉（更省） */
+  /* .fb-panel::after, .fb-media::after { display:none !important; } */
+  /* ===== Dreamy theme (soft aurora) ===== */
+.intro-fb.theme-dreamy .fb-media img{
+    /* 保留你的模糊，但更轻盈一点的色调 */
+    filter: blur(6px) brightness(1.04) saturate(1.06);
+  }
+  .intro-fb.theme-dreamy .fb-media{ position:relative; }
+  .intro-fb.theme-dreamy .fb-media::after{
+    /* 柔和极光叠加，让左侧更梦幻而不刺眼；几乎不耗CPU */
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:1;
+    background:
+      radial-gradient(60% 45% at 22% 28%, rgba(134,239,255,.28), transparent 60%),
+      radial-gradient(55% 40% at 78% 72%, rgba(196,181,253,.22), transparent 60%);
+    mix-blend-mode: screen; opacity:.55;
+  }
+  
+  .intro-fb.theme-dreamy .fb-panel{
+    /* 右侧面板从“深色纯色”改为更柔和的蓝青渐变 */
+    background: linear-gradient(160deg, #0f172a 0%, #123246 55%, #1a5563 100%);
+    color:#eaf2ff;
+  }
+  
+  /* ===== Prominent CTA button (gradient, glow, accessible) ===== */
+  .btn-cta{
+    --cta-start:#7dd3fc;  /* sky-300 */
+    --cta-end:#a78bfa;    /* violet-300 */
+    --cta-text:#0b1020;
+  
+    display:inline-flex; align-items:center; gap:.5rem;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--cta-start), var(--cta-end));
+    color: var(--cta-text);
+    font-weight: 700; letter-spacing:.2px; text-decoration:none;
+    box-shadow: 0 8px 24px rgba(100, 150, 255, .20), 0 2px 8px rgba(20, 30, 60, .20);
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+    border: none;
+  }
+  .btn-cta:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(100, 150, 255, .30), 0 4px 10px rgba(20, 30, 60, .25);
+    filter: saturate(1.05);
+  }
+  .btn-cta:focus-visible{
+    outline: 2px solid #fff; outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(125,211,252,.5);
+  }
+  
+  /* 若你仍保留旧的描边按钮样式，避免冲突 */
+  .btn-ghost{ display:none; }
   

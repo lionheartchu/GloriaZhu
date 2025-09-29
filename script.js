@@ -602,3 +602,136 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   
+  // === Sticky Projects v2: image-first, then content reveal ===
+(function initStickyProjectsV2() {
+    const container = document.querySelector('#projects .projects-container');
+    if (!container) return;
+  
+    const cards = Array.from(container.querySelectorAll('.project-card'));
+    if (!cards.length) return;
+  
+    // 避免重复初始化
+    if (container.querySelector('.sticky-block')) return;
+  
+    // 1) 包裹每张卡，并标记 sticky 样式
+    cards.forEach(card => {
+      const wrap = document.createElement('div');
+      wrap.className = 'sticky-block';
+      card.classList.add('sticky-panel');
+      container.insertBefore(wrap, card);
+      wrap.appendChild(card);
+    });
+  
+    const blocks = Array.from(container.querySelectorAll('.sticky-block'));
+  
+    // 2) 根据滚动计算每块的进度 p(0→1)
+    let ticking = false;
+    function update() {
+      ticking = false;
+      const vh = window.innerHeight;
+  
+      blocks.forEach(block => {
+        const panel = block.firstElementChild; // .project-card
+        const rect = block.getBoundingClientRect();
+        const stickRange = block.offsetHeight - vh; // 可粘住滚动区间
+        let p = 0;
+  
+        if (stickRange > 0) {
+          if (rect.top <= 0 && rect.bottom >= vh) {
+            p = Math.min(1, Math.max(0, -rect.top / stickRange));
+          } else if (rect.top > 0) p = 0;
+          else if (rect.bottom < vh) p = 1;
+        }
+  
+        // —— 分段映射：进入 → 停留(hold) → 退出 ——
+// 可微调三个段落的分界：进入结束(ENTER_END) & 停留结束(HOLD_END)
+const ENTER_START = 0.18;
+const ENTER_END   = 0.38;  // 文字开始清晰的时间点
+const HOLD_END    = 0.68;  // 在这里之前保持“停留感”
+
+const clamp01 = v => Math.max(0, Math.min(1, v));
+const invLerp = (a, b, x) => clamp01((x - a) / (b - a));
+const lerp = (a, b, t) => a + (b - a) * t;
+
+// 文字透明度：先出现→完全可读→停留一段→轻微淡出（保持对比，不会突然消失）
+let contentAlpha =
+  (p < ENTER_START) ? 0 :
+  (p < ENTER_END)   ? invLerp(ENTER_START, ENTER_END, p) :       // 渐显
+  (p < HOLD_END)    ? 1 :                                        // 停留（完全可读）
+                      1 - invLerp(HOLD_END, 1, p) * 0.15;        // 轻微淡出到 0.85
+
+// 文字上移：在“停留”区间内慢慢上移到 18px，其余时刻不动
+let textShiftPx =
+  (p < ENTER_END) ? 0 :
+  (p < HOLD_END)  ? lerp(0, 18, invLerp(ENTER_END, HOLD_END, p)) :
+                    18;
+
+// 图片模糊：开始略微 2px，进入完成后基本清晰（提升可读性）
+let imgBlur =
+  (p < ENTER_END) ? lerp(2, 0, invLerp(0, ENTER_END, p)) : 0;
+
+// 写入 CSS 变量
+panel.style.setProperty('--progress', p.toFixed(3));
+panel.style.setProperty('--img-blur', `${imgBlur.toFixed(2)}px`);
+panel.style.setProperty('--content-alpha', contentAlpha.toFixed(3));
+panel.style.setProperty('--text-shift', `${textShiftPx.toFixed(1)}px`);
+
+      });
+    }
+  
+    function onScroll() {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }
+  
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll(); // 初始计算
+  })();
+  
+  // === Intro Full-Bleed: sticky float-up + blurred bg slideshow ===
+(function initIntroFullBleed(){
+    const block   = document.querySelector('#intro-fb .fb-sticky');
+    const content = document.querySelector('#intro-fb .fb-content');
+    const media   = document.querySelector('#intro-fb .fb-media');
+    if (!block || !content || !media) return;
+  
+    // 1) 滚动进度 p(0→1) —— 驱动文字上浮 & 背景模糊微调
+    let ticking = false;
+    function update(){
+      ticking = false;
+      const vh   = window.innerHeight;
+      const rect = block.getBoundingClientRect();
+      const range = Math.max(0, block.offsetHeight - vh);
+      let p = 0;
+      if (range > 0){
+        if (rect.top <= 0 && rect.bottom >= vh) p = Math.min(1, Math.max(0, -rect.top / range));
+        else if (rect.top > 0) p = 0;
+        else if (rect.bottom < vh) p = 1;
+      }
+      content.style.setProperty('--fb-p', p.toFixed(3));
+  
+      // 背景模糊：开始 6px → 结束约 3.5px（更清晰一点，便于阅读）
+      const blurPx = 2 - p * 2.5;
+      media.querySelectorAll('img').forEach(img=>{
+        img.style.filter = `blur(${blurPx.toFixed(2)}px) brightness(.95) saturate(.95)`;
+      });
+    }
+    function onScroll(){ if (!ticking){ requestAnimationFrame(update); ticking = true; } }
+    window.addEventListener('scroll', onScroll, { passive:true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  
+    // 2) 背景轮播：逐张淡入
+    const slides = Array.from(media.querySelectorAll('img'));
+    slides.forEach((img,i)=> img.classList.toggle('is-active', i===0));
+    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce && slides.length > 1){
+      let i = 0;
+      setInterval(()=>{
+        slides[i].classList.remove('is-active');
+        i = (i + 1) % slides.length;
+        slides[i].classList.add('is-active');
+      }, 3600); // 每 3.6s 切换
+    }
+  })();
+  
