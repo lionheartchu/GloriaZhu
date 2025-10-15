@@ -12,6 +12,16 @@ document.addEventListener('click', () => {
         cursor.style.transform = 'scale(1)';
     }, 100);
 });
+// 让鼠标移到指定文字上时，放大成“柔和白圆”
+const hoverTargets = document.querySelectorAll(
+    '.nav-links li a, .gloria, .zhu, .section-title, .project-title, .title-item, .fb-title, .project-category, .project-time'
+  );
+  
+  hoverTargets.forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('is-big'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('is-big'));
+  });
+  
 
 // Navigation toggle
 const hamburger = document.querySelector('.hamburger');
@@ -130,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (welcomeIndex < welcomeString.length) {
                                 welcomeMessage.textContent += welcomeString.charAt(welcomeIndex);
                                 welcomeIndex++;
-                                setTimeout(typeWelcome, );
+                                setTimeout(typeWelcome, 60);
                             } else {
                                 // Step 3: After typing completes, quickly fade out intro
                                 setTimeout(() => {
@@ -295,92 +305,231 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add subtle aurora to other sections
     addSubtleAuroraToSections();
     
-    function initializeAurora() {
-        // Subtle mouse movement effect
-        document.addEventListener('mousemove', function(e) {
-            // Only apply effect when mouse is in the welcome section
-            const rect = welcomeSection.getBoundingClientRect();
-            if (e.clientY < rect.bottom) {
-                const x = e.clientX / window.innerWidth;
-                const y = e.clientY / window.innerHeight;
+//     function initializeAurora() {
+//         // Subtle mouse movement effect
+//         document.addEventListener('mousemove', function(e) {
+//             // Only apply effect when mouse is in the welcome section
+//             const rect = welcomeSection.getBoundingClientRect();
+//             if (e.clientY < rect.bottom) {
+//                 const x = e.clientX / window.innerWidth;
+//                 const y = e.clientY / window.innerHeight;
                 
-                const layers = document.querySelectorAll('.aurora-layer');
+//                 const layers = document.querySelectorAll('.aurora-layer');
                 
-                // Create subtle movement based on mouse position
-                layers.forEach((layer, index) => {
-                    const speed = (index + 1) * 2;
-                    const offsetX = (x - 0.5) * speed;
-                    const offsetY = (y - 0.5) * speed;
+//                 // Create subtle movement based on mouse position
+//                 layers.forEach((layer, index) => {
+//                     const speed = (index + 1) * 2;
+//                     const offsetX = (x - 0.5) * speed;
+//                     const offsetY = (y - 0.5) * speed;
                     
-                    layer.style.transform = `translate(${offsetX}%, ${offsetY}%) scale(${1 + (index * 0.1)})`;
-                });
-            }
-        });
+//                     layer.style.transform = `translate(${offsetX}%, ${offsetY}%) scale(${1 + (index * 0.1)})`;
+//                 });
+//             }
+//         });
         
-        // Extra smooth color changes with the same rich palette
-        function changeAuroraColors() {
-            const colors = [
-                // Deep blue to cyan to white
-                ['rgba(12, 25, 180, 0.9)', 'rgba(76, 201, 240, 0.7)', 'rgba(255, 255, 255, 0.8)'],
-                
-                // Electric blue to white to light blue
-                ['rgba(67, 97, 238, 0.8)', 'rgba(255, 255, 255, 0.6)', 'rgba(58, 134, 255, 0.7)'],
-                
-                // Deep navy to bright cyan
-                ['rgba(0, 41, 107, 0.8)', 'rgba(0, 119, 182, 0.7)', 'rgba(3, 206, 243, 0.9)'],
-                
-                // White to pale blue to deep blue
-                ['rgba(255, 255, 255, 0.7)', 'rgba(173, 216, 230, 0.6)', 'rgba(0, 53, 102, 0.8)'],
-                
-                // Deep blue to white to dark cyan
-                ['rgba(0, 68, 136, 0.9)', 'rgba(255, 255, 255, 0.7)', 'rgba(0, 141, 151, 0.8)']
-            ];
+//         // Extra smooth color changes with the same rich palette
+//         function changeAuroraColors() {
+//             const colors = [
+//                 ['rgba(112,152,218,0.75)','rgba(179,214,255,0.60)','rgba(169,255,247,0.55)'],
+//   // periwinkle → lilac → sage-teal（冷紫边+青尾）
+//   ['rgba(98,124,216,0.72)','rgba(188,182,255,0.52)','rgba(130,171,161,0.44)'],
+//   // deep teal shade → cornflower → white（暗缘+亮芯）
+//   ['rgba(20,88,122,0.36)','rgba(112,152,218,0.58)','rgba(248,251,255,0.60)']
+//             ];
+//             const directions = ['120deg', '-60deg', '30deg', '170deg', '-30deg', '60deg'];
             
-            const directions = ['120deg', '-60deg', '30deg', '170deg', '-30deg', '60deg'];
             
-            const layers = document.querySelectorAll('.aurora-layer');
-            layers.forEach((layer, index) => {
-                const randomColors = colors[Math.floor(Math.random() * colors.length)];
-                const direction = directions[Math.floor(Math.random() * directions.length)];
+//             const layers = document.querySelectorAll('.aurora-layer');
+//             layers.forEach((layer, index) => {
+//                 const randomColors = colors[Math.floor(Math.random() * colors.length)];
+//                 const direction = directions[Math.floor(Math.random() * directions.length)];
                 
-                // Apply new colors with a much slower transition
-                layer.style.transition = 'background 18s ease-in-out'; // Even slower transition (18s instead of 12s)
-                layer.style.background = `linear-gradient(${direction}, ${randomColors[0]}, ${randomColors[1]}, ${randomColors[2]})`;
-            });
+//                 // Apply new colors with a much slower transition
+//                 layer.style.transition = 'background 18s ease-in-out'; // Even slower transition (18s instead of 12s)
+//                 layer.style.background = `linear-gradient(${direction}, ${randomColors[0]}, ${randomColors[1]}, ${randomColors[2]})`;
+//             });
             
-            // Change colors less frequently for more gradual effect
-            setTimeout(changeAuroraColors, Math.random() * 10000 + 18000); // Between 18-28 seconds
-        }
+//             // Change colors less frequently for more gradual effect
+//             setTimeout(changeAuroraColors, Math.random() * 10000 + 18000); // Between 18-28 seconds
+//         }
         
-        // Initial call with slightly longer delay
-        setTimeout(changeAuroraColors, 2000);
+//         // Initial call with slightly longer delay
+//         setTimeout(changeAuroraColors, 2000);
         
-        // Set initial colors without transition
-        const layers = document.querySelectorAll('.aurora-layer');
-        layers.forEach((layer, index) => {
-            layer.style.transition = 'none'; // No transition for initial setup
+//         // Set initial colors without transition
+//         const layers = document.querySelectorAll('.aurora-layer');
+//         layers.forEach((layer, index) => {
+//             layer.style.transition = 'none'; // No transition for initial setup
             
-            const colors = [
-                // Deep blue to cyan to white
-                ['rgba(12, 25, 180, 0.9)', 'rgba(76, 201, 240, 0.7)', 'rgba(255, 255, 255, 0.8)'],
-                // Electric blue to white to light blue
-                ['rgba(67, 97, 238, 0.8)', 'rgba(255, 255, 255, 0.6)', 'rgba(58, 134, 255, 0.7)'],
-                // Deep navy to bright cyan
-                ['rgba(0, 41, 107, 0.8)', 'rgba(0, 119, 182, 0.7)', 'rgba(3, 206, 243, 0.9)']
-            ];
+//             const colors = [
+//                 ['rgba(112,152,218,0.75)','rgba(179,214,255,0.60)','rgba(169,255,247,0.55)'],
+//   // periwinkle → lilac → sage-teal（冷紫边+青尾）
+//   ['rgba(98,124,216,0.72)','rgba(188,182,255,0.52)','rgba(130,171,161,0.44)'],
+//   // deep teal shade → cornflower → white（暗缘+亮芯）
+//   ['rgba(20,88,122,0.36)','rgba(112,152,218,0.58)','rgba(248,251,255,0.60)']
+//             ];
             
-            const randomColors = colors[index % colors.length]; // Use deterministic colors for initial state
-            const direction = ['120deg', '-60deg', '30deg'][index % 3];
+//             const randomColors = colors[index % colors.length]; // Use deterministic colors for initial state
+//             const direction = ['120deg', '-60deg', '30deg'][index % 3];
             
-            layer.style.background = `linear-gradient(${direction}, ${randomColors[0]}, ${randomColors[1]}, ${randomColors[2]})`;
+//             layer.style.background = `linear-gradient(${direction}, ${randomColors[0]}, ${randomColors[1]}, ${randomColors[2]})`;
             
-            // Re-enable transitions after a short delay
-            setTimeout(() => {
-                layer.style.transition = 'background 18s ease-in-out';
-            }, 100);
-        });
-    }
+//             // Re-enable transitions after a short delay
+//             setTimeout(() => {
+//                 layer.style.transition = 'background 12s ease-in-out';
+//             }, 100);
+//         });
+//     }
     
+
+function initializeAurora() {
+    // ===== layers & parallax (更温和 + rAF 节流) =====
+    const layers = document.querySelectorAll('.aurora-layer');
+    if (!layers.length) return;
+  
+    let rafId = 0, relX = 0, relY = 0;
+    document.addEventListener('mousemove', (e) => {
+      const rect = welcomeSection.getBoundingClientRect();
+      const inside = e.clientY >= rect.top && e.clientY <= rect.bottom;
+      if (inside) {
+        relX = (e.clientX / window.innerWidth) - 0.5;
+        relY = ((e.clientY - rect.top) / rect.height) - 0.5;
+      } else { relX = 0; relY = 0; }
+      if (!rafId) rafId = requestAnimationFrame(applyParallax);
+    });
+  
+    function applyParallax() {
+      rafId = 0;
+      layers.forEach((layer, i) => {
+        const speed = (i + 1) * 1.4; // 温和一点
+        const offsetX = relX * speed;
+        const offsetY = relY * speed;
+        const scale   = 1 + i * 0.06;
+        layer.style.transform = `translate(${offsetX}%, ${offsetY}%) scale(${scale})`;
+      });
+    }
+  
+    // ===== 调色板：清淡主色 + 偶尔的“重色点睛” =====
+    const BASE = [
+      // 清淡蓝青：标题更友好
+      ['rgba(151,186,255,0.45)','rgba(210,232,255,0.34)','rgba(176,255,245,0.38)'],
+      ['rgba(169,197,255,0.42)','rgba(226,217,255,0.32)','rgba(255,255,255,0.40)'],
+      ['rgba(140,215,200,0.38)','rgba(176,205,255,0.34)','rgba(248,251,255,0.38)']
+    ];
+    const ACCENT = [
+      // 加一点“重”的蓝/紫/青（不脏）：只占一个 stop
+      ['rgba(42,108,246,0.56)','rgba(210,232,255,0.32)','rgba(255,255,255,0.38)'], // 深蓝点睛
+      ['rgba(176,205,255,0.36)','rgba(108,72,255,0.52)','rgba(248,251,255,0.40)'],  // 靛紫奶感
+      ['rgba(20,122,146,0.50)','rgba(186,226,220,0.30)','rgba(240,251,255,0.40)']   // 深青玻璃
+    ];
+    const DIRS = ['120deg','30deg','-60deg','75deg','-30deg'];
+  
+    // 控制“重色”出现频率、过渡时间区间
+    const ACCENT_RATIO = 0.35;           // 35% 次数使用 ACCENT（可调 0.25–0.5）
+    const DURATION = 28;                  // 单次过渡秒数（越大越柔）
+    const MIN_INTERVAL = 22, MAX_INTERVAL = 34; // 变色间隔范围（秒）
+  
+    // ===== 初始着色：多用清淡，随机挑一层用重色，立刻有“点睛” =====
+    layers.forEach((layer, i) => {
+      const useAccent = (i === Math.floor(Math.random()*layers.length)); // 仅一层
+      const pal = useAccent ? ACCENT[Math.floor(Math.random()*ACCENT.length)]
+                            : BASE[i % BASE.length];
+      const dir = DIRS[i % DIRS.length];
+      layer.style.transition = 'none';
+      layer.style.background = `linear-gradient(${dir}, ${pal[0]}, ${pal[1]}, ${pal[2]})`;
+      setTimeout(() => {
+        layer.style.transition = `background ${DURATION}s cubic-bezier(.22,1,.36,1)`;
+      }, 120);
+    });
+  
+    // ===== 平滑换色：每次只换“一层”，且有概率使用重色 =====
+    function changeAuroraColors() {
+      const idx = Math.floor(Math.random() * layers.length);   // 随机一层
+      const layer = layers[idx];
+      const useAccent = Math.random() < ACCENT_RATIO;          // 偶尔加重色
+      const pal = (useAccent ? ACCENT : BASE)[Math.floor(Math.random() * (useAccent ? ACCENT.length : BASE.length))];
+      const dir = DIRS[Math.floor(Math.random() * DIRS.length)];
+      layer.style.background = `linear-gradient(${dir}, ${pal[0]}, ${pal[1]}, ${pal[2]})`;
+      const next = (MIN_INTERVAL + Math.random() * (MAX_INTERVAL - MIN_INTERVAL)) * 1000;
+      setTimeout(changeAuroraColors, next);
+    }
+    setTimeout(changeAuroraColors, 2000);
+  }
+  function initializeAurora() {
+    // ===== layers & parallax (更温和 + rAF 节流) =====
+    const layers = document.querySelectorAll('.aurora-layer');
+    if (!layers.length) return;
+  
+    let rafId = 0, relX = 0, relY = 0;
+    document.addEventListener('mousemove', (e) => {
+      const rect = welcomeSection.getBoundingClientRect();
+      const inside = e.clientY >= rect.top && e.clientY <= rect.bottom;
+      if (inside) {
+        relX = (e.clientX / window.innerWidth) - 0.5;
+        relY = ((e.clientY - rect.top) / rect.height) - 0.5;
+      } else { relX = 0; relY = 0; }
+      if (!rafId) rafId = requestAnimationFrame(applyParallax);
+    });
+  
+    function applyParallax() {
+      rafId = 0;
+      layers.forEach((layer, i) => {
+        const speed = (i + 1) * 1.4; // 温和一点
+        const offsetX = relX * speed;
+        const offsetY = relY * speed;
+        const scale   = 1 + i * 0.06;
+        layer.style.transform = `translate(${offsetX}%, ${offsetY}%) scale(${scale})`;
+      });
+    }
+  
+    // ===== 调色板：清淡主色 + 偶尔的“重色点睛” =====
+    const BASE = [
+      // 清淡蓝青：标题更友好
+      ['rgba(151,186,255,0.45)','rgba(210,232,255,0.34)','rgba(176,255,245,0.38)'],
+      ['rgba(169,197,255,0.42)','rgba(226,217,255,0.32)','rgba(255,255,255,0.40)'],
+      ['rgba(140,215,200,0.38)','rgba(176,205,255,0.34)','rgba(248,251,255,0.38)']
+    ];
+    const ACCENT = [
+      // 加一点“重”的蓝/紫/青（不脏）：只占一个 stop
+      ['rgba(42,108,246,0.56)','rgba(210,232,255,0.32)','rgba(255,255,255,0.38)'], // 深蓝点睛
+      ['rgba(176,205,255,0.36)','rgba(108,72,255,0.52)','rgba(248,251,255,0.40)'],  // 靛紫奶感
+      ['rgba(20,122,146,0.50)','rgba(186,226,220,0.30)','rgba(240,251,255,0.40)']   // 深青玻璃
+    ];
+    const DIRS = ['120deg','30deg','-60deg','75deg','-30deg'];
+  
+    // 控制“重色”出现频率、过渡时间区间
+    const ACCENT_RATIO = 0.35;           // 35% 次数使用 ACCENT（可调 0.25–0.5）
+    const DURATION = 14;                  // 单次过渡秒数（越大越柔）
+    const MIN_INTERVAL = 6, MAX_INTERVAL = 10; // 变色间隔范围（秒）
+  
+    // ===== 初始着色：多用清淡，随机挑一层用重色，立刻有“点睛” =====
+    layers.forEach((layer, i) => {
+      const useAccent = (i === Math.floor(Math.random()*layers.length)); // 仅一层
+      const pal = useAccent ? ACCENT[Math.floor(Math.random()*ACCENT.length)]
+                            : BASE[i % BASE.length];
+      const dir = DIRS[i % DIRS.length];
+      layer.style.transition = 'none';
+      layer.style.background = `linear-gradient(${dir}, ${pal[0]}, ${pal[1]}, ${pal[2]})`;
+      setTimeout(() => {
+        layer.style.transition = `background ${DURATION}s cubic-bezier(.22,1,.36,1)`;
+      }, 120);
+    });
+  
+    // ===== 平滑换色：每次只换“一层”，且有概率使用重色 =====
+    function changeAuroraColors() {
+      const idx = Math.floor(Math.random() * layers.length);   // 随机一层
+      const layer = layers[idx];
+      const useAccent = Math.random() < ACCENT_RATIO;          // 偶尔加重色
+      const pal = (useAccent ? ACCENT : BASE)[Math.floor(Math.random() * (useAccent ? ACCENT.length : BASE.length))];
+      const dir = DIRS[Math.floor(Math.random() * DIRS.length)];
+      layer.style.background = `linear-gradient(${dir}, ${pal[0]}, ${pal[1]}, ${pal[2]})`;
+      const next = (MIN_INTERVAL + Math.random() * (MAX_INTERVAL - MIN_INTERVAL)) * 1000;
+      setTimeout(changeAuroraColors, next);
+    }
+    setTimeout(changeAuroraColors, 2000);
+  }
+    
+  
     // Add subtle aurora effect to other sections
     function addSubtleAuroraToSections() {
         const sections = document.querySelectorAll('section:not(#welcome)');

@@ -1,7 +1,7 @@
 /* Global Styles with Softer Futuristic Colors */
 :root {
     --primary-color: #f4f6fc; /* Soft blue-white instead of pure white */
-    --secondary-color: #e9edf8; /* Softer secondary with blue undertone */
+    --secondary-color: hsl(224, 52%, 94%); /* Softer secondary with blue undertone */
     --accent-color: #4361ee; /* Keeping the original blue accent */
     --text-color: #212529; /* Original dark text */
     --light-text: #6c757d; /* Original medium gray text */
@@ -11,6 +11,7 @@
     --font-alt: 'Monument Extended', sans-serif;
     --font-title: 'Futura', 'Century Gothic', 'Arial', sans-serif;
 }
+
 
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -161,7 +162,7 @@ header {
     width: 100%;
     top: 0;
     left: 0;
-    padding: 0.75rem 10%; /* Reduced vertical padding from 1.5rem to 0.8rem */
+    padding: 0.75rem 5%; /* Reduced vertical padding from 1.5rem to 0.8rem */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -186,7 +187,7 @@ header {
 }
 
 .nav-links li a {
-    margin-left: 2rem;
+    margin-left: 2.5rem;
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
@@ -481,7 +482,7 @@ header {
 }
 
 .project-category {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--light-text);
@@ -491,7 +492,7 @@ header {
 
 .project-title {
     font-family: var(--font-title);
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     margin-bottom: 5px;
     font-weight: 500;
     letter-spacing: 0.02em;
@@ -506,7 +507,7 @@ header {
 }
 
 .project-desc {
-    font-size: 0.95rem;
+    font-size: 1rem;
     line-height: 1.6;
     color: var(--light-text);
     margin-bottom: 1rem;
@@ -864,9 +865,9 @@ body:before {
     letter-spacing: 1rem;
     color: var(--accent-color); /* Blue accent color */
     text-align: center;
-    font-size: clamp(8rem, 12vw, 11rem);
+    font-size: clamp(8rem, 14vw, 13rem);
     letter-spacing: clamp(0.4rem, 1vw, 1.2rem); /* 放大时把字距稍微收一点，避免挤出屏 */
-    line-height: 1; /* 两行更紧凑更有冲击力 */
+    line-height: 0.9; /* 两行更紧凑更有冲击力 */
     text-transform: none;
 }
 @media (max-width: 768px){
@@ -1650,4 +1651,218 @@ section {
   
   /* 若你仍保留旧的描边按钮样式，避免冲突 */
   .btn-ghost{ display:none; }
+  
+  /* === Blue Cornflower Theme – overrides START === */
+:root{
+    /* surfaces */
+    --primary-color: #F8FBFF;     /* 冷白底（更清爽） */
+    --secondary-color: #EFF6FF;   /* 淡蓝次级面 */
+  
+    /* text */
+    --text-color: #0F172A;
+    --light-text: #6B7280;
+  
+    /* accent – 非电蓝 */
+    --accent-color: #7098DA;      /* Cornflower 主蓝 */
+    --accent-weak:  #B3D6FF;      /* 浅蓝（卡片/条带） */
+  
+    /* CTA 渐变：蓝→浅蓝→薄荷（与现有 aurora 呼应） */
+    --grad-accent: linear-gradient(100deg,#7098DA 0%,#B3D6FF 60%,#A9FFF7 100%);
+  
+    --subtle-shadow: rgba(15,23,42,.10);
+  }
+  
+  /* 顶部 Header 的淡蓝雾感（替换原先的电蓝轻底） */
+  header{
+    background-color: rgba(112,152,218,0.06) !important;
+    border-bottom: 1px solid rgba(112,152,218,0.10) !important;
+  }
+  
+
+  
+  /* 强调条/跑马灯：浅渐变 + 深字（可读性更好） */
+  .lets-talk{
+    background: var(--grad-accent) !important;
+    color: var(--text-color) !important;
+  }
+  
+  /* 按钮：浅渐变 + 深字，避免霓虹感 */
+  .btn, .submit-btn{
+    background: var(--grad-accent) !important;
+    color: var(--text-color) !important;
+    border: 0 !important;
+    box-shadow: 0 8px 22px rgba(15,23,42,.12);
+  }
+  .btn:hover, .submit-btn:hover{
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+  }
+  
+  /* 次级按钮/徽章 */
+  .btn--secondary, .badge{
+    background: var(--accent-weak) !important;
+    color: var(--text-color) !important;
+    border: 1px solid rgba(15,23,42,.12);
+  }
+  
+  /* 链接 hover：改为浅蓝高亮，避免整块电蓝 */
+  a:hover, .project-link:hover{
+    color: var(--text-color) !important;
+  }
+  
+  /* “Gloria Zhu” 标题保持蓝调但柔和一些（如需可去掉这一条） */
+  #welcome .gloria, #welcome .zhu{
+    color: var(--accent-color) !important;
+    text-shadow: 0 0 10px rgba(255,255,255,.45);
+  }
+  
+  /* Projects 区鼠标光环去霓虹电蓝，改为 Cornflower */
+  .new-projects-halo{
+    background: radial-gradient(circle,
+                rgba(255,255,255,.85) 0%,
+                rgba(255,255,255,.65) 10%,
+                rgba(112,152,218,.55) 28%,
+                rgba(96,140,210,.42) 52%,
+                rgba(72,114,186,.30) 72%,
+                rgba(0,0,0,0) 90%) !important;
+    box-shadow: 0 0 36px rgba(96,140,210,.55) !important;
+    filter: blur(10px) !important;
+  }
+  /* === Blue Cornflower Theme – overrides END === */
+  /* === Minimal Links + Aurora Punch (override) === */
+
+/* 0) 更干净的基色 & Cornflower 蓝为主调 */
+:root{
+    --primary-color: #F8FBFF;              /* 冷白，去灰 */
+    --secondary-color: #EFF6FF;            /* 淡蓝面 */
+    --text-color: #0F172A;                 /* 深墨蓝文字 */
+    --light-text: #6B7280;
+  
+    --accent-color: #7098DA;               /* Cornflower 蓝（非电） */
+    --accent-weak:  #B3D6FF;               /* 浅蓝面 */
+    --grad-accent: linear-gradient(100deg,#7098DA 0%,#B3D6FF 60%,#A9FFF7 100%);
+    --subtle-shadow: rgba(112,152,218,.10);/* 纹理微蓝，不再灰 */
+  }
+  
+  /* 1) 去按钮化：除了 .submit-btn，其他全部变成文字链接 */
+  .btn, .btn-cta, .project-link, .resume-button, .filter-btn, .social-links a{
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    color: #fff !important;
+    letter-spacing: 0;
+    box-shadow: none !important;
+    text-decoration: none;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 2px;
+  }
+  .btn:hover, .btn-cta:hover, .project-link:hover, .resume-button:hover,
+  .filter-btn:hover, .nav-links a:hover, .social-links a:hover{
+    text-decoration: underline;
+    color: var(--accent-color) !important;
+  }
+  
+  /* 导航与页脚链接同样采用“文字+下划线” */
+  .nav-links li a{
+    color: var(--text-color) !important;
+    background: transparent !important;
+  }
+  .nav-links li a:hover{ text-decoration: underline; }
+  
+  /* Filter 变“文字 Tab”：活跃态用下划线表示 */
+  .filter-btn{ font-weight: 500; }
+  .filter-btn.active{ text-decoration: underline; }
+  
+  /* 社交链接去圆形底 */
+  .social-links a{
+    width: auto; height: auto; border-radius: 0; padding: 0;
+  }
+  
+  /* 2) 仅保留表单提交按钮的按钮外观（可保留圆角） */
+  .submit-btn{
+    background: var(--grad-accent) !important;
+    color: var(--text-color) !important;
+    border: 0 !important;
+    border-radius: 30px;
+    padding: 12px 24px;
+    box-shadow: 0 8px 22px rgba(15,23,42,.12);
+  }
+  .submit-btn:hover{ filter: brightness(1.06); transform: translateY(-1px); }
+  
+  /* 3) 首页“去灰提亮”：冷白底 + 渐变文字 + 极光边 */
+  body{ background: var(--primary-color) !important; }
+  body:before{
+    /* 你原来用灰色点阵纹理，改成微蓝更干净 */
+    background-image:
+      radial-gradient(var(--subtle-shadow) 1px, transparent 0),
+      radial-gradient(var(--subtle-shadow) 1px, transparent 0);
+  }
+  
+  /* 欢迎区：上缘加一条极光渐变边，细但有存在感 */
+  #welcome::before{
+    content:''; position:absolute; left:0; top:0; width:100%; height:2px;
+    background: linear-gradient(90deg,#7098DA,#A9FFF7,#B3D6FF);
+    opacity:.65; z-index:2;
+  }
+  
+  
+  /* Aurora：保持你现有结构，只略收 blur，层次更清晰 */
+  .aurora-layer{ filter: blur(26px) !important; }
+  
+  /* Projects 区分割线不再偏灰，换成淡蓝 */
+  .project-card{ border-bottom: 1px solid rgba(112,152,218,.82) !important; }
+  
+  /* 跑马灯保留，但文本采用深字（更可读） */
+  .lets-talk{ color: var(--text-color) !important; background: var(--grad-accent) !important; }
+  
+
+  /* 需要 inline-block 的：链接/单行标题 */
+.nav-links li a,
+.project-title,
+.title-item{
+  display: inline-block;
+  transition: transform .22s cubic-bezier(.2,.8,.2,1), color .22s ease;
+  will-change: transform, color;
+}
+
+/* 保持块级的：大标题/区块标题 */
+.section-title,
+.gloria,
+.zhu{
+  transition: transform .22s cubic-bezier(.2,.8,.2,1), color .22s ease;
+}
+/* ==== Cursor on hover: solid big dot + outer ring ==== */
+.cursor{
+    /* 调参区：想更大/更细就改这里 */
+    --big-core: 84px;           /* 实心圆直径 */
+    --ring-extra: 16px;         /* 外环比实心圆大多少（直径差） */
+    --ring-stroke: .9px;       /* 外环线粗 */
+    --cursor-color: #fff;       /* 建议白色，配合 mix-blend-mode:difference */
+  }
+  
+  /* 中心点：放大成“实心大圆” */
+  .cursor.is-big::before{
+    width: var(--big-core);
+    height: var(--big-core);
+    background: var(--cursor-color);
+    border: none;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition:
+      width .18s ease, height .18s ease,
+      transform .18s ease, opacity .18s ease, background-color .18s ease;
+  }
+  
+  /* 外环：包在外面一圈（空心） */
+  .cursor.is-big::after{
+    width: calc(var(--big-core) + var(--ring-extra));
+    height: calc(var(--big-core) + var(--ring-extra));
+    background: transparent;
+    border: var(--ring-stroke) solid var(--cursor-color);
+    opacity: .95;
+    transition:
+      width .18s ease, height .18s ease,
+      border-color .18s ease, opacity .18s ease, box-shadow .18s ease;
+  }
   
