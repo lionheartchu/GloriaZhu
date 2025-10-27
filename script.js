@@ -14,7 +14,7 @@ document.addEventListener('click', () => {
 });
 // 让鼠标移到指定文字上时，放大成“柔和白圆”
 const hoverTargets = document.querySelectorAll(
-    '.nav-links li a, .gloria, .zhu, .section-title, .project-title, .title-item, .fb-title, .project-category, .project-time'
+    '.nav-links li a, .gloria, .zhu, .section-title, .project-title, .title-item, .fb-title, .project-category, .project-time, .sec-title'
   );
   
   hoverTargets.forEach(el => {

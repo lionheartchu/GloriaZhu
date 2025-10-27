@@ -55,7 +55,7 @@
 
 .project-cover {
     aspect-ratio: 1/1;
-    border-radius: 24px;
+    border-radius: 18px;
     overflow: hidden;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
     transition: var(--transition);
@@ -122,7 +122,7 @@
 }
 
 .project-section p {
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.8;
     margin-bottom: 2rem;
     max-width: 800px;
@@ -132,7 +132,7 @@
 .project-image-full {
     width: 100%;
     margin: 3rem 0;
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     margin-bottom: 3rem;
@@ -318,3 +318,92 @@
         font-size: 1.8rem;
     }
 } 
+
+
+
+
+/* ==== Project Detail - Theme Sync (dreamy cornflower/teal) ==== */
+:root{
+    --safe-x: clamp(16px, 8vw, 96px);
+    --hero-radius: 12px;
+  }
+  
+  /* 安全边距与节奏对齐首页 */
+  .project-hero{ 
+    padding: calc(72px + 40px) var(--safe-x) 4rem;  /* 顶部考虑导航高度 */
+  }
+  .project-content{ 
+    padding: 0 var(--safe-x) var(--project-spacing); 
+  }
+  
+  /* Hero 区：轻量梦幻光感（不改 HTML） */
+  .project-hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(70% 120% at 20% 10%, rgba(112,152,218,.22), transparent 60%),
+      radial-gradient(80% 100% at 85% 80%, rgba(169,255,247,.18), transparent 60%),
+      linear-gradient(180deg, rgba(248,251,255,.55), rgba(248,251,255,0) 45%);
+    pointer-events:none; z-index:0;
+  }
+  .project-hero > *{ position: relative; z-index: 1; }
+  
+  /* 标题与分类：同首页的清爽对比 */
+  .project-hero .project-title{
+    font-size: clamp(2.4rem, 4.2vw, 3.5rem);
+    letter-spacing: .005em;
+    color: #4A6FB5;               /* cornflower */
+    text-shadow: 0 6px 30px rgba(112,152,218,.20);
+  }
+  .project-hero .project-category{ color:#7098DA; }
+  .project-hero .project-year{ opacity:.8; }
+  
+  /* 文案更易读 */
+  .project-intro p{ color:#243b53; opacity:.95; }
+  
+  /* 封面图：柔和阴影与圆角对齐 */
+  .project-cover{
+    border-radius: var(--hero-radius);
+    box-shadow: 0 30px 70px rgba(112,152,218,.22);
+    /* 如果你更喜欢横幅，可启用： */
+    /* aspect-ratio: 4/3; */
+  }
+  
+  /* Overview 卡片：轻玻璃质感（比现在的二级灰更通透） */
+  .project-overview{
+    background: rgba(255,255,255,.55);
+    backdrop-filter: blur(6px) saturate(108%);
+    -webkit-backdrop-filter: blur(6px) saturate(108%);
+    border: 1px solid rgba(112,152,218,.18);
+    border-radius: 16px;
+  }
+  
+  /* 小节标题的渐变下划线与首页一致 */
+  .project-section h2::after{
+    background: linear-gradient(90deg,#7098DA,#B3D6FF);
+  }
+  
+  /* 下一项目卡片的渐变与悬浮 */
+  .next-project{
+    background: linear-gradient(180deg, rgba(112,152,218,.10), rgba(169,255,247,.08));
+    border: 0.5px solid rgba(112,152,218,.25);
+    border-radius: 16px;
+  }
+  .next-project:hover{
+    
+    background: linear-gradient(180deg, rgba(179, 214, 255,.95), rgba(179, 214, 255,.5));
+    box-shadow:
+    0 28px 56px rgba(67,97,238,0.18),
+    0 6px 16px rgba(15,26,48,0.10);
+    transform: translateY(-4px);
+  }
+  
+  /* 返回箭头位置与安全边距同步 */
+  .back-arrow{ left: var(--safe-x); top: calc(64px + 24px); }
+  
+  /* 移动端顶距更紧凑 */
+  @media (max-width: 768px){
+    .project-hero{ padding-top: calc(64px + 16px); gap:1.5rem; }
+  }
+  
+  
