@@ -1,15 +1,58 @@
-/* Global Styles with Softer Futuristic Colors */
+/* ============================================
+   BLUE SOFT-DREAM FUTURISM DESIGN SYSTEM
+   Unified visual language for portfolio
+   ============================================ */
+
 :root {
-    --primary-color: #f4f6fc; /* Soft blue-white instead of pure white */
-    --secondary-color: hsl(224, 52%, 94%); /* Softer secondary with blue undertone */
-    --accent-color: #4361ee; /* Keeping the original blue accent */
-    --text-color: #212529; /* Original dark text */
-    --light-text: #6c757d; /* Original medium gray text */
-    --subtle-shadow: rgba(151, 161, 186, 0.1); /* Soft blue-tinted shadow */
-    --transition: all 0.3s ease;
-    --font-main: 'Safiro', 'Montserrat', sans-serif; /* Updated to Safiro */
+    /* === Core Palette === */
+    --bg-light: #f0f4ff;              /* Very light lavender-blue base */
+    --bg-surface: #f8faff;            /* Soft off-white with blue hint */
+    --bg-glass: rgba(255, 255, 255, 0.65); /* Glass panel base */
+    
+    /* Legacy mappings (for compatibility) */
+    --primary-color: var(--bg-surface);
+    --secondary-color: #e8eeff;       /* Soft blue secondary */
+    
+    /* === Accent Colors === */
+    --accent-color: #5a7fcc;          /* Soft cornflower (not harsh) */
+    --accent-light: #8aa8e8;          /* Lighter blue for hovers */
+    --accent-glow: rgba(90, 127, 204, 0.35); /* Glow color */
+    
+    /* === Text Colors === */
+    --text-color: #1e3a5f;            /* Deep blue-gray (warm, not cold) */
+    --light-text: #5a6f8a;            /* Muted blue-gray */
+    --text-soft: #7a8ea8;             /* Even softer for meta text */
+    
+    /* === Glass & Shadows === */
+    --glass-border: rgba(140, 170, 220, 0.25);
+    --glass-blur: 16px;
+    --shadow-soft: 0 8px 32px rgba(90, 127, 204, 0.12);
+    --shadow-lifted: 0 16px 48px rgba(90, 127, 204, 0.18);
+    --subtle-shadow: rgba(90, 127, 204, 0.08);
+    
+    /* === Dark Panel (for About section etc.) === */
+    --dark-panel: linear-gradient(145deg, #1a2744 0%, #0f1a2e 50%, #162338 100%);
+    --dark-panel-text: #e8eeff;
+    
+    /* === Photo Overlays === */
+    --photo-overlay: linear-gradient(135deg, 
+        rgba(90, 127, 204, 0.08) 0%, 
+        rgba(140, 180, 230, 0.05) 50%,
+        rgba(180, 200, 240, 0.08) 100%);
+    
+    /* === Transitions === */
+    --transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-fast: all 0.2s ease;
+    
+    /* === Typography === */
+    --font-main: 'Safiro', 'Montserrat', sans-serif;
     --font-alt: 'Monument Extended', sans-serif;
     --font-title: 'Futura', 'Century Gothic', 'Arial', sans-serif;
+    
+    /* === Spacing === */
+    --section-gap: 8rem;
+    --card-radius: 16px;
+    --card-radius-lg: 24px;
 }
 
 
@@ -71,11 +114,16 @@ html {
 }
 
 body {
-    background-color: var(--primary-color);
+    background: var(--bg-light);
     color: var(--text-color);
     overflow-x: hidden;
     font-family: 'Safiro', var(--font-main);
-    line-height: 1.6;
+    line-height: 1.7;
+    /* Subtle blue-lavender ambient gradient */
+    background-image: 
+        radial-gradient(ellipse 80% 50% at 20% 0%, rgba(140, 180, 230, 0.12), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(180, 200, 240, 0.10), transparent);
+    background-attachment: fixed;
 }
 
 /* Custom Cursor - Smaller Size */
@@ -114,7 +162,7 @@ body {
 }
 
 section {
-    padding: 5rem 10%;
+    padding: 7rem 10%; /* Increased vertical spacing */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -156,47 +204,69 @@ section {
     background: var(--accent-color);
 }
 
-/* Header - Shorter and Less Obvious */
+/* ============================================
+   HEADER - Unified Glassmorphism Navigation
+   ============================================ */
 header {
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
-    padding: 0.75rem 5%; /* Reduced vertical padding from 1.5rem to 0.8rem */
+    padding: 0.85rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    background-color: rgba(67, 97, 238, 0.02); /* Much lighter blue tint */
-    backdrop-filter: blur(8px);
+    background: var(--bg-glass);
+    backdrop-filter: blur(var(--glass-blur)) saturate(1.2);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.2);
     transition: var(--transition);
-    box-shadow: 0 2px 10px rgba(151, 161, 186, 0.05); /* Lighter shadow */
-    border-bottom: 1px solid rgba(67, 97, 238, 0.03); /* Very subtle border */
+    box-shadow: 0 4px 24px rgba(90, 127, 204, 0.06);
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .logo {
-    font-size: 1.5rem; /* Reduced from 1.8rem */
-    font-weight: 700;
+    font-size: 1.5rem;
+    font-weight: 600;
     text-decoration: none;
     color: var(--accent-color);
+    letter-spacing: 0.02em;
+    transition: var(--transition);
+}
+
+.logo:hover {
+    color: var(--accent-light);
 }
 
 .nav-links {
     display: flex;
     list-style: none;
+    gap: 0.5rem;
 }
 
 .nav-links li a {
-    margin-left: 2.5rem;
+    margin-left: 1.5rem;
     text-decoration: none;
     color: var(--text-color);
-    font-weight: 500;
+    font-weight: 400;
     transition: var(--transition);
-    font-size: 0.9rem; /* Added smaller font size */
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    position: relative;
 }
 
-.nav-links li a:hover, .nav-links li a.active {
+/* Soft glassy hover - unified system */
+.nav-links li a:hover {
     color: var(--accent-color);
+    background: rgba(90, 127, 204, 0.08);
+    transform: translateY(-1px);
+}
+
+.nav-links li a.active {
+    color: var(--accent-color);
+    background: rgba(90, 127, 204, 0.10);
 }
 
 .hamburger {
@@ -208,12 +278,12 @@ header {
 #welcome {
     position: relative;
     overflow: hidden;
-    background: radial-gradient(
-        circle at center,
-        rgba(67, 97, 238, 0.25) 0%, /* More noticeable blue in center */
-        rgba(244, 246, 252, 0.5) 70%, /* Extended middle range */
-        var(--primary-color) 100%
-    );
+    background: linear-gradient(
+        180deg,
+        #eef3ff 0%,
+        #e4ecff 45%,
+        #dce6ff 100%
+      );
 }
 
 /* Welcome Section Styles */
@@ -262,22 +332,34 @@ header {
 }
 
 /* Fixed Titles at Bottom */
+/* Title container - centered below name */
 .title-container {
     position: absolute;
-    bottom: 15%;
-    left: 0;
-    width: 100%;
+    bottom: 25%;
+    left: 50%;
+    transform: translate(-50%, 280%);
     display: flex;
     justify-content: center;
-    gap: 3rem;
+    gap: 3.5rem;
 }
 
 .title-item {
-    font-size: 1.2rem;
-    color: var(--light-text);
+    font-family: var(--font-main);
+    font-size: 0.95rem; /* Increased from 0.9rem */
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    font-weight: 400;
+
+    /* Underline style - clean and minimal */
+    padding: 0 0.2rem 0.4rem; /* Bottom padding for underline spacing */
+    border: none;
+    border-bottom: 1px solid rgba(120, 155, 210, 0.4); /* Underline only */
+    border-radius: 0;
+
+    background: transparent;
+    color: rgba(100, 135, 190, 0.9);
 }
+  
 
 @keyframes blink {
     0%, 100% { opacity: 1; }
@@ -436,21 +518,33 @@ header {
 .projects-container {
     display: flex;
     flex-direction: column;
-    gap: 2rem; /* Reduced gap */
+    gap: 3.5rem; /* Increased gap for breathing room */
 }
 
+/* ============================================
+   PROJECT CARDS - Unified Glassmorphism
+   ============================================ */
 .project-card {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    gap: 3rem;
     position: relative;
-    height: 320px;
-    border-radius: 0;
+    height: 340px;
+    border-radius: var(--card-radius);
     overflow: hidden;
-    background-color: transparent;
+    background: var(--bg-glass);
+    backdrop-filter: blur(12px) saturate(1.1);
+    -webkit-backdrop-filter: blur(12px) saturate(1.1);
     transition: var(--transition);
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--secondary-color);
+    padding: 1.5rem;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-soft);
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lifted);
+    border-color: rgba(90, 127, 204, 0.35);
 }
 
 .project-img-container {
@@ -462,11 +556,37 @@ header {
     align-items: center;
 }
 
+/* Bluish overlay to integrate photos with the theme */
+.project-img-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--photo-overlay);
+    z-index: 1;
+    pointer-events: none;
+    transition: all 0.5s ease;
+    mix-blend-mode: soft-light;
+    opacity: 0.8;
+}
+
+/* Subtle grain texture overlay for dreamy feel */
+.project-img-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.02;
+    z-index: 2;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
+
 .project-img {
-    width: 85%; /* Slightly larger than 3/4 */
-    height: 85%; /* Slightly larger than 3/4 */
+    width: 85%;
+    height: 85%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: 4px;
 }
 
 .project-info {
@@ -534,8 +654,14 @@ header {
     opacity: 1;
 }
 
+/* Subtle tilt + minimal zoom for premium feel */
 .project-card:hover .project-img {
-    transform: scale(1.05);
+    transform: scale(1.03) perspective(1000px) rotateY(1deg) rotateX(-0.5deg);
+}
+
+/* Reduce veil on hover for image clarity */
+.project-card:hover .project-img-container::before {
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .project-link i {
@@ -551,16 +677,26 @@ header {
     transform: translateX(5px);
 }
 
-/* Contact Section */
+/* ============================================
+   CONTACT SECTION - Unified Glassmorphism
+   ============================================ */
 .contact-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 4rem;
+    background: var(--bg-glass);
+    backdrop-filter: blur(var(--glass-blur)) saturate(1.15);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.15);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--card-radius-lg);
+    padding: 3rem;
+    box-shadow: var(--shadow-soft);
 }
 
 .contact-info h3 {
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
+    color: var(--text-color);
 }
 
 .contact-info p {
@@ -588,24 +724,28 @@ header {
 
 .social-links {
     display: flex;
-    gap: 15px;
+    gap: 14px;
 }
 
 .social-links a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: var(--secondary-color);
-    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    background: rgba(90, 127, 204, 0.08);
+    border-radius: 12px;
     color: var(--text-color);
     transition: var(--transition);
+    border: 1px solid var(--glass-border);
 }
 
 .social-links a:hover {
-    background: var(--accent-color);
-    color: white;
+    background: rgba(90, 127, 204, 0.15);
+    color: var(--accent-color);
+    border-color: rgba(90, 127, 204, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(90, 127, 204, 0.15);
 }
 
 .form-group {
@@ -614,16 +754,24 @@ header {
 
 .form-control {
     width: 100%;
-    padding: 12px 20px;
-    border: 1px solid var(--secondary-color);
-    border-radius: 5px;
+    padding: 14px 20px;
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
     transition: var(--transition);
     font-family: inherit;
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--text-color);
 }
 
 .form-control:focus {
     outline: none;
     border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 0 4px rgba(90, 127, 204, 0.12);
+}
+
+.form-control::placeholder {
+    color: var(--text-soft);
 }
 
 textarea.form-control {
@@ -631,9 +779,10 @@ textarea.form-control {
     resize: none;
 }
 
+/* Primary action button - unified style */
 .submit-btn {
-    padding: 12px 28px;
-    background: var(--accent-color);
+    padding: 14px 32px;
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
     color: white;
     border: none;
     border-radius: 30px;
@@ -644,13 +793,18 @@ textarea.form-control {
 }
 
 .submit-btn:hover {
-    background: var(--text-color);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(90, 127, 204, 0.25);
+    filter: brightness(1.05);
 }
 
-/* Footer */
+/* ============================================
+   FOOTER - Unified with System
+   ============================================ */
 footer {
-    background-color: var(--secondary-color);
-    padding: 3rem 10%;
+    background: var(--bg-surface);
+    padding: 4rem 10%;
+    border-top: 1px solid var(--glass-border);
 }
 
 .footer-content {
@@ -778,7 +932,8 @@ footer {
     .title-container {
         flex-direction: column;
         align-items: center;
-        gap: 1rem;
+        gap: 0.8rem;
+        transform: translate(-50%, 200%);
     }
     
     .intro-animation {
@@ -856,28 +1011,63 @@ body:before {
     z-index: -1;
 }
 
-/* Name in blue accent color */
-.gloria, .zhu {
-    font-family: 'POLYA', var(--font-alt);
-    font-size: 10rem;
-    font-weight: 600;
-    display: block;
-    letter-spacing: 1rem;
-    color: var(--accent-color); /* Blue accent color */
-    text-align: center;
-    font-size: clamp(8rem, 14vw, 13rem);
-    letter-spacing: clamp(0.4rem, 1vw, 1.2rem); /* 放大时把字距稍微收一点，避免挤出屏 */
-    line-height: 0.9; /* 两行更紧凑更有冲击力 */
+/* ============================================
+   HERO TEXT - Clean Outlined Style
+   ============================================ */
+section#welcome .name-container h1.gloria,
+section#welcome .name-container h1.zhu,
+h1.gloria, 
+h1.zhu,
+.gloria, 
+.zhu {
+    font-family: 'POLYA', sans-serif !important;
+    font-size: clamp(7rem, 13vw, 12rem);
+    font-weight: normal !important;
     text-transform: none;
+    display: block;
+    text-align: center;
+    line-height: 0.9;
+    letter-spacing: clamp(0.2rem, 0.5vw, 0.6rem);
+
+    /* Transparent fill */
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    background: none !important;
+  
+    /* Clean blue stroke */
+    -webkit-text-stroke: 2.2px rgba(90, 130, 210, 0.88) !important;
+  
+    /* Subtle glow - clean but still dreamy */
+    filter: drop-shadow(0 0 6px rgba(100, 145, 220, 0.35));
+
+    text-shadow:
+    0 0 10px rgba(120, 150, 240, 0.32),
+    0 0 26px rgba(160, 185, 250, 0.20);
+
+  
+    /* Gentle floating */
+    animation: heroFloat 7s ease-in-out infinite;
 }
+  
+
+
+/* Smooth floating animation - calm and controlled */
+@keyframes heroFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+/* Mobile hero text adjustments */
 @media (max-width: 768px){
     #welcome .gloria,
     #welcome .zhu{
-      font-size: clamp(3.2rem, 12vw, 5.2rem);
-      letter-spacing: clamp(0.2rem, 1.6vw, 0.6rem);
-      line-height: 0.95;
+        font-size: clamp(3.2rem, 12vw, 5.2rem);
+        letter-spacing: clamp(0.1rem, 0.8vw, 0.3rem);
+        line-height: 0.92;
+        -webkit-text-stroke: 1.8px rgba(90, 130, 210, 0.85);
+        filter: drop-shadow(0 0 5px rgba(100, 145, 220, 0.3));
     }
-  }
+}
 
 /* Keep font consistent on buttons and inputs */
 .btn, .filter-btn, .form-control, .submit-btn {
@@ -1006,7 +1196,9 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-/* Enhanced Aurora Background Effect - More Visible */
+/* ============================================
+   AURORA BACKGROUND - Blue Soft-Dream System
+   ============================================ */
 .aurora-container {
     position: absolute;
     top: 0;
@@ -1016,7 +1208,7 @@ input:checked + .slider:before {
     z-index: -1;
     overflow: hidden;
     opacity: 0;
-    transition: opacity 1.5s ease;
+    transition: opacity 1.8s ease;
 }
 
 .aurora-layer {
@@ -1026,48 +1218,64 @@ input:checked + .slider:before {
     right: 0;
     bottom: 0;
     mix-blend-mode: screen;
-    filter: blur(30px); /* Reduced blur for more visibility */
+    will-change: transform;
 }
 
+/* Layer 1: Icy Cyan & Blue - cleaner base */
 .aurora-1 {
-    background: linear-gradient(120deg, 
-        rgba(67, 97, 238, 0.8), /* Increased opacity */
-        rgba(76, 201, 240, 0.6), /* Increased opacity */
-        rgba(58, 134, 255, 0.7)); /* Increased opacity */
+    background: linear-gradient(
+        120deg,
+        rgba(160, 230, 255, 0.45),   /* Icy Cyan */
+        rgba(180, 210, 255, 0.40),   /* Light Blue */
+        rgba(200, 220, 255, 0.35)    /* Pale Blue */
+    );
     animation: aurora-movement-1 25s ease infinite;
     transform-origin: center;
+    filter: blur(40px); /* Reduced blur for cleaner look */
 }
 
+/* Layer 2: Soft Pink & Lavender - Dreamcore accent */
 .aurora-2 {
-    background: linear-gradient(-60deg, 
-        rgba(36, 123, 160, 0.7), /* Increased opacity */
-        rgba(112, 193, 255, 0.5), /* Increased opacity */
-        rgba(2, 108, 223, 0.6)); /* Increased opacity */
+    background: linear-gradient(
+        -60deg,
+        rgba(255, 210, 230, 0.35),   /* Soft Pink */
+        rgba(230, 200, 255, 0.35),   /* Lavender */
+        rgba(190, 220, 255, 0.40)    /* Pale Blue */
+    );
     animation: aurora-movement-2 30s ease infinite;
-    opacity: 0.8; /* Increased from 0.5 */
+    opacity: 0.75;
     transform-origin: top left;
+    filter: blur(35px); /* Clearer, less foggy */
 }
 
+/* Layer 3: Fresh Mint & White - Brightness */
 .aurora-3 {
-    background: linear-gradient(30deg, 
-        rgba(33, 158, 188, 0.6), /* Increased opacity */
-        rgba(142, 202, 230, 0.5), /* Increased opacity */
-        rgba(76, 201, 240, 0.7)); /* Increased opacity */
+    background: linear-gradient(
+        30deg,
+        rgba(180, 255, 240, 0.35),   /* Mint Cyan */
+        rgba(220, 240, 255, 0.35),   /* Cloud White-Blue */
+        rgba(200, 200, 250, 0.30)    /* Soft Periwinkle */
+    );
     animation: aurora-movement-3 35s ease infinite;
-    opacity: 0.7; /* Increased from 0.3 */
+    opacity: 0.65;
     transform-origin: bottom right;
+    filter: blur(38px);
 }
 
-/* Add a 4th layer for more visible depth */
+/* Layer 4: Deep Blue depth (reduced) */
 .aurora-4 {
-    background: linear-gradient(180deg, 
-        rgba(0, 119, 182, 0.7),
-        rgba(3, 206, 243, 0.6),
-        rgba(48, 135, 227, 0.8));
-    animation: aurora-movement-4 20s ease infinite;
-    opacity: 0.7;
+    background: linear-gradient(
+        180deg,
+        rgba(140, 190, 255, 0.35),   /* Clear Sky Blue */
+        rgba(210, 230, 255, 0.30),   /* White-Blue */
+        rgba(180, 210, 250, 0.30)    /* Soft Blue */
+    );
+    animation: aurora-movement-4 28s ease infinite;
+    opacity: 0.6;
     transform-origin: bottom left;
+    filter: blur(35px);
 }
+
 
 @keyframes aurora-movement-1 {
     0% { transform: translate(3%, -5%) scale(1.2); }
@@ -1101,9 +1309,9 @@ input:checked + .slider:before {
     z-index: 1;
 }
 
-/* Adjust text to be more visible against the aurora */
-.gloria, .zhu, .title-item {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+/* Title items - keep light and clean */
+.title-item {
+    text-shadow: none;
 }
 
 /* Additional CSS for subtle aurora in other sections */
@@ -1360,60 +1568,47 @@ section {
     border-radius: 0;
   }
   
-  /* --- Whispers v3: gradient text + simple fade (no bottom-only line) --- */
-.whispers{
-    position: relative;
-    padding: 20px 10%;
-    min-height: 64px;
-    display: flex; align-items: center;
-    overflow: hidden;
-    background:
-      radial-gradient(120% 120% at 0% 0%, rgba(67,97,238,.08), transparent 60%),
-      radial-gradient(120% 120% at 100% 100%, rgba(76,201,240,.06), transparent 60%),
-      var(--secondary-color);
-    border-top: 1px solid rgba(0,0,0,.04);
-    border-bottom: 1px solid rgba(0,0,0,.04);
-    z-index: 1;
-  }
-  .whispers::after{ display: none !important; }
-  
-  /* 让文本参与正常文档流（不再绝对定位），并做渐变文字 */
-  .whisper{
-    position: static !important;
-    display: block;
-    width: 100%;
-    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-    line-height: 1.6;
-    letter-spacing: .01em;
-    /* 渐变文字（Safari 兼容） */
-    background: linear-gradient(90deg, #0d47a1 0%, #4361ee 50%, #00bcd4 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    /* 淡入淡出 */
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity .45s ease, transform .45s ease;
-  }
-  
-  /* 退场时稍微上移，显得轻 */
-  .whisper.is-fading-out{
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-  
-  /* 进入时从下方轻轻上来 */
-  .whisper.is-fading-in{
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  
-  @media (max-width: 768px){
-    .whispers{ padding: 18px 5%; min-height: 56px; }
-  }
-  
+/* --- Whispers (soft, clean, compact) --- */
+.whispers {
+  padding: 16px 0 18px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #eef2ff 0%,
+    #e4eafc 50%,
+    #d8e2f8 100%
+  );
+  border: none;
+  position: relative;
+  z-index: 2;
+}
 
+.whisper {
+  position: static !important;
+  display: inline-block;
+  font-size: 0.82rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(80, 105, 160, 0.75);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .4s ease, transform .4s ease;
+}
+
+.whisper.is-fading-out {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.whisper.is-fading-in {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+  
   /* === Sticky Projects v2: image-first, then content reveal === */
 
 /* 每张卡的“停留时长”（越高停留越久） */
@@ -1529,8 +1724,15 @@ section {
   /* ===== Split 50/50, sticky, right pure-color panel ===== */
 :root{ --header-h:72px; --intro-surface:#0f1115; }  /* 右半的纯色，可改浅色 */
 
-#intro-fb{ padding:0; margin:0; }
-.fb-sticky{ height: 160vh; position: relative; }    /* 控滚动时长，160~200vh */
+/* --- Intro section (clean, no extra layers) --- */
+#intro-fb {
+  padding: 0 !important;
+  margin: 0 !important;
+  min-height: auto;
+  position: relative;
+}
+
+.fb-sticky{ height: 160vh; position: relative; }
 
 .fb-hero{
   position: sticky; top: var(--header-h);
@@ -1577,8 +1779,8 @@ section {
   .fb-content{ transform:none; opacity:1; }
 }
 
-/* 若你想让下一个 section 紧跟上来，避免大间距： */
-#projects{ padding-top: 2.5rem; }  /* 可再小一些 */
+/* Projects section spacing - balanced with other sections */
+#projects{ padding-top: 4rem; padding-bottom: 5rem; }
 
 /* ===== Simple (low-CPU) theme for intro-fb ===== */
 .intro-fb.simple .fb-hero{
@@ -1609,44 +1811,44 @@ section {
   }
   .intro-fb.theme-dreamy .fb-media{ position:relative; }
   .intro-fb.theme-dreamy .fb-media::after{
-    /* 柔和极光叠加，让左侧更梦幻而不刺眼；几乎不耗CPU */
+    /* Soft blue overlay to integrate photos with theme */
     content:""; position:absolute; inset:0; pointer-events:none; z-index:1;
     background:
-      radial-gradient(60% 45% at 22% 28%, rgba(134,239,255,.28), transparent 60%),
-      radial-gradient(55% 40% at 78% 72%, rgba(196,181,253,.22), transparent 60%);
-    mix-blend-mode: screen; opacity:.55;
+      radial-gradient(60% 45% at 22% 28%, rgba(90, 140, 200, 0.20), transparent 60%),
+      radial-gradient(55% 40% at 78% 72%, rgba(140, 160, 220, 0.18), transparent 60%);
+    mix-blend-mode: soft-light; opacity: 0.65;
   }
   
   .intro-fb.theme-dreamy .fb-panel{
-    /* 右侧面板从“深色纯色”改为更柔和的蓝青渐变 */
-    background: linear-gradient(160deg, #0f172a 0%, #123246 55%, #1a5563 100%);
-    color:#eaf2ff;
+    /* Unified deep blue panel - warm but still blue-first */
+    background: var(--dark-panel);
+    color: var(--dark-panel-text);
   }
   
-  /* ===== Prominent CTA button (gradient, glow, accessible) ===== */
+  /* ===== CTA button - Unified soft-dream style ===== */
   .btn-cta{
-    --cta-start:#7dd3fc;  /* sky-300 */
-    --cta-end:#a78bfa;    /* violet-300 */
-    --cta-text:#0b1020;
+    --cta-start: var(--accent-color, #5a7fcc);
+    --cta-end: var(--accent-light, #8aa8e8);
+    --cta-text: #ffffff;
   
     display:inline-flex; align-items:center; gap:.5rem;
-    padding: 12px 18px;
-    border-radius: 999px;
+    padding: 14px 24px;
+    border-radius: 12px;
     background: linear-gradient(135deg, var(--cta-start), var(--cta-end));
     color: var(--cta-text);
-    font-weight: 700; letter-spacing:.2px; text-decoration:none;
-    box-shadow: 0 8px 24px rgba(100, 150, 255, .20), 0 2px 8px rgba(20, 30, 60, .20);
-    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+    font-weight: 600; letter-spacing:.3px; text-decoration:none;
+    box-shadow: 0 8px 24px rgba(90, 127, 204, 0.25);
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
     border: none;
   }
   .btn-cta:hover{
-    transform: translateY(-1px);
-    box-shadow: 0 12px 28px rgba(100, 150, 255, .30), 0 4px 10px rgba(20, 30, 60, .25);
-    filter: saturate(1.05);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(90, 127, 204, 0.35);
+    filter: brightness(1.05);
   }
   .btn-cta:focus-visible{
     outline: 2px solid #fff; outline-offset: 2px;
-    box-shadow: 0 0 0 4px rgba(125,211,252,.5);
+    box-shadow: 0 0 0 4px rgba(90, 127, 204, 0.4);
   }
   
   /* 若你仍保留旧的描边按钮样式，避免冲突 */
@@ -1710,11 +1912,7 @@ section {
     color: var(--text-color) !important;
   }
   
-  /* “Gloria Zhu” 标题保持蓝调但柔和一些（如需可去掉这一条） */
-  #welcome .gloria, #welcome .zhu{
-    color: var(--accent-color) !important;
-    text-shadow: 0 0 10px rgba(255,255,255,.45);
-  }
+  /* "Gloria Zhu" - Let base .gloria/.zhu styles apply (no override needed) */
   
   /* Projects 区鼠标光环去霓虹电蓝，改为 Cornflower */
   .new-projects-halo{
@@ -1807,11 +2005,13 @@ section {
   }
   
   
-  /* Aurora：保持你现有结构，只略收 blur，层次更清晰 */
-  .aurora-layer{ filter: blur(26px) !important; }
+  /* Aurora: Cleaner blur - dreamy but not hazy */
+  .aurora-1 { filter: blur(55px); }
+  .aurora-2 { filter: blur(45px); }
+  .aurora-3 { filter: blur(50px); }
+  .aurora-4 { filter: blur(48px); }
   
-  /* Projects 区分割线不再偏灰，换成淡蓝 */
-  .project-card{ border-bottom: 1px solid rgba(112,152,218,.82) !important; }
+  /* Project cards now use glassmorphism - remove border-bottom override */
   
   /* 跑马灯保留，但文本采用深字（更可读） */
   .lets-talk{ color: var(--text-color) !important; background: var(--grad-accent) !important; }

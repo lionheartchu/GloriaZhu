@@ -1,6 +1,15 @@
-/* Project Pages Specific Styling */
+/* ============================================
+   PROJECT PAGES - Blue Soft-Dream System
+   Unified with main site visual language
+   ============================================ */
 :root {
     --project-spacing: 5rem;
+    
+    /* Photo overlay for project images */
+    --project-photo-overlay: linear-gradient(135deg, 
+        rgba(90, 127, 204, 0.06) 0%, 
+        rgba(140, 180, 230, 0.04) 50%,
+        rgba(180, 200, 240, 0.06) 100%);
 }
 
 /* Project Hero Section */
@@ -57,8 +66,25 @@
     aspect-ratio: 1/1;
     border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 50px rgba(90, 127, 204, 0.18);
     transition: var(--transition);
+    position: relative;
+}
+
+/* Bluish overlay to integrate photos with the theme */
+.project-cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--project-photo-overlay);
+    mix-blend-mode: soft-light;
+    opacity: 0.9;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.project-cover:hover::after {
+    opacity: 0.5;
 }
 
 .project-cover img {
@@ -66,7 +92,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.5s ease;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .project-cover:hover img {
@@ -84,8 +110,12 @@
     gap: 3rem;
     margin: var(--project-spacing) 0;
     padding: 3rem;
-    background-color: var(--secondary-color);
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(16px) saturate(1.15);
+    -webkit-backdrop-filter: blur(16px) saturate(1.15);
+    border: 1px solid rgba(140, 170, 220, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(90, 127, 204, 0.10);
 }
 
 .overview-column h3 {
@@ -128,14 +158,26 @@
     max-width: 800px;
 }
 
-/* Project Images */
+/* Project Images - with bluish overlay integration */
 .project-image-full {
     width: 100%;
     margin: 3rem 0;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 12px 36px rgba(90, 127, 204, 0.12);
     margin-bottom: 3rem;
+    position: relative;
+}
+
+/* Subtle bluish overlay for photo integration */
+.project-image-full::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--project-photo-overlay);
+    mix-blend-mode: soft-light;
+    opacity: 0.7;
+    pointer-events: none;
 }
 
 .project-image-full:last-child {
@@ -167,9 +209,32 @@
 }
 
 .grid-item {
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 28px rgba(90, 127, 204, 0.10);
+    position: relative;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Bluish overlay for grid images */
+.grid-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--project-photo-overlay);
+    mix-blend-mode: soft-light;
+    opacity: 0.7;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.grid-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(90, 127, 204, 0.16);
+}
+
+.grid-item:hover::after {
+    opacity: 0.4;
 }
 
 .grid-item img {
@@ -204,19 +269,24 @@
     flex-direction: column;
     align-items: flex-end;
     text-decoration: none;
-    padding: 2rem;
-    border-radius: 12px;
-    background-color: var(--secondary-color);
-    transition: var(--transition);
+    padding: 2.5rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(140, 170, 220, 0.2);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .next-project:hover {
-    background-color: var(--accent-color);
-    transform: translateY(-5px);
+    background: linear-gradient(135deg, rgba(90, 127, 204, 0.12) 0%, rgba(140, 180, 230, 0.08) 100%);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(90, 127, 204, 0.15);
+    border-color: rgba(90, 127, 204, 0.3);
 }
 
 .next-project:hover * {
-    color: white;
+    color: var(--accent-color, #5a7fcc);
 }
 
 .next-project span {
@@ -238,7 +308,7 @@
     color: var(--accent-color);
 }
 
-/* Clean, Futuristic Back Arrow */
+/* Clean, Soft-Futuristic Back Arrow */
 .back-arrow {
     position: absolute;
     top: 120px;
@@ -246,37 +316,36 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: var(--accent-color);
+    color: var(--accent-color, #5a7fcc);
     font-weight: 500;
-    transition: var(--transition);
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 90;
     background: transparent;
     box-shadow: none;
-    padding: 0;
+    padding: 0.5rem 1rem 0.5rem 0;
+    border-radius: 8px;
 }
 
-/* Custom arrow using borders like the scroll hint */
+/* Custom arrow with soft styling */
 .back-arrow::before {
     content: '';
     display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-left: 2px solid var(--accent-color);
-    border-bottom: 2px solid var(--accent-color);
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
     transform: rotate(45deg);
-    margin-right: 12px;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
 }
 
 .back-arrow:hover {
-    color: var(--accent-color);
-    opacity: 0.8;
-    background: transparent;
-    box-shadow: none;
+    color: var(--accent-light, #8aa8e8);
+    background: rgba(90, 127, 204, 0.06);
 }
 
 .back-arrow:hover::before {
-    transform: rotate(45deg) translate(-3px, 0);
+    transform: rotate(45deg) translate(-3px, 3px);
 }
 
 /* Responsive Styles */

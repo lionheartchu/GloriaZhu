@@ -194,88 +194,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Improved location toggle functionality with debugging and error handling
+// Improved location toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
-    
-    // First check if the elements exist
     const locationLabels = document.querySelectorAll('.location-label');
     const usInfo = document.querySelectorAll('.us-info');
     const chinaInfo = document.querySelectorAll('.china-info');
     
-    if (locationLabels.length === 0) {
-        console.error("Location labels not found");
-        return;
-    }
+    if (!locationLabels.length) return;
 
-    
-    // Click event for location labels with improved error handling
     locationLabels.forEach(label => {
         label.addEventListener('click', function(e) {
-            console.log(`Location label clicked: ${this.dataset.location}`);
             e.preventDefault();
+            const isUS = this.dataset.location === 'us';
             
-            // Skip if already active
-            if (this.classList.contains('active')) {
-                console.log("Already active, skipping");
-                return;
-            }
+            // Toggle active class
+            locationLabels.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
             
-            try {
-                const isUS = this.dataset.location === 'us';
-                
-                // Toggle active class
-                locationLabels.forEach(l => {
-                    l.classList.remove('active');
-                });
-                this.classList.add('active');
-                
-                // Toggle visibility
-                usInfo.forEach(el => el.style.display = isUS ? 'flex' : 'none');
-                chinaInfo.forEach(el => el.style.display = isUS ? 'none' : 'flex');
-                
-                console.log(`Switched to ${isUS ? 'US' : 'China'} contact info`);
-            } catch (error) {
-                console.error("Error in location toggle:", error);
-            }
+            // Toggle visibility
+            usInfo.forEach(el => el.style.display = isUS ? 'flex' : 'none');
+            chinaInfo.forEach(el => el.style.display = isUS ? 'none' : 'flex');
         });
     });
-    
-    // Alternative approach: add a backup direct implementation
-    const usLabel = document.querySelector('.location-label[data-location="us"]');
-    const cnLabel = document.querySelector('.location-label[data-location="china"]');
-    
-    if (usLabel && cnLabel) {
-        // Direct approach as backup
-        usLabel.onclick = function() {
-            usLabel.classList.add('active');
-            cnLabel.classList.remove('active');
-            usInfo.forEach(el => el.style.display = 'flex');
-            chinaInfo.forEach(el => el.style.display = 'none');
-            console.log("Switched to US via direct method");
-            return false;
-        };
-        
-        cnLabel.onclick = function() {
-            cnLabel.classList.add('active');
-            usLabel.classList.remove('active');
-            usInfo.forEach(el => el.style.display = 'none');
-            chinaInfo.forEach(el => el.style.display = 'flex');
-            console.log("Switched to China via direct method");
-            return false;
-        };
-    }
 });
-
-// Backup onload handler in case DOMContentLoaded doesn't fire
-window.onload = function() {
-    console.log("Window loaded");
-    if (!document.querySelector('.location-label.active')) {
-        console.log("Location toggle not initialized by DOMContentLoaded, initializing now");
-        // Trigger the DOMContentLoaded handler manually
-        const event = new Event('DOMContentLoaded');
-        document.dispatchEvent(event);
-    }
-};
 
 // Refined aurora effect with smoother transitions and post-animation display
 document.addEventListener('DOMContentLoaded', function() {
@@ -382,8 +323,8 @@ document.addEventListener('DOMContentLoaded', function() {
 //     }
     
 
-function initializeAurora() {
-    // ===== layers & parallax (更温和 + rAF 节流) =====
+  function initializeAurora() {
+    // ===== layers & parallax (gentle + rAF throttled) =====
     const layers = document.querySelectorAll('.aurora-layer');
     if (!layers.length) return;
   
@@ -401,7 +342,7 @@ function initializeAurora() {
     function applyParallax() {
       rafId = 0;
       layers.forEach((layer, i) => {
-        const speed = (i + 1) * 1.4; // 温和一点
+        const speed = (i + 1) * 1.4;
         const offsetX = relX * speed;
         const offsetY = relY * speed;
         const scale   = 1 + i * 0.06;
@@ -409,29 +350,33 @@ function initializeAurora() {
       });
     }
   
-    // ===== 调色板：清淡主色 + 偶尔的“重色点睛” =====
+    // ===== Light Dreamcore Palette: Icy Blue, Cyan, & Soft Pink accents =====
     const BASE = [
-      // 清淡蓝青：标题更友好
-      ['rgba(151,186,255,0.45)','rgba(210,232,255,0.34)','rgba(176,255,245,0.38)'],
-      ['rgba(169,197,255,0.42)','rgba(226,217,255,0.32)','rgba(255,255,255,0.40)'],
-      ['rgba(140,215,200,0.38)','rgba(176,205,255,0.34)','rgba(248,251,255,0.38)']
+      // Icy Cyan to Blue (Clean & Fresh)
+      ['rgba(170,240,255,0.45)','rgba(200,230,255,0.40)','rgba(220,245,255,0.38)'],
+      // Soft Blue to Lavender (Dreamy base)
+      ['rgba(180,210,255,0.42)','rgba(210,200,255,0.38)','rgba(240,245,255,0.40)'],
+      // White-Blue to Mint (Bright & Light)
+      ['rgba(200,240,255,0.40)','rgba(230,255,250,0.38)','rgba(250,250,255,0.42)']
     ];
     const ACCENT = [
-      // 加一点“重”的蓝/紫/青（不脏）：只占一个 stop
-      ['rgba(42,108,246,0.56)','rgba(210,232,255,0.32)','rgba(255,255,255,0.38)'], // 深蓝点睛
-      ['rgba(176,205,255,0.36)','rgba(108,72,255,0.52)','rgba(248,251,255,0.40)'],  // 靛紫奶感
-      ['rgba(20,122,146,0.50)','rgba(186,226,220,0.30)','rgba(240,251,255,0.40)']   // 深青玻璃
+      // Dreamcore Pink/Purple Punch (Subtle but visible)
+      ['rgba(255,190,220,0.38)','rgba(200,180,255,0.40)','rgba(180,220,255,0.42)'],
+      // Electric Cyan Accent
+      ['rgba(140,240,255,0.45)','rgba(180,220,255,0.40)','rgba(230,250,255,0.42)'],
+      // Soft Lilac & Cloud
+      ['rgba(210,190,255,0.40)','rgba(230,210,250,0.38)','rgba(245,245,255,0.42)']
     ];
-    const DIRS = ['120deg','30deg','-60deg','75deg','-30deg'];
+    const DIRS = ['120deg','30deg','-60deg','75deg','-30deg','150deg'];
   
-    // 控制“重色”出现频率、过渡时间区间
-    const ACCENT_RATIO = 0.35;           // 35% 次数使用 ACCENT（可调 0.25–0.5）
-    const DURATION = 28;                  // 单次过渡秒数（越大越柔）
-    const MIN_INTERVAL = 22, MAX_INTERVAL = 34; // 变色间隔范围（秒）
+    // Control accent frequency and transition timing - calm and intentional
+    const ACCENT_RATIO = 0.35;
+    const DURATION = 25;
+    const MIN_INTERVAL = 20, MAX_INTERVAL = 32;
   
-    // ===== 初始着色：多用清淡，随机挑一层用重色，立刻有“点睛” =====
+    // Initial coloring with premium palette
     layers.forEach((layer, i) => {
-      const useAccent = (i === Math.floor(Math.random()*layers.length)); // 仅一层
+      const useAccent = (i === Math.floor(Math.random()*layers.length));
       const pal = useAccent ? ACCENT[Math.floor(Math.random()*ACCENT.length)]
                             : BASE[i % BASE.length];
       const dir = DIRS[i % DIRS.length];
@@ -442,11 +387,11 @@ function initializeAurora() {
       }, 120);
     });
   
-    // ===== 平滑换色：每次只换“一层”，且有概率使用重色 =====
+    // Smooth color transitions
     function changeAuroraColors() {
-      const idx = Math.floor(Math.random() * layers.length);   // 随机一层
+      const idx = Math.floor(Math.random() * layers.length);
       const layer = layers[idx];
-      const useAccent = Math.random() < ACCENT_RATIO;          // 偶尔加重色
+      const useAccent = Math.random() < ACCENT_RATIO;
       const pal = (useAccent ? ACCENT : BASE)[Math.floor(Math.random() * (useAccent ? ACCENT.length : BASE.length))];
       const dir = DIRS[Math.floor(Math.random() * DIRS.length)];
       layer.style.background = `linear-gradient(${dir}, ${pal[0]}, ${pal[1]}, ${pal[2]})`;
@@ -482,25 +427,29 @@ function initializeAurora() {
       });
     }
   
-    // ===== 调色板：清淡主色 + 偶尔的“重色点睛” =====
+    // ===== Light Dreamcore Palette: Icy Blue, Cyan, & Soft Pink accents =====
     const BASE = [
-      // 清淡蓝青：标题更友好
-      ['rgba(151,186,255,0.45)','rgba(210,232,255,0.34)','rgba(176,255,245,0.38)'],
-      ['rgba(169,197,255,0.42)','rgba(226,217,255,0.32)','rgba(255,255,255,0.40)'],
-      ['rgba(140,215,200,0.38)','rgba(176,205,255,0.34)','rgba(248,251,255,0.38)']
+      // Icy Cyan to Blue (Clean & Fresh)
+      ['rgba(170,240,255,0.45)','rgba(200,230,255,0.40)','rgba(220,245,255,0.38)'],
+      // Soft Blue to Lavender (Dreamy base)
+      ['rgba(180,210,255,0.42)','rgba(210,200,255,0.38)','rgba(240,245,255,0.40)'],
+      // White-Blue to Mint (Bright & Light)
+      ['rgba(200,240,255,0.40)','rgba(230,255,250,0.38)','rgba(250,250,255,0.42)']
     ];
     const ACCENT = [
-      // 加一点“重”的蓝/紫/青（不脏）：只占一个 stop
-      ['rgba(42,108,246,0.56)','rgba(210,232,255,0.32)','rgba(255,255,255,0.38)'], // 深蓝点睛
-      ['rgba(176,205,255,0.36)','rgba(108,72,255,0.52)','rgba(248,251,255,0.40)'],  // 靛紫奶感
-      ['rgba(20,122,146,0.50)','rgba(186,226,220,0.30)','rgba(240,251,255,0.40)']   // 深青玻璃
+      // Dreamcore Pink/Purple Punch (Subtle but visible)
+      ['rgba(255,190,220,0.38)','rgba(200,180,255,0.40)','rgba(180,220,255,0.42)'],
+      // Electric Cyan Accent
+      ['rgba(140,240,255,0.45)','rgba(180,220,255,0.40)','rgba(230,250,255,0.42)'],
+      // Soft Lilac & Cloud
+      ['rgba(210,190,255,0.40)','rgba(230,210,250,0.38)','rgba(245,245,255,0.42)']
     ];
-    const DIRS = ['120deg','30deg','-60deg','75deg','-30deg'];
+    const DIRS = ['120deg','30deg','-60deg','75deg','-30deg','150deg'];
   
-    // 控制“重色”出现频率、过渡时间区间
-    const ACCENT_RATIO = 0.35;           // 35% 次数使用 ACCENT（可调 0.25–0.5）
-    const DURATION = 14;                  // 单次过渡秒数（越大越柔）
-    const MIN_INTERVAL = 6, MAX_INTERVAL = 10; // 变色间隔范围（秒）
+    // Control accent frequency and transition timing - calm and intentional
+    const ACCENT_RATIO = 0.35;
+    const DURATION = 20;
+    const MIN_INTERVAL = 15, MAX_INTERVAL = 25;
   
     // ===== 初始着色：多用清淡，随机挑一层用重色，立刻有“点睛” =====
     layers.forEach((layer, i) => {
