@@ -1,0 +1,736 @@
+/* ============================================
+   PROJECT PAGE SYSTEM - "Minimal Editorial"
+   Standalone Stylesheet
+   ============================================ */
+
+/* --- 1. FONTS & VARIABLES (From Design System) --- */
+@font-face {
+    font-family: 'PP Neue Machina';
+    src: url('PP Neue Machina/PPNeueMachina-Regular.otf') format('opentype');
+    font-weight: 400; font-display: swap;
+}
+@font-face {
+    font-family: 'PP Neue Machina';
+    src: url('PP Neue Machina/PPNeueMachina-Ultrabold.otf') format('opentype');
+    font-weight: 800; font-display: swap;
+}
+@font-face {
+    font-family: 'Monument Extended';
+    src: url('MonumentExtended/MonumentExtended-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Monument Extended';
+    src: url('MonumentExtended/MonumentExtended-Ultrabold.otf') format('opentype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url('Space_Grotesk/static/SpaceGrotesk-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Space Mono';
+    src: url('Space_Mono/SpaceMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    /* Colors */
+    --bg-base: #F0F4F8;
+    --bg-surface: #FFFFFF;
+    --text-main: #0F172A;
+    --text-muted: #64748B;
+    --text-light: #94A3B8;
+    
+    /* Accents */
+    --accent-primary: #2563EB;
+    --border-light: rgba(37, 99, 235, 0.15);
+    
+    /* Fonts */
+    --font-ui: 'Space Grotesk', system-ui, sans-serif;
+    --font-mono: 'Space Mono', monospace;
+    --font-display: 'Monument Extended', sans-serif;
+    --font-brand: 'PP Neue Machina', sans-serif;
+
+    /* Spacing & Radius */
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --container-padding: clamp(2rem, 5vw, 6rem);
+    --max-width: 1400px;
+}
+
+/* --- 2. RESET & BASE --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: var(--bg-base);
+    color: var(--text-main);
+    font-family: var(--font-ui);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+img { display: block; max-width: 100%; height: auto; }
+
+/* --- 3. HEADER (Shared Style) --- */
+header {
+    position: fixed; top: 0; width: 100%;
+    padding: 1.5rem 4%; 
+    display: flex; justify-content: flex-end; align-items: center;
+    z-index: 1000;
+    mix-blend-mode: normal; 
+}
+
+.logo { 
+    font-family: var(--font-display); font-weight: 800; font-size: 1.1rem;
+    color: var(--text-main); text-decoration: none;
+    letter-spacing: 0.05em;
+    margin-right: auto;
+}
+.logo-dot { color: var(--accent-primary); }
+
+.nav-links { display: flex; gap: 3rem; list-style: none; }
+.nav-links a {
+    font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;
+    color: var(--text-main); letter-spacing: 0.05em; opacity: 0.8;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--accent-primary); opacity: 1; }
+
+.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
+.bar { width: 25px; height: 2px; background: var(--text-main); }
+
+/* --- 4. LAYOUT UTILITIES --- */
+main { padding-top: 120px; padding-bottom: 6rem; }
+
+.container {
+    width: 90%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+/* --- 5. NAVIGATION (Back Link) --- */
+.nav-wrapper { margin-bottom: 3rem; }
+
+.back-link {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    font-family: var(--font-mono); font-size: 0.85rem; 
+    text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--text-muted);
+    padding: 0.5rem 0;
+}
+.back-link:hover { color: var(--accent-primary); gap: 1rem; }
+
+/* --- 6. PROJECT HERO --- */
+.project-hero {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+    margin-bottom: 8rem;
+}
+
+.hero-content {
+    display: flex; flex-direction: column; gap: 2rem;
+    position: sticky; top: 120px; /* Sticky effect on desktop */
+}
+
+/* Meta Tags */
+.project-meta { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 0.8rem; 
+    align-items: baseline; /* Changed from center to baseline for better alignment */
+}
+.meta-pill {
+    font-family: var(--font-mono); 
+    font-size: 0.7rem; 
+    text-transform: uppercase; 
+    letter-spacing: 0.05em;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--border-light);
+    border-radius: 50px;
+    color: var(--accent-primary);
+    background: rgba(255,255,255,0.5);
+    line-height: 1.4; /* Ensure consistent line height */
+}
+.meta-separator {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    opacity: 0.5;
+    line-height: 1.4;
+}
+.meta-year {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+.meta-text {
+    font-family: var(--font-mono); font-size: 0.8rem;
+    color: var(--text-muted); margin-left: auto;
+}
+
+/* Typography */
+.project-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    line-height: 1.1;
+    color: var(--text-main);
+}
+
+.project-intro {
+    font-family: var(--font-ui);
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 95%;
+}
+
+.project-intro p {
+    font-family: var(--font-ui);
+}
+
+.lede {
+    font-family: var(--font-ui);
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+}
+
+.intro-divider {
+    height: 1px;
+    background: var(--border-light);
+    border: none;
+    margin: 1.5rem 0;
+    width: 60px;
+}
+
+/* --- 7. MEDIA FRAME COMPONENT (Soft Panel Style) --- */
+.media-frame {
+    /* Soft panel background: slightly brighter than page with subtle gradient */
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(250, 252, 255, 0.92) 50%,
+        rgba(248, 250, 255, 0.90) 100%
+    );
+    /* Minimal padding - just enough to separate image from edge */
+    padding: 4px;
+    border-radius: calc(var(--radius-lg) + 2px);
+    /* Two-layer shadow for "weighted" feel: ambient + close soft + inner highlight */
+    box-shadow: 
+        0 20px 60px rgba(15, 23, 42, 0.08), /* Large, soft ambient shadow */
+        0 4px 12px rgba(37, 99, 235, 0.06), /* Closer, softer shadow */
+        inset 0 1px 2px rgba(255, 255, 255, 0.6); /* Inner highlight for top edge */
+    /* Very subtle border - almost invisible */
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Additional subtle radial gradient overlay for volume */
+.media-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: radial-gradient(
+        ellipse 120% 100% at 50% 0%,
+        rgba(255, 255, 255, 0.4) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: 1;
+    border-radius: calc(var(--radius-lg) + 2px) calc(var(--radius-lg) + 2px) 0 0;
+}
+
+.media-frame img {
+    border-radius: var(--radius-lg); /* Same as wrapper minus padding */
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 0;
+}
+
+.media-frame:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 24px 70px rgba(15, 23, 42, 0.1),
+        0 6px 16px rgba(37, 99, 235, 0.08),
+        inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+/* Hero Media Frame - Full height, no gaps */
+.hero-media {
+    display: flex;
+    align-items: stretch;
+    min-height: 100%;
+}
+
+.hero-media .media-frame {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-media .media-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex: 1;
+}
+
+/* --- 8. PROJECT BODY SECTIONS --- */
+.project-body {
+    max-width: 1100px;
+    margin: 0 auto 6rem;
+}
+
+.project-section { margin-bottom: 6rem; }
+
+/* Project Overview - Three Column Layout */
+.project-overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-bottom: 6rem;
+    padding: 3rem;
+    background: linear-gradient(
+        180deg,
+        rgba(252, 253, 255, 0.98) 0%,
+        rgba(248, 250, 255, 0.95) 100%
+    );
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    border-radius: var(--radius-lg);
+    box-shadow: 
+        0 20px 60px rgba(15, 23, 42, 0.08),
+        0 4px 12px rgba(37, 99, 235, 0.06),
+        inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.overview-column h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+}
+
+.overview-column p {
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+    .project-overview {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem;
+    }
+}
+
+.section-header {
+    display: flex; align-items: baseline; gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: var(--text-main);
+    white-space: nowrap;
+}
+
+.section-line {
+    width: 100%; height: 1px;
+    background: var(--border-light);
+    position: relative;
+    top: -5px;
+}
+
+.section-text {
+    font-family: var(--font-ui);
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    max-width: 800px;
+}
+
+/* Grids & Stacks */
+.media-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.media-stack {
+    display: flex; flex-direction: column; gap: 3rem;
+}
+
+/* --- 9. NEXT PROJECT NAV --- */
+.next-project-nav {
+    margin-top: 8rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--border-light);
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.next-project-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Soft panel background - slightly brighter than page, not pure white */
+    background: linear-gradient(
+        180deg,
+        rgba(252, 253, 255, 0.98) 0%,
+        rgba(248, 250, 255, 0.95) 100%
+    );
+    backdrop-filter: blur(20px);
+    /* Very subtle border */
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    border-radius: var(--radius-lg);
+    /* Reduced padding for more focused content */
+    padding: 2rem 2.5rem;
+    /* Two-layer weighted shadow + very subtle inset highlight */
+    box-shadow: 
+        0 20px 60px rgba(15, 23, 42, 0.08),
+        0 4px 12px rgba(37, 99, 235, 0.06),
+        inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+.next-project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 24px 70px rgba(15, 23, 42, 0.1),
+        0 6px 16px rgba(37, 99, 235, 0.08),
+        inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+/* Content */
+.next-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.next-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+.next-title {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    line-height: 1.1;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.next-meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+}
+
+/* CTA - Circular Icon Button */
+.next-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--text-main);
+    color: white;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+
+.next-cta i {
+    font-size: 0.85rem;
+}
+
+.next-project-card:hover .next-cta {
+    background: var(--accent-primary);
+    transform: translateX(2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+/* --- 9.5. ABOUT PAGE STYLES --- */
+#about {
+    padding: 8rem var(--container-padding) 6rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+#about .section-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: var(--text-main);
+    margin-bottom: 3rem;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.about-img {
+    width: 92.5%; /* 缩小 7.5% (约 5-10% 之间) */
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: 
+        0 20px 60px rgba(15, 23, 42, 0.08),
+        0 4px 12px rgba(37, 99, 235, 0.06);
+    filter: grayscale(100%);
+    transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.about-img:hover {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+}
+
+.about-content h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--accent-primary);
+    margin-bottom: 1.5rem;
+}
+
+.about-content p {
+    font-family: var(--font-ui);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.skill-tag {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid var(--border-light);
+    border-radius: 50px;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background: rgba(37, 99, 235, 0.05);
+    transform: translateY(-2px);
+}
+
+.resume-container {
+    margin-top: 2rem;
+}
+
+/* btn-cta style (matching index.html) */
+.btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--text-main);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-cta:hover {
+    gap: 1.5rem;
+    color: var(--accent-primary);
+    border-bottom-color: var(--accent-primary);
+}
+
+/* Footer variations */
+.footer-content {
+    width: 90%; 
+    max-width: var(--max-width); 
+    margin: 0 auto;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    font-family: var(--font-mono); 
+    font-size: 0.75rem; 
+    color: var(--text-muted);
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent-primary);
+}
+
+.copyright {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+}
+
+/* --- 10. FOOTER --- */
+footer {
+    padding: 3rem 0;
+    border-top: 1px solid var(--border-light);
+    background: var(--bg-surface);
+}
+.footer-inner {
+    width: 90%; max-width: var(--max-width); margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.05em;
+}
+.footer-logo { font-family: var(--font-display); font-weight: 800; font-size: 1rem; color: var(--text-main); }
+.footer-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.blink-dot { 
+    display: inline-block; 
+    width: 6px; 
+    height: 6px; 
+    background: #10B981; 
+    border-radius: 50%; 
+    margin: 0; /* Remove margin-right since we're using gap */
+    animation: blink 2s infinite;
+    flex-shrink: 0; /* Prevent dot from shrinking */
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* --- 10.5. CUSTOM CURSOR --- */
+.cursor {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background 0.3s;
+    mix-blend-mode: exclusion;
+}
+.cursor.is-big {
+    width: 60px;
+    height: 60px;
+    background: white;
+    mix-blend-mode: difference;
+}
+
+/* --- 11. RESPONSIVE --- */
+@media (max-width: 992px) {
+    .project-hero { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-content { position: static; }
+    .project-title { font-size: 3rem; }
+}
+
+@media (max-width: 768px) {
+    main { padding-top: 100px; }
+    .header { padding: 1.5rem; }
+    .nav-links { display: none; } /* Assuming hamburger script handles this */
+    .hamburger { display: flex; }
+    
+    .project-hero { margin-bottom: 4rem; }
+    .media-frame { padding: 0.5rem; border-radius: var(--radius-md); }
+    
+    .next-project-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+        padding: 1.75rem;
+    }
+    
+    .next-title { font-size: 1.5rem; }
+    
+    .next-cta {
+        align-self: flex-end;
+    }
+    
+    .footer-inner { flex-direction: column; gap: 1rem; }
+    
+    /* About page responsive */
+    #about {
+        padding: 6rem var(--container-padding) 4rem;
+    }
+    
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .about-img {
+        max-width: 100%;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

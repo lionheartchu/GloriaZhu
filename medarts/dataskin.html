@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Skinware | Gloria Zhu</title>
+    <title>Data Skinware | Project Detail</title>
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../project-style.css">
+    <!-- Main Project Page CSS (Standalone) -->
+    <link rel="stylesheet" href="../project-theme.css">
 </head>
-<body class="dataskin-page">
+<body>
     <!-- Custom Cursor -->
     <div class="cursor"></div>
 
-    <!-- Header -->
+    <!-- Header (Matches Homepage) -->
     <header>
-        <a href="../index.html" class="logo">GZ</a>
+        <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
@@ -30,98 +31,110 @@
         </div>
     </header>
 
-    <!-- Clean Back Link with direct jump to projects section -->
-    <a href="../index.html#projects" class="back-arrow">
-        Back
-    </a>
+    <main>
+        <div class="container">
+            <!-- Back Navigation -->
+            <div class="nav-wrapper">
+                <a href="../index.html#projects" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back</span>
+                </a>
+            </div>
 
-    <!-- Project Hero with back arrow -->
-    <section class="project-hero">
-        <div class="project-hero-content">
-            <div class="project-title-area">
-                <span class="project-category">Data Visualization & Future Design</span>
-                <h1 class="project-title">Data Skinware</h1>
-                <span class="project-year">2024</span>
-            </div>
-            <div class="project-intro">
-                <p style="font-size: 1rem; line-height: 1.5;margin-bottom: 0.5rem;">What has the digitalization brought us? While doing data visualization, we are being “visualized” as well. </p>
-                <div class="intro-divider"></div>
-                <p style="font-size: 1rem; line-height: 1.5;">Our vulnerable data, like a skinless skeleton, is exposed to cyber risks in a nude state. Using a “data skin” as a creative solution, the project Data Skinware envisions the future of data protection.
-                </p>
-            </div>
-        </div>
-        <div class="project-cover">
-            <img src="../image/ds-cover.png" alt="Data Skinware Project">
-        </div>
-    </section>
+            <!-- Project Hero -->
+            <section class="project-hero">
+                <div class="hero-content">
+                    <div class="project-meta">
+                        <span class="meta-pill">Data Visualization</span>
+                        <span class="meta-separator">·</span>
+                        <span class="meta-year">2024</span>
+                    </div>
+                    
+                    <h1 class="project-title">Data Skinware</h1>
+                    
+                    <div class="project-intro">
+                        <p class="lede">A creative exploration of data protection through visualization.</p>
+                        <hr class="intro-divider">
+                        <p><strong>Data Skinware</strong> examines how our vulnerable data can be conceptually protected, using visualization to explore the relationship between digital identity and physical embodiment.</p>
+                    </div>
+                </div>
 
-    <!-- Project Content with updated image paths and no captions -->
-    <section class="project-content">
-        <!-- <div class="project-overview">
-            <div class="overview-column">
-                <h3>Challenge</h3>
-                <p>Create a visualization system that helps conceptualize the vulnerability of personal data and proposes innovative protection mechanisms.</p>
-            </div>
-            <div class="overview-column">
-                <h3>Approach</h3>
-                <p>A metaphorical approach comparing data to human skin, developing wearable concepts that correspond to different types of data protection.</p>
-            </div>
-            <div class="overview-column">
-                <h3>Outcome</h3>
-                <p>A conceptual design system that visualizes data protection through wearable accessories, each protecting specific categories of personal data.</p>
-            </div> -->
-        </div>
+                <div class="hero-media">
+                    <div class="media-frame">
+                        <img src="../image/ds-cover.png" alt="Data Skinware Project Cover">
+                    </div>
+                </div>
+            </section>
 
-        <div class="project-section">
-            <h2 class="sec-title">Research</h2>
-            <p>The project began with research into data vulnerabilities, privacy concerns, and the psychological aspects of digital exposure. I have explored how different types of personal data correspond to different forms of vulnerability.</p>
-            
-            <div class="project-image-full">
-                <img src="../image/ds-20.png" alt="Data Skinware Research">
-            </div>
-            
-            <div class="project-image-full">
-                <img src="../image/ds-21.png" alt="Data Skinware Concept Development">
-            </div>
-            
-            <div class="project-image-full">
-                <img src="../image/ds-22.png" alt="Data Skinware User Research">
-            </div>
-        </div>
+            <!-- Main Content Area -->
+            <div class="project-body">
+                
+                <!-- Research Section -->
+                <section class="project-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Research</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <p class="section-text">The research explored how digital data vulnerability can be understood through visual metaphors, examining the concept of data as a form of protective layer.</p>
+                    
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/ds-20.png" alt="Data Skinware Research">
+                        </div>
+                        <div class="media-frame">
+                            <img src="../image/ds-21.png" alt="Data Skinware Concept">
+                        </div>
+                        <div class="media-frame">
+                            <img src="../image/ds-22.png" alt="Data Skinware Development">
+                        </div>
+                    </div>
+                </section>
 
-        <div class="project-section">
-            <h2 class="sec-title">Outcome</h2>
-            
-            <div class="project-image-full">
-                <img src="../image/ds-23.png" alt="Data Skinware Final Concept">
-            </div>
-        </div>
+                <!-- Outcome Section -->
+                <section class="project-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Outcome</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <p class="section-text">A series of visualizations that examine how our vulnerable data can be conceptually protected, creating a space where viewers can explore their relationship with digital vulnerability.</p>
+                    
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/ds-23.png" alt="Data Skinware Final Visualization">
+                        </div>
+                    </div>
+                </section>
 
-        <!-- Next Project Navigation -->
-        <div class="project-navigation">
-            <a href="../uiux/berich.html" class="next-project">
-                <span>Next Project</span>
-                <h3>Berich</h3>
-                <i class="fas fa-arrow-right"></i>
-            </a>
+            </div>
+
+            <!-- Next Project Navigation -->
+            <nav class="next-project-nav">
+                <a href="../uiux/berich.html" class="next-project-card">
+                    <div class="next-content-wrapper">
+                        <div class="next-label">Next Project</div>
+                        <h3 class="next-title">Berich</h3>
+                        <div class="next-meta">UI/UX Design · 2021</div>
+                    </div>
+                    <div class="next-cta">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+            </nav>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="footer-inner">
             <a href="../index.html" class="footer-logo">Gloria Zhu</a>
-            <ul class="footer-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About</a></li>
-                <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
-            </ul>
+            <div class="footer-status">
+                <span class="blink-dot"></span> All Systems Operational
+            </div>
+            <p class="copyright">© 2025 Gloria Zhu</p>
         </div>
-        <p class="copyright">© 2024 Gloria Zhu. All rights reserved.</p>
     </footer>
 
     <!-- JavaScript -->
     <script src="../script.js"></script>
 </body>
-</html> 
+</html>

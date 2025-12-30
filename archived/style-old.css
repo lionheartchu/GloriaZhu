@@ -1,0 +1,2068 @@
+/* ============================================
+   BLUE SOFT-DREAM FUTURISM DESIGN SYSTEM
+   Unified visual language for portfolio
+   ============================================ */
+
+:root {
+    /* === Core Palette === */
+    --bg-light: #f0f4ff;              /* Very light lavender-blue base */
+    --bg-surface: #f8faff;            /* Soft off-white with blue hint */
+    --bg-glass: rgba(255, 255, 255, 0.65); /* Glass panel base */
+    
+    /* Legacy mappings (for compatibility) */
+    --primary-color: var(--bg-surface);
+    --secondary-color: #e8eeff;       /* Soft blue secondary */
+    
+    /* === Accent Colors === */
+    --accent-color: #5a7fcc;          /* Soft cornflower (not harsh) */
+    --accent-light: #8aa8e8;          /* Lighter blue for hovers */
+    --accent-glow: rgba(90, 127, 204, 0.35); /* Glow color */
+    
+    /* === Text Colors === */
+    --text-color: #1e3a5f;            /* Deep blue-gray (warm, not cold) */
+    --light-text: #5a6f8a;            /* Muted blue-gray */
+    --text-soft: #7a8ea8;             /* Even softer for meta text */
+    
+    /* === Glass & Shadows === */
+    --glass-border: rgba(140, 170, 220, 0.25);
+    --glass-blur: 16px;
+    --shadow-soft: 0 8px 32px rgba(90, 127, 204, 0.12);
+    --shadow-lifted: 0 16px 48px rgba(90, 127, 204, 0.18);
+    --subtle-shadow: rgba(90, 127, 204, 0.08);
+    
+    /* === Dark Panel (for About section etc.) === */
+    --dark-panel: linear-gradient(145deg, #1a2744 0%, #0f1a2e 50%, #162338 100%);
+    --dark-panel-text: #e8eeff;
+    
+    /* === Photo Overlays === */
+    --photo-overlay: linear-gradient(135deg, 
+        rgba(90, 127, 204, 0.08) 0%, 
+        rgba(140, 180, 230, 0.05) 50%,
+        rgba(180, 200, 240, 0.08) 100%);
+    
+    /* === Transitions === */
+    --transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-fast: all 0.2s ease;
+    
+    /* === Typography === */
+    --font-main: 'Safiro', 'Montserrat', sans-serif;
+    --font-alt: 'Monument Extended', sans-serif;
+    --font-title: 'Futura', 'Century Gothic', 'Arial', sans-serif;
+    
+    /* === Spacing === */
+    --section-gap: 8rem;
+    --card-radius: 16px;
+    --card-radius-lg: 24px;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+    font-family: 'Monument Extended';
+    src: url('https://cdn.jsdelivr.net/npm/@fontsource/monument-extended/files/monument-extended-400.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'POLYA';
+    src: url('POLYA.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura';
+    src: url('fonts/Futura-Medium.woff2') format('woff2'),
+         url('fonts/Futura-Medium.woff') format('woff'),
+         url('fonts/Futura-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura';
+    src: url('fonts/Futura-Bold.woff2') format('woff2'),
+         url('fonts/Futura-Bold.woff') format('woff'),
+         url('fonts/Futura-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Safiro';
+    src: url('safiro.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Safiro', var(--font-main);
+}
+
+html {
+    scroll-behavior: smooth;
+    cursor: none;
+}
+
+body {
+    background: var(--bg-light);
+    color: var(--text-color);
+    overflow-x: hidden;
+    font-family: 'Safiro', var(--font-main);
+    line-height: 1.7;
+    /* Subtle blue-lavender ambient gradient */
+    background-image: 
+        radial-gradient(ellipse 80% 50% at 20% 0%, rgba(140, 180, 230, 0.12), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(180, 200, 240, 0.10), transparent);
+    background-attachment: fixed;
+}
+
+/* Custom Cursor - Smaller Size */
+.cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+}
+
+.cursor::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease;
+}
+
+.cursor::after {
+    content: '';
+    position: absolute;
+    width: 28px; /* Smaller outer circle */
+    height: 28px;
+    border: 1px solid var(--accent-color);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+section {
+    padding: 7rem 10%; /* Increased vertical spacing */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    border: 2px solid var(--accent-color);
+}
+
+.btn:hover {
+    background: transparent;
+    color: var(--accent-color);
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 60px;
+    height: 3px;
+    background: var(--accent-color);
+}
+
+/* ============================================
+   HEADER - Unified Glassmorphism Navigation
+   ============================================ */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 0.85rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: var(--bg-glass);
+    backdrop-filter: blur(var(--glass-blur)) saturate(1.2);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.2);
+    transition: var(--transition);
+    box-shadow: 0 4px 24px rgba(90, 127, 204, 0.06);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--accent-color);
+    letter-spacing: 0.02em;
+    transition: var(--transition);
+}
+
+.logo:hover {
+    color: var(--accent-light);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 0.5rem;
+}
+
+.nav-links li a {
+    margin-left: 1.5rem;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 400;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    position: relative;
+}
+
+/* Soft glassy hover - unified system */
+.nav-links li a:hover {
+    color: var(--accent-color);
+    background: rgba(90, 127, 204, 0.08);
+    transform: translateY(-1px);
+}
+
+.nav-links li a.active {
+    color: var(--accent-color);
+    background: rgba(90, 127, 204, 0.10);
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+/* Welcome Section with More Obvious Radial Gradient */
+#welcome {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        180deg,
+        #eef3ff 0%,
+        #e4ecff 45%,
+        #dce6ff 100%
+      );
+}
+
+/* Welcome Section Styles */
+.intro-animation {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    z-index: 3;
+}
+
+.intro-element {
+    opacity: 0;
+}
+
+.main-element {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.hi-text {
+    font-family: 'Source Code Pro', 'Courier New', monospace;
+    opacity: 0;
+    font-weight: 500;
+    color: var(--accent-color); /* Keep blue for Hi :) */
+    font-size: 3rem;
+    margin-bottom: 10px;
+    white-space: pre;
+}
+
+.welcome-message {
+    font-family: 'Source Code Pro', 'Courier New', monospace;
+    opacity: 0;
+    font-weight: 500;
+    color: var(--text-color); /* Standard text color for welcome message */
+    font-size: 1.8rem;
+    white-space: pre;
+}
+
+.name-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+}
+
+/* Fixed Titles at Bottom */
+/* Title container - centered below name */
+.title-container {
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translate(-50%, 280%);
+    display: flex;
+    justify-content: center;
+    gap: 3.5rem;
+}
+
+.title-item {
+    font-family: var(--font-main);
+    font-size: 0.95rem; /* Increased from 0.9rem */
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 400;
+
+    /* Underline style - clean and minimal */
+    padding: 0 0.2rem 0.4rem; /* Bottom padding for underline spacing */
+    border: none;
+    border-bottom: 1px solid rgba(120, 155, 210, 0.4); /* Underline only */
+    border-radius: 0;
+
+    background: transparent;
+    color: rgba(100, 135, 190, 0.9);
+}
+  
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--light-text);
+}
+
+.arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 2px solid rgba(108, 117, 125, 0.6);
+    border-bottom: 2px solid rgba(108, 117, 125, 0.6);
+    transform: rotate(45deg);
+    animation: arrowBounce 2s infinite;
+}
+
+@keyframes arrowBounce {
+    0%, 100% {
+        transform: rotate(45deg) translate(0, 0);
+    }
+    50% {
+        transform: rotate(45deg) translate(10px, 10px);
+    }
+}
+
+/* Let's Talk Section */
+.lets-talk {
+    background-color: var(--accent-color);
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    padding: 15px 0;
+}
+
+.talk-text {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* About Section */
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-img {
+    width: 80%;
+    border-radius: 5px;
+    filter: grayscale(100%);
+    transition: var(--transition);
+}
+
+.about-img:hover {
+    filter: grayscale(0);
+}
+
+.about-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.about-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 2rem;
+}
+
+.skill-tag {
+    background-color: var(--secondary-color);
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+}
+
+/* Improved Resume Link Styles */
+.resume-container {
+    margin: 1.2rem 0;
+}
+
+.resume-button {
+    display: inline-block;
+    color: #4361ee; /* Your theme blue */
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+    font-size: 0.95rem; /* Smaller font size */
+    padding: 0.15rem 0;
+}
+
+.resume-button:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1.5px; /* Slightly thinner line for smaller text */
+    bottom: -2px;
+    left: 0;
+    background-color: #7098DA;
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.resume-button:hover {
+    color: #7098DA;;
+}
+
+.resume-button:hover:after {
+    transform: scaleX(1.1);
+    background-color: #7098DA;;
+}
+
+.resume-button i {
+    margin-right: 10px; /* Slightly reduced spacing for smaller text */
+    font-size: 0.9rem; /* Smaller icon */
+}
+
+/* Projects Section with Fixed Heights and Smoother Transitions */
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem; /* Increased gap for breathing room */
+}
+
+/* ============================================
+   PROJECT CARDS - Unified Glassmorphism
+   ============================================ */
+.project-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    position: relative;
+    height: 340px;
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    background: var(--bg-glass);
+    backdrop-filter: blur(12px) saturate(1.1);
+    -webkit-backdrop-filter: blur(12px) saturate(1.1);
+    transition: var(--transition);
+    padding: 1.5rem;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-soft);
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lifted);
+    border-color: rgba(90, 127, 204, 0.35);
+}
+
+.project-img-container {
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Bluish overlay to integrate photos with the theme */
+.project-img-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--photo-overlay);
+    z-index: 1;
+    pointer-events: none;
+    transition: all 0.5s ease;
+    mix-blend-mode: soft-light;
+    opacity: 0.8;
+}
+
+/* Subtle grain texture overlay for dreamy feel */
+.project-img-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.02;
+    z-index: 2;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
+
+.project-img {
+    width: 85%;
+    height: 85%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: 4px;
+}
+
+.project-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.project-info .project-meta {
+    margin-bottom: 1rem; /* Always show title and category */
+}
+
+.project-category {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--light-text);
+    margin-bottom: 8px;
+    opacity: 1; /* Always visible */
+}
+
+.project-title {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    opacity: 1; /* Always visible */
+}
+
+.project-time {
+    font-size: 0.9rem;
+    color: var(--light-text);
+    margin-bottom: 0.5rem;
+    opacity: 1; /* Always visible */
+}
+
+.project-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--light-text);
+    margin-bottom: 1rem;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+    transform: translateX(20px);
+    opacity: 0; /* Hidden by default */
+}
+
+.project-link {
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    color: var(--accent-color);
+    transition: all 0.3s ease;
+    position: relative;
+    opacity: 0; /* Hidden by default */
+    transform: translateX(20px);
+}
+
+.project-card:hover .project-desc,
+.project-card:hover .project-link {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Subtle tilt + minimal zoom for premium feel */
+.project-card:hover .project-img {
+    transform: scale(1.03) perspective(1000px) rotateY(1deg) rotateX(-0.5deg);
+}
+
+/* Reduce veil on hover for image clarity */
+.project-card:hover .project-img-container::before {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.project-link i {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.project-link:hover {
+    color: var(--text-color);
+}
+
+.project-link:hover i {
+    transform: translateX(5px);
+}
+
+/* ============================================
+   CONTACT SECTION - Unified Glassmorphism
+   ============================================ */
+.contact-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+    background: var(--bg-glass);
+    backdrop-filter: blur(var(--glass-blur)) saturate(1.15);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.15);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--card-radius-lg);
+    padding: 3rem;
+    box-shadow: var(--shadow-soft);
+}
+
+.contact-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.contact-info p {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.contact-item i {
+    margin-right: 1rem;
+    color: #333;
+}
+
+.social-links {
+    display: flex;
+    gap: 14px;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(90, 127, 204, 0.08);
+    border-radius: 12px;
+    color: var(--text-color);
+    transition: var(--transition);
+    border: 1px solid var(--glass-border);
+}
+
+.social-links a:hover {
+    background: rgba(90, 127, 204, 0.15);
+    color: var(--accent-color);
+    border-color: rgba(90, 127, 204, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(90, 127, 204, 0.15);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 14px 20px;
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    transition: var(--transition);
+    font-family: inherit;
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--text-color);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 0 4px rgba(90, 127, 204, 0.12);
+}
+
+.form-control::placeholder {
+    color: var(--text-soft);
+}
+
+textarea.form-control {
+    height: 150px;
+    resize: none;
+}
+
+/* Primary action button - unified style */
+.submit-btn {
+    padding: 14px 32px;
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(90, 127, 204, 0.25);
+    filter: brightness(1.05);
+}
+
+/* ============================================
+   FOOTER - Unified with System
+   ============================================ */
+footer {
+    background: var(--bg-surface);
+    padding: 4rem 10%;
+    border-top: 1px solid var(--glass-border);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.footer-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.footer-links {
+    display: flex;
+    list-style: none;
+}
+
+.footer-links li a {
+    margin-left: 2rem;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.footer-links li a:hover {
+    color: var(--accent-color);
+}
+
+.copyright {
+    text-align: center;
+    color: var(--light-text);
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+    .about-container, .contact-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-img {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    .hi-text {
+        font-size: 3rem;
+    }
+    
+    .project-card {
+        height: auto;
+        min-height: 280px; /* Increased for mobile */
+    }
+}
+
+@media (max-width: 768px) {
+    .project-card {
+        grid-template-columns: 1fr;
+    }
+    
+    section {
+        padding: 5rem 5%;
+    }
+    
+    header {
+        padding: 0.4rem 5%; /* Even smaller on mobile */
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: var(--primary-color);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links li {
+        margin: 1.5rem 0;
+    }
+    
+    .nav-links li a {
+        margin-left: 0;
+        font-size: 0.85rem;
+    }
+    
+    .hamburger {
+        display: block;
+        z-index: 1001;
+        transform: scale(0.85); /* Make hamburger slightly smaller */
+    }
+    
+    .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px 0;
+        background: var(--text-color);
+        transition: var(--transition);
+    }
+    
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    .title-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+        transform: translate(-50%, 200%);
+    }
+    
+    .intro-animation {
+        top: 10%;
+        left: 5%;
+    }
+    
+    .hi-text {
+        font-size: 2.5rem;
+    }
+    
+    .welcome-message {
+        font-size: 1.5rem;
+    }
+    
+    .project-desc,
+    .project-link {
+        opacity: 1;
+        transform: translateX(0);
+        max-height: 200px;
+    }
+}
+
+/* Filter Buttons Styling */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.filter-btn {
+    background-color: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--text-color);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition);
+    outline: none;
+}
+
+.filter-btn:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.filter-btn.active {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+/* For cursor interaction with buttons */
+.filter-btn, .project-link, a {
+    cursor: none;
+}
+
+/* Add subtle background texture for futuristic feel */
+body:before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(var(--subtle-shadow) 1px, transparent 0),
+        radial-gradient(var(--subtle-shadow) 1px, transparent 0);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ============================================
+   HERO TEXT - Clean Outlined Style
+   ============================================ */
+section#welcome .name-container h1.gloria,
+section#welcome .name-container h1.zhu,
+h1.gloria, 
+h1.zhu,
+.gloria, 
+.zhu {
+    font-family: 'POLYA', sans-serif !important;
+    font-size: clamp(7rem, 13vw, 12rem);
+    font-weight: normal !important;
+    text-transform: none;
+    display: block;
+    text-align: center;
+    line-height: 0.9;
+    letter-spacing: clamp(0.2rem, 0.5vw, 0.6rem);
+
+    /* Transparent fill */
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    background: none !important;
+  
+    /* Clean blue stroke */
+    -webkit-text-stroke: 2.2px rgba(90, 130, 210, 0.88) !important;
+  
+    /* Subtle glow - clean but still dreamy */
+    filter: drop-shadow(0 0 6px rgba(100, 145, 220, 0.35));
+
+    text-shadow:
+    0 0 10px rgba(120, 150, 240, 0.32),
+    0 0 26px rgba(160, 185, 250, 0.20);
+
+  
+    /* Gentle floating */
+    animation: heroFloat 7s ease-in-out infinite;
+}
+  
+
+
+/* Smooth floating animation - calm and controlled */
+@keyframes heroFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+/* Mobile hero text adjustments */
+@media (max-width: 768px){
+    #welcome .gloria,
+    #welcome .zhu{
+        font-size: clamp(3.2rem, 12vw, 5.2rem);
+        letter-spacing: clamp(0.1rem, 0.8vw, 0.3rem);
+        line-height: 0.92;
+        -webkit-text-stroke: 1.8px rgba(90, 130, 210, 0.85);
+        filter: drop-shadow(0 0 5px rgba(100, 145, 220, 0.3));
+    }
+}
+
+/* Keep font consistent on buttons and inputs */
+.btn, .filter-btn, .form-control, .submit-btn {
+    font-family: var(--font-main);
+}
+
+/* Make sure headings use the new font */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-main);
+}
+
+/* Project title can keep the Monument font for distinction */
+.project-title {
+    font-family: var(--font-alt);
+}
+
+/* Ensure project meta (title, category, year) is always visible */
+.project-meta {
+    margin-bottom: 0.5rem;
+    transition: var(--transition);
+}
+
+/* Direct and specific selector for project titles */
+h3.project-title {
+    font-family: 'Futura', 'Century Gothic', 'Arial', sans-serif !important;
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+/* For project page titles */
+.project-hero .project-title {
+    font-family: 'Futura', 'Century Gothic', 'Arial', sans-serif !important;
+}
+
+/* Simplified Location Toggle */
+.location-toggle {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    align-self: flex-end;
+    font-size: 0.75rem;
+    position: relative;
+    right: 0;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.location-toggle:hover {
+    opacity: 1;
+}
+
+.location-label {
+    cursor: pointer;
+    padding: 0 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.location-label.active {
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.separator {
+    margin: 0 0.25rem;
+    color: #777;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #000;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #000;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* ============================================
+   AURORA BACKGROUND - Blue Soft-Dream System
+   ============================================ */
+.aurora-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 1.8s ease;
+}
+
+.aurora-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    mix-blend-mode: screen;
+    will-change: transform;
+}
+
+/* Layer 1: Icy Cyan & Blue - cleaner base */
+.aurora-1 {
+    background: linear-gradient(
+        120deg,
+        rgba(160, 230, 255, 0.45),   /* Icy Cyan */
+        rgba(180, 210, 255, 0.40),   /* Light Blue */
+        rgba(200, 220, 255, 0.35)    /* Pale Blue */
+    );
+    animation: aurora-movement-1 25s ease infinite;
+    transform-origin: center;
+    filter: blur(40px); /* Reduced blur for cleaner look */
+}
+
+/* Layer 2: Soft Pink & Lavender - Dreamcore accent */
+.aurora-2 {
+    background: linear-gradient(
+        -60deg,
+        rgba(255, 210, 230, 0.35),   /* Soft Pink */
+        rgba(230, 200, 255, 0.35),   /* Lavender */
+        rgba(190, 220, 255, 0.40)    /* Pale Blue */
+    );
+    animation: aurora-movement-2 30s ease infinite;
+    opacity: 0.75;
+    transform-origin: top left;
+    filter: blur(35px); /* Clearer, less foggy */
+}
+
+/* Layer 3: Fresh Mint & White - Brightness */
+.aurora-3 {
+    background: linear-gradient(
+        30deg,
+        rgba(180, 255, 240, 0.35),   /* Mint Cyan */
+        rgba(220, 240, 255, 0.35),   /* Cloud White-Blue */
+        rgba(200, 200, 250, 0.30)    /* Soft Periwinkle */
+    );
+    animation: aurora-movement-3 35s ease infinite;
+    opacity: 0.65;
+    transform-origin: bottom right;
+    filter: blur(38px);
+}
+
+/* Layer 4: Deep Blue depth (reduced) */
+.aurora-4 {
+    background: linear-gradient(
+        180deg,
+        rgba(140, 190, 255, 0.35),   /* Clear Sky Blue */
+        rgba(210, 230, 255, 0.30),   /* White-Blue */
+        rgba(180, 210, 250, 0.30)    /* Soft Blue */
+    );
+    animation: aurora-movement-4 28s ease infinite;
+    opacity: 0.6;
+    transform-origin: bottom left;
+    filter: blur(35px);
+}
+
+
+@keyframes aurora-movement-1 {
+    0% { transform: translate(3%, -5%) scale(1.2); }
+    50% { transform: translate(-3%, 5%) scale(1.4); } /* Larger scale */
+    100% { transform: translate(3%, -5%) scale(1.2); }
+}
+
+@keyframes aurora-movement-2 {
+    0% { transform: translate(-5%, 3%) scale(1.3); } /* More movement */
+    50% { transform: translate(5%, -3%) scale(1.2); }
+    100% { transform: translate(-5%, 3%) scale(1.3); }
+}
+
+@keyframes aurora-movement-3 {
+    0% { transform: translate(0%, 0%) scale(1.1); }
+    50% { transform: translate(-7%, -5%) scale(1.3); } /* More movement */
+    100% { transform: translate(0%, 0%) scale(1.1); }
+}
+
+@keyframes aurora-movement-4 {
+    0% { transform: translate(-3%, -3%) scale(1.2); }
+    50% { transform: translate(3%, 3%) scale(1.3); }
+    100% { transform: translate(-3%, -3%) scale(1.2); }
+}
+
+/* Make the welcome section relative to contain the aurora */
+#welcome {
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Title items - keep light and clean */
+.title-item {
+    text-shadow: none;
+}
+
+/* Additional CSS for subtle aurora in other sections */
+.subtle-aurora-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    opacity: 0.3; /* Very subtle */
+}
+
+.subtle-aurora-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    mix-blend-mode: screen;
+    filter: blur(50px); /* More blur for subtlety */
+}
+
+.subtle-aurora-1 {
+    background: linear-gradient(120deg, 
+        rgba(255, 255, 255, 0.4), 
+        rgba(240, 248, 255, 0.2), 
+        rgba(248, 249, 250, 0.3));
+    animation: subtle-aurora-movement-1 40s ease infinite;
+    opacity: 0.3;
+}
+
+.subtle-aurora-2 {
+    background: linear-gradient(-60deg, 
+        rgba(240, 248, 255, 0.3), 
+        rgba(255, 255, 255, 0.2), 
+        rgba(230, 240, 250, 0.2));
+    animation: subtle-aurora-movement-2 50s ease infinite;
+    opacity: 0.2;
+}
+
+@keyframes subtle-aurora-movement-1 {
+    0% { transform: translate(1%, -1%) scale(1.05); }
+    50% { transform: translate(-1%, 1%) scale(1.1); }
+    100% { transform: translate(1%, -1%) scale(1.05); }
+}
+
+@keyframes subtle-aurora-movement-2 {
+    0% { transform: translate(-1%, 1%) scale(1.1); }
+    50% { transform: translate(1%, -1%) scale(1.05); }
+    100% { transform: translate(-1%, 1%) scale(1.1); }
+}
+
+/* Make sure other sections have position relative */
+section {
+    position: relative;
+}
+
+/* Make the original aurora fade in smoothly */
+.aurora-container {
+    opacity: 0;
+    transition: opacity 1.5s ease;
+} 
+
+/* --- Alternating layout & poster overlay --- */
+
+/* 交替排版：偶数卡片左右反转 */
+.project-card:nth-child(even) .project-img-container { order: 2; }
+.project-card:nth-child(even) .project-info { order: 1; }
+
+/* 为了覆盖海报内容，需要确保可定位 */
+.project-img-container { position: relative; }
+
+/* 海报叠层：默认轻微可见，hover 更强调 */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.25rem;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 85%);
+  opacity: 0.0;          /* 初始几乎不可见，保持干净 */
+  transition: opacity .35s ease;
+  pointer-events: none;   /* 不挡住底下的链接点击 */
+  border-radius: 4px;
+}
+
+.project-card:hover .card-overlay { opacity: 1; }
+
+.card-overlay .overlay-inner {
+  width: 100%;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.overlay-title {
+  font-family: 'Futura','Century Gothic','Arial',sans-serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  line-height: 1.15;
+  letter-spacing: .02em;
+  font-weight: 600;
+  text-shadow: 0 4px 14px rgba(0,0,0,.35);
+}
+
+.overlay-meta {
+  font-size: .8rem;
+  opacity: .9;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+
+/* 右下角箭头按钮（视觉指示“可点入”） */
+.overlay-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .9rem;
+  font-weight: 500;
+  color: #fff;
+  opacity: .95;
+  transform: translateY(2px);
+}
+
+.overlay-cta i { transition: transform .25s ease; }
+.project-card:hover .overlay-cta i { transform: translateX(4px); }
+
+/* 略微缩短卡片固定高度，增强“海报”比例 */
+@media (min-width: 993px) {
+    /* 保持两列布局，但调整高度 */
+    .project-card {
+        position: relative;
+        grid-template-columns: 1fr 1fr;              /* 保持两列布局 */
+        height: 320px;                               /* 固定高度 */
+        overflow: hidden;
+      }
+    
+      /* 桌面端显示项目信息，但描述和按钮默认隐藏 */
+      .project-info { display: flex; } /* 显示项目信息 */
+    
+      /* 简化桌面端布局：保持两列，图片在左，信息在右 */
+      .project-img-container {
+        position: relative;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .project-img {
+        width: 75%;
+        height: 75%;
+        object-fit: cover;
+        border-radius: 8px;
+        transition: transform 0.5s ease;
+      }
+      
+      .project-card:hover .project-img {
+        transform: scale(1.05);
+      }
+    }
+
+  
+/* 移动端：海报叠层始终可见一点点，避免看不清标题 */
+@media (max-width: 768px) {
+  .card-overlay { opacity: .9; }
+  .card-overlay { display: none; }
+  .project-info { display: block; } 
+}
+
+
+/* -------- Projects Head: Eyebrow + Big Title -------- */
+#projects .section-title{
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 3.2vw, 3.6rem);
+    letter-spacing: .01em;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  #projects .section-title::before{
+    content: "Selected Work";
+    position: absolute; left: 0; top: -1.1rem;
+    font-size: .78rem; letter-spacing: .18em;
+    color: var(--light-text); text-transform: uppercase;
+    opacity: .8;
+  }
+  #projects .section-title::after{
+    content:"";
+    position: absolute; left: 0; bottom: -.6rem;
+    width: 78px; height: 4px; border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent-color), rgba(67,97,238,0));
+  }
+  
+
+  /* 可选：让整条分段控件在 Projects 区域内轻微吸顶 */
+  @media (min-width: 993px){
+    #projects .filter-buttons{
+      position: sticky; top: 72px;
+      z-index: 20;
+    }
+  }
+  
+  /* --- Projects: text tabs with underline --- */
+#projects .filter-buttons{
+    position: relative;
+    display: inline-flex;
+    gap: 1.2rem;
+    padding-bottom: .6rem;        /* 给底部下划线让位 */
+    background: none;             /* 去掉大胶囊底 */
+    box-shadow: none;
+    border-radius: 0;
+    isolation: isolate;           /* 便于控制层级 */
+  }
+  
+  /* 共享下划线（由 JS 注入 .filter-underline 元素） */
+  .filter-underline{
+    position: absolute;
+    left: 0; bottom: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-color), rgba(67,97,238,.6));
+    border-radius: 2px;
+    transform: translateX(0);
+    width: 0;
+    transition: transform .28s ease, width .28s ease, opacity .2s ease;
+    pointer-events: none;
+    z-index: 0;                   /* 在文字下方，不会遮挡 */
+  }
+  
+  /* 文本按钮：无边框无底色 */
+  .filter-btn{
+    border: none !important;
+    background: transparent !important;
+    color: var(--light-text);
+    padding: 0 .2rem;
+    height: auto;
+    border-radius: 0;
+    font-weight: 600;
+    letter-spacing: .01em;
+    transition: color .2s ease, transform .12s ease;
+    position: relative;
+    z-index: 1;                  /* 保证在下划线上方 */
+  }
+  .filter-btn:hover{ color: var(--text-color); transform: translateY(-1px); }
+  .filter-btn.active{ color: var(--accent-color); }
+  
+  /* 无障碍：键盘聚焦 */
+  .filter-btn:focus-visible{
+    outline: none;
+    box-shadow: 0 2px 0 var(--accent-color);
+    border-radius: 0;
+  }
+  
+/* --- Whispers (soft, clean, compact) --- */
+.whispers {
+  padding: 16px 0 18px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #eef2ff 0%,
+    #e4eafc 50%,
+    #d8e2f8 100%
+  );
+  border: none;
+  position: relative;
+  z-index: 2;
+}
+
+.whisper {
+  position: static !important;
+  display: inline-block;
+  font-size: 0.82rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(80, 105, 160, 0.75);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .4s ease, transform .4s ease;
+}
+
+.whisper.is-fading-out {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.whisper.is-fading-in {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+  
+  /* === Sticky Projects v2: image-first, then content reveal === */
+
+/* 每张卡的“停留时长”（越高停留越久） */
+.sticky-block {
+    height: 220vh;               /* 可调：160~240vh */
+    position: relative;
+  }
+  
+  /* 让 project-card 变成全屏 sticky 面板（仅在 sticky 模式下生效） */
+  .project-card.sticky-panel {
+    position: sticky;
+    top: 0;                      /* 如需避开固定头部，可改 top:64px; */
+    min-height: 100vh;
+    height: auto;
+    display: block;
+    padding: 0;
+    border-bottom: none;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  
+  /* 背景图层：绝对定位全屏，先只看图 */
+  .project-card.sticky-panel .project-img-container {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    display: block;
+  }
+  .project-card.sticky-panel .project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(calc(1 + var(--progress, 0) * 0.08));
+    filter: brightness(calc(0.95 - var(--progress, 0) * 0.15))
+            blur(var(--img-blur, 0px));
+    transition: transform 0.12s linear, filter 0.12s linear;
+    will-change: transform, filter;
+  }
+  
+  /* 底部渐变遮罩，保证文字可读；随滚动稍增强 */
+  .project-card.sticky-panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.0) 60%),
+      radial-gradient(60% 40% at 50% 100%, rgba(0,0,0,0.2), transparent 70%);
+    opacity: calc(0.35 + var(--progress, 0) * 0.35);
+    pointer-events: none;
+  }
+  
+  /* 文字层：初始隐藏，随着滚动渐显并上浮 */
+  .project-card.sticky-panel .project-info {
+    position: absolute;
+    inset: auto 0 0 0; /* 贴底部（更像作品海报） */
+    padding: min(8vh, 80px) clamp(16px, 6vw, 80px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    opacity: var(--content-alpha, 0);                      /* 0→1 */
+    transform: translateY(calc((1 - var(--content-alpha, 0)) * 40px - var(--text-shift, 0px)));
+    transition: opacity 0.12s linear, transform 0.12s linear, filter 0.12s linear;
+    filter: blur(calc((1 - var(--content-alpha, 0)) * 6px));
+    will-change: opacity, transform, filter;
+    z-index: 1;
+  }
+  
+  /* sticky 模式下的文字配色（白色） */
+  .project-card.sticky-panel .project-category,
+  .project-card.sticky-panel .project-title,
+  .project-card.sticky-panel .project-desc,
+  .project-card.sticky-panel .project-time,
+  .project-card.sticky-panel .project-link {
+    color: #fff;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.45);
+  }
+  
+  /* 保持容器正常文档流 */
+  #projects .projects-container { position: relative; }
+  
+  /* 移动端禁用 sticky（避免滚动被劫持感） */
+  @media (max-width: 768px) {
+    .sticky-block { height: auto; }
+    .project-card.sticky-panel {
+      position: static;
+      min-height: auto;
+    }
+    .project-card.sticky-panel .project-img-container,
+    .project-card.sticky-panel .project-info {
+      position: static;
+      inset: auto;
+      transform: none;
+      opacity: 1;
+      filter: none;
+    }
+    .project-card.sticky-panel::after { display: none; }
+  }
+  
+  /* 尊重“减少动态”的系统偏好 */
+  @media (prefers-reduced-motion: reduce) {
+    .sticky-block { height: auto !important; }
+    .project-card.sticky-panel { position: static !important; }
+    .project-card.sticky-panel .project-img { transform: none !important; filter: none !important; }
+    .project-card.sticky-panel .project-info { opacity: 1 !important; transform: none !important; filter: none !important; }
+    .project-card.sticky-panel::after { opacity: 0 !important; }
+  }
+  
+  #projects { 
+    padding-left: 0; 
+    padding-right: 0; 
+  }
+
+  /* ===== Split 50/50, sticky, right pure-color panel ===== */
+:root{ --header-h:72px; --intro-surface:#0f1115; }  /* 右半的纯色，可改浅色 */
+
+/* --- Intro section (clean, no extra layers) --- */
+#intro-fb {
+  padding: 0 !important;
+  margin: 0 !important;
+  min-height: auto;
+  position: relative;
+}
+
+.fb-sticky{ height: 160vh; position: relative; }
+
+.fb-hero{
+  position: sticky; top: var(--header-h);
+  min-height: calc(100vh - var(--header-h));        /* 修掉“底部空隙” */
+  display: grid; grid-template-columns: 1fr 1fr;
+  isolation: isolate; overflow: clip; background:#000; /* 背景不露底色 */
+}
+
+/* 左列：图片轮播（轻模糊，确保文字对比） */
+.fb-media{ position: relative; height: 100%; }
+.fb-media img{
+  position: absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  opacity:0; transition: opacity .8s ease;
+  filter: blur(var(--bg-blur, 6px)) brightness(.95) saturate(.95);
+}
+.fb-media img.is-active{ opacity:1; }
+
+/* 右列：纯色面板 */
+.fb-panel{
+  background: var(--intro-surface);                 /* 纯色，无渐变 */
+  display: grid; place-items: center;               /* 文案垂直居中 */
+}
+
+/* 文案：轻微“上浮”且渐显（无停顿） */
+.fb-content{
+  color:#eaeef6; max-width: 720px;
+  padding: clamp(24px, 6vw, 56px);
+  transform: translateY(calc((1 - var(--fb-p, 0)) * 22px));
+  opacity: calc(.72 + var(--fb-p,0) * .28);
+  transition: transform .12s linear, opacity .12s linear;
+}
+.intro-fb .eyebrow{ font-size:.82rem; letter-spacing:.18em; text-transform:uppercase; color:#b5bdcf; margin-bottom:.6rem; }
+.fb-title{ font-family:var(--font-title); font-weight:800; letter-spacing:.01em;
+  font-size: clamp(1.8rem, 4vw, 3rem); line-height:1.15; margin:0 0 .9rem 0; }
+.fb-lede{ color:#cfd6e6; opacity:.9; margin-bottom:1.1rem; }
+
+/* 去掉之前为可读性叠的渐变（若你有 .fb-hero::before 请删掉/注释掉） */
+
+/* 移动端：上下堆叠，仍保持纯色面板可读 */
+@media (max-width: 768px){
+  .fb-sticky{ height:auto; }
+  .fb-hero{ position: static; min-height:auto; grid-template-columns:1fr; }
+  .fb-panel{ order:2; }
+  .fb-content{ transform:none; opacity:1; }
+}
+
+/* Projects section spacing - balanced with other sections */
+#projects{ padding-top: 4rem; padding-bottom: 5rem; }
+
+/* ===== Simple (low-CPU) theme for intro-fb ===== */
+.intro-fb.simple .fb-hero{
+    /* 右侧纯色面板：固定蓝青渐变（未来感但不冷） */
+    background:#000; /* 防止露底 */
+  }
+  
+  .intro-fb.simple .fb-panel{
+    background: linear-gradient(160deg, #0f172a 0%, #0a2e3b 100%); /* 深靛蓝 -> 青蓝 */
+    color: #eaf2ff;
+  }
+  
+  /* 左侧图：固定轻模糊，不随滚动变 */
+  .intro-fb.simple .fb-media img{
+    filter: blur(5px) brightness(.96) saturate(.95);
+  }
+  
+  /* 修掉 sticky 底部空隙（若未加） */
+  :root{ --header-h:72px; }
+  #intro-fb .fb-hero{ min-height: calc(100vh - var(--header-h)); }
+  
+  /* 如果你之前加过任何噪点/混合层，建议注释掉（更省） */
+  /* .fb-panel::after, .fb-media::after { display:none !important; } */
+  /* ===== Dreamy theme (soft aurora) ===== */
+.intro-fb.theme-dreamy .fb-media img{
+    /* 保留你的模糊，但更轻盈一点的色调 */
+    filter: blur(6px) brightness(1.04) saturate(1.06);
+  }
+  .intro-fb.theme-dreamy .fb-media{ position:relative; }
+  .intro-fb.theme-dreamy .fb-media::after{
+    /* Soft blue overlay to integrate photos with theme */
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:1;
+    background:
+      radial-gradient(60% 45% at 22% 28%, rgba(90, 140, 200, 0.20), transparent 60%),
+      radial-gradient(55% 40% at 78% 72%, rgba(140, 160, 220, 0.18), transparent 60%);
+    mix-blend-mode: soft-light; opacity: 0.65;
+  }
+  
+  .intro-fb.theme-dreamy .fb-panel{
+    /* Unified deep blue panel - warm but still blue-first */
+    background: var(--dark-panel);
+    color: var(--dark-panel-text);
+  }
+  
+  /* ===== CTA button - Unified soft-dream style ===== */
+  .btn-cta{
+    --cta-start: var(--accent-color, #5a7fcc);
+    --cta-end: var(--accent-light, #8aa8e8);
+    --cta-text: #ffffff;
+  
+    display:inline-flex; align-items:center; gap:.5rem;
+    padding: 14px 24px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--cta-start), var(--cta-end));
+    color: var(--cta-text);
+    font-weight: 600; letter-spacing:.3px; text-decoration:none;
+    box-shadow: 0 8px 24px rgba(90, 127, 204, 0.25);
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: none;
+  }
+  .btn-cta:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(90, 127, 204, 0.35);
+    filter: brightness(1.05);
+  }
+  .btn-cta:focus-visible{
+    outline: 2px solid #fff; outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(90, 127, 204, 0.4);
+  }
+  
+  /* 若你仍保留旧的描边按钮样式，避免冲突 */
+  .btn-ghost{ display:none; }
+  
+  /* === Blue Cornflower Theme – overrides START === */
+:root{
+    /* surfaces */
+    --primary-color: #F8FBFF;     /* 冷白底（更清爽） */
+    --secondary-color: #EFF6FF;   /* 淡蓝次级面 */
+  
+    /* text */
+    --text-color: #0F172A;
+    --light-text: #6B7280;
+  
+    /* accent – 非电蓝 */
+    --accent-color: #7098DA;      /* Cornflower 主蓝 */
+    --accent-weak:  #B3D6FF;      /* 浅蓝（卡片/条带） */
+  
+    /* CTA 渐变：蓝→浅蓝→薄荷（与现有 aurora 呼应） */
+    --grad-accent: linear-gradient(100deg,#7098DA 0%,#B3D6FF 60%,#A9FFF7 100%);
+  
+    --subtle-shadow: rgba(15,23,42,.10);
+  }
+  
+  /* 顶部 Header 的淡蓝雾感（替换原先的电蓝轻底） */
+  header{
+    background-color: rgba(112,152,218,0.06) !important;
+    border-bottom: 1px solid rgba(112,152,218,0.10) !important;
+  }
+  
+
+  
+  /* 强调条/跑马灯：浅渐变 + 深字（可读性更好） */
+  .lets-talk{
+    background: var(--grad-accent) !important;
+    color: var(--text-color) !important;
+  }
+  
+  /* 按钮：浅渐变 + 深字，避免霓虹感 */
+  .btn, .submit-btn{
+    background: var(--grad-accent) !important;
+    color: var(--text-color) !important;
+    border: 0 !important;
+    box-shadow: 0 8px 22px rgba(15,23,42,.12);
+  }
+  .btn:hover, .submit-btn:hover{
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+  }
+  
+  /* 次级按钮/徽章 */
+  .btn--secondary, .badge{
+    background: var(--accent-weak) !important;
+    color: var(--text-color) !important;
+    border: 1px solid rgba(15,23,42,.12);
+  }
+  
+  /* 链接 hover：改为浅蓝高亮，避免整块电蓝 */
+  a:hover, .project-link:hover{
+    color: var(--text-color) !important;
+  }
+  
+  /* "Gloria Zhu" - Let base .gloria/.zhu styles apply (no override needed) */
+  
+  /* Projects 区鼠标光环去霓虹电蓝，改为 Cornflower */
+  .new-projects-halo{
+    background: radial-gradient(circle,
+                rgba(255,255,255,.85) 0%,
+                rgba(255,255,255,.65) 10%,
+                rgba(112,152,218,.55) 28%,
+                rgba(96,140,210,.42) 52%,
+                rgba(72,114,186,.30) 72%,
+                rgba(0,0,0,0) 90%) !important;
+    box-shadow: 0 0 36px rgba(96,140,210,.55) !important;
+    filter: blur(10px) !important;
+  }
+  /* === Blue Cornflower Theme – overrides END === */
+  /* === Minimal Links + Aurora Punch (override) === */
+
+/* 0) 更干净的基色 & Cornflower 蓝为主调 */
+:root{
+    --primary-color: #F8FBFF;              /* 冷白，去灰 */
+    --secondary-color: #EFF6FF;            /* 淡蓝面 */
+    --text-color: #0F172A;                 /* 深墨蓝文字 */
+    --light-text: #6B7280;
+  
+    --accent-color: #7098DA;               /* Cornflower 蓝（非电） */
+    --accent-weak:  #B3D6FF;               /* 浅蓝面 */
+    --grad-accent: linear-gradient(90deg,#7098DA 0%,#B3D6FF 70%,#A9FFF7 120%);
+    --subtle-shadow: rgba(112,152,218,.10);/* 纹理微蓝，不再灰 */
+  }
+  
+  /* 1) 去按钮化：除了 .submit-btn，其他全部变成文字链接 */
+  .btn, .btn-cta, .project-link, .filter-btn, .social-links a{
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    color: #fff !important;
+    letter-spacing: 0;
+    box-shadow: none !important;
+    text-decoration: none;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 2px;
+  }
+  .btn:hover, .btn-cta:hover, .project-link:hover, .resume-button:hover,
+  .filter-btn:hover, .nav-links a:hover, .social-links a:hover{
+    text-decoration: underline;
+    color: var(--accent-color) !important;
+  }
+  
+  /* 导航与页脚链接同样采用“文字+下划线” */
+  .nav-links li a{
+    color: var(--text-color) !important;
+    background: transparent !important;
+  }
+  .nav-links li a:hover{ text-decoration: underline; }
+  
+  /* Filter 变“文字 Tab”：活跃态用下划线表示 */
+  .filter-btn{ font-weight: 500; }
+  .filter-btn.active{ text-decoration: underline; }
+  
+  /* 社交链接去圆形底 */
+  .social-links a{
+    width: auto; height: auto; border-radius: 0; padding: 0;
+  }
+  
+  /* 2) 仅保留表单提交按钮的按钮外观（可保留圆角） */
+  .submit-btn{
+    background: var(--grad-accent) !important;
+    color: var(--text-color) !important;
+    border: 0 !important;
+    border-radius: 30px;
+    padding: 12px 24px;
+    box-shadow: 0 8px 22px rgba(15,23,42,.12);
+  }
+  .submit-btn:hover{ filter: brightness(1.06); transform: translateY(-1px); }
+  
+  /* 3) 首页“去灰提亮”：冷白底 + 渐变文字 + 极光边 */
+  body{ background: var(--primary-color) !important; }
+  body:before{
+    /* 你原来用灰色点阵纹理，改成微蓝更干净 */
+    background-image:
+      radial-gradient(var(--subtle-shadow) 1px, transparent 0),
+      radial-gradient(var(--subtle-shadow) 1px, transparent 0);
+  }
+  
+  /* 欢迎区：上缘加一条极光渐变边，细但有存在感 */
+  #welcome::before{
+    content:''; position:absolute; left:0; top:0; width:100%; height:2px;
+    background: linear-gradient(90deg,#7098DA,#A9FFF7,#B3D6FF);
+    opacity:.65; z-index:2;
+  }
+  
+  
+  /* Aurora: Cleaner blur - dreamy but not hazy */
+  .aurora-1 { filter: blur(55px); }
+  .aurora-2 { filter: blur(45px); }
+  .aurora-3 { filter: blur(50px); }
+  .aurora-4 { filter: blur(48px); }
+  
+  /* Project cards now use glassmorphism - remove border-bottom override */
+  
+  /* 跑马灯保留，但文本采用深字（更可读） */
+  .lets-talk{ color: var(--text-color) !important; background: var(--grad-accent) !important; }
+  
+
+  /* 需要 inline-block 的：链接/单行标题 */
+.nav-links li a,
+.project-title,
+.title-item{
+  display: inline-block;
+  transition: transform .22s cubic-bezier(.2,.8,.2,1), color .22s ease;
+  will-change: transform, color;
+}
+
+/* 保持块级的：大标题/区块标题 */
+.section-title,
+.gloria,
+.zhu{
+  transition: transform .22s cubic-bezier(.2,.8,.2,1), color .22s ease;
+}
+/* ==== Cursor on hover: solid big dot + outer ring ==== */
+.cursor{
+    /* 调参区：想更大/更细就改这里 */
+    --big-core: 84px;           /* 实心圆直径 */
+    --ring-extra: 16px;         /* 外环比实心圆大多少（直径差） */
+    --ring-stroke: .9px;       /* 外环线粗 */
+    --cursor-color: #fff;       /* 建议白色，配合 mix-blend-mode:difference */
+  }
+  
+  /* 中心点：放大成“实心大圆” */
+  .cursor.is-big::before{
+    width: var(--big-core);
+    height: var(--big-core);
+    background: var(--cursor-color);
+    border: none;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition:
+      width .18s ease, height .18s ease,
+      transform .18s ease, opacity .18s ease, background-color .18s ease;
+  }
+  
+  /* 外环：包在外面一圈（空心） */
+  .cursor.is-big::after{
+    width: calc(var(--big-core) + var(--ring-extra));
+    height: calc(var(--big-core) + var(--ring-extra));
+    background: transparent;
+    border: var(--ring-stroke) solid var(--cursor-color);
+    opacity: .95;
+    transition:
+      width .18s ease, height .18s ease,
+      border-color .18s ease, opacity .18s ease, box-shadow .18s ease;
+  }
+  

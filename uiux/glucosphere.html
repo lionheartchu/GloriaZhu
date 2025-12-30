@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glucosphere | Gloria Zhu</title>
+    <title>Glucosphere | Project Detail</title>
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../project-style.css">
+    <!-- Main Project Page CSS (Standalone) -->
+    <link rel="stylesheet" href="../project-theme.css">
 </head>
 <body>
     <!-- Custom Cursor -->
     <div class="cursor"></div>
 
-    <!-- Header -->
+    <!-- Header (Matches Homepage) -->
     <header>
-        <a href="../index.html" class="logo">GZ</a>
+        <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
@@ -30,102 +31,124 @@
         </div>
     </header>
 
-    <!-- Clean Back Link with direct jump to projects section -->
-    <a href="../index.html#projects" class="back-arrow">
-        Back
-    </a>
+    <main>
+        <div class="container">
+            <!-- Back Navigation -->
+            <div class="nav-wrapper">
+                <a href="../index.html#projects" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back</span>
+                </a>
+            </div>
 
-    <!-- Project Hero with back arrow -->
-    <section class="project-hero">
-        <div class="project-hero-content">
-            <div class="project-title-area">
-                <span class="project-category">UI/UX & Product Design</span>
-                <h1 class="project-title">Glucosphere</h1>
-                <span class="project-year">2024</span>
-            </div>
-            <div class="project-intro">
-                <p style="font-size: 1rem; line-height: 1.5;margin-bottom: 0.5rem;">Diabetes is no longer a problem that only concerns adults.</p>
-                <div class="intro-divider"></div>
-                <p style="font-size: 1rem; line-height: 1.5;">Today, an increasing amount of families are worried about diabetes due to the young-onset trend. <strong>Glucosphere</strong> is committed to addressing the insufficient awareness of kids' diabetes management, bridging the gap between kid-friendly glucose testing products and parental monitoring.</p>
-            </div>
-        </div>
-        <div class="project-cover">
-            <img src="../image/glusp-cover.png" alt="Glucosphere Project">
-        </div>
-    </section>
+            <!-- Project Hero -->
+            <section class="project-hero">
+                <div class="hero-content">
+                    <div class="project-meta">
+                        <span class="meta-pill">UI/UX</span>
+                        <span class="meta-pill">Health</span>
+                        <span class="meta-separator">·</span>
+                        <span class="meta-year">2024</span>
+                    </div>
+                    
+                    <h1 class="project-title">Glucosphere</h1>
+                    
+                    <div class="project-intro">
+                        <p class="lede">Diabetes is no longer just an adult problem.</p>
+                        <hr class="intro-divider">
+                        <p><strong>Glucosphere</strong> bridges the gap between kid-friendly glucose testing and parental monitoring, making the medical process intuitive and less intimidating for the rising number of young patients.</p>
+                    </div>
+                </div>
 
-    <!-- Project Content with updated image paths and no captions -->
-    <section class="project-content">
-        <!-- <div class="project-overview">
-            <div class="overview-column">
-                <h3>Challenge</h3>
-                <p>Design a holistic system that makes diabetes management less burdensome and more intuitive for users of all ages.</p>
-            </div>
-            <div class="overview-column">
-                <h3>Approach</h3>
-                <p>A user-centered design process combining hardware and digital interfaces to create a seamless ecosystem for health management.</p>
-            </div>
-            <div class="overview-column">
-                <h3>Outcome</h3>
-                <p>A complete diabetes management system with a wearable glucose monitor and intuitive mobile application.</p>
-            </div> -->
-        </div>
+                <div class="hero-media">
+                    <div class="media-frame">
+                        <img src="../image/glusp-cover3.png" alt="Glucosphere Project Cover">
+                    </div>
+                </div>
+            </section>
 
-        <div class="project-section">
-            <h2 class="sec-title">Research</h2>
-            <p style="max-width: 100%;">The project began with extensive research on young-onset diabetes today, and further conducted specific user research to determine the target user group. It is validated by the market research on the lack of product that are specifically designed for diabetic kids.</p>
-            
-            <div class="project-image-full">
-                <img src="../image/glusp-14.png" alt="User Research Process">
-            </div>
-            
-            <div class="project-image-full">
-                <img src="../image/glusp-15.png" alt="User Interviews">
-            </div>
-            
-            <div class="project-image-full">
-                <img src="../image/glusp-16.png" alt="Competitive Analysis">
-            </div>
-            
-            <div class="project-image-full">
-                <img src="../image/glusp-17.png" alt="User Needs">
-            </div>
-        </div>
+            <!-- Main Content Area -->
+            <div class="project-body">
+                
+                <!-- Overview Section -->
+                <div class="project-overview">
+                    <div class="overview-column">
+                        <h3>Inspiration</h3>
+                        <p>Inspired by family history and rising trends in China, where diabetes is shifting from a "middle-age disease" to a serious young-onset concern.</p>
+                    </div>
+                    <div class="overview-column">
+                        <h3>The Trend</h3>
+                        <p>Cases among youth (< 20 years) are steadily increasing globally. Type 1 diabetes in children is seeing a constant annual rise.</p>
+                    </div>
+                    <div class="overview-column">
+                        <h3>The Challenge</h3>
+                        <p>Designing for school-age children (6-12) who face unique physical challenges like insulin resistance and social embarrassment at school.</p>
+                    </div>
+                </div>
+                
+                <!-- Research Section -->
+                <section class="project-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Research</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <p class="section-text">Inspired by family history and rising trends, where diabetes is shifting from a "middle-age disease" to a serious young-onset concern. Market research validated the target group as children aged 6–12, facing unique challenges like insulin resistance and social embarrassment at school.</p>
+                    
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/glusp-14.png" alt="Background Research">
+                        </div>
+                        <div class="media-frame">
+                            <img src="../image/glusp-15.png" alt="User Research and Market Analysis">
+                        </div>
+                    </div>
+                </section>
 
-        <div class="project-section">
-            <h2 class="sec-title">Outcome</h2>
-            
-            <div class="project-image-full">
-                <img src="../image/glusp-18.png" alt="Final product hardware">
-            </div>
-            
-            <div class="project-image-full">
-                <img src="../image/glusp-19.png" alt="Final product app">
-            </div>
-        </div>
+                <!-- Outcome Section -->
+                <section class="project-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Outcome</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <p class="section-text">A cohesive health ecosystem: the <strong>Glucosphere Kit</strong> for painless testing and the <strong>Monitoring App</strong> for seamless data tracking. A "lunchbox-style" kit reduces stigma for kids, paired with a remote monitoring app for parents.</p>
+                    
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/glusp-18.png" alt="Final Product Hardware">
+                        </div>
+                        <div class="media-frame">
+                            <img src="../image/glusp-19.png" alt="Final App Interface">
+                        </div>
+                    </div>
+                </section>
 
-        <!-- Next Project Navigation -->
-        <div class="project-navigation">
-            <a href="../installation/otherw.html" class="next-project">
-                <span>Next Project</span>
-                <h3>Otherworld</h3>
-                <i class="fas fa-arrow-right"></i>
-            </a>
+            </div>
+
+            <!-- Next Project Navigation -->
+            <nav class="next-project-nav">
+                <a href="../installation/otherw.html" class="next-project-card">
+                    <div class="next-content-wrapper">
+                        <div class="next-label">Next Project</div>
+                        <h3 class="next-title">Otherworld</h3>
+                        <div class="next-meta">Interactive Installation · 2024</div>
+                    </div>
+                    <div class="next-cta">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+            </nav>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="footer-inner">
             <a href="../index.html" class="footer-logo">Gloria Zhu</a>
-            <ul class="footer-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About</a></li>
-                <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
-            </ul>
+            <div class="footer-status">
+                <span class="blink-dot"></span> All Systems Operational
+            </div>
+            <p class="copyright">© 2025 Gloria Zhu</p>
         </div>
-        <p class="copyright">© 2024 Gloria Zhu. All rights reserved.</p>
     </footer>
 
     <!-- JavaScript -->

@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YU | Gloria Zhu</title>
+    <title>YU | Project Detail</title>
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../project-style.css">
+    <!-- Main Project Page CSS (Standalone) -->
+    <link rel="stylesheet" href="../project-theme.css">
 </head>
 <body>
     <!-- Custom Cursor -->
     <div class="cursor"></div>
 
-    <!-- Header -->
+    <!-- Header (Matches Homepage) -->
     <header>
-        <a href="../index.html" class="logo">GZ</a>
+        <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
@@ -30,92 +31,107 @@
         </div>
     </header>
 
-    <!-- Clean Back Link with direct jump to projects section -->
-    <a href="../index.html#projects" class="back-arrow">
-        Back
-    </a>
+    <main>
+        <div class="container">
+            <!-- Back Navigation -->
+            <div class="nav-wrapper">
+                <a href="../index.html#projects" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back</span>
+                </a>
+            </div>
 
-    <!-- Project Hero with back arrow -->
-    <section class="project-hero">
-        <div class="project-hero-content">
-            <div class="project-title-area">
-                <span class="project-category">Interactive Installation</span>
-                <h1 class="project-title">YU</h1>
-                <span class="project-year">2021</span>
-            </div>
-            <div class="project-intro">
-                <p style="font-size: 1rem; line-height: 1.5;margin-bottom:0.5rem;">Started from January, 2020, COVID-19 widely impacted countless people all over the world. </p>
-                <div class="intro-divider"></div>
-                <p style="font-size: 1rem; line-height: 1.5;"> Medical staff sacrificed their personal dedication during the period. Except for their job, they are living individuals, who also have their own familiy and life. This work expresses the greatness of love during the tough time.</p>
-            </div>
-        </div>
-        <div class="project-cover">
-            <img src="../image/yu-cover.png" alt="YU Project">
-        </div>
-    </section>
+            <!-- Project Hero -->
+            <section class="project-hero">
+                <div class="hero-content">
+                    <div class="project-meta">
+                        <span class="meta-pill">Installation</span>
+                        <span class="meta-separator">·</span>
+                        <span class="meta-year">2021</span>
+                    </div>
+                    
+                    <h1 class="project-title">YU</h1>
+                    
+                    <div class="project-intro">
+                        <p class="lede">A responsive installation exploring the relationship between sound, space, and human interaction.</p>
+                        <hr class="intro-divider">
+                        <p>Started from January, 2020, COVID-19 widely impacted countless people all over the world. Medical staff sacrificed their personal dedication during the period. <strong>YU</strong> expresses the greatness of love during the tough time, exploring how sound and space can create meaningful connections.</p>
+                    </div>
+                </div>
 
-    <!-- Project Content with updated image paths and no captions -->
-    <section class="project-content">
-        <!-- <div class="project-overview">
-            <div class="overview-column">
-                <h3>Challenge</h3>
-                <p>Design an installation that transforms human movement into meaningful sound experiences.</p>
-            </div>
-            <div class="overview-column">
-                <h3>Approach</h3>
-                <p>A technical approach combining motion sensors, spatial audio, and custom software to create responsive soundscapes.</p>
-            </div>
-            <div class="overview-column">
-                <h3>Outcome</h3>
-                <p>An installation that generates unique sonic environments based on the movements and interactions of its visitors.</p>
-            </div> -->
-        </div>
+                <div class="hero-media">
+                    <div class="media-frame">
+                        <img src="../image/yu-cover.png" alt="YU Project Cover">
+                    </div>
+                </div>
+            </section>
 
-        <div class="project-section">
-            <h2 class="sec-title">Research</h2>
-            
-            <div class="project-image-small">
-                <img src="../image/yu-19.png" alt="YU Research">
-            </div>
-            
-            <div class="project-image-small">
-                <img src="../image/yu-20.png" alt="YU Prototyping">
-            </div>
-        </div>
+            <!-- Main Content Area -->
+            <div class="project-body">
+                
+                <!-- Research Section -->
+                <section class="project-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Research</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <p class="section-text">The research explored how sound and space interact in creating meaningful experiences, focusing on the relationship between human presence and acoustic environments.</p>
+                    
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/yu-19.png" alt="YU Research">
+                        </div>
+                        <div class="media-frame">
+                            <img src="../image/yu-20.png" alt="YU Concept Development">
+                        </div>
+                    </div>
+                </section>
 
-        <div class="project-section">
-            <h2 class="sec-title">Outcome</h2>
-            
-            <div class="project-image-small">
-                <img src="../image/yu-21.png" alt="YU Final Installation">
-            </div>
-        </div>
+                <!-- Outcome Section -->
+                <section class="project-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Outcome</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <p class="section-text">A responsive installation that creates unique sound experiences based on visitors' movement and interaction, exploring the relationship between sound, space, and human presence.</p>
+                    
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/yu-21.png" alt="YU Final Installation">
+                        </div>
+                    </div>
+                </section>
 
-        <!-- Next Project Navigation -->
-        <div class="project-navigation">
-            <a href="../product/thenextport.html" class="next-project">
-                <span>Next Project</span>
-                <h3>The Next Port</h3>
-                <i class="fas fa-arrow-right"></i>
-            </a>
+            </div>
+
+            <!-- Next Project Navigation -->
+            <nav class="next-project-nav">
+                <a href="../product/thenextport.html" class="next-project-card">
+                    <div class="next-content-wrapper">
+                        <div class="next-label">Next Project</div>
+                        <h3 class="next-title">The Next Port</h3>
+                        <div class="next-meta">Product Design · 2025</div>
+                    </div>
+                    <div class="next-cta">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+            </nav>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="footer-inner">
             <a href="../index.html" class="footer-logo">Gloria Zhu</a>
-            <ul class="footer-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About</a></li>
-                <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
-            </ul>
+            <div class="footer-status">
+                <span class="blink-dot"></span> All Systems Operational
+            </div>
+            <p class="copyright">© 2025 Gloria Zhu</p>
         </div>
-        <p class="copyright">© 2024 Gloria Zhu. All rights reserved.</p>
     </footer>
 
     <!-- JavaScript -->
     <script src="../script.js"></script>
 </body>
-</html> 
+</html>

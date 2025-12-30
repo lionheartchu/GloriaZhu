@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Otherworld | Gloria Zhu</title>
+    <title>Otherworld | Project Detail</title>
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../project-style.css">
+    <!-- Main Project Page CSS (Standalone) -->
+    <link rel="stylesheet" href="../project-theme.css">
 </head>
 <body>
     <!-- Custom Cursor -->
     <div class="cursor"></div>
 
-    <!-- Header -->
+    <!-- Header (Matches Homepage) -->
     <header>
-        <a href="../index.html" class="logo">GZ</a>
+        <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
@@ -30,102 +31,113 @@
         </div>
     </header>
 
-    <!-- Clean Back Link with direct jump to projects section -->
-    <a href="../index.html#projects" class="back-arrow">
-        Back
-    </a>
+    <main>
+        <div class="container">
+            <!-- Back Navigation -->
+            <div class="nav-wrapper">
+                <a href="../index.html#projects" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back</span>
+                </a>
+            </div>
 
-    <!-- Project Hero with back arrow -->
-    <section class="project-hero">
-        <div class="project-hero-content">
-            <div class="project-title-area">
-                <span class="project-category">Interactive Installation</span>
-                <h1 class="project-title">Otherworld</h1>
-                <span class="project-year">2024</span>
-            </div>
-            <div class="project-intro">
-                <p style="font-size: 1rem; line-height: 1.5;margin-bottom: 0.5rem;">Led by urbanization, the boundary between humans and nature gets blurred with unrestricted human activities that continuously exploit natural resources.</p>
-                <div class="intro-divider"></div>
-                <p style="font-size: 1rem; line-height: 1.5;">The two-part interactive project features enabling the perspective sharing between humans and plants  through scale-switching.</p>
-            </div>
-        </div>
-        <div class="project-cover">
-            <img src="../image/ow-cover.png" alt="Otherworld Project">
-        </div>
-    </section>
+            <!-- Project Hero -->
+            <section class="project-hero">
+                <div class="hero-content">
+                    <div class="project-meta">
+                        <span class="meta-pill">Interactive Installation</span>
+                        <span class="meta-separator">·</span>
+                        <span class="meta-year">2024</span>
+                    </div>
+                    
+                    <h1 class="project-title">Otherworld</h1>
+                    
+                    <div class="project-intro">
+                        <p class="lede">Led by urbanization, the boundary between humans and nature gets blurred with unrestricted human activities that continuously exploit natural resources.</p>
+                        <hr class="intro-divider">
+                        <p>The two-part interactive project features enabling the perspective sharing between humans and plants through scale-switching, creating an immersive experience that blends physical and digital environments.</p>
+                    </div>
+                </div>
 
-    <!-- Project Content with updated image paths and no captions -->
-    <section class="project-content">
-        <!-- <div class="project-overview">
-            <div class="overview-column">
-                <h3>Challenge</h3>
-                <p>Create an immersive installation that blurs the boundaries between digital and physical spaces.</p>
-            </div>
-            <div class="overview-column">
-                <h3>Approach</h3>
-                <p>A multi-sensory design combining projection mapping, motion sensors, and interactive surfaces.</p>
-            </div>
-            <div class="overview-column">
-                <h3>Outcome</h3>
-                <p>An installation that adapts to visitors, creating unique experiences based on their movement and interactions.</p>
-            </div> -->
-        </div>
+                <div class="hero-media">
+                    <div class="media-frame">
+                        <img src="../image/ow-cover.png" alt="Otherworld Project Cover">
+                    </div>
+                </div>
+            </section>
 
-        <div class="project-section">
-            <h2 class="sec-title">Research</h2>
-            <p>The project began with exploring how human activities has led to urbanization, and the problems it has brought back.</p>
-            
-            <div class="project-image-full">
-                <img src="../image/ow-02.png" alt="Otherworld Research">
-            </div>
-            
-            <div class="project-image-full">
-                <img src="../image/ow-03.png" alt="Otherworld Concept Development">
-            </div>
-            
-            <div class="project-image-full">
-                <img src="../image/ow-04.png" alt="Otherworld Prototyping">
-            </div>
-        </div>
+            <!-- Main Content Area -->
+            <div class="project-body">
+                
+                <!-- Research Section -->
+                <section class="project-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Research</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <p class="section-text">The project began with exploring how human activities have led to urbanization, and the problems it has brought. Research focused on understanding the relationship between humans and nature in the context of modern urban environments.</p>
+                    
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/ow-02.png" alt="Otherworld Research">
+                        </div>
+                        <div class="media-frame">
+                            <img src="../image/ow-03.png" alt="Otherworld Concept Development">
+                        </div>
+                        <div class="media-frame">
+                            <img src="../image/ow-04.png" alt="Otherworld Prototyping">
+                        </div>
+                    </div>
+                </section>
 
-        <div class="project-section">
-            <h2 class="sec-title">Outcome</h2>
-            <p>Using Kinect for body-sensing game, Otherworld creates a responsive, immersive experience that focuses on perspective-shifting and empathy with the nature.</p>
-            
-            <div class="project-image-full">
-                <img src="../image/ow-05.png" alt="Otherworld Final Installation">
-            </div>
-            
-            <div class="project-image-full">
-                <img src="../image/ow-06.png" alt="Otherworld Visitor Interaction">
-            </div>
-        </div>
+                <!-- Outcome Section -->
+                <section class="project-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Outcome</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <p class="section-text">Using Kinect for body-sensing interaction, <strong>Otherworld</strong> creates a responsive, immersive experience that focuses on perspective-shifting and empathy with nature. The installation adapts to visitors, creating unique experiences based on their movement and interactions.</p>
+                    
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/ow-05.png" alt="Otherworld Final Installation">
+                        </div>
+                        <div class="media-frame">
+                            <img src="../image/ow-06.png" alt="Otherworld Visitor Interaction">
+                        </div>
+                    </div>
+                </section>
 
-        <!-- Next Project Navigation -->
-        <div class="project-navigation">
-            <a href="../installation/dataskinware.html" class="next-project">
-                <span>Next Project</span>
-                <h3>Data "Skinware": Interactive</h3>
-                <i class="fas fa-arrow-right"></i>
-            </a>
+            </div>
+
+            <!-- Next Project Navigation -->
+            <nav class="next-project-nav">
+                <a href="../installation/dataskinware.html" class="next-project-card">
+                    <div class="next-content-wrapper">
+                        <div class="next-label">Next Project</div>
+                        <h3 class="next-title">Data "Skinware"</h3>
+                        <div class="next-meta">Immersive Experience · 2025</div>
+                    </div>
+                    <div class="next-cta">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+            </nav>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="footer-inner">
             <a href="../index.html" class="footer-logo">Gloria Zhu</a>
-            <ul class="footer-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About</a></li>
-                <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
-            </ul>
+            <div class="footer-status">
+                <span class="blink-dot"></span> All Systems Operational
+            </div>
+            <p class="copyright">© 2025 Gloria Zhu</p>
         </div>
-        <p class="copyright">© 2024 Gloria Zhu. All rights reserved.</p>
     </footer>
 
     <!-- JavaScript -->
     <script src="../script.js"></script>
 </body>
-</html> 
+</html>

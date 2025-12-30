@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Befree | Gloria Zhu</title>
+    <title>Befree | Project Detail</title>
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../project-style.css">
+    <!-- Main Project Page CSS (Standalone) -->
+    <link rel="stylesheet" href="../project-theme.css">
 </head>
 <body>
     <!-- Custom Cursor -->
     <div class="cursor"></div>
 
-    <!-- Header -->
+    <!-- Header (Matches Homepage) -->
     <header>
-        <a href="../index.html" class="logo">GZ</a>
+        <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
@@ -30,94 +31,107 @@
         </div>
     </header>
 
-    <!-- Clean Back Link with direct jump to projects section -->
-    <a href="../index.html#projects" class="back-arrow">
-        Back
-    </a>
+    <main>
+        <div class="container">
+            <!-- Back Navigation -->
+            <div class="nav-wrapper">
+                <a href="../index.html#projects" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back</span>
+                </a>
+            </div>
 
-    <!-- Project Hero with back arrow -->
-    <section class="project-hero">
-        <div class="project-hero-content">
-            <div class="project-title-area">
-                <span class="project-category">UI/UX Design</span>
-                <h1 class="project-title">Befree</h1>
-                <span class="project-year">2022</span>
-            </div>
-            <div class="project-intro">
-                <p style="font-size: 1rem; line-height: 1.5;margin-bottom:0.5rem;">Music tailored to every moment of your day.</p>
-                <div class="intro-divider"></div>
-                <p style="font-size: 1rem; line-height: 1.5;">Undisputedly, music occurs in scenes including studying, working, and exercising, and with relatively high frequency. Beyond being a great music player, <strong>Befree</strong> helps people pair different music styles with different emotions, mediums, and scenes, enabling people to enjoy music in a more convenient way.</p>
-            </div>
-        </div>
-        <div class="project-cover">
-            <img src="../image/bef-cover.png" alt="Befree Project">
-        </div>
-    </section>
+            <!-- Project Hero -->
+            <section class="project-hero">
+                <div class="hero-content">
+                    <div class="project-meta">
+                        <span class="meta-pill">UI/UX Design</span>
+                        <span class="meta-separator">·</span>
+                        <span class="meta-year">2022</span>
+                    </div>
+                    
+                    <h1 class="project-title">Befree</h1>
+                    
+                    <div class="project-intro">
+                        <p class="lede">Music tailored to every moment of your day.</p>
+                        <hr class="intro-divider">
+                        <p>Undisputedly, music occurs in scenes including studying, working, and exercising, and with relatively high frequency. Beyond being a great music player, <strong>Befree</strong> helps people pair different music styles with different emotions, mediums, and scenes, enabling people to enjoy music in a more convenient way.</p>
+                    </div>
+                </div>
 
-    <!-- Project Content with updated image paths and no captions -->
-    <section class="project-content">
-        <!-- <div class="project-overview">
-            <div class="overview-column">
-                <h3>Challenge</h3>
-                <p>Design a digital platform that encourages healthier digital habits and helps users achieve work-life balance.</p>
-            </div>
-            <div class="overview-column">
-                <h3>Approach</h3>
-                <p>A user-centered design process focusing on minimalist interface design and behavior change psychology.</p>
-            </div>
-            <div class="overview-column">
-                <h3>Outcome</h3>
-                <p>An intuitive mobile application that helps users track and manage their digital wellbeing.</p>
-            </div> -->
-        </div>
+                <div class="hero-media">
+                    <div class="media-frame">
+                        <img src="../image/bef-cover.png" alt="Befree Project Cover">
+                    </div>
+                </div>
+            </section>
 
-        <div class="project-section">
-            <h2 class="sec-title">Research</h2>
-            
-            <div class="project-image-small">
-                <img src="../image/bef-01.png" alt="Befree Research">
-            </div>
-            
-            <div class="project-image-small">
-                <img src="../image/bef-02.png" alt="Befree User Interviews">
-            </div>
-        </div>
+            <!-- Main Content Area -->
+            <div class="project-body">
+                
+                <!-- Research Section -->
+                <section class="project-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Research</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <p class="section-text">The research explored how people use music in different daily contexts and the challenges they face in finding the right music for each moment.</p>
+                    
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/bef-01.png" alt="Befree Research">
+                        </div>
+                        <div class="media-frame">
+                            <img src="../image/bef-02.png" alt="Befree User Research">
+                        </div>
+                        <div class="media-frame">
+                            <img src="../image/bef-03.png" alt="Befree Concept Development">
+                        </div>
+                    </div>
+                </section>
 
-        <div class="project-section">
-            <h2 class="sec-title">Outcome</h2>
-            <p>Befree offers users a simple yet powerful way to track digital habits and gradually establish healthier patterns. User testing showed a 40% increase in awareness of digital habits and a 35% improvement in work-life balance satisfaction.</p>
-            
-            <div class="project-image-small">
-                <img src="../image/bef-03.png" alt="Befree App Interface">
-            </div>
-            
-            <div class="project-image-small">
-                <img src="../image/bef-04.png" alt="Befree App Features">
-            </div>
-        </div>
+                <!-- Outcome Section -->
+                <section class="project-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Outcome</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <p class="section-text">A music app designed to help users enjoy music in multiple scenes freely and conveniently, with intuitive interface design that adapts to different usage contexts.</p>
+                    
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/bef-04.png" alt="Befree Final Design">
+                        </div>
+                    </div>
+                </section>
 
-        <!-- Next Project Navigation -->
-        <div class="project-navigation">
-            <a href="../medarts/dataskin.html" class="next-project">
-                <span>Next Project</span>
-                <h3>Data Skinware</h3>
-                <i class="fas fa-arrow-right"></i>
-            </a>
+            </div>
+
+            <!-- Next Project Navigation -->
+            <nav class="next-project-nav">
+                <a href="../medarts/dataskin.html" class="next-project-card">
+                    <div class="next-content-wrapper">
+                        <div class="next-label">Next Project</div>
+                        <h3 class="next-title">Data Skinware</h3>
+                        <div class="next-meta">Data Visualization · 2024</div>
+                    </div>
+                    <div class="next-cta">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+            </nav>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="footer-inner">
             <a href="../index.html" class="footer-logo">Gloria Zhu</a>
-            <ul class="footer-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About</a></li>
-                <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
-            </ul>
+            <div class="footer-status">
+                <span class="blink-dot"></span> All Systems Operational
+            </div>
+            <p class="copyright">© 2025 Gloria Zhu</p>
         </div>
-        <p class="copyright">© 2024 Gloria Zhu. All rights reserved.</p>
     </footer>
 
     <!-- JavaScript -->

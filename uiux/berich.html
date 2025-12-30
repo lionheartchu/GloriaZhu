@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berich | Gloria Zhu</title>
+    <title>Berich | Project Detail</title>
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../project-style.css">
+    <!-- Main Project Page CSS (Standalone) -->
+    <link rel="stylesheet" href="../project-theme.css">
 </head>
 <body>
     <!-- Custom Cursor -->
     <div class="cursor"></div>
 
-    <!-- Header -->
+    <!-- Header (Matches Homepage) -->
     <header>
-        <a href="../index.html" class="logo">GZ</a>
+        <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
@@ -30,89 +31,104 @@
         </div>
     </header>
 
-    <!-- Clean Back Link with direct jump to projects section -->
-    <a href="../index.html#projects" class="back-arrow">
-        Back
-    </a>
+    <main>
+        <div class="container">
+            <!-- Back Navigation -->
+            <div class="nav-wrapper">
+                <a href="../index.html#projects" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back</span>
+                </a>
+            </div>
 
-    <!-- Project Hero with back arrow -->
-    <section class="project-hero">
-        <div class="project-hero-content">
-            <div class="project-title-area">
-                <span class="project-category">UI/UX Design</span>
-                <h1 class="project-title">Berich</h1>
-                <span class="project-year">2021</span>
-            </div>
-            <div class="project-intro">
-                <p style="font-size: 1rem; line-height: 1.5;margin-bottom:0.5rem;">Financial education for the next generation.</p>
-                <div class="intro-divider"></div>
-                <p style="font-size: 1rem; line-height: 1.5;">When I was in high school, most of my peers couldn't save money and found it hard to have any money left at the end of the month. Inspired by this phenomenon, I wanted to create a design that helps teenagers manage their own money—to simply record their consumption and cultivate financial consciousness.</p>
-            </div>
-        </div>
-        <div class="project-cover">
-            <img src="../image/ber-cover.png" alt="Berich Project">
-        </div>
-    </section>
+            <!-- Project Hero -->
+            <section class="project-hero">
+                <div class="hero-content">
+                    <div class="project-meta">
+                        <span class="meta-pill">UI/UX Design</span>
+                        <span class="meta-separator">·</span>
+                        <span class="meta-year">2021</span>
+                    </div>
+                    
+                    <h1 class="project-title">Berich</h1>
+                    
+                    <div class="project-intro">
+                        <p class="lede">Financial education for the next generation.</p>
+                        <hr class="intro-divider">
+                        <p>When I was in high school, most of my peers couldn't save money and found it hard to have any money left at the end of the month. Inspired by this phenomenon, <strong>Berich</strong> helps teenagers manage their own money—to simply record their consumption and cultivate financial consciousness.</p>
+                    </div>
+                </div>
 
-    <!-- Project Content with updated image paths and no captions -->
-    <section class="project-content">
-        <!-- <div class="project-overview">
-            <div class="overview-column">
-                <h3>Challenge</h3>
-                <p>Create an accessible platform that demystifies financial concepts and encourages smart investment decisions.</p>
-            </div>
-            <div class="overview-column">
-                <h3>Approach</h3>
-                <p>A visual learning approach that breaks down complex financial concepts into digestible, interactive content.</p>
-            </div>
-            <div class="overview-column">
-                <h3>Outcome</h3>
-                <p>A comprehensive financial education platform with investment simulation tools and learning modules.</p>
-            </div> -->
-        </div>
+                <div class="hero-media">
+                    <div class="media-frame">
+                        <img src="../image/ber-cover.png" alt="Berich Project Cover">
+                    </div>
+                </div>
+            </section>
 
-        <div class="project-section">
-            <h2 class="sec-title">Research</h2>
-            
-            <div class="project-image-small">
-                <img src="../image/ber-15.png" alt="Berich Research">
-            </div>
-        </div>
+            <!-- Main Content Area -->
+            <div class="project-body">
+                
+                <!-- Research Section -->
+                <section class="project-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Research</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <p class="section-text">The research explored financial habits among teenagers and the challenges they face in money management, identifying opportunities for educational intervention through intuitive design.</p>
+                    
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/ber-15.png" alt="Berich Research">
+                        </div>
+                        <div class="media-frame">
+                            <img src="../image/ber-16.png" alt="Berich User Research">
+                        </div>
+                    </div>
+                </section>
 
-        <div class="project-section">
-            <h2 class="sec-title">Outcome</h2>
-            
-            <div class="project-image-small">
-                <img src="../image/ber-16.png" alt="Berich Platform Interface">
-            </div>
-            
-            <div class="project-image-small">
-                <img src="../image/ber-17.png" alt="Berich Platform Features">
-            </div>
-        </div>
+                <!-- Outcome Section -->
+                <section class="project-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Outcome</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <p class="section-text">A financial education and investment platform with a user-friendly interface designed to simplify complex financial concepts, helping young users develop better money management habits.</p>
+                    
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/ber-17.png" alt="Berich Final Design">
+                        </div>
+                    </div>
+                </section>
 
-        <!-- Next Project Navigation -->
-        <div class="project-navigation">
-            <a href="../installation/yu.html" class="next-project">
-                <span>Next Project</span>
-                <h3>YU</h3>
-                <i class="fas fa-arrow-right"></i>
-            </a>
+            </div>
+
+            <!-- Next Project Navigation -->
+            <nav class="next-project-nav">
+                <a href="../installation/yu.html" class="next-project-card">
+                    <div class="next-content-wrapper">
+                        <div class="next-label">Next Project</div>
+                        <h3 class="next-title">YU</h3>
+                        <div class="next-meta">Installation · 2021</div>
+                    </div>
+                    <div class="next-cta">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+            </nav>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="footer-inner">
             <a href="../index.html" class="footer-logo">Gloria Zhu</a>
-            <ul class="footer-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About</a></li>
-                <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
-            </ul>
+            <div class="footer-status">
+                <span class="blink-dot"></span> All Systems Operational
+            </div>
+            <p class="copyright">© 2025 Gloria Zhu</p>
         </div>
-        <p class="copyright">© 2024 Gloria Zhu. All rights reserved.</p>
     </footer>
 
     <!-- JavaScript -->
