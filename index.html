@@ -6,12 +6,13 @@
     <title>Portfolio | Gloria Zhu</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/monument-extended" rel="stylesheet">
+    <!-- Font Preloads for Critical Fonts -->
+    <link rel="preload" href="PP Neue Machina/PPNeueMachina-Ultrabold.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="MonumentExtended/MonumentExtended-Ultrabold.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="Space_Grotesk/static/SpaceGrotesk-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="Space_Mono/SpaceMono-Regular.ttf" as="font" type="font/ttf" crossorigin>
     
+    <!-- Local fonts are loaded via CSS @font-face, no need for external font links -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -135,9 +136,9 @@
     <section id="intro-fb" class="intro-fb theme-dreamy" aria-label="About me teaser">
         <div class="fb-wrapper">
             <div class="fb-media-grid">
-                <div class="media-item item-1"><img src="image/inspo-1.JPG" onerror="this.style.display='none'" alt=""></div>
-                <div class="media-item item-2"><img src="image/inspo-2.JPG" onerror="this.style.display='none'" alt=""></div>
-                <div class="media-item item-3"><img src="image/inspo-3.JPG" onerror="this.style.display='none'" alt=""></div>
+                <div class="media-item item-1"><img src="image/inspo-1.JPG" decoding="async" onerror="this.style.display='none'" alt=""></div>
+                <div class="media-item item-2"><img src="image/inspo-2.JPG" decoding="async" onerror="this.style.display='none'" alt=""></div>
+                <div class="media-item item-3"><img src="image/inspo-3.JPG" decoding="async" onerror="this.style.display='none'" alt=""></div>
             </div>
       
             <aside class="fb-panel">
@@ -180,7 +181,7 @@
                 <div class="card-tech-deco bottom-right"></div>
                 
                 <div class="project-img-container">
-                    <img src="image/tnp-cover.png" alt="The Next Port" class="project-img">
+                    <img src="image/tnp-cover.png" loading="lazy" decoding="async" alt="The Next Port" class="project-img">
                 </div>
                 
                 <div class="project-info">
@@ -203,7 +204,7 @@
                 <div class="card-tech-deco bottom-right"></div>
 
                 <div class="project-img-container">
-                    <img src="image/glusp-cover3.png" alt="Glucosphere" class="project-img">
+                    <img src="image/glusp-cover3.png" loading="lazy" decoding="async" alt="Glucosphere" class="project-img">
                 </div>
                 
                 <div class="project-info">
@@ -226,7 +227,7 @@
                 <div class="card-tech-deco bottom-right"></div>
 
                 <div class="project-img-container">
-                    <img src="image/ow-cover.png" alt="Otherworld" class="project-img">
+                    <img src="image/ow-cover.png" loading="lazy" decoding="async" alt="Otherworld" class="project-img">
                 </div>
                 
                 <div class="project-info">
@@ -249,7 +250,7 @@
                 <div class="card-tech-deco bottom-right"></div>
 
                 <div class="project-img-container">
-                    <img src="image/dts-cover.JPG" alt="Data Skinware" class="project-img">
+                    <img src="image/dts-cover.JPG" loading="lazy" decoding="async" alt="Data Skinware" class="project-img">
                 </div>
                 
                 <div class="project-info">
@@ -272,7 +273,7 @@
                 <div class="card-tech-deco bottom-right"></div>
 
                 <div class="project-img-container">
-                    <img src="image/bef-cover.png" alt="Befree" class="project-img">
+                    <img src="image/bef-cover.png" loading="lazy" decoding="async" alt="Befree" class="project-img">
                 </div>
                 
                 <div class="project-info">
@@ -295,7 +296,7 @@
                 <div class="card-tech-deco bottom-right"></div>
 
                 <div class="project-img-container">
-                    <img src="image/ds-cover.png" alt="Data Skinware" class="project-img">
+                    <img src="image/ds-cover.png" loading="lazy" decoding="async" alt="Data Skinware" class="project-img">
                 </div>
                 
                 <div class="project-info">
@@ -318,7 +319,7 @@
                 <div class="card-tech-deco bottom-right"></div>
 
                 <div class="project-img-container">
-                    <img src="image/ber-cover.png" alt="Berich" class="project-img">
+                    <img src="image/ber-cover.png" loading="lazy" decoding="async" alt="Berich" class="project-img">
                 </div>
                 
                 <div class="project-info">
@@ -341,7 +342,7 @@
                 <div class="card-tech-deco bottom-right"></div>
 
                 <div class="project-img-container">
-                    <img src="image/yu-cover.png" alt="YU" class="project-img">
+                    <img src="image/yu-cover.png" loading="lazy" decoding="async" alt="YU" class="project-img">
                 </div>
                 
                 <div class="project-info">
