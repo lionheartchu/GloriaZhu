@@ -6,14 +6,15 @@
     <title>Glucosphere | Project Detail</title>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Main Project Page CSS (Standalone) -->
+    
+    <!-- Main Project Page CSS (Generic Theme) -->
     <link rel="stylesheet" href="../project-theme.css">
 </head>
 <body>
     <!-- Custom Cursor -->
     <div class="cursor"></div>
 
-    <!-- Header (Matches Homepage) -->
+    <!-- Header -->
     <header>
         <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
@@ -34,35 +35,38 @@
     <main>
         <div class="container">
             <!-- Back Navigation -->
-            <div class="nav-wrapper">
+            <div class="nav-wrapper reveal-item">
                 <a href="../index.html#projects" class="back-link">
                     <i class="fas fa-arrow-left"></i>
-                    <span>Back</span>
+                    <span>Back to Work</span>
                 </a>
             </div>
 
             <!-- Project Hero -->
             <section class="project-hero">
-                <div class="hero-content">
+                <div class="hero-content reveal-item">
                     <div class="project-meta">
-                        <span class="meta-pill">UI/UX</span>
-                        <span class="meta-pill">Health</span>
+                        <span class="meta-pill">UI/UX Design</span>
+                        <span class="meta-pill">Product Design</span>
                         <span class="meta-separator">·</span>
                         <span class="meta-year">2024</span>
                     </div>
                     
-                    <h1 class="project-title">Glucosphere</h1>
+                    <h1 class="project-title">Gluco<br>Sphere</h1>
                     
                     <div class="project-intro">
-                        <p class="lede">Diabetes is no longer just an adult problem.</p>
+                        <p class="lede">Kids-friendly glucose test kit & paired monitoring app for diabetic families.</p>
                         <hr class="intro-divider">
-                        <p><strong>Glucosphere</strong> bridges the gap between kid-friendly glucose testing and parental monitoring, making the medical process intuitive and less intimidating for the rising number of young patients.</p>
+                        <p><strong>Glucosphere</strong> bridges the gap between kid-friendly glucose testing and parental monitoring. It addresses the insufficient awareness of kids' diabetes management, making the medical process intuitive and less intimidating for the rising number of young patients.</p>
                     </div>
                 </div>
 
-                <div class="hero-media">
+                <div class="hero-media reveal-item" style="transition-delay: 0.1s;">
                     <div class="media-frame">
-                        <img src="../image/glusp-cover3.png" alt="Glucosphere Project Cover">
+                        <div class="parallax-wrapper">
+                            <!-- Placeholder for Cover Image -->
+                            <img src="../image/glusp-cover3.png" class="parallax-img" alt="Glucosphere Project Cover" onerror="this.src='https://placehold.co/800x1000/F0F4F8/2563EB?text=Glucosphere+Cover'">
+                        </div>
                     </div>
                 </div>
             </section>
@@ -70,54 +74,213 @@
             <!-- Main Content Area -->
             <div class="project-body">
                 
-                <!-- Overview Section -->
-                <div class="project-overview">
-                    <div class="overview-column">
-                        <h3>Inspiration</h3>
-                        <p>Inspired by family history and rising trends in China, where diabetes is shifting from a "middle-age disease" to a serious young-onset concern.</p>
-                    </div>
-                    <div class="overview-column">
-                        <h3>The Trend</h3>
-                        <p>Cases among youth (< 20 years) are steadily increasing globally. Type 1 diabetes in children is seeing a constant annual rise.</p>
-                    </div>
-                    <div class="overview-column">
-                        <h3>The Challenge</h3>
-                        <p>Designing for school-age children (6-12) who face unique physical challenges like insulin resistance and social embarrassment at school.</p>
-                    </div>
-                </div>
-                
-                <!-- Research Section -->
+                <!-- SECTION 1: RESEARCH & TRENDS -->
                 <section class="project-section">
-                    <div class="section-header">
-                        <h2 class="section-title">Research</h2>
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">01. Global Context</h2>
                         <div class="section-line"></div>
                     </div>
-                    <p class="section-text">Inspired by family history and rising trends, where diabetes is shifting from a "middle-age disease" to a serious young-onset concern. Market research validated the target group as children aged 6–12, facing unique challenges like insulin resistance and social embarrassment at school.</p>
                     
-                    <div class="media-stack">
-                        <div class="media-frame">
-                            <img src="../image/glusp-14.png" alt="Background Research">
+                    <div class="section-text-block reveal-item">
+                        <h3>A Rising Epidemic</h3>
+                        <p class="section-text">Diabetes is not just an adult issue anymore. With <strong>537 million people</strong> affected worldwide and a projected 46% increase by 2045, the disease is spreading rapidly. China leads globally with over 140.9 million cases.</p>
+                        <p class="section-text">More alarmingly, the incidence among <strong>children under 20 years</strong> is rising steadily, transforming diabetes into a significant young-onset concern.</p>
+                    </div>
+
+                    <!-- Stats Grid -->
+                    <div class="insight-grid reveal-item">
+                        <div class="insight-card">
+                            <div class="insight-header">
+                                <span class="insight-title">Youth Impact</span>
+                                <i class="fas fa-child insight-icon"></i>
+                            </div>
+                            <div class="insight-stat">1.21m</div>
+                            <p style="color:var(--accent-primary); font-size:0.8rem; margin-bottom:1rem; font-family:var(--font-mono);">CHILDREN & ADOLESCENTS</p>
+                            <p class="section-text" style="font-size:0.95rem;">Living with Type 1 diabetes globally, with cases increasing annually.</p>
                         </div>
-                        <div class="media-frame">
-                            <img src="../image/glusp-15.png" alt="User Research and Market Analysis">
+
+                        <div class="insight-card">
+                            <div class="insight-header">
+                                <span class="insight-title">The Target</span>
+                                <i class="fas fa-bullseye insight-icon"></i>
+                            </div>
+                            <div class="insight-stat">6-12</div>
+                            <p style="color:var(--accent-primary); font-size:0.8rem; margin-bottom:1rem; font-family:var(--font-mono);">YEARS OLD</p>
+                            <p class="section-text" style="font-size:0.95rem;">School-age children face unique challenges: puberty-induced insulin resistance and social stigma at school.</p>
+                        </div>
+                    </div>
+
+                    <!-- Research Deep Dive -->
+                    <div class="challenge-solution reveal-item" style="margin-top: 3rem;">
+                        <div class="cs-block" style="background: var(--bg-surface);">
+                            <h3 class="cs-title">Why existing products fail kids?</h3>
+                            <p class="section-text" style="font-size: 0.95rem; margin-bottom: 1rem;">My analysis of current market leaders like Care Touch and Abbott revealed a significant gap:</p>
+                            <ul class="pain-point-list">
+                                <li><i class="fas fa-times-circle"></i> <strong>Scary Appearance:</strong> Tools look "rustic" and medical, frightening young users.</li>
+                                <li><i class="fas fa-times-circle"></i> <strong>Painful Process:</strong> Fingersticks hurt, leading to resistance and crying.</li>
+                                <li><i class="fas fa-times-circle"></i> <strong>Unclear Feedback:</strong> Kids can't interpret complex numbers on generic screens.</li>
+                                <li><i class="fas fa-times-circle"></i> <strong>Social Stigma:</strong> Embarrassment prevents testing at school or with friends.</li>
+                            </ul>
+                        </div>
+                        <div class="cs-block solution">
+                            <span class="cs-label">Design Opportunity</span>
+                            <h3 class="cs-title">Gamified Health</h3>
+                            <p class="section-text">How might we make kids check blood more spontaneously?</p>
+                            <p class="section-text"><strong>Key Goal:</strong> Transform the terrifying medical routine into a "game-like" task using a redesigned kit and a reward-based app ecosystem.</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- Outcome Section -->
+                <!-- SECTION 2: PERSONA -->
                 <section class="project-section">
-                    <div class="section-header">
-                        <h2 class="section-title">Outcome</h2>
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">02. User Personas</h2>
                         <div class="section-line"></div>
                     </div>
-                    <p class="section-text">A cohesive health ecosystem: the <strong>Glucosphere Kit</strong> for painless testing and the <strong>Monitoring App</strong> for seamless data tracking. A "lunchbox-style" kit reduces stigma for kids, paired with a remote monitoring app for parents.</p>
-                    
-                    <div class="media-stack">
-                        <div class="media-frame">
-                            <img src="../image/glusp-18.png" alt="Final Product Hardware">
+
+                    <div class="persona-grid reveal-item">
+                        <!-- Persona 1: Alexander (The Kid) -->
+                        <div class="persona-card">
+                            <div class="persona-header">
+                                <div class="persona-avatar">A</div>
+                                <div class="persona-info">
+                                    <h4>Alexander</h4>
+                                    <span>Age 7 · Type 1</span>
+                                </div>
+                            </div>
+                            <div class="persona-body">
+                                <p class="persona-quote">"Why do they always ask me to stick my fingers? It really hurts!"</p>
+                                <p class="section-text" style="font-size: 0.95rem;">Alex finds current products confusing. The fingerstick pain makes him resist testing. He needs less pain and more fun.</p>
+                                <div class="persona-tags">
+                                    <span class="persona-tag">Hates Pain</span>
+                                    <span class="persona-tag">Scared</span>
+                                    <span class="persona-tag">Needs Fun</span>
+                                </div>
+                            </div>
                         </div>
+
+                        <!-- Persona 2: Jessica (The Kid) -->
+                        <div class="persona-card">
+                            <div class="persona-header">
+                                <div class="persona-avatar" style="background:var(--accent-secondary);">J</div>
+                                <div class="persona-info">
+                                    <h4>Jessica</h4>
+                                    <span>Age 10 · Type 2</span>
+                                </div>
+                            </div>
+                            <div class="persona-body">
+                                <p class="persona-quote">"I really don't like the color of my glucometer, not cute at all!"</p>
+                                <p class="section-text" style="font-size: 0.95rem;">Jessica thinks existing products look "rustic" and scary. She often "forgets" to check her blood because she dislikes the device.</p>
+                                <div class="persona-tags">
+                                    <span class="persona-tag">Visual Appeal</span>
+                                    <span class="persona-tag">Reminders</span>
+                                    <span class="persona-tag">Self-esteem</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <!-- Persona 3: Zoey (The Mom) -->
+                        <div class="persona-card">
+                            <div class="persona-header">
+                                <div class="persona-avatar" style="background:#10B981;">Z</div>
+                                <div class="persona-info">
+                                    <h4>Zoey</h4>
+                                    <span>Mom · Sales Rep</span>
+                                </div>
+                            </div>
+                            <div class="persona-body">
+                                <p class="persona-quote">"It's hard to track his blood sugar... Too many business trips for my job."</p>
+                                <p class="section-text" style="font-size: 0.95rem;">Zoey is a single mom who travels often. She worries constantly and needs a way to monitor her son's glucose remotely.</p>
+                                <div class="persona-tags">
+                                    <span class="persona-tag">Remote Tracking</span>
+                                    <span class="persona-tag">Peace of Mind</span>
+                                    <span class="persona-tag">Reliability</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 3: CONCEPT & STRATEGY -->
+                <section class="project-section">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">03. The Strategy</h2>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="challenge-solution reveal-item">
+                        <div class="cs-block problem">
+                            <span class="cs-label">The Conflict</span>
+                            <h3 class="cs-title">Fear & Forgetfulness</h3>
+                            <p class="section-text">Medical devices look "sick" and scary. Kids avoid using them due to stigma at school and physical pain. Parents struggle to monitor compliance remotely.</p>
+                        </div>
+                        <div class="cs-block solution">
+                            <span class="cs-label">The Solution</span>
+                            <h3 class="cs-title">Gamified Ecosystem</h3>
+                            <p class="section-text">A "Lunchbox-style" kit that hides the medical nature, paired with a gamified app that rewards consistency and enables real-time parent monitoring.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-grid reveal-item">
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                            <h4 class="feature-title">App: Gluardian</h4>
+                            <p class="feature-desc">Enables parents to monitor results remotely, view historical trends, and send rewards to their kids.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-first-aid"></i></div>
+                            <h4 class="feature-title">Product: GlucoPal</h4>
+                            <p class="feature-desc">A cute, box-like storage with redesigned lancing tools that are safe, kid-friendly, and convenient.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                 <!-- SECTION 4: UI DESIGN (Gluardian App) — image swapped: uses glusp-18 -->
+                <section class="project-section">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">04. UI Design</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    
+                    <div class="section-text-block reveal-item">
+                        <h3>The Gluardian App</h3>
+                        <p class="section-text">The interface uses large, friendly typography and a reward system to encourage daily use. Data is visualized simply for kids, while parents get detailed analytics.</p>
+                    </div>
+
+                    <div class="media-stack reveal-item">
                         <div class="media-frame">
-                            <img src="../image/glusp-19.png" alt="Final App Interface">
+                            <div class="parallax-wrapper">
+                                <img src="../image/glusp-18.png" class="parallax-img" alt="Gluardian App UI Screens" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=UI+Design:+App+Screens'">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 5: PRODUCT OUTCOME (Physical Kit) — image swapped: uses glusp-19 -->
+                <section class="project-section">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">05. Product Effect</h2>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="section-text-block reveal-item">
+                        <h3>A Friend, Not a Device</h3>
+                        <p class="section-text">The physical kit redefines the medical experience. It looks like a toy or school supply, reducing social anxiety when used in public.</p>
+                    </div>
+
+                    <div class="media-stack reveal-item">
+                        <div class="media-frame">
+                            <div class="parallax-wrapper">
+                                <img src="../image/glusp-17.png" class="parallax-img" alt="Final Product Effect" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=Product+Effect:+Physical+Kit'">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media-stack reveal-item">
+                        <div class="media-frame">
+                            <div class="parallax-wrapper">
+                                <img src="../image/glusp-19.png" class="parallax-img" alt="Final Product Effect" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=Product+Effect:+Physical+Kit'">
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -125,7 +288,7 @@
             </div>
 
             <!-- Next Project Navigation -->
-            <nav class="next-project-nav">
+            <nav class="next-project-nav reveal-item">
                 <a href="../installation/otherw.html" class="next-project-card">
                     <div class="next-content-wrapper">
                         <div class="next-label">Next Project</div>
@@ -152,6 +315,86 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="../script.js"></script>
+    <script>
+        // Hamburger Menu Logic
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Custom Cursor Logic
+        const cursor = document.querySelector('.cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button, .media-frame, .insight-card, .feature-card, .next-project-card, .persona-card, .cs-block').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('is-big'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('is-big'));
+        });
+
+        // --- 1. Reveal on Scroll Animation ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-item').forEach((el) => {
+            revealObserver.observe(el);
+        });
+
+        // --- 2. Lightweight Parallax Effect ---
+        if (window.matchMedia("(min-width: 769px)").matches) {
+            
+            const parallaxImages = document.querySelectorAll('.parallax-img');
+            let visibleImages = [];
+            
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        visibleImages.push(entry.target);
+                    } else {
+                        visibleImages = visibleImages.filter(img => img !== entry.target);
+                    }
+                });
+            });
+
+            parallaxImages.forEach(img => imageObserver.observe(img));
+
+            function animateParallax() {
+                if (visibleImages.length > 0) {
+                    const scrollY = window.scrollY;
+                    const windowHeight = window.innerHeight;
+
+                    visibleImages.forEach(img => {
+                        const rect = img.parentElement.getBoundingClientRect();
+                        const center = rect.top + (rect.height / 2);
+                        const distFromCenter = center - (windowHeight / 2);
+                        const offset = distFromCenter * 0.1; 
+                        
+                        img.style.transform = `translateY(${offset}px)`;
+                    });
+                }
+                requestAnimationFrame(animateParallax);
+            }
+            
+            animateParallax();
+        }
+    </script>
 </body>
 </html>

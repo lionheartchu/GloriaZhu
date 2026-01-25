@@ -6,14 +6,15 @@
     <title>The Next Port | Project Detail</title>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Main Project Page CSS (Standalone) -->
+    
+    <!-- Main Project Page CSS (Generic Theme) -->
     <link rel="stylesheet" href="../project-theme.css">
 </head>
 <body>
     <!-- Custom Cursor -->
     <div class="cursor"></div>
 
-    <!-- Header (Matches Homepage) -->
+    <!-- Header -->
     <header>
         <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
@@ -34,19 +35,19 @@
     <main>
         <div class="container">
             <!-- Back Navigation -->
-            <div class="nav-wrapper">
+            <div class="nav-wrapper reveal-item">
                 <a href="../index.html#projects" class="back-link">
                     <i class="fas fa-arrow-left"></i>
-                    <span>Back</span>
+                    <span>Back to Work</span>
                 </a>
             </div>
 
             <!-- Project Hero -->
             <section class="project-hero">
-                <div class="hero-content">
+                <div class="hero-content reveal-item">
                     <div class="project-meta">
                         <span class="meta-pill">Product Design</span>
-                        <span class="meta-pill">Future Design</span>
+                        <span class="meta-pill">Service Design</span>
                         <span class="meta-separator">·</span>
                         <span class="meta-year">2025</span>
                     </div>
@@ -54,15 +55,18 @@
                     <h1 class="project-title">The Next Port</h1>
                     
                     <div class="project-intro">
-                        <p class="lede">Where will technological advancement drive us? Utilizing new technologies like AI as our best assistants hits the future trends.</p>
+                        <p class="lede">Reimagining autonomous delivery in the low-altitude economy.</p>
                         <hr class="intro-divider">
-                        <p><strong>The Next Port</strong> reimagines autonomous delivery service in the setting of the low-altitude economy by integrating self-driving technology and drone logistics. The project aims to create an efficient drone-based delivery system to fulfill our future needs.</p>
+                        <p><strong>The Next Port</strong> answers the question: <em>Where will technological advancement drive us?</em> By integrating self-driving technology with drone logistics, this project creates a specialized delivery system that is safer, more efficient, and privacy-focused.</p>
                     </div>
                 </div>
 
-                <div class="hero-media">
+                <div class="hero-media reveal-item" style="transition-delay: 0.1s;">
                     <div class="media-frame">
-                        <img src="../image/tnp-cover.png" alt="The Next Port Project Cover">
+                        <div class="parallax-wrapper">
+                            <!-- Placeholder for Cover Image -->
+                            <img src="../image/tnp-cover.png" class="parallax-img" alt="The Next Port Project Cover" onerror="this.src='https://placehold.co/800x1000/F0F4F8/2563EB?text=The+Next+Port+Cover'">
+                        </div>
                     </div>
                 </div>
             </section>
@@ -70,41 +74,243 @@
             <!-- Main Content Area -->
             <div class="project-body">
                 
-                <!-- Research Section -->
+                <!-- SECTION 1: RESEARCH & CONTEXT -->
                 <section class="project-section">
-                    <div class="section-header">
-                        <h2 class="section-title">Research</h2>
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">01. Research & Context</h2>
                         <div class="section-line"></div>
                     </div>
-                    <p class="section-text">The research explored emerging technologies in autonomous systems, drone capabilities, and future logistics needs. I have analyzed current delivery challenges and identified opportunities where low-altitude logistics could provide significant advantages.</p>
                     
-                    <div class="media-stack">
-                        <div class="media-frame">
-                            <img src="../image/tnp-08.png" alt="Research Data 1">
+                    <div class="section-text-block reveal-item">
+                        <h3>The Robotaxi Paradox</h3>
+                        <p class="section-text">The market for autonomous vehicles (Robotaxis) is projected to grow exponentially by 2030. However, current implementations face critical trust issues. Accidents involving major players like Cruise and Baidu have highlighted that mixed-traffic environments (cars + pedestrians) are still too unpredictable for Level 5 autonomy.</p>
+                    </div>
+
+                    <!-- Insight Grid: Market Trends -->
+                    <div class="insight-grid reveal-item">
+                        <div class="insight-card">
+                            <div class="insight-header">
+                                <span class="insight-title">The Trend</span>
+                                <i class="fas fa-chart-line insight-icon"></i>
+                            </div>
+                            <div class="insight-stat">20x</div>
+                            <p style="color:var(--accent-primary); font-size:0.8rem; margin-bottom:1rem; font-family:var(--font-mono);">GROWTH BY 2032</p>
+                            <p class="section-text" style="font-size:0.95rem;">Massive investment in autonomous chips and computation power is driving commercialization, but regulation lags behind.</p>
                         </div>
-                        <div class="media-frame">
-                            <img src="../image/tnp-09.png" alt="Research Data 2">
+
+                        <div class="insight-card">
+                            <div class="insight-header">
+                                <span class="insight-title">The Friction</span>
+                                <i class="fas fa-exclamation-triangle insight-icon"></i>
+                            </div>
+                            <ul class="insight-list">
+                                <li>Inaccurate sensors in bad weather</li>
+                                <li>Inability to handle "edge cases"</li>
+                                <li>High risk in mixed pedestrian zones</li>
+                                <li>Public mistrust due to recent accidents</li>
+                            </ul>
                         </div>
-                        <div class="media-frame">
-                            <img src="../image/tnp-10.png" alt="Market Analysis">
+                    </div>
+
+                    <div class="section-text-block reveal-item">
+                        <h3>The Low-Altitude Opportunity</h3>
+                        <p class="section-text">While ground-based autonomy struggles with chaotic streets, the "Low-Altitude Economy" (airspace within 1km of ground) offers a cleaner alternative. Comparing ground robots vs. aerial drones revealed the strategic path forward.</p>
+                    </div>
+
+                    <!-- Comparison Grid -->
+                    <div class="insight-grid reveal-item">
+                        <div class="insight-card" style="border-left: 4px solid var(--text-muted);">
+                            <div class="insight-header">
+                                <span class="insight-title">Ground Robots</span>
+                                <i class="fas fa-robot insight-icon" style="color:var(--text-muted);"></i>
+                            </div>
+                            <p class="section-text" style="font-size:0.95rem; margin-bottom:1rem;"><strong>Pros:</strong> Good for heavy loads, last-mile specialized.</p>
+                            <p class="section-text" style="font-size:0.95rem; color: #EF4444;"><strong>Cons:</strong> Navigational challenges in complex urban environments; slow speeds; vulnerable to theft/vandalism.</p>
+                        </div>
+
+                        <div class="insight-card" style="border-left: 4px solid var(--accent-primary);">
+                            <div class="insight-header">
+                                <span class="insight-title">UAVs (Drones)</span>
+                                <i class="fas fa-plane-arrival insight-icon"></i>
+                            </div>
+                            <p class="section-text" style="font-size:0.95rem; margin-bottom:1rem;"><strong>Pros:</strong> High efficiency, avoids traffic, reduced delivery times, eliminates human error risks.</p>
+                            <p class="section-text" style="font-size:0.95rem; color: #10B981;"><strong>Opportunity:</strong> Matured technology ready for specific "air lanes" to bypass ground chaos.</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- Outcome Section -->
+                <!-- SECTION 2: STRATEGY & LOGIC -->
                 <section class="project-section">
-                    <div class="section-header">
-                        <h2 class="section-title">Outcome</h2>
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">02. Strategic Pivot</h2>
                         <div class="section-line"></div>
                     </div>
-                    <p class="section-text">The Next Port combines ground-based autonomous hubs with aerial drone delivery to create a flexible, efficient logistics network that would operate efficiently in the future.</p>
-                    
-                    <div class="media-stack">
-                        <div class="media-frame">
-                            <img src="../image/tnp-11.png" alt="System Design">
+
+                    <div class="section-text-block reveal-item">
+                        <h3>Iterative Logic</h3>
+                        <p class="section-text">The initial concept focused on specialized ground lanes for delivery robots. However, analysis showed this required massive infrastructure changes (new roads). The strategy pivoted to utilizing the "empty" vertical space: fully autonomous drones with a redesigned form factor.</p>
+                    </div>
+
+                    <!-- Process Flow Visualization -->
+                    <div class="process-flow">
+                        <div class="process-step reveal-item">
+                            <div class="step-marker">01</div>
+                            <div class="step-content">
+                                <div class="step-label">Initial Concept</div>
+                                <h4 class="step-title">Specialized Ground Lanes</h4>
+                                <p class="section-text" style="font-size:0.95rem;">Idea: Create dedicated lanes for delivery robots to separate them from traffic.<br><strong>Critique:</strong> Too resource-heavy. Requires rebuilding city infrastructure. High complexity.</p>
+                            </div>
                         </div>
+
+                        <div class="process-step reveal-item">
+                            <div class="step-marker">02</div>
+                            <div class="step-content">
+                                <div class="step-label">Pivot Point</div>
+                                <h4 class="step-title">Existing Drone Weaknesses</h4>
+                                <p class="section-text" style="font-size:0.95rem;">Idea: Use existing commercial drones.<br><strong>Critique:</strong> Open payloads are vulnerable to weather/theft. Exposed propellers are dangerous in urban settings.</p>
+                            </div>
+                        </div>
+
+                        <div class="process-step reveal-item">
+                            <div class="step-marker" style="background:var(--accent-primary); color:white;">03</div>
+                            <div class="step-content" style="border-color:var(--accent-primary); background:rgba(235, 248, 255, 0.5);">
+                                <div class="step-label" style="color:var(--accent-primary);">Final Strategy</div>
+                                <h4 class="step-title">The Enclosing Drone</h4>
+                                <p class="section-text" style="font-size:0.95rem;">Solution: A fully enclosed, autonomous drone. It protects the cargo, ensures safety with covered rotors, and utilizes the low-altitude economy without needing new roads.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 3: SERVICE BLUEPRINT -->
+                <section class="project-section">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">03. Service Blueprint</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    
+                    <p class="section-text reveal-item">The service integrates user action, autonomous system response, and government-regulated airspace monitoring.</p>
+
+                    <div class="blueprint-container reveal-item">
+                        <div class="blueprint-grid">
+                            <!-- Header Row -->
+                            <div class="bp-cell bp-head">Phase</div>
+                            <div class="bp-cell bp-head">Pre-Service (Order)</div>
+                            <div class="bp-cell bp-head">In-Service (Transit)</div>
+                            <div class="bp-cell bp-head">Post-Service (Delivery)</div>
+
+                            <!-- Row 1: User -->
+                            <div class="bp-cell bp-row-head">
+                                <i class="fas fa-user" style="margin-right:10px;"></i> User
+                            </div>
+                            <div class="bp-cell">
+                                <div class="bp-phase">Action</div>
+                                <div class="bp-action">Places order online</div>
+                                <p>Using standard apps (Amazon/UberEats)</p>
+                            </div>
+                            <div class="bp-cell">
+                                <div class="bp-phase">Action</div>
+                                <div class="bp-action">Waits & Tracks</div>
+                                <p>Receives real-time notifications</p>
+                            </div>
+                            <div class="bp-cell">
+                                <div class="bp-phase">Action</div>
+                                <div class="bp-action">Receives Delivery</div>
+                                <p>Confirms collection via app</p>
+                            </div>
+
+                            <!-- Row 2: Front Stage (The Drone) -->
+                            <div class="bp-cell bp-row-head">
+                                <i class="fas fa-plane" style="margin-right:10px;"></i> Drone
+                            </div>
+                            <div class="bp-cell">
+                                <div class="bp-phase">System</div>
+                                <div class="bp-action">Auto-Deploy</div>
+                                <p>Drone activates from service station</p>
+                            </div>
+                            <div class="bp-cell">
+                                <div class="bp-phase">System</div>
+                                <div class="bp-action">Autonomous Flight</div>
+                                <p>Adjusts speed, avoids obstacles, follows regulated air lanes</p>
+                            </div>
+                            <div class="bp-cell">
+                                <div class="bp-phase">System</div>
+                                <div class="bp-action">Landing & Release</div>
+                                <p>Legs collapse for stability; Auto-release package; Return to base</p>
+                            </div>
+
+                            <!-- Row 3: Back Stage -->
+                            <div class="bp-cell bp-row-head">
+                                <i class="fas fa-server" style="margin-right:10px;"></i> Backend
+                            </div>
+                            <div class="bp-cell">
+                                <div class="bp-phase">Data</div>
+                                <div class="bp-action">Service Matching</div>
+                                <p>Algorithm assigns nearest drone</p>
+                            </div>
+                            <div class="bp-cell">
+                                <div class="bp-phase">Data</div>
+                                <div class="bp-action">Route Adjustment</div>
+                                <p>AI adjusts path based on real-time GPS & regulations</p>
+                            </div>
+                            <div class="bp-cell">
+                                <div class="bp-phase">Data</div>
+                                <div class="bp-action">Completion Log</div>
+                                <p>Updates inventory & processes payment</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 4: OUTCOME & PRODUCT -->
+                <section class="project-section">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">04. Product Outcome</h2>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="section-text-block reveal-item">
+                        <h3>Redesigned for the Future</h3>
+                        <p class="section-text">The final product is a departure from the "quadcopter with a box" archetype. It features an enclosed aerodynamic shell and adaptive internal mechanisms.</p>
+                    </div>
+
+                    <!-- Visual Stack (Mockups) -->
+                    <div class="media-stack reveal-item">
                         <div class="media-frame">
-                            <img src="../image/tnp-12.png" alt="User Interface Design">
+                            <div class="parallax-wrapper">
+                                <!-- Placeholder for 3D Model Image -->
+                                <img src="../image/tnp-mod.png" class="parallax-img" alt="3D Model Views" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=3D+Model+Views:+Side,+Front,+Back'">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature Cards -->
+                    <div class="feature-grid reveal-item">
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-box-open"></i></div>
+                            <h4 class="feature-title">Enclosed Fuselage</h4>
+                            <p class="feature-desc">Complete enclosing ensures deliveries are safe from weather and theft, while improving aerodynamics.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-compress-arrows-alt"></i></div>
+                            <h4 class="feature-title">Collapsible Legs</h4>
+                            <p class="feature-desc">Landing gear retracts during flight for speed and extends for stable uneven-terrain landing.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-wind"></i></div>
+                            <h4 class="feature-title">Inflatable Interior</h4>
+                            <p class="feature-desc">Internal air-pump system inflates cushions to secure packages of various shapes and absorb shock.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="media-stack reveal-item" style="margin-top: 3rem;">
+                        <div class="media-frame">
+                            <div class="parallax-wrapper">
+                                <!-- Placeholder for Concept Effect -->
+                                <img src="../image/tnp-fe.png" class="parallax-img" alt="Final Concept Effect" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=Concept+Effect:+Drone+in+Context'">
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -112,7 +318,7 @@
             </div>
 
             <!-- Next Project Navigation -->
-            <nav class="next-project-nav">
+            <nav class="next-project-nav reveal-item">
                 <a href="../uiux/glucosphere.html" class="next-project-card">
                     <div class="next-content-wrapper">
                         <div class="next-label">Next Project</div>
@@ -138,7 +344,95 @@
         </div>
     </footer>
 
-    <!-- JavaScript (Preserved) -->
-    <script src="../script.js"></script>
+    <!-- JavaScript -->
+    <script>
+        // Hamburger Menu Logic
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Custom Cursor Logic
+        const cursor = document.querySelector('.cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button, .media-frame, .insight-card, .feature-card, .next-project-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('is-big'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('is-big'));
+        });
+
+        // --- 1. Reveal on Scroll Animation ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Stop observing once visible to save CPU
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-item').forEach((el) => {
+            revealObserver.observe(el);
+        });
+
+        // --- 2. Lightweight Parallax Effect ---
+        // Only run on desktop/larger screens (disabled in CSS media query for mobile)
+        if (window.matchMedia("(min-width: 769px)").matches) {
+            
+            const parallaxImages = document.querySelectorAll('.parallax-img');
+            
+            // Optimization: Only animate images that are currently visible
+            let visibleImages = [];
+            
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        visibleImages.push(entry.target);
+                    } else {
+                        visibleImages = visibleImages.filter(img => img !== entry.target);
+                    }
+                });
+            });
+
+            parallaxImages.forEach(img => imageObserver.observe(img));
+
+            // Use requestAnimationFrame for smooth performance
+            function animateParallax() {
+                if (visibleImages.length > 0) {
+                    const scrollY = window.scrollY;
+                    const windowHeight = window.innerHeight;
+
+                    visibleImages.forEach(img => {
+                        const rect = img.parentElement.getBoundingClientRect();
+                        const center = rect.top + (rect.height / 2);
+                        const distFromCenter = center - (windowHeight / 2);
+                        
+                        // Limit calc frequency or complexity if needed, but this is simple math
+                        // Movement factor: 0.1 (slower than scroll)
+                        const offset = distFromCenter * 0.1; 
+                        
+                        img.style.transform = `translateY(${offset}px)`;
+                    });
+                }
+                requestAnimationFrame(animateParallax);
+            }
+            
+            animateParallax();
+        }
+    </script>
 </body>
 </html>
