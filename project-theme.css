@@ -491,7 +491,141 @@ main { padding-top: 140px; padding-bottom: 6rem; }
     margin-top: 4px;
 }
 
-/* --- 9. NEXT PROJECT & FOOTER --- */
+/* --- 9. ABOUT PAGE STYLES --- */
+#about {
+    padding: 8rem clamp(2rem, 5vw, 6rem) 6rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding-top: calc(140px + 4rem);
+}
+
+#about .section-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: var(--text-main);
+    margin-bottom: 3rem;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.about-img {
+    width: 92.5%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(37, 99, 235, 0.06);
+    filter: grayscale(100%);
+    transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.about-img:hover {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+}
+
+.about-content h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--accent-primary);
+    margin-bottom: 1.5rem;
+}
+
+.about-content p {
+    font-family: var(--font-ui);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.skill-tag {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid var(--border-light);
+    border-radius: 50px;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background: rgba(37, 99, 235, 0.05);
+    transform: translateY(-2px);
+}
+
+.resume-container { margin-top: 2rem; }
+
+.btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--text-main);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-cta:hover {
+    gap: 1.5rem;
+    color: var(--accent-primary);
+    border-bottom-color: var(--accent-primary);
+}
+
+.footer-content {
+    width: 90%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover { color: var(--accent-primary); }
+
+.copyright {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+}
+
+/* --- 10. NEXT PROJECT & FOOTER --- */
 .next-project-nav { margin-top: 8rem; padding-top: 4rem; border-top: 1px solid var(--border-light); max-width: 1100px; margin-left: auto; margin-right: auto; }
 .next-project-card { display: flex; justify-content: space-between; align-items: center; background: linear-gradient(180deg, rgba(252, 253, 255, 0.98) 0%, rgba(248, 250, 255, 0.95) 100%); border: 1px solid rgba(148, 163, 184, 0.12); border-radius: var(--radius-lg); padding: 2rem 2.5rem; box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(37, 99, 235, 0.06); transition: transform 0.3s ease; }
 .next-project-card:hover { transform: translateY(-3px); }
@@ -525,4 +659,11 @@ footer { padding: 3rem 0; border-top: 1px solid var(--border-light); background:
     .step-marker { width: 40px; height: 40px; }
     .process-step { grid-template-columns: 40px 1fr; gap: 1rem; }
     .media-frame img.parallax-img { height: 100%; top: 0; transform: none !important; }
+
+    /* About page responsive */
+    #about { padding: 6rem clamp(2rem, 5vw, 4rem) 4rem; padding-top: calc(140px + 3rem); }
+    .about-container { grid-template-columns: 1fr; gap: 3rem; }
+    .about-img { max-width: 100%; }
+    .footer-content { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .footer-links { flex-direction: column; gap: 1rem; }
 }
