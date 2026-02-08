@@ -6,14 +6,231 @@
     <title>Otherworld | Project Detail</title>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Main Project Page CSS (Standalone) -->
+    <!-- Main Project Page CSS (Generic Theme) -->
     <link rel="stylesheet" href="../project-theme.css">
+    
+    <!-- Inline styles for project-specific artistic tweaks -->
+    <style>
+        /* --- DYNAMIC THEME ENGINE --- */
+        body {
+            transition: background-color 1.5s ease, color 1s ease;
+        }
+
+        /* Default (Light) Variables are inherited from project-theme.css */
+
+        /* Stage 1: Dim (Sections 2) */
+        body.theme-dim {
+            --bg-base: #E2E8F0; /* Cool gray */
+            --bg-surface: rgba(255,255,255,0.6);
+        }
+
+        /* Stage 2: Dimmer (Section 3 - Process) */
+        body.theme-dimmer {
+            --bg-base: #94A3B8; /* Deep slate gray - bridge to dark */
+            --bg-surface: rgba(255,255,255,0.4);
+            --text-main: #0F172A;
+        }
+
+        /* Stage 3: Deep (Section 4+) */
+        body.theme-dark {
+            --bg-base: #050505; /* Deepest black/void */
+            --bg-surface: rgba(20, 20, 20, 0.6); /* Dark glass */
+            
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --text-light: #64748B;
+            
+            --border-light: rgba(255, 255, 255, 0.15);
+            --accent-primary: #818CF8; 
+        }
+
+        /* Dark Mode Header Adaptation */
+        body.theme-dark header {
+            background: linear-gradient(to bottom, rgba(5,5,5,0.9) 0%, rgba(5,5,5,0) 100%);
+        }
+        body.theme-dark .logo,
+        body.theme-dark .nav-links a {
+            color: #F8FAFC;
+        }
+        body.theme-dark .bar { background: #F8FAFC; }
+
+        /* Dark Mode Component Overrides */
+        body.theme-dark .media-frame,
+        body.theme-dark .feature-card,
+        body.theme-dark .pc-column,
+        body.theme-dark .insight-card {
+            background: linear-gradient(160deg, rgba(30, 30, 35, 0.7) 0%, rgba(20, 20, 20, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.7);
+        }
+
+        body.theme-dark .section-title { color: #FFFFFF; }
+        body.theme-dark .timeline-event::before { background: #000; border-color: var(--accent-primary); }
+        
+        /* Invert specific icons/elements if needed */
+        body.theme-dark .pc-icon.plus { background: rgba(16, 185, 129, 0.2); color: #34D399; }
+        body.theme-dark .pc-icon.minus { background: rgba(239, 68, 68, 0.2); color: #F87171; }
+        
+        /* Artistic Typography */
+        .artistic-quote {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            line-height: 1.2;
+            color: var(--text-main);
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            margin: 6rem 0;
+            text-align: center;
+            font-style: italic;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+        }
+
+        /* Inspiration Grid Layout */
+        .inspiration-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+            margin: 4rem 0;
+        }
+
+        /* Custom Timeline */
+        .timeline-container {
+            position: relative;
+            margin: 6rem 0;
+            padding-left: 2rem;
+            border-left: 1px solid var(--border-light);
+        }
+
+        .timeline-event {
+            position: relative;
+            margin-bottom: 4rem;
+            padding-left: 2.5rem;
+        }
+
+        .timeline-event::before {
+            content: '';
+            position: absolute;
+            left: -2.45rem;
+            top: 0.2rem;
+            width: 14px;
+            height: 14px;
+            background: var(--bg-base);
+            border: 2px solid var(--accent-lilac);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .timeline-year {
+            font-family: var(--font-mono);
+            color: var(--accent-primary);
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            display: block;
+            letter-spacing: 0.1em;
+        }
+
+        .timeline-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        /* Problem Cards styles removed - using feature-card from project-theme.css */
+
+        /* Pros & Cons Grid - Redesigned as Split Glass Cards */
+        .pros-cons-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin: 4rem 0;
+            background: transparent;
+            padding: 0;
+            border: none;
+        }
+        
+        /* The Columns become the Cards */
+        .pc-column {
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 255, 0.8) 100%);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
+        }
+        
+        .pc-column:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px -5px rgba(112, 117, 255, 0.1);
+        }
+
+        .pc-column h4 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--text-main) !important;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .pc-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .pc-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Custom icons instead of dots */
+        .pc-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 0.6rem;
+            margin-top: 2px;
+        }
+        
+        .pc-icon.plus {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10B981; /* Soft Emerald */
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        
+        .pc-icon.minus {
+            background: rgba(239, 68, 68, 0.1);
+            color: #EF4444; /* Soft Red */
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .inspiration-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .pros-cons-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
 </head>
 <body>
     <!-- Custom Cursor -->
     <div class="cursor"></div>
 
-    <!-- Header (Matches Homepage) -->
+    <!-- Header -->
     <header>
         <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
@@ -34,18 +251,19 @@
     <main>
         <div class="container">
             <!-- Back Navigation -->
-            <div class="nav-wrapper">
+            <div class="nav-wrapper reveal-item">
                 <a href="../index.html#projects" class="back-link">
                     <i class="fas fa-arrow-left"></i>
-                    <span>Back</span>
+                    <span>Back to Work</span>
                 </a>
             </div>
 
-            <!-- Project Hero -->
+            <!-- Project Hero (Kept Original Cover) -->
             <section class="project-hero">
-                <div class="hero-content">
+                <div class="hero-content reveal-item">
                     <div class="project-meta">
                         <span class="meta-pill">Interactive Installation</span>
+                        <span class="meta-pill">Game Design</span>
                         <span class="meta-separator">·</span>
                         <span class="meta-year">2024</span>
                     </div>
@@ -53,15 +271,18 @@
                     <h1 class="project-title">Otherworld</h1>
                     
                     <div class="project-intro">
-                        <p class="lede">Led by urbanization, the boundary between humans and nature gets blurred with unrestricted human activities that continuously exploit natural resources.</p>
+                        <p class="lede">A digital reflection on the fragile boundary between urban life and nature.</p>
                         <hr class="intro-divider">
-                        <p>The two-part interactive project features enabling the perspective sharing between humans and plants through scale-switching, creating an immersive experience that blends physical and digital environments.</p>
+                        <p><strong>Otherworld</strong> explores how urbanization accelerates industrialization, impacting the very nature we rely on but often ignore. Through a scale-shifting digital experience, it challenges the human-centric view of our ecosystem.</p>
                     </div>
                 </div>
 
-                <div class="hero-media">
+                <div class="hero-media reveal-item" style="transition-delay: 0.1s;">
                     <div class="media-frame">
-                        <img src="../image/ow-cover.png" alt="Otherworld Project Cover">
+                        <div class="parallax-wrapper">
+                            <!-- Original Cover Image -->
+                            <img src="../image/ow-cover.png" class="parallax-img" alt="Otherworld Project Cover" onerror="this.src='https://placehold.co/800x1000/101010/FFFFFF?text=Otherworld+Cover'">
+                        </div>
                     </div>
                 </div>
             </section>
@@ -69,47 +290,188 @@
             <!-- Main Content Area -->
             <div class="project-body">
                 
-                <!-- Research Section -->
-                <section class="project-section">
-                    <div class="section-header">
-                        <h2 class="section-title">Research</h2>
+                <!-- SECTION 1: CONCEPT & INSPIRATION -->
+                <section class="project-section" id="sec-genesis">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">01. Genesis</h2>
                         <div class="section-line"></div>
                     </div>
-                    <p class="section-text">The project began with exploring how human activities have led to urbanization, and the problems it has brought. Research focused on understanding the relationship between humans and nature in the context of modern urban environments.</p>
                     
-                    <div class="media-stack">
+                    <!-- Inspiration Section (Split Layout) -->
+                    <div class="inspiration-grid reveal-item">
+                        <div class="inspiration-text">
+                            <h3>The Wilting Reality</h3>
+                            <p class="section-text">The project sparked from a simple, domestic observation: returning home to wilted plants. This fragility mirrored a larger crisis.</p>
+                            <p class="section-text">Inspired by Mat Collishaw's <em>"Sodid Earth,"</em> which projects toxic, mutant flowers, I began to question the unseen consequences of our urban existence.</p>
+                        </div>
                         <div class="media-frame">
-                            <img src="../image/ow-02.png" alt="Otherworld Research">
+                            <div class="parallax-wrapper">
+                                <!-- Sodid Earth Inspiration Image -->
+                                <img src="../image/sodid-earth.jpg" class="parallax-img" alt="Inspiration: Sodid Earth by Mat Collishaw" onerror="this.src='https://placehold.co/600x400/222/EEE?text=Inspiration:+Sodid+Earth'">
+                            </div>
+                            <p style="margin-top:0.5rem; font-size:0.75rem; color:var(--text-muted); text-align:right;">Inspiration: "Sodid Earth" by Mat Collishaw</p>
                         </div>
                     </div>
-                    <div class="media-stack">
-                        <div class="media-frame">
-                            <img src="../image/ow-03.png" alt="Otherworld Concept Development">
-                        </div>
+
+                    <div class="artistic-quote reveal-item">
+                        "I realized that humans can easily ignore the destruction of any other creatures."
                     </div>
-                    <div class="media-stack">
-                        <div class="media-frame">
-                            <img src="../image/ow-04.png" alt="Otherworld Prototyping">
+
+                    <!-- Custom Timeline for Context -->
+                    <div class="section-text-block reveal-item">
+                        <h3>A Continuous Process</h3>
+                        <p class="section-text">The relationship between human progress and natural decline isn't new; it's a historical acceleration.</p>
+                    </div>
+
+                    <div class="timeline-container reveal-item">
+                        <div class="timeline-event">
+                            <span class="timeline-year">18TH CENTURY</span>
+                            <h4 class="timeline-title">Industrialization</h4>
+                            <p class="section-text" style="font-size: 0.9rem;">Shift from organic, agricultural rhythms to mechanized manufacturing. The beginning of the separation.</p>
+                        </div>
+                        <div class="timeline-event">
+                            <span class="timeline-year">MID-20TH CENTURY</span>
+                            <h4 class="timeline-title">Urbanization</h4>
+                            <p class="section-text" style="font-size: 0.9rem;">Massive population shifts to cities. Infrastructure replaces ecosystems. Nature becomes "managed."</p>
+                        </div>
+                        <div class="timeline-event">
+                            <span class="timeline-year">CURRENT ERA</span>
+                            <h4 class="timeline-title">Information Age</h4>
+                            <p class="section-text" style="font-size: 0.9rem;">Digital abstraction. We consume images of nature while the physical reality degrades.</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- Outcome Section -->
-                <section class="project-section">
-                    <div class="section-header">
-                        <h2 class="section-title">Outcome</h2>
+                <!-- SECTION 2: THE PROBLEM -->
+                <section class="project-section" id="sec-cost">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">02. The Cost</h2>
                         <div class="section-line"></div>
                     </div>
-                    <p class="section-text">Using Kinect for body-sensing interaction, <strong>Otherworld</strong> creates a responsive, immersive experience that focuses on perspective-shifting and empathy with nature. The installation adapts to visitors, creating unique experiences based on their movement and interactions.</p>
+
+                    <div class="section-text-block reveal-item">
+                        <h3>Urban Impact</h3>
+                        <p class="section-text">Our demand for higher living standards drives a cycle of exploitation. The "urban" cannot exist without extracting from the "wild."</p>
+                    </div>
+
+                        <!-- Abstract Problem Grid (Using Feature Card Styles) -->
+                        <div class="feature-grid reveal-item">
+                            <div class="feature-card">
+                                <div class="feature-icon"><i class="fas fa-mountain"></i></div>
+                                <h4 class="feature-title">Extraction</h4>
+                                <ul class="insight-list">
+                                    <li>Resource exploitation</li>
+                                    <li>Climate acceleration</li>
+                                    <li>Pollution & waste</li>
+                                </ul>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon"><i class="fas fa-tree"></i></div>
+                                <h4 class="feature-title">Deforestation</h4>
+                                <ul class="insight-list">
+                                    <li>Soil destabilization</li>
+                                    <li>Ecosystem collapse</li>
+                                    <li>Greenhouse gases</li>
+                                </ul>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon"><i class="fas fa-water"></i></div>
+                                <h4 class="feature-title">Habitat Loss</h4>
+                                <ul class="insight-list">
+                                    <li>Species extinction</li>
+                                    <li>Biodiversity decline</li>
+                                    <li>Water cycle disruption</li>
+                                </ul>
+                            </div>
+                        </div>
+                </section>
+
+                <!-- SECTION 3: EXPERIMENT & PROCESS -->
+                <section class="project-section" id="sec-process">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">03. Process</h2>
+                        <div class="section-line"></div>
+                    </div>
                     
-                    <div class="media-stack">
-                        <div class="media-frame">
-                            <img src="../image/ow-05.png" alt="Otherworld Final Installation">
+                    <div class="section-text-block reveal-item">
+                        <h3>Testing the Medium</h3>
+                        <p class="section-text">To find the appropriate medium for this narrative, I experimented with two distinct approaches: a 3D first-person game and a physical interactive installation.</p>
+                        
+                        <!-- Pros & Cons Grid (Redesigned) -->
+                        <div class="pros-cons-grid">
+                            <div class="pc-column">
+                                <h4>Game Approach</h4>
+                                <ul class="pc-list">
+                                    <li><span class="pc-icon plus"><i class="fas fa-plus"></i></span> Fantasy aesthetic & freedom</li>
+                                    <li><span class="pc-icon plus"><i class="fas fa-plus"></i></span> Allows drastic scale-switching</li>
+                                    <li><span class="pc-icon minus"><i class="fas fa-minus"></i></span> Workflow is too linear/long</li>
+                                    <li><span class="pc-icon minus"><i class="fas fa-minus"></i></span> Screen lacks physical immersion</li>
+                                </ul>
+                            </div>
+                            <div class="pc-column">
+                                <h4>Installation Approach</h4>
+                                <ul class="pc-list">
+                                    <li><span class="pc-icon plus"><i class="fas fa-plus"></i></span> Direct physical interaction</li>
+                                    <li><span class="pc-icon plus"><i class="fas fa-plus"></i></span> Projection creates shared space</li>
+                                    <li><span class="pc-icon minus"><i class="fas fa-minus"></i></span> Abstract concept risks clarity</li>
+                                    <li><span class="pc-icon minus"><i class="fas fa-minus"></i></span> 3D printing felt too static</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <div class="media-stack">
+
+                    <div class="media-stack reveal-item">
                         <div class="media-frame">
-                            <img src="../image/ow-06.png" alt="Otherworld Visitor Interaction">
+                            <div class="parallax-wrapper">
+                                <!-- Placeholder: ow-03-new -->
+                                <img src="../image/ow-03-new.png" class="parallax-img" alt="Experiment and Process: Game vs Installation" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=Process:+Game+vs+Installation'">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 4: BLUEPRINT -->
+                <section class="project-section">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">04. Blueprint</h2>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="section-text-block reveal-item">
+                        <h3>System Architecture</h3>
+                        <p class="section-text">The final installation combines the strengths of both experiments. Using Kinect sensors, the physical presence of the viewer directly influences the digital environment.</p>
+                    </div>
+
+                    <div class="media-stack reveal-item">
+                        <div class="media-frame">
+                            <div class="parallax-wrapper">
+                                <!-- Placeholder: ow-04 -->
+                                <img src="../image/ow-04.png" class="parallax-img" alt="Installation Diagram and Sketches" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=System+Diagram+&+Sketches'">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 5: OUTCOME -->
+                <section class="project-section" id="sec-outcome">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">05. Outcome</h2>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="media-stack reveal-item">
+                        <!-- Placeholder: ow-05 -->
+                        <div class="media-frame">
+                            <div class="parallax-wrapper">
+                                <img src="../image/ow-05.png" class="parallax-img" alt="Final Installation View" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=Outcome:+Installation+View'">
+                            </div>
+                        </div>
+                        
+                        <!-- Placeholder: ow-06 -->
+                        <div class="media-frame" style="margin-top: 2rem;">
+                            <div class="parallax-wrapper">
+                                <img src="../image/ow-06.png" class="parallax-img" alt="Visitor Interaction" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=Outcome:+Visitor+Interaction'">
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -117,7 +479,7 @@
             </div>
 
             <!-- Next Project Navigation -->
-            <nav class="next-project-nav">
+            <nav class="next-project-nav reveal-item">
                 <a href="../installation/dataskinware.html" class="next-project-card">
                     <div class="next-content-wrapper">
                         <div class="next-label">Next Project</div>
@@ -144,6 +506,132 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="../script.js"></script>
+    <script>
+        // Hamburger Menu Logic
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Custom Cursor Logic
+        const cursor = document.querySelector('.cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button, .media-frame, .insight-card, .feature-card, .next-project-card, .problem-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('is-big'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('is-big'));
+        });
+
+        // --- 1. Reveal on Scroll Animation ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-item').forEach((el) => {
+            revealObserver.observe(el);
+        });
+
+        // --- 2. Lightweight Parallax Effect ---
+        if (window.matchMedia("(min-width: 769px)").matches) {
+            
+            const parallaxImages = document.querySelectorAll('.parallax-img');
+            let visibleImages = [];
+            
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        visibleImages.push(entry.target);
+                    } else {
+                        visibleImages = visibleImages.filter(img => img !== entry.target);
+                    }
+                });
+            });
+
+            parallaxImages.forEach(img => imageObserver.observe(img));
+
+            function animateParallax() {
+                if (visibleImages.length > 0) {
+                    const scrollY = window.scrollY;
+                    const windowHeight = window.innerHeight;
+
+                    visibleImages.forEach(img => {
+                        const rect = img.parentElement.getBoundingClientRect();
+                        const center = rect.top + (rect.height / 2);
+                        const distFromCenter = center - (windowHeight / 2);
+                        const offset = distFromCenter * 0.1; 
+                        
+                        img.style.transform = `translateY(${offset}px)`;
+                    });
+                }
+                requestAnimationFrame(animateParallax);
+            }
+            
+            animateParallax();
+        }
+
+        // --- 3. DYNAMIC BACKGROUND SCROLL ---
+        // Observes sections to trigger theme changes
+        const themeObserverOptions = {
+            root: null,
+            rootMargin: '-10% 0px -20% 0px', // More sensitive: Triggers when section enters main view
+            threshold: 0
+        };
+
+        const themeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    const body = document.body;
+                    
+                    if (id === 'sec-genesis') {
+                        body.className = ''; 
+                    } else if (id === 'sec-cost') {
+                        body.className = 'theme-dim'; 
+                    } else if (id === 'sec-process') {
+                        body.className = 'theme-dimmer'; // New bridge stage
+                    } else if (id === 'sec-blueprint' || id === 'sec-outcome') {
+                        body.className = 'theme-dark'; 
+                    }
+                }
+            });
+        }, themeObserverOptions);
+
+        // Observe all project sections
+        document.querySelectorAll('.project-section').forEach(section => {
+            themeObserver.observe(section);
+        });
+        
+        // Also observe hero to reset to light
+        const hero = document.querySelector('.project-hero');
+        if(hero) {
+            // Manually add ID for logic
+            hero.id = 'sec-hero'; 
+            themeObserver.observe(hero);
+            
+            // Custom observer for Hero to ensure reset at very top
+            new IntersectionObserver(e => {
+                if(e[0].isIntersecting) document.body.className = '';
+            }, {threshold: 0.5}).observe(hero);
+        }
+
+    </script>
 </body>
 </html>

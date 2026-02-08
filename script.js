@@ -192,24 +192,56 @@ const groupSecondary = document.querySelector('.ring-group-secondary');
 let mouseX = 0, mouseY = 0;
 let currentX = 0, currentY = 0;
 let currentRotateX = 0, currentRotateY = 0;
+let isHeroVisible = true; // Performance flag
+let parallaxRAF = null;
+
+// Pause parallax AND aurora when hero is scrolled out of view
+const heroSection = document.querySelector('#welcome');
+const auroraContainer = document.querySelector('.aurora-container');
+if (heroSection) {
+    const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isHeroVisible = entry.isIntersecting;
+            // Resume parallax loop when hero becomes visible again
+            if (isHeroVisible && !parallaxRAF) {
+                parallaxRAF = requestAnimationFrame(animateParallax);
+            }
+            // Pause/resume aurora CSS animations (aurora is position:fixed, can't observe it directly)
+            if (auroraContainer) {
+                const layers = auroraContainer.querySelectorAll('.aurora-layer');
+                layers.forEach(layer => {
+                    layer.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+                });
+            }
+        });
+    }, { threshold: 0 });
+    heroObserver.observe(heroSection);
+}
 
 document.addEventListener('mousemove', (e) => {
-    // Center point is 0,0. Range is -0.5 to 0.5
-    mouseX = (e.clientX / window.innerWidth - 0.5);
-    mouseY = (e.clientY / window.innerHeight - 0.5);
-
-    // Custom Cursor
+    // Custom Cursor - always update regardless of scroll position
     const cursor = document.querySelector('.cursor');
     if(cursor) {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
     }
+
+    // Only track parallax mouse data when hero is visible
+    if (!isHeroVisible) return;
+    mouseX = (e.clientX / window.innerWidth - 0.5);
+    mouseY = (e.clientY / window.innerHeight - 0.5);
 });
 
 function animateParallax() {
     // Respect user motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
+
+    // Stop the loop entirely when hero is not visible (saves CPU)
+    if (!isHeroVisible) {
+        parallaxRAF = null;
+        return; // Don't schedule next frame
+    }
 
     // Smooth LERP - more responsive
     currentX += (mouseX - currentX) * 0.18;
@@ -219,10 +251,10 @@ function animateParallax() {
 
     // Time-based gentle rotation
     const time = performance.now() * 0.001;
-    const primaryRotateZ = time * 1.5; // Slightly faster for more life
+    const primaryRotateZ = time * 1.5;
     const secondaryRotateZ = time * 0.5; 
 
-    // Group 1: Primary (Faster/Closer) - More movement and subtle rotation
+    // Group 1: Primary (Faster/Closer)
     if (groupPrimary) {
         const moveX = currentX * -45;
         const moveY = currentY * -45;
@@ -231,7 +263,7 @@ function animateParallax() {
         groupPrimary.style.transform = `perspective(1000px) translate3d(${moveX}px, ${moveY}px, 0) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${primaryRotateZ}deg)`;
     }
 
-    // Group 2: Secondary (Slower/Farther) - Less movement, lighter rotation
+    // Group 2: Secondary (Slower/Farther)
     if (groupSecondary) {
         const moveX = currentX * -20;
         const moveY = currentY * -20;
@@ -240,9 +272,9 @@ function animateParallax() {
         groupSecondary.style.transform = `perspective(1000px) translate3d(${moveX}px, ${moveY}px, 0) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${secondaryRotateZ}deg)`;
     }
 
-    requestAnimationFrame(animateParallax);
+    parallaxRAF = requestAnimationFrame(animateParallax);
 }
-animateParallax();
+parallaxRAF = requestAnimationFrame(animateParallax);
 
 
 // 3. WHISPERS
