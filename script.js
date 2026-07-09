@@ -1,21 +1,21 @@
-// 1. SYSTEM WAKE UP (Boot Sequence)
+// 1. LOADER: focus pull (first visit per session only, skippable)
 document.addEventListener('DOMContentLoaded', () => {
-    const loaderText = document.querySelector('.loader-text');
-    const loaderSub = document.querySelector('.loader-sub-text');
     const loadingScreen = document.querySelector('.loading-screen');
-    
+
     const aurora = document.querySelector('.aurora-container');
     const header = document.querySelector('header');
     const nameWrapper = document.querySelector('.name-wrapper');
     const titleContainer = document.querySelector('.title-container');
     const heroFooter = document.querySelector('.hero-footer');
     const heroRings = document.querySelector('.hero-rings-container');
-    
-    // Check if URL has a hash (e.g., #projects) - skip animation if so
+
     const hasHash = window.location.hash && window.location.hash !== '#welcome';
-    
-    if (hasHash) {
-        // Skip animation, show content immediately
+    let alreadyVisited = false;
+    try { alreadyVisited = sessionStorage.getItem('gz-visited') === '1'; } catch (e) {}
+
+    // Skip entirely for return visits (this session), deep links, or reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (hasHash || alreadyVisited || prefersReducedMotion) {
         if (loadingScreen) loadingScreen.style.display = 'none';
         if (aurora) aurora.style.opacity = '1';
         if (heroRings) heroRings.classList.add('visible');
@@ -23,167 +23,42 @@ document.addEventListener('DOMContentLoaded', () => {
         if (header) header.classList.add('visible');
         if (titleContainer) titleContainer.classList.add('visible');
         if (heroFooter) heroFooter.style.opacity = '1';
-        
-        // Scroll to hash after a brief delay to ensure content is rendered
-        setTimeout(() => {
-            const targetId = window.location.hash.substring(1);
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
-            }
-        }, 100);
-        return; // Exit early, don't run animation
-    }
-    
-    // Typewriter Helper
-    const typeText = (text, element, speed = 40, callback) => {
-        if (!element) return;
-        element.textContent = "";
-        let i = 0;
-        function type() {
-            if (i < text.length) {
-                element.textContent += text.charAt(i);
-                i++;
-                setTimeout(type, speed);
-            } else {
-                if (callback) setTimeout(callback, 300);
-            }
-        }
-        type();
-    };
 
-    // Progress bar element
-    const bootLine = document.querySelector('.boot-line');
-    
-    // Update progress bar instantly
-    const updateProgress = (percent) => {
-        if (bootLine) {
-            bootLine.style.width = percent + '%';
-        }
-    };
-    
-    // Animate progress bar over time (synchronized with typing)
-    const animateProgress = (fromPercent, toPercent, duration) => {
-        if (!bootLine) return;
-        const startTime = Date.now();
-        const startPercent = fromPercent;
-        const diff = toPercent - fromPercent;
-        
-        function update() {
-            const elapsed = Date.now() - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const currentPercent = startPercent + (diff * progress);
-            bootLine.style.width = currentPercent + '%';
-            
-            if (progress < 1) {
-                requestAnimationFrame(update);
-            } else {
-                bootLine.style.width = toPercent + '%';
-            }
-        }
-        update();
-    };
-
-    // SEQUENCE: SYSTEM BOOT
-    setTimeout(() => {
-        if(loaderSub) loaderSub.textContent = "SYSTEM_WAKE";
-        
-        // Step 1: INITIALIZING (0-25%)
-        updateProgress(0);
-        const initDuration = "INITIALIZING...".length * 20; // ~260ms
-        animateProgress(0, 25, initDuration);
-        typeText("INITIALIZING...", loaderText, 20, () => {
-            
-            // Step 2-3: Continuous progress 25-85% while typing ALIGNING ORBIT and ready
-            // Start continuous animation immediately
-            const continuousDuration = 800; // Total time for 25-85% (60% of progress)
-            animateProgress(25, 85, continuousDuration);
-            
-            // Trigger scan effect at the start of continuous progress
-            const bootScan = document.querySelector('.boot-scan');
-            if (bootScan) {
-                bootScan.style.animation = 'scanOnce 0.6s ease-out';
-            }
-            
-            // Step 2: ALIGNING ORBIT (text appears during continuous progress)
+        if (hasHash) {
             setTimeout(() => {
-                typeText("ALIGNING ORBIT...", loaderText, 20, () => {
-                    
-                    // Step 3: ready (text appears during continuous progress)
-                    setTimeout(() => {
-                        typeText("ready.", loaderText, 20, () => {
-                            
-                            // Step 4: WELCOME (85-100%)
-                            setTimeout(() => {
-                                if(loaderSub) loaderSub.textContent = "GLORIA ZHU // INTERACTION DESIGNER";
-                                const welcomeDuration = "WELCOME :)".length * 25; // ~225ms
-                                animateProgress(85, 100, welcomeDuration);
-                                typeText("WELCOME :)", loaderText, 25, () => {
-                                    // Remove unstable blinking, make stable
-                                    if(loaderText) {
-                                        loaderText.classList.add('stable');
-                                    }
-                                    
-                                    const loaderTextContainer = document.querySelector('.loader-text-container');
-                                    
-                                    // Wait 120ms, then brighten progress bar
-                                    setTimeout(() => {
-                                        if (bootLine) {
-                                            bootLine.classList.add('brighten');
-                                            
-                                            // After brighten, fade out entire text container and move sub-text up (200-260ms, using 230ms)
-                                            setTimeout(() => {
-                                                if(loaderTextContainer) {
-                                                    loaderTextContainer.classList.add('fade-out');
-                                                    
-                                                    // Simultaneously move sub-text up
-                                                    const loaderSubText = document.querySelector('.loader-sub-text');
-                                                    if(loaderSubText) {
-                                                        loaderSubText.classList.add('move-up');
-                                                    }
-                                                    
-                                                    // Then continue with existing fade in/out
-                                                    setTimeout(finishIntro, 500);
-                                                }
-                                            }, 230);
-                                        }
-                                    }, 120);
-                                });
-                            }, 250);
-                        });
-                    }, 250);
-                });
-            }, 250);
-        });
-    }, 400); // Initial delay
-
-    function finishIntro() {
-        if(loadingScreen) loadingScreen.classList.add('hidden');
-        
-        // Reveal Aurora (The Self) - Slight delay for drama
-        setTimeout(() => {
-            if (aurora) aurora.style.opacity = '1';
-        }, 300);
-        
-        // Reveal Rings (The Interface)
-        setTimeout(() => {
-            if (heroRings) heroRings.classList.add('visible');
-        }, 500);
-        
-        // Reveal Text Content
-        setTimeout(() => {
-            if(nameWrapper) nameWrapper.classList.add('visible');
-            if(header) header.classList.add('visible');
-        }, 800);
-
-        setTimeout(() => {
-            if(titleContainer) titleContainer.classList.add('visible');
-        }, 1100);
-        
-        setTimeout(() => {
-            if(heroFooter) heroFooter.style.opacity = '1';
-        }, 1300);
+                const targetElement = document.getElementById(window.location.hash.substring(1));
+                if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+        return;
     }
+    try { sessionStorage.setItem('gz-visited', '1'); } catch (e) {}
+
+    let finished = false;
+    function finishIntro() {
+        if (finished) return;
+        finished = true;
+        document.removeEventListener('keydown', finishIntro);
+        if (loadingScreen) loadingScreen.classList.add('hidden');
+        setTimeout(() => { if (aurora) aurora.style.opacity = '1'; }, 200);
+        setTimeout(() => { if (heroRings) heroRings.classList.add('visible'); }, 350);
+        setTimeout(() => {
+            if (nameWrapper) nameWrapper.classList.add('visible');
+            if (header) header.classList.add('visible');
+        }, 550);
+        setTimeout(() => { if (titleContainer) titleContainer.classList.add('visible'); }, 750);
+        setTimeout(() => { if (heroFooter) heroFooter.style.opacity = '1'; }, 900);
+    }
+
+    // Skippable: click anywhere or press any key
+    if (loadingScreen) loadingScreen.addEventListener('click', finishIntro);
+    document.addEventListener('keydown', finishIntro);
+
+    // Focus pull: hold the defocused world long enough to register
+    // (~1.5s with the line), then the sharpening becomes the reveal
+    const loaderLine = document.querySelector('.loader-line');
+    setTimeout(() => { if (loaderLine) loaderLine.classList.add('show'); }, 300);
+    setTimeout(finishIntro, 1600);
 });
 
 // 2. PARALLAX FOR RING LAYERS (Enhanced with Perspective & Subtle Rotation)
@@ -202,6 +77,9 @@ if (heroSection) {
     const heroObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             isHeroVisible = entry.isIntersecting;
+            // Header dissolves into the poster while the hero is on screen
+            const headerEl = document.querySelector('header');
+            if (headerEl) headerEl.classList.toggle('in-hero', entry.isIntersecting);
             // Resume parallax loop when hero becomes visible again
             if (isHeroVisible && !parallaxRAF) {
                 parallaxRAF = requestAnimationFrame(animateParallax);
@@ -236,6 +114,9 @@ function animateParallax() {
     // Respect user motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
+
+    // Rings are hidden while the observation field is live — skip their loop
+    if (document.body.classList.contains('field-active')) { parallaxRAF = null; return; }
 
     // Stop the loop entirely when hero is not visible (saves CPU)
     if (!isHeroVisible) {
@@ -315,46 +196,102 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 800); // Wait for initial fade-in
 });
 
-// 4. FILTER & UNDERLINE LOGIC
-const filterBtns = document.querySelectorAll('.filter-btn');
-const cards = document.querySelectorAll('.project-card');
-const underline = document.querySelector('.filter-underline');
+// 4. MODE SYSTEM (Projects / Art / Research — driven by the global nav)
+const modeSection = document.getElementById('projects');
+const modeTitle = document.getElementById('mode-title');
+const modeSublabel = document.getElementById('mode-sublabel');
 
-function moveUnderline(targetBtn) {
-    if (!underline || !targetBtn) return;
-    underline.style.width = `${targetBtn.offsetWidth}px`;
-    underline.style.left = `${targetBtn.offsetLeft}px`;
+const MODE_INFO = {
+    projects: { title: 'Featured', sub: 'MODE 01 — EVIDENCE' },
+    art:      { title: 'Experiments', sub: 'MODE 02 — DREAMING' },
+    research: { title: 'Field Notes', sub: 'MODE 03 — AN ARCHIVE IN DEVELOPMENT' }
+};
+let currentMode = 'projects';
+let modeSwitching = false;
+
+function moveModeUnderline(mode) {
+    const underline = document.querySelector('.mode-underline');
+    if (!underline) return;
+    const btn = document.querySelector(`.mode-tab[data-mode="${mode}"]`);
+    if (btn) {
+        underline.style.width = `${btn.offsetWidth}px`;
+        underline.style.left = `${btn.offsetLeft}px`;
+        underline.style.opacity = '1';
+    } else {
+        // Research has no in-section tab — hide the underline
+        underline.style.opacity = '0';
+    }
 }
 
-const activeBtn = document.querySelector('.filter-btn.active');
-if (activeBtn) setTimeout(() => moveUnderline(activeBtn), 100);
+function setMode(mode, instant = false) {
+    if (!MODE_INFO[mode] || mode === currentMode || modeSwitching) return;
+    const oldPanel = document.getElementById('panel-' + currentMode);
+    const newPanel = document.getElementById('panel-' + mode);
+    if (!oldPanel || !newPanel) return;
+    currentMode = mode;
 
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        moveUnderline(btn);
-        
-        const filter = btn.getAttribute('data-filter');
-        
-        cards.forEach(card => {
-            if(filter === 'all' || card.getAttribute('data-category') === filter) {
-                card.style.display = 'grid';
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
+    document.querySelectorAll('.mode-tab').forEach(t => {
+        const active = t.dataset.mode === mode;
+        t.classList.toggle('active', active);
+        t.setAttribute('aria-selected', active);
+    });
+    moveModeUnderline(mode);
+    if (modeSection) modeSection.dataset.mode = mode;
+    if (modeTitle) modeTitle.textContent = MODE_INFO[mode].title;
+    if (modeSublabel) modeSublabel.textContent = MODE_INFO[mode].sub;
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (instant || reduced) {
+        oldPanel.hidden = true;
+        newPanel.hidden = false;
+        return;
+    }
+
+    // Exhale the current panel, then condense the next one in
+    modeSwitching = true;
+    oldPanel.classList.add('exhale');
+    setTimeout(() => {
+        oldPanel.classList.remove('exhale');
+        oldPanel.hidden = true;
+        newPanel.classList.add('condense-start');
+        newPanel.hidden = false;
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                newPanel.classList.remove('condense-start');
+                newPanel.classList.add('condense');
                 setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 100);
-            } else {
-                card.style.display = 'none';
-            }
+                    newPanel.classList.remove('condense');
+                    modeSwitching = false;
+                }, 480);
+            });
         });
+    }, 320);
+}
+
+document.querySelectorAll('.mode-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        const mode = tab.dataset.mode;
+        if (mode === currentMode) return;
+        setMode(mode);
+        history.replaceState(null, '', '#' + mode);
     });
 });
 
+// Deep links & nav: #projects / #art / #research activate modes
+function applyHashMode(scroll) {
+    const h = window.location.hash.replace('#', '');
+    if (h !== 'projects' && h !== 'art' && h !== 'research') return;
+    setMode(h, true);
+    if (scroll && modeSection) modeSection.scrollIntoView({ behavior: 'smooth' });
+}
+window.addEventListener('hashchange', () => applyHashMode(true));
+document.addEventListener('DOMContentLoaded', () => {
+    applyHashMode(true);
+    moveModeUnderline(currentMode);
+});
+
 // 5. HOVER EFFECTS
-const hoverTargets = document.querySelectorAll('a, button, .project-card, .logo, .elegant-email, .brand-name, .project-title, .section-title, .fb-title, .media-item, .project-img, .project-img-container, .about-img, .skill-tag, .back-link, .next-project-card, .btn-cta, .resume-button, .project-link');
+const hoverTargets = document.querySelectorAll('a, button, .project-card, .logo, .elegant-email, .brand-name, .project-title, .section-title, .fb-title, .media-item, .project-img, .project-img-container, .about-img, .skill-tag, .back-link, .next-project-card, .btn-cta, .resume-button, .card-open, .art-piece:not(.is-static)');
 const cursor = document.querySelector('.cursor');
 
 hoverTargets.forEach(el => {
@@ -364,11 +301,18 @@ hoverTargets.forEach(el => {
 
 // 6. TIME UPDATE
 function updateTime() {
+    const now = new Date();
     const timeDisplay = document.getElementById('time-display');
     if(timeDisplay) {
-        const now = new Date();
         const options = { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', hour12: false };
         timeDisplay.textContent = now.toLocaleTimeString('en-US', options) + " EST";
+    }
+    const heroTime = document.getElementById('hero-time');
+    if (heroTime) {
+        heroTime.textContent = now.toLocaleTimeString('en-US', {
+            timeZone: 'America/New_York',
+            hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+        });
     }
 }
 setInterval(updateTime, 1000);
@@ -382,5 +326,43 @@ if (hamburger && navLinks) {
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         navLinks.classList.toggle('active');
+    });
+}
+
+// 8. EVIDENCE CONDENSATION WIPE
+// The pearl veil over each project image clears around the cursor.
+document.querySelectorAll('#panel-projects .project-card').forEach(card => {
+    const img = card.querySelector('.project-img-container');
+    if (!img) return;
+    card.addEventListener('pointermove', (e) => {
+        const r = img.getBoundingClientRect();
+        if (!r.width) return;
+        img.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(2) + '%');
+        img.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(2) + '%');
+    });
+});
+
+// 9. TITLE GRADIENT CONTINUITY
+// The name is split into per-letter spans; each span carries the same
+// gradient, offset so the letters reassemble one continuous sweep.
+function syncTitleGradient() {
+    document.querySelectorAll('.brand-name').forEach(h1 => {
+        const w = h1.offsetWidth;
+        if (!w) return;
+        h1.querySelectorAll('.bl').forEach(sp => {
+            sp.style.backgroundSize = w + 'px 100%';
+            sp.style.backgroundPosition = (h1.offsetLeft - sp.offsetLeft) + 'px 0';
+        });
+    });
+}
+if (document.querySelector('.brand-name .bl')) {
+    syncTitleGradient();
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(syncTitleGradient);
+    }
+    let tgTimer = null;
+    window.addEventListener('resize', () => {
+        clearTimeout(tgTimer);
+        tgTimer = setTimeout(syncTitleGradient, 200);
     });
 }

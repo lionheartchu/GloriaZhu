@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnTrack | Product Design Case Study</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Project Page CSS (Generic Theme) -->
+    <link rel="stylesheet" href="../project-theme.css">
+
+    <!-- Project-Specific Styles (Extending the base theme) -->
+    <style>
+        /* Specific Layout Enhancements for OnTrack */
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: var(--accent-primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: var(--text-main);
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        /* Lists styling for Direction & Scope */
+        .check-list, .cross-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .check-list li, .cross-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        .check-list li i { color: #10B981; margin-top: 4px; }
+        .cross-list li i { color: #EF4444; margin-top: 4px; }
+
+        /* Flow Presentation Layout */
+        .flow-block {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            margin-bottom: 6rem;
+            align-items: center;
+        }
+        .flow-text h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        .flow-purpose {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: block;
+            letter-spacing: 0.05em;
+        }
+        .flow-screens {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        /* Final Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .flow-block { grid-template-columns: 1fr; gap: 2rem; }
+            .flow-screens { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Header -->
+    <header>
+        <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../index.html#projects" class="active">Projects</a></li>
+                <li><a href="../other-works/index.html">Other Works</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Back Navigation -->
+            <div class="nav-wrapper reveal-item">
+                <a href="../index.html#projects" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Work</span>
+                </a>
+            </div>
+
+            <!-- 1. HERO -->
+            <section class="project-hero">
+                <div class="hero-content reveal-item">
+                    <div class="project-meta">
+                        <span class="meta-pill">Self-Initiated</span>
+                        <span class="meta-pill">UX / Product Design</span>
+                        <span class="meta-separator">·</span>
+                        <span class="meta-year">2026</span>
+                    </div>
+                    
+                    <h1 class="project-title">OnTrack</h1>
+                    
+                    <div class="project-intro">
+                        <p class="lede">A teen-first budgeting app that helps users make everyday save-or-spend decisions with lightweight AI guidance.</p>
+                        <hr class="intro-divider">
+                        <p>Bridging the gap between tracking and action, OnTrack redefines financial literacy for Gen Z by turning "I should save more" into concrete, daily choices.</p>
+                        
+                        <div class="cta-group">
+                            <a href="#prototype" class="btn-primary">
+                                <span>View Prototype</span>
+                                <i class="fas fa-play"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-media reveal-item" style="transition-delay: 0.1s;">
+                    <div class="media-frame">
+                        <div class="parallax-wrapper">
+                            <!-- Hero Mockup Composition -->
+                            <img src="../image/ontrack-hero.png" class="parallax-img" alt="OnTrack App Hero Mockup" onerror="this.src='https://placehold.co/800x1000/F0F4F8/7075FF?text=Hero+Mockup+Composition\n(2-3+Key+Screens)'">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="project-body">
+                
+                <!-- 2. CONTEXT / PROBLEM -->
+                <section class="project-section">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">01. The Problem</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    
+                    <div class="section-text-block reveal-item">
+                        <h3>The Invisible Drain on Teen Wallets</h3>
+                        <p class="section-text">Teens today handle real money earlier than ever—through bank accounts, payment apps, and digital wallets. Yet, <strong>over 70% of teens don't feel confident</strong> in their personal finance knowledge.</p>
+                        <p class="section-text">The core issue isn't massive debt; it's the <em>invisible drain</em>. Teens juggle many small, frequent purchases (snacks, gaming, rides) across multiple platforms. This makes their money feel invisible, turning budgeting into a stressful afterthought rather than an everyday habit.</p>
+                        
+                        <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(112, 117, 255, 0.05); border-left: 3px solid var(--accent-primary); border-radius: 0 var(--radius-md) var(--radius-md) 0;">
+                            <p style="font-family: var(--font-display); font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.5rem;">The Opportunity</p>
+                            <p style="font-size: 0.95rem; color: var(--text-muted);">How might we help teens form early budgeting habits by turning abstract long-term saving into concrete, context-aware daily choices?</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. RESEARCH INSIGHTS -->
+                <section class="project-section">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">02. Research Insights</h2>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <p class="section-text reveal-item">I conducted interviews with Gen Z participants (16-22) and audited existing finance tools to understand where the friction lies in everyday money management.</p>
+
+                    <div class="insight-grid reveal-item">
+                        <div class="insight-card">
+                            <div class="insight-header">
+                                <span class="insight-title">Insight 01</span>
+                                <i class="fas fa-eye-slash insight-icon"></i>
+                            </div>
+                            <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem;">Invisible Spending</h4>
+                            <p class="section-text" style="font-size:0.95rem;">Small purchases are invisible until they add up. Teens rely on "mental math," leading to shock at the end of the week when balances drop unexpectedly.</p>
+                        </div>
+
+                        <div class="insight-card">
+                            <div class="insight-header">
+                                <span class="insight-title">Insight 02</span>
+                                <i class="fas fa-hourglass-half insight-icon"></i>
+                            </div>
+                            <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem;">Short-term > Long-term</h4>
+                            <p class="section-text" style="font-size:0.95rem;">Teens care more about immediate, short-term trade-offs than abstract "long-term wealth." Regret stems from "I shouldn't have bought that coffee," not "I didn't invest."</p>
+                        </div>
+
+                        <div class="insight-card">
+                            <div class="insight-header">
+                                <span class="insight-title">Insight 03</span>
+                                <i class="fas fa-stop-circle insight-icon"></i>
+                            </div>
+                            <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem;">Friction Kills Habits</h4>
+                            <p class="section-text" style="font-size:0.95rem;">Existing finance tools feel too manual or adult-oriented. Teens quickly abandon apps that require strict, continuous categorization of every transaction.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. PRODUCT DIRECTION -->
+                <section class="project-section">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">03. Product Direction</h2>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="feature-grid reveal-item">
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <h4 class="feature-title">What it is</h4>
+                            <ul class="check-list">
+                                <li><i class="fas fa-check-circle"></i> Goal-first budgeting</li>
+                                <li><i class="fas fa-check-circle"></i> Lightweight spend tracking</li>
+                                <li><i class="fas fa-check-circle"></i> AI-assisted everyday trade-offs</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon" style="color: #EF4444; background: rgba(239, 68, 68, 0.1);"><i class="fas fa-times"></i></div>
+                            <h4 class="feature-title">What it is not</h4>
+                            <ul class="cross-list">
+                                <li><i class="fas fa-times-circle"></i> A traditional banking app</li>
+                                <li><i class="fas fa-times-circle"></i> Dense investment education</li>
+                                <li><i class="fas fa-times-circle"></i> A parent surveillance tool</li>
+                            </ul>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-star"></i></div>
+                            <h4 class="feature-title">Core Principles</h4>
+                            <ul class="check-list">
+                                <li><i class="fas fa-star"></i> <strong>Low effort, high awareness</strong></li>
+                                <li><i class="fas fa-star"></i> <strong>Advice, not judgment</strong></li>
+                                <li><i class="fas fa-star"></i> <strong>Concrete goals</strong> over abstract budgets</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. RESEARCH -> DESIGN IMPLICATIONS -->
+                <section class="project-section">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">04. Bridging Research & Design</h2>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="reveal-item" style="display: flex; flex-direction: column; gap: 2rem;">
+                        
+                        <!-- Pair 1 -->
+                        <div class="challenge-solution">
+                            <div class="cs-block problem">
+                                <span class="cs-label"><i class="fas fa-search"></i> Research Insight</span>
+                                <h4 class="cs-title">Teens stop using tools that require too much manual input.</h4>
+                            </div>
+                            <div class="cs-block solution">
+                                <span class="cs-label" style="color: var(--accent-primary);"><i class="fas fa-paint-brush"></i> Design Response</span>
+                                <h4 class="cs-title">Hybrid spend tracking</h4>
+                                <p class="section-text" style="font-size:0.95rem; margin-bottom:0;">Implement automatic tracking with lightweight manual corrections instead of heavy, mandatory categorization flows.</p>
+                            </div>
+                        </div>
+
+                        <!-- Pair 2 -->
+                        <div class="challenge-solution">
+                            <div class="cs-block problem">
+                                <span class="cs-label"><i class="fas fa-search"></i> Research Insight</span>
+                                <h4 class="cs-title">Saving is easier when tied to something concrete.</h4>
+                            </div>
+                            <div class="cs-block solution">
+                                <span class="cs-label" style="color: var(--accent-primary);"><i class="fas fa-paint-brush"></i> Design Response</span>
+                                <h4 class="cs-title">Goal-first architecture</h4>
+                                <p class="section-text" style="font-size:0.95rem; margin-bottom:0;">Make concrete goals (e.g., "New Keyboard", "Concert Tickets") the core organizing structure of the product, not generic spreadsheets.</p>
+                            </div>
+                        </div>
+
+                        <!-- Pair 3 -->
+                        <div class="challenge-solution">
+                            <div class="cs-block problem">
+                                <span class="cs-label"><i class="fas fa-search"></i> Research Insight</span>
+                                <h4 class="cs-title">Advice must feel optional and non-judgmental.</h4>
+                            </div>
+                            <div class="cs-block solution">
+                                <span class="cs-label" style="color: var(--accent-primary);"><i class="fas fa-paint-brush"></i> Design Response</span>
+                                <h4 class="cs-title">Supportive AI framing</h4>
+                                <p class="section-text" style="font-size:0.95rem; margin-bottom:0;">Frame the AI as "Ask OnTrack"—a supportive helper offering contextual alternatives, not a strict coach or parental figure.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- 6. CORE FLOWS -->
+                <section class="project-section">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">05. Core Product Flows</h2>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <!-- Flow 1 -->
+                    <div class="flow-block reveal-item">
+                        <div class="flow-text">
+                            <span class="flow-purpose">Flow 01</span>
+                            <h3>Set up & Connect Payment</h3>
+                            <p class="section-text"><strong>UX Goal:</strong> Build trust quickly while eliminating manual entry friction.</p>
+                            <p class="section-text" style="font-size:0.95rem;">The onboarding process clearly explains read-only trust before asking users to link their payment methods. This ensures everyday spending is tracked automatically, which is crucial for retaining teen users who hate manual logging.</p>
+                        </div>
+                        <div class="flow-screens">
+                            <div class="media-frame"><img src="../image/flow1-1.png" alt="Onboarding Screen" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Onboarding'"></div>
+                            <div class="media-frame"><img src="../image/flow1-2.png" alt="Connect Payment Screen" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Connect+Payment'"></div>
+                            <div class="media-frame"><img src="../image/flow1-3.png" alt="Linked Account Trust Screen" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Trust/Security'"></div>
+                        </div>
+                    </div>
+
+                    <!-- Flow 2 -->
+                    <div class="flow-block reveal-item">
+                        <div class="flow-text">
+                            <span class="flow-purpose">Flow 02</span>
+                            <h3>Monitor Weekly Budget & Goals</h3>
+                            <p class="section-text"><strong>UX Goal:</strong> Shift focus from numbers to actionable progress.</p>
+                            <p class="section-text" style="font-size:0.95rem;">Instead of a scary monthly pie chart, the Home tab highlights a "Safe to Spend" allowance based on the current week. The Goals tab visualizes saving progress in discrete, motivating stages (e.g., "Speedrun mode" vs. "Chill mode").</p>
+                        </div>
+                        <div class="flow-screens">
+                            <div class="media-frame"><img src="../image/flow2-1.png" alt="Home Dashboard" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Home+Dashboard'"></div>
+                            <div class="media-frame"><img src="../image/flow2-2.png" alt="Goals Overview" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Goals+Overview'"></div>
+                            <div class="media-frame"><img src="../image/flow2-3.png" alt="Goal Detail & Modes" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Goal+Detail'"></div>
+                        </div>
+                    </div>
+
+                    <!-- Flow 3 -->
+                    <div class="flow-block reveal-item">
+                        <div class="flow-text">
+                            <span class="flow-purpose">Flow 03</span>
+                            <h3>Ask OnTrack for Help</h3>
+                            <p class="section-text"><strong>UX Goal:</strong> Provide on-the-spot decision support without lecturing.</p>
+                            <p class="section-text" style="font-size:0.95rem;">When faced with a purchase decision, users can use the Ask entry point. The AI reads their current budget and goals to offer 2-3 concrete trade-off scenarios (e.g., "If you buy this, you'll reach your keyboard goal a week later").</p>
+                        </div>
+                        <div class="flow-screens">
+                            <div class="media-frame"><img src="../image/flow3-1.png" alt="Ask Entry Point" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Ask+Entry'"></div>
+                            <div class="media-frame"><img src="../image/flow3-2.png" alt="Recommendation State" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Recommendations'"></div>
+                            <div class="media-frame"><img src="../image/flow3-3.png" alt="Follow-up Suggestion" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Follow-up'"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 7. ASK ONTRACK DEEP DIVE -->
+                <section class="project-section">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">06. Designing "Ask OnTrack"</h2>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="about-container reveal-item" style="grid-template-columns: 1.2fr 1fr; align-items: center; margin-bottom: 2rem;">
+                        <div class="about-content">
+                            <h3>Contextual Help, Not a Math Lecture</h3>
+                            <p class="section-text"><strong>Why it exists:</strong> Teens don't just need static reports of what they already spent. They need help thinking through real, in-the-moment spending decisions.</p>
+                            <p class="section-text"><strong>What changed:</strong> The design shifts away from abstract finance advice ("save 20% of your income") toward contextual, goal-aware alternatives ("Get regular coffee instead of a latte today, and you stay on track for your concert ticket").</p>
+                            <p class="section-text"><strong>Tone matters:</strong> User testing showed that AI needed to feel like a supportive peer helper. It is explicitly designed *not* to be a coach, and *not* to be a parent. It presents options neutrally and lets the user make the final call.</p>
+                        </div>
+                        
+                        <div class="media-frame">
+                            <img src="../image/deepdive-ai.png" alt="Ask OnTrack Chat Interface" onerror="this.src='https://placehold.co/800x800/F0F4F8/7075FF?text=Ask+OnTrack+UI+Close-up'">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 8. MVP SCOPE -->
+                <section class="project-section">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">07. Defining the MVP</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    
+                    <p class="section-text reveal-item">To ensure the concept remained a feasible, focused product, I defined a strict MVP scope centered on the smallest usable loop for everyday budgeting.</p>
+
+                    <div class="insight-grid reveal-item">
+                        <div class="insight-card" style="border-top: 4px solid #10B981;">
+                            <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 1rem;">Included</h4>
+                            <ul class="check-list">
+                                <li><i class="fas fa-check"></i> Onboarding & Payment Connection</li>
+                                <li><i class="fas fa-check"></i> Weekly Budget Dashboard</li>
+                                <li><i class="fas fa-check"></i> Goal Setting</li>
+                                <li><i class="fas fa-check"></i> Ask Feature (AI helper)</li>
+                                <li><i class="fas fa-check"></i> Weekly Recap & Activity</li>
+                                <li><i class="fas fa-check"></i> Basic Profile</li>
+                            </ul>
+                        </div>
+
+                        <div class="insight-card" style="border-top: 4px solid #EF4444;">
+                            <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 1rem;">Not Included</h4>
+                            <ul class="cross-list">
+                                <li><i class="fas fa-times"></i> Investment Portfolio Tracking</li>
+                                <li><i class="fas fa-times"></i> Parent/Family Dashboards</li>
+                                <li><i class="fas fa-times"></i> Advanced Banking Transfers</li>
+                                <li><i class="fas fa-times"></i> Complex Analytics & Multi-month graphs</li>
+                            </ul>
+                        </div>
+
+                        <div class="insight-card" style="border-top: 4px solid var(--accent-primary);">
+                            <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 1rem;">The "Why"</h4>
+                            <p class="section-text" style="font-size:0.95rem;">The MVP is strictly focused on building the <strong>habit of awareness</strong>. Adding investments or complex analytics would overwhelm the primary user, while parent dashboards would violate the principle of "teen autonomy" established in research.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 9. FINAL SCREENS -->
+                <section class="project-section">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">08. Final Interface Details</h2>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <!-- Big composition -->
+                    <div class="media-frame reveal-item" style="margin-bottom: 2rem;">
+                        <img src="../image/final-hero.png" alt="Final UI Composition" onerror="this.src='https://placehold.co/1200x600/F0F4F8/7075FF?text=High-Fidelity+UI+Composition'">
+                    </div>
+
+                    <!-- Module Close-ups -->
+                    <div class="gallery-grid reveal-item">
+                        <div class="media-frame">
+                            <img src="../image/module-safe.png" alt="Safe to Spend Card Close-up" onerror="this.src='https://placehold.co/600x600/F8F9FA/A78BFA?text=Safe+to+Spend+Card'">
+                        </div>
+                        <div class="media-frame">
+                            <img src="../image/module-goal.png" alt="Goal Card Hierarchy Close-up" onerror="this.src='https://placehold.co/600x600/F8F9FA/A78BFA?text=Goal+Card+Hierarchy'">
+                        </div>
+                        <div class="media-frame">
+                            <img src="../image/module-ask.png" alt="Ask Strip Close-up" onerror="this.src='https://placehold.co/600x600/F8F9FA/A78BFA?text=Ask+Entry+Strip'">
+                        </div>
+                        <div class="media-frame">
+                            <img src="../image/module-rec.png" alt="Recommendation Cards Close-up" onerror="this.src='https://placehold.co/600x600/F8F9FA/A78BFA?text=AI+Recommendation+Cards'">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 10. REFLECTION -->
+                <section class="project-section">
+                    <div class="section-header reveal-item">
+                        <h2 class="section-title">09. Reflection & Next Steps</h2>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="insight-grid reveal-item">
+                        <div class="insight-card">
+                            <h4 style="font-family: var(--font-brand); font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-main);">What Worked</h4>
+                            <ul class="pain-point-list">
+                                <li style="color: var(--text-muted);"><i class="fas fa-check-circle" style="color: #10B981;"></i> <strong>Goal-first structure</strong> made the product significantly clearer and more motivating than a generic finance dashboard.</li>
+                                <li style="color: var(--text-muted);"><i class="fas fa-check-circle" style="color: #10B981;"></i> <strong>The AI helper</strong> shifted from a gimmick to a genuinely useful tool once framed as contextual decision support rather than a static coach.</li>
+                            </ul>
+                        </div>
+
+                        <div class="insight-card">
+                            <h4 style="font-family: var(--font-brand); font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-main);">What I'd Test Next</h4>
+                            <ul class="pain-point-list">
+                                <li style="color: var(--text-muted);"><i class="fas fa-vial" style="color: var(--accent-primary);"></i> Whether teens prefer 100% auto-categorization or lightweight manual corrections.</li>
+                                <li style="color: var(--text-muted);"><i class="fas fa-vial" style="color: var(--accent-primary);"></i> What specific tone of AI advice yields the highest trust metrics over time.</li>
+                                <li style="color: var(--text-muted);"><i class="fas fa-vial" style="color: var(--accent-primary);"></i> Whether weekly recaps effectively drive long-term behavior change.</li>
+                            </ul>
+                        </div>
+
+                        <div class="insight-card">
+                            <h4 style="font-family: var(--font-brand); font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-main);">What I'd Improve</h4>
+                            <ul class="pain-point-list">
+                                <li style="color: var(--text-muted);"><i class="fas fa-arrow-up" style="color: #F59E0B;"></i> Simplify visual hierarchy further, especially on the Home dashboard.</li>
+                                <li style="color: var(--text-muted);"><i class="fas fa-arrow-up" style="color: #F59E0B;"></i> Refine the balance between a soft "premium" UI and pure, lightweight usability.</li>
+                                <li style="color: var(--text-muted);"><i class="fas fa-arrow-up" style="color: #F59E0B;"></i> Validate edge cases with a broader group of real teen users.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Next Project Navigation -->
+            <nav class="next-project-nav reveal-item">
+                <a href="../index.html#projects" class="next-project-card">
+                    <div class="next-content-wrapper">
+                        <div class="next-label">Up Next</div>
+                        <h3 class="next-title">Back to Portfolio</h3>
+                        <div class="next-meta">Explore other projects</div>
+                    </div>
+                    <div class="next-cta">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <a href="../index.html" class="logo" style="margin: 0; font-size: 1rem;">GZ<span class="logo-dot">.</span></a>
+            <div class="footer-status" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
+                <span class="blink-dot"></span> System Online
+            </div>
+            <p class="copyright" style="margin: 0;">© 2026 Gloria Zhu</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Hamburger Menu Logic
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Custom Cursor Logic
+        const cursor = document.querySelector('.cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button, .media-frame, .insight-card, .feature-card, .next-project-card, .cs-block').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('is-big'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('is-big'));
+        });
+
+        // --- 1. Reveal on Scroll Animation ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Stop observing once visible to save CPU
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-item').forEach((el) => {
+            revealObserver.observe(el);
+        });
+
+        // --- 2. Lightweight Parallax Effect ---
+        if (window.matchMedia("(min-width: 769px)").matches) {
+            const parallaxImages = document.querySelectorAll('.parallax-img');
+            let visibleImages = [];
+            
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        visibleImages.push(entry.target);
+                    } else {
+                        visibleImages = visibleImages.filter(img => img !== entry.target);
+                    }
+                });
+            });
+
+            parallaxImages.forEach(img => imageObserver.observe(img));
+
+            function animateParallax() {
+                if (visibleImages.length > 0) {
+                    const scrollY = window.scrollY;
+                    const windowHeight = window.innerHeight;
+
+                    visibleImages.forEach(img => {
+                        const rect = img.parentElement.getBoundingClientRect();
+                        const center = rect.top + (rect.height / 2);
+                        const distFromCenter = center - (windowHeight / 2);
+                        const offset = distFromCenter * 0.1; 
+                        img.style.transform = `translateY(${offset}px)`;
+                    });
+                }
+                requestAnimationFrame(animateParallax);
+            }
+            animateParallax();
+        }
+    </script>
+</body>
+</html>

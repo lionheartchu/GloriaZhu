@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Gloria Zhu</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Gloria Zhu — interaction designer & creative technologist in New York. Product design, perceptual and ambient interfaces, interactive installations, and human-AI interaction research.">
+    <meta property="og:title" content="Gloria Zhu — Interaction Designer & Creative Technologist">
+    <meta property="og:description" content="Product design, perceptual interfaces, interactive installations, and human-AI interaction research.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     
     <!-- Font Preloads for Critical Fonts -->
-    <link rel="preload" href="PP Neue Machina/PPNeueMachina-Ultrabold.otf" as="font" type="font/otf" crossorigin>
-    <link rel="preload" href="MonumentExtended/MonumentExtended-Ultrabold.otf" as="font" type="font/otf" crossorigin>
-    <link rel="preload" href="Space_Grotesk/static/SpaceGrotesk-Regular.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="Space_Mono/SpaceMono-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="PP Neue Machina/PPNeueMachina-Ultrabold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="MonumentExtended/MonumentExtended-Ultrabold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="Space_Grotesk/static/SpaceGrotesk-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="Space_Mono/SpaceMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
     
     <!-- Local fonts are loaded via CSS @font-face, no need for external font links -->
     <link rel="stylesheet" href="style.css">
@@ -36,7 +40,7 @@
                 <li><a href="#welcome">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#research">Research</a></li>
             </ul>
         </nav>
         <div class="hamburger">
@@ -79,46 +83,48 @@
         <!-- Soft Air/Spotlight (Behind Rings) -->
         <div class="hero-spotlight"></div>
 
-        <!-- AI BOOT LOADER (System Wake Up) -->
+        <!-- LOADER: focus pull — a veil the field comes into focus through -->
         <div class="loading-screen">
-            <div class="loader-content">
-                <div class="boot-status">
-                    <span class="boot-line"></span>
-                    <span class="boot-scan"></span>
-                </div>
-                <div class="loader-text-container">
-                    <span class="loader-prefix">> </span>
-                    <span class="loader-text"></span><span class="caret"></span>
-                </div>
-                <div class="loader-sub-text"></div>
-            </div>
+            <span class="loader-line">adjusting to the light…</span>
         </div>
 
-        <!-- Main Content -->
-        <div class="hero-center">
-            <div class="name-wrapper">
-                <!-- Brighter/Cooler Gradient Text -->
-                <h1 class="brand-name">GLORIA</h1>
-                <h1 class="brand-name indent">ZHU</h1>
-            </div>
-            
-            <div class="title-container">
-                <div class="title-item">Interaction Designer</div>
-                <div class="separator-dash">//</div>
-                <div class="title-item">Creative Technologist</div>
-            </div>
+        <!-- Poster Composition: monumental cropped name, upper-left.
+             Letters are split so the attention field can pass across them. -->
+        <div class="name-wrapper">
+            <h1 class="brand-name" aria-label="GLORIA"><span class="bl" aria-hidden="true">G</span><span class="bl" aria-hidden="true">L</span><span class="bl" aria-hidden="true">O</span><span class="bl" aria-hidden="true">R</span><span class="bl" aria-hidden="true">I</span><span class="bl" aria-hidden="true">A</span></h1>
+            <h1 class="brand-name" aria-label="ZHU"><span class="bl" aria-hidden="true">Z</span><span class="bl" aria-hidden="true">H</span><span class="bl" aria-hidden="true">U</span></h1>
         </div>
 
-        <!-- Hero Footer -->
+        <!-- Role annotation, upper-right -->
+        <div class="title-container">
+            <span class="title-mark">+</span>
+            <div class="title-item">Interaction Designer</div>
+            <div class="title-item">Creative Technologist</div>
+        </div>
+
+        <!-- Metadata column + scroll cue -->
         <div class="hero-footer">
-            <div class="hf-left">
-                <div class="scroll-label">SCROLL TO EXPLORE</div>
-                <div class="scroll-line"></div>
+            <div class="poster-meta">
+                <div class="pm-row">
+                    <span class="pm-mark">+</span>
+                    <span class="pm-key">NY / ITHACA</span>
+                    <span class="pm-rule"></span>
+                </div>
+                <div class="pm-row">
+                    <span class="pm-mark">+</span>
+                    <span class="pm-key">№ 001 — PORTFOLIO</span>
+                    <span class="pm-rule"></span>
+                </div>
+                <div class="pm-row">
+                    <span class="pm-mark">+</span>
+                    <span class="pm-key">LOCAL TIME</span>
+                    <span class="pm-val" id="hero-time">--:--:--</span>
+                </div>
             </div>
-            
-            <div class="hf-right">
-                <div class="meta-item">NY-BASED</div>
-                <div class="meta-item">ART, TECH, & DESIGN ♥</div>
+
+            <div class="hf-scroll">
+                <div class="scroll-label">SCROLL</div>
+                <div class="scroll-line"></div>
             </div>
         </div>
         
@@ -135,9 +141,9 @@
     <section id="intro-fb" class="intro-fb theme-dreamy" aria-label="About me teaser">
         <div class="fb-wrapper">
             <div class="fb-media-grid">
-                <div class="media-item item-1"><img src="image/inspo-1.JPG" decoding="async" onerror="this.style.display='none'" alt=""></div>
-                <div class="media-item item-2"><img src="image/inspo-2.JPG" decoding="async" onerror="this.style.display='none'" alt=""></div>
-                <div class="media-item item-3"><img src="image/inspo-3.JPG" decoding="async" onerror="this.style.display='none'" alt=""></div>
+                <div class="media-item item-1"><img src="image/inspo-1.webp" decoding="async" onerror="this.style.display='none'" alt=""></div>
+                <div class="media-item item-2"><img src="image/inspo-2.webp" decoding="async" onerror="this.style.display='none'" alt=""></div>
+                <div class="media-item item-3"><img src="image/inspo-3.webp" decoding="async" onerror="this.style.display='none'" alt=""></div>
             </div>
       
             <aside class="fb-panel">
@@ -152,70 +158,87 @@
                         I observe how the world moves—then I translate those movements into interfaces that feel human. My work sits at the intersection of rigorous product thinking and experimental creative technology.
                     </p>
                     <a class="btn-cta" href="about.html">
-                        <span>Initiate Protocol: About Me</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <span>About Me</span>
+                        <svg class="icon-arrow" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
                 </div>
             </aside>
         </div>
     </section>
 
-    <!-- Projects Section (Unchanged) -->
-    <section id="projects">
+    <!-- Work Section: one system, three modes -->
+    <section id="projects" data-mode="projects">
         <div class="section-header">
-            <h2 class="section-title">Selected Work</h2>
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="uiux">UI/UX</button>
-                <button class="filter-btn" data-filter="medarts">Media Arts</button>
-                <button class="filter-btn" data-filter="games">Research</button>
-                <div class="filter-underline"></div>
+            <div class="mode-heading">
+                <h2 class="section-title" id="mode-title">Featured</h2>
+                <span class="mode-sublabel" id="mode-sublabel">MODE 01 — EVIDENCE</span>
+            </div>
+            <div class="mode-switch" role="tablist" aria-label="Work modes">
+                <button class="mode-tab active" data-mode="projects" role="tab" aria-selected="true">Projects</button>
+                <button class="mode-tab" data-mode="art" role="tab" aria-selected="false">Art</button>
+                <div class="mode-underline"></div>
             </div>
         </div>
 
+        <div class="mode-panels">
+
+        <!-- MODE 01: PROJECTS -->
+        <div class="mode-panel" id="panel-projects">
         <div class="projects-container">
             <!-- Project 1 -->
             <div class="project-card" data-category="uiux" style="--i: 1">
                 <div class="card-tech-deco top-left"></div>
+                <div class="card-tech-deco top-right"></div>
+                <div class="card-tech-deco bottom-left"></div>
                 <div class="card-tech-deco bottom-right"></div>
-                
-                <div class="project-img-container">
-                    <img src="image/tnp-cover.png" loading="lazy" decoding="async" alt="The Next Port" class="project-img">
-                </div>
-                
-                <div class="project-info">
-                    <div class="project-index">01</div>
-                    <div class="project-meta">
-                        <span class="tag">Product Design</span>
-                        <span class="year">2025</span>
+                <a class="card-evidence" href="product/thenextport.html" aria-hidden="true" tabindex="-1">
+                    <div class="project-img-container">
+                        <img src="image/tnp-cover.webp" loading="lazy" decoding="async" alt="The Next Port" class="project-img">
                     </div>
+                    <span class="fig-label">fig. 01</span>
+                </a>
+                <div class="project-info">
+                    <div class="card-file-line">
+                        <span class="cf-no">№ 01</span>
+                        <span class="cf-sep">—</span>
+                        <span class="cf-cat">Product Design</span>
+                        <span class="cf-sep">—</span>
+                        <span class="cf-year">2025</span>
+                    </div>
+                    <div class="card-rule"></div>
                     <h3 class="project-title">The Next Port</h3>
                     <p class="project-desc">A future-oriented autonomous delivery system integrating self-driving technology and drone logistics.</p>
-                    <a href="product/thenextport.html" class="project-link">
-                        View Case Study <i class="fas fa-arrow-right"></i>
+                    <a href="product/thenextport.html" class="card-open">
+                        Open Case File <svg class="icon-arrow" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
                 </div>
             </div>
-            
+
             <!-- Project 2 -->
             <div class="project-card" data-category="uiux" style="--i: 2">
                 <div class="card-tech-deco top-left"></div>
+                <div class="card-tech-deco top-right"></div>
+                <div class="card-tech-deco bottom-left"></div>
                 <div class="card-tech-deco bottom-right"></div>
-
-                <div class="project-img-container">
-                    <img src="image/glusp-cover3.png" loading="lazy" decoding="async" alt="Glucosphere" class="project-img">
-                </div>
-                
-                <div class="project-info">
-                    <div class="project-index">02</div>
-                    <div class="project-meta">
-                        <span class="tag">UI/UX & Health</span>
-                        <span class="year">2024</span>
+                <a class="card-evidence" href="uiux/glucosphere.html" aria-hidden="true" tabindex="-1">
+                    <div class="project-img-container">
+                        <img src="image/glusp-cover3.webp" loading="lazy" decoding="async" alt="Glucosphere" class="project-img">
                     </div>
+                    <span class="fig-label">fig. 02</span>
+                </a>
+                <div class="project-info">
+                    <div class="card-file-line">
+                        <span class="cf-no">№ 02</span>
+                        <span class="cf-sep">—</span>
+                        <span class="cf-cat">UI/UX & Health</span>
+                        <span class="cf-sep">—</span>
+                        <span class="cf-year">2024</span>
+                    </div>
+                    <div class="card-rule"></div>
                     <h3 class="project-title">Glucosphere</h3>
                     <p class="project-desc">Comprehensive diabetes management system for kids, combining hardware and software for seamless tracking.</p>
-                    <a href="uiux/glucosphere.html" class="project-link">
-                        View Case Study <i class="fas fa-arrow-right"></i>
+                    <a href="uiux/glucosphere.html" class="card-open">
+                        Open Case File <svg class="icon-arrow" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
                 </div>
             </div>
@@ -223,22 +246,28 @@
             <!-- Project 3 -->
             <div class="project-card" data-category="medarts" style="--i: 3">
                 <div class="card-tech-deco top-left"></div>
+                <div class="card-tech-deco top-right"></div>
+                <div class="card-tech-deco bottom-left"></div>
                 <div class="card-tech-deco bottom-right"></div>
-
-                <div class="project-img-container">
-                    <img src="image/ow-cover.png" loading="lazy" decoding="async" alt="Otherworld" class="project-img">
-                </div>
-                
-                <div class="project-info">
-                    <div class="project-index">03</div>
-                    <div class="project-meta">
-                        <span class="tag">Interactive Installation</span>
-                        <span class="year">2024</span>
+                <a class="card-evidence" href="installation/otherw.html" aria-hidden="true" tabindex="-1">
+                    <div class="project-img-container">
+                        <img src="image/ow-cover.webp" loading="lazy" decoding="async" alt="Otherworld" class="project-img">
                     </div>
+                    <span class="fig-label">fig. 03</span>
+                </a>
+                <div class="project-info">
+                    <div class="card-file-line">
+                        <span class="cf-no">№ 03</span>
+                        <span class="cf-sep">—</span>
+                        <span class="cf-cat">Interactive Installation</span>
+                        <span class="cf-sep">—</span>
+                        <span class="cf-year">2024</span>
+                    </div>
+                    <div class="card-rule"></div>
                     <h3 class="project-title">Otherworld</h3>
                     <p class="project-desc">An immersive interactive installation blending physical and digital environments to explore nature.</p>
-                    <a href="installation/otherw.html" class="project-link">
-                        View Project <i class="fas fa-arrow-right"></i>
+                    <a href="installation/otherw.html" class="card-open">
+                        Open Case File <svg class="icon-arrow" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
                 </div>
             </div>
@@ -246,124 +275,145 @@
             <!-- Project 4 -->
             <div class="project-card" data-category="medarts" style="--i: 4">
                 <div class="card-tech-deco top-left"></div>
+                <div class="card-tech-deco top-right"></div>
+                <div class="card-tech-deco bottom-left"></div>
                 <div class="card-tech-deco bottom-right"></div>
-
-                <div class="project-img-container">
-                    <img src="image/ds-cover.png" loading="lazy" decoding="async" alt="Data Skinware" class="project-img">
-                </div>
-                
-                <div class="project-info">
-                    <div class="project-index">04</div>
-                    <div class="project-meta">
-                        <span class="tag">Data Visualization</span>
-                        <span class="year">2024</span>
+                <a class="card-evidence" href="medarts/dataskin.html" aria-hidden="true" tabindex="-1">
+                    <div class="project-img-container">
+                        <img src="image/ds-cover.webp" loading="lazy" decoding="async" alt="Data Skinware" class="project-img">
                     </div>
+                    <span class="fig-label">fig. 04</span>
+                </a>
+                <div class="project-info">
+                    <div class="card-file-line">
+                        <span class="cf-no">№ 04</span>
+                        <span class="cf-sep">—</span>
+                        <span class="cf-cat">Data Visualization</span>
+                        <span class="cf-sep">—</span>
+                        <span class="cf-year">2024</span>
+                    </div>
+                    <div class="card-rule"></div>
                     <h3 class="project-title">Data Skinware</h3>
                     <p class="project-desc">A creative exploration of data protection through visualization, examining how our vulnerable data can be conceptually protected.</p>
-                    <a href="medarts/dataskin.html" class="project-link">
-                        View Project <i class="fas fa-arrow-right"></i>
+                    <a href="medarts/dataskin.html" class="card-open">
+                        Open Case File <svg class="icon-arrow" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
                 </div>
             </div>
 
-            <!-- Project 5 -->
-            <div class="project-card" data-category="uiux" style="--i: 5">
-                <div class="card-tech-deco top-left"></div>
-                <div class="card-tech-deco bottom-right"></div>
-
-                <div class="project-img-container">
-                    <img src="image/bef-cover.png" loading="lazy" decoding="async" alt="Befree" class="project-img">
-                </div>
-                
+            <!-- In Progress: Trace Habitat (lighter preview tile, non-clickable) -->
+            <div class="project-card wip" style="--i: 5">
                 <div class="project-info">
-                    <div class="project-index">05</div>
-                    <div class="project-meta">
-                        <span class="tag">UI/UX Design</span>
-                        <span class="year">2022</span>
+                    <div class="card-file-line">
+                        <span class="cf-no">In Progress</span>
+                        <span class="cf-sep">—</span>
+                        <span class="cf-year">2026</span>
                     </div>
-                    <h3 class="project-title">Befree</h3>
-                    <p class="project-desc">A music app designed to help users enjoy music in multiple scenes freely and conveniently.</p>
-                    <a href="uiux/befree.html" class="project-link">
-                        View Case Study <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <div class="card-rule"></div>
+                    <h3 class="project-title">Trace Habitat</h3>
+                    <p class="project-desc">An immersive ambient interface that transforms unnoticed personal traces into a living perceptual habitat.</p>
+                    <div class="wip-tags">
+                        <span>ambient interface</span>
+                        <span>creative technology</span>
+                        <span>non-human interaction</span>
+                        <span>personal data traces</span>
+                    </div>
+                    <span class="wip-status"><span class="wip-dot"></span> Developing</span>
                 </div>
             </div>
+        </div>
+        </div>
 
-             <!-- Project 6 -->
-             <div class="project-card" data-category="medarts" style="--i: 6">
-                <div class="card-tech-deco top-left"></div>
-                <div class="card-tech-deco bottom-right"></div>
-
-                <div class="project-img-container">
-                    <img src="image/dts-cover.JPG" loading="lazy" decoding="async" alt="Data Skinware" class="project-img">
-                </div>
-                
-                <div class="project-info">
-                    <div class="project-index">06</div>
-                    <div class="project-meta">
-                        <span class="tag">Immersive Experience</span>
-                        <span class="year">2025</span>
+        <!-- MODE 02: ART / EXPERIMENTS — exhibition wall -->
+        <div class="mode-panel" id="panel-art" hidden>
+            <div class="art-wall">
+                <a class="art-piece piece-vital" href="installation/vital.html">
+                    <div class="art-frame">
+                        <img src="image/vit-cover.webp" loading="lazy" decoding="async" alt="Vital">
                     </div>
-                    <h3 class="project-title">Data "Skinware"</h3>
-                    <p class="project-desc">Creative research and exploration on how to use metaphor-driven design to visualize digital vulnerability.</p>
-                    <a href="installation/dataskinware.html" class="project-link">
-                        View Project <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <div class="art-label">
+                        <span class="art-title">Vital</span>
+                        <span class="art-tag">01 · interactive installation · 2021</span>
+                    </div>
+                </a>
+
+                <a class="art-piece piece-yu" href="installation/yu.html">
+                    <div class="art-frame">
+                        <img src="image/yu-cover.webp" loading="lazy" decoding="async" alt="YU">
+                    </div>
+                    <div class="art-label">
+                        <span class="art-title">YU</span>
+                        <span class="art-tag">02 · responsive installation · 2021</span>
+                    </div>
+                </a>
+
+                <a class="art-piece piece-maya" href="3d/maya3d.html">
+                    <div class="art-frame">
+                        <img src="image/maya-cover.webp" loading="lazy" decoding="async" alt="Maya 3D Projects">
+                    </div>
+                    <div class="art-label">
+                        <span class="art-title">Maya 3D</span>
+                        <span class="art-tag">03 · 3D modeling & animation · 2024–25</span>
+                    </div>
+                </a>
+
+                <div class="art-piece piece-gramo is-static">
+                    <div class="art-frame">
+                        <img src="other-works/other-img/gramo.webp" loading="lazy" decoding="async" alt="Gramophone Salon">
+                    </div>
+                    <div class="art-label">
+                        <span class="art-title">Gramophone Salon</span>
+                        <span class="art-tag">04 · speculative design</span>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Project 7 -->
-            <div class="project-card" data-category="uiux" style="--i: 7">
-                <div class="card-tech-deco top-left"></div>
-                <div class="card-tech-deco bottom-right"></div>
-
-                <div class="project-img-container">
-                    <img src="image/ber-cover.png" loading="lazy" decoding="async" alt="Berich" class="project-img">
-                </div>
-                
-                <div class="project-info">
-                    <div class="project-index">07</div>
-                    <div class="project-meta">
-                        <span class="tag">UI/UX Design</span>
-                        <span class="year">2021</span>
+        <!-- MODE 03: RESEARCH / FIELD NOTES (reached via top nav only) -->
+        <div class="mode-panel" id="panel-research" hidden>
+            <div class="research-log">
+                <!-- Opened dossier: № 001 -->
+                <article class="dossier">
+                    <div class="dossier-rail">
+                        <span class="dossier-no">№ 001</span>
+                        <span class="dossier-year">2025</span>
+                        <span class="dossier-status">Research Prototype</span>
                     </div>
-                    <h3 class="project-title">Berich</h3>
-                    <p class="project-desc">A financial education and investment platform with a user-friendly interface designed to simplify complex financial concepts.</p>
-                    <a href="uiux/berich.html" class="project-link">
-                        View Case Study <i class="fas fa-arrow-right"></i>
-                    </a>
+
+                    <div class="dossier-main">
+                        <h3 class="dossier-title">Inferring an Elephant</h3>
+                        <p class="dossier-abstract">An HCI design inquiry into machine hallucination as a relational condition for human-AI knowledge co-production — explored through a tangible, LLM-driven installation.</p>
+                        <div class="dossier-tags">
+                            <span>human-AI interaction</span>
+                            <span>tangible interface</span>
+                            <span>LLM</span>
+                        </div>
+                    </div>
+
+                    <aside class="dossier-side">
+                        <div class="dossier-fig">
+                            <img src="image/elephant-cover.webp" loading="lazy" decoding="async" alt="Inferring an Elephant">
+                            <span class="fig-label">fig. 01</span>
+                        </div>
+                    </aside>
+                </article>
+
+                <!-- Footnote: № 002 -->
+                <div class="log-footnote">
+                    <span class="foot-no">№ 002</span>
+                    <span class="foot-meta">2026 · in progress</span>
+                    <span class="foot-line">more field notes forming<span class="log-caret"></span></span>
                 </div>
             </div>
+        </div>
 
-             <!-- Project 8 -->
-             <div class="project-card" data-category="medarts" style="--i: 8">
-                <div class="card-tech-deco top-left"></div>
-                <div class="card-tech-deco bottom-right"></div>
-
-                <div class="project-img-container">
-                    <img src="image/yu-cover.png" loading="lazy" decoding="async" alt="YU" class="project-img">
-                </div>
-                
-                <div class="project-info">
-                    <div class="project-index">08</div>
-                    <div class="project-meta">
-                        <span class="tag">Installation</span>
-                        <span class="year">2021</span>
-                    </div>
-                    <h3 class="project-title">YU</h3>
-                    <p class="project-desc">A responsive installation exploring the relationship between sound, space, and human interaction.</p>
-                    <a href="installation/yu.html" class="project-link">
-                        View Case Study <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
         </div>
     </section>
 
     <!-- Contact Section (Unchanged) -->
     <section id="contact">
         <div class="contact-dreamscape">
-            <h2 class="section-title">Transmission</h2>
+            <h2 class="section-title">Contact</h2>
             
             <div class="portal-container">
                 <div class="portal-content">
@@ -375,11 +425,11 @@
                     
                     <div class="contact-footer">
                         <div class="socials-clean">
-                            <a href="https://www.instagram.com/lionheartchu/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="https://www.instagram.com/lionheartchu/" target="_blank">Instagram</a>
                             <span class="dot"></span>
-                            <a href="https://www.linkedin.com/in/gloria-zimu-zhu" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                            <a href="https://www.linkedin.com/in/gloria-zimu-zhu" target="_blank">LinkedIn</a>
                             <span class="dot"></span>
-                            <a href="https://github.com/lionheartchu" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="https://github.com/lionheartchu" target="_blank">GitHub</a>
                         </div>
                         <div class="meta-clean">
                             New York // <span id="time-display">00:00 EST</span>
@@ -400,5 +450,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="hero-field.js"></script>
 </body>
 </html>

@@ -4,17 +4,340 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Gloria Zhu</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Font Preloads for Critical Fonts -->
-    <link rel="preload" href="PP Neue Machina/PPNeueMachina-Ultrabold.otf" as="font" type="font/otf" crossorigin>
-    <link rel="preload" href="MonumentExtended/MonumentExtended-Ultrabold.otf" as="font" type="font/otf" crossorigin>
-    <link rel="preload" href="Space_Grotesk/static/SpaceGrotesk-Regular.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="Space_Mono/SpaceMono-Regular.ttf" as="font" type="font/ttf" crossorigin>
-    
+    <meta name="description" content="About Gloria Zhu — interaction designer and AI product designer exploring how people and machine intelligence learn to live together.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Font Preloads -->
+    <link rel="preload" href="PP Neue Machina/PPNeueMachina-Ultrabold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="MonumentExtended/MonumentExtended-Ultrabold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="Space_Grotesk/static/SpaceGrotesk-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="Space_Mono/SpaceMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
     <link rel="stylesheet" href="project-theme.css">
+
+    <style>
+        /* ── About = "field notes about the observer" ── */
+
+        /* Ambient top wash — one continuous space with the rest of the archive */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 55vh;
+            background:
+                radial-gradient(ellipse 60% 40% at 20% 0%, rgba(112, 117, 255, 0.065) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 30% at 80% 0%, rgba(167, 139, 250, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Companion mote canvas — drifts over the page, never intercepts input */
+        .about-mote {
+            position: fixed;
+            inset: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        main {
+            padding-top: 0;
+            padding-bottom: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ── PAGE INTRO ── */
+        .about-intro {
+            padding: calc(5.5rem + 60px) clamp(2rem, 6vw, 7rem) 0;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        /* File line: № 000 — THE OBSERVER (archive grammar) */
+        .about-file-line {
+            display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap;
+            font-family: var(--font-mono); font-size: 0.66rem;
+            text-transform: uppercase; letter-spacing: 0.16em;
+            margin-bottom: 1.6rem;
+        }
+        .about-file-line .cf-no { color: var(--accent-primary); }
+        .about-file-line .cf-sep { color: rgba(15, 23, 42, 0.25); }
+        .about-file-line .cf-cat { color: var(--text-muted); }
+
+        .about-page-title {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: clamp(2.2rem, 4vw, 3.4rem);
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+            line-height: 0.95;
+            margin-bottom: 1.4rem;
+        }
+
+        .about-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 2.4rem;
+        }
+        .about-tag {
+            font-family: var(--font-mono);
+            font-size: 0.66rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-main);
+            border: 1px solid rgba(15, 23, 42, 0.18);
+            border-radius: 2px;
+            padding: 0.4rem 0.8rem;
+            background: transparent;
+        }
+        .about-tag::before {
+            content: '';
+            display: inline-block;
+            width: 5px; height: 5px;
+            margin-right: 0.55rem;
+            vertical-align: middle;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            opacity: 0.7;
+        }
+
+        .about-intro-rule {
+            height: 1px;
+            background: linear-gradient(
+                to right,
+                var(--accent-primary) 0%,
+                rgba(112, 117, 255, 0.3) 30%,
+                rgba(112, 117, 255, 0.08) 70%,
+                transparent 100%
+            );
+        }
+
+        /* ── CONTENT GRID ── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            gap: 5rem;
+            padding: 4rem clamp(2rem, 6vw, 7rem) 8rem;
+            max-width: 1440px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        /* ── LEFT: PORTRAIT STAGED AS SPECIMEN ── */
+        .about-portrait-col {
+            position: sticky;
+            top: 6rem;
+        }
+
+        .specimen {
+            position: relative;
+            padding-bottom: 1.2rem;
+        }
+
+        /* dissolved ground shadow beneath the walking figure */
+        .specimen::before {
+            content: '';
+            position: absolute;
+            left: 12%; right: 12%;
+            bottom: 2.2rem;
+            height: 24px;
+            background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(112, 117, 255, 0.16) 0%, transparent 72%);
+            filter: blur(3px);
+            z-index: 0;
+        }
+
+        .specimen-frame {
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(15, 23, 42, 0.10);
+            border-radius: var(--radius-lg);
+            background: rgba(255, 255, 255, 0.4);
+            padding: 1.4rem;
+        }
+        .specimen-frame .about-img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* registration corner marks on the specimen frame */
+        .specimen-mark {
+            position: absolute;
+            width: 11px; height: 11px;
+            border-color: rgba(15, 23, 42, 0.22);
+            border-style: solid;
+            transition: border-color 0.35s ease;
+            z-index: 2;
+        }
+        .specimen-mark.tl { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+        .specimen-mark.tr { top: -1px; right: -1px; border-width: 1px 1px 0 0; }
+        .specimen-mark.bl { bottom: -1px; left: -1px; border-width: 0 0 1px 1px; }
+        .specimen-mark.br { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+        .specimen:hover .specimen-mark { border-color: var(--accent-primary); }
+
+        .specimen .fig-label {
+            display: block;
+            margin-top: 0.9rem;
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            color: var(--text-light);
+        }
+
+        /* ── RIGHT: TEXT COLUMN ── */
+        .about-text-col {
+            display: flex;
+            flex-direction: column;
+            gap: 2.6rem;
+            padding-top: 0.4rem;
+        }
+
+        .about-body {
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+        }
+        .about-body p {
+            font-family: var(--font-ui);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        .section-divider { height: 1px; background: rgba(15, 23, 42, 0.07); }
+
+        /* ── FIELD NOTES ── loose row of log-strip modules */
+        .field-notes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.6rem 3.5rem;
+        }
+        .field-notes .note { flex: 0 1 auto; min-width: 160px; }
+        .note {
+            border-left: 2px solid rgba(112, 117, 255, 0.35);
+            padding: 0.15rem 0 0.15rem 1.1rem;
+        }
+        .note-label {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--text-light);
+            margin-bottom: 0.7rem;
+        }
+        .note ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+        .note li {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.02em;
+            color: var(--text-muted);
+            display: flex; gap: 0.5rem;
+            transition: color 0.25s ease;
+        }
+        .note li::before { content: '+'; color: var(--accent-primary); opacity: 0.55; }
+        .note li:hover { color: var(--text-main); }
+        .note li:hover::before { opacity: 1; }
+
+        /* ── DISCIPLINES → mono index, two columns, poster metadata grammar ── */
+        .index-block { display: flex; flex-direction: column; gap: 0.9rem; }
+        .index-label {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--text-light);
+        }
+        .index-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.45rem 2rem;
+            max-width: 440px;
+        }
+        .index-list li {
+            font-family: var(--font-mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.03em;
+            color: var(--text-muted);
+            display: flex; gap: 0.55rem;
+            transition: color 0.25s ease;
+        }
+        .index-list li::before { content: '+'; color: var(--accent-primary); opacity: 0.5; }
+        .index-list li:hover { color: var(--text-main); }
+
+        /* ── RESUME STAMP ── reuse the archive "OPEN" grammar ── */
+        .about-cta { padding-top: 0.4rem; }
+        .card-open {
+            display: inline-flex; align-items: center; gap: 0.8rem;
+            font-family: var(--font-mono); font-size: 0.7rem; font-weight: 400;
+            text-transform: uppercase; letter-spacing: 0.14em;
+            color: var(--text-main);
+            padding: 0.7rem 1.2rem;
+            border: 1px solid rgba(15, 23, 42, 0.25);
+            border-radius: 2px;
+            background: transparent;
+            text-decoration: none;
+            width: fit-content;
+            transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
+        }
+        .card-open:hover {
+            border-color: var(--accent-primary);
+            background: rgba(112, 117, 255, 0.08);
+            color: var(--accent-secondary);
+        }
+
+        /* ── FOOTER — homepage style ── */
+        footer {
+            border-top: 1px solid rgba(112, 117, 255, 0.12);
+            padding: 1.5rem clamp(2rem, 6vw, 7rem);
+            background: transparent;
+            position: relative; z-index: 2;
+        }
+        .footer-inner-about {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1440px; margin: 0 auto;
+        }
+        .footer-left-about, .footer-right-about {
+            font-family: var(--font-mono); font-size: 0.65rem;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--text-light);
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .blink-dot {
+            display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+            background: var(--accent-primary); animation: blink 2.2s ease infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
+
+        /* ── REVEAL ── */
+        .reveal {
+            opacity: 0; transform: translateY(16px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+        .reveal.visible { opacity: 1; transform: none; }
+        .reveal-delay { transition-delay: 0.12s; }
+        .reveal-delay-2 { transition-delay: 0.22s; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 860px) {
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .about-portrait-col { position: static; max-width: 360px; }
+            .field-notes { gap: 1.4rem 2.5rem; }
+        }
+        @media (max-width: 560px) {
+            .about-page-title { font-size: 2.1rem; }
+            .index-list { grid-template-columns: 1fr; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .about-mote { display: none; }
+        }
+    </style>
 </head>
 <body>
+
     <!-- Custom Cursor -->
     <div class="cursor"></div>
 
@@ -23,70 +346,210 @@
         <a href="index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#welcome">Home</a></li>
                 <li><a href="about.html" class="active">About</a></li>
                 <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="index.html#research">Research</a></li>
             </ul>
         </nav>
         <div class="hamburger">
             <span class="bar"></span>
             <span class="bar"></span>
-            <span class="bar"></span>
         </div>
     </header>
 
-    <!-- About Section -->
-    <section id="about">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-container">
-            <div>
-                <img src="image/mewalk.gif" loading="lazy" decoding="async" alt="Profile Picture" class="about-img">
-            </div>
-            <div class="about-content">
-                <h3>Interaction Designer & Product Designer</h3>
-                <p>Hi! I am Gloria/Zimu Zhu, an interaction designer and developer specialized in creating innovative digital experiences and solutions. 
-                    My design research focuses on the sustainable relationship between human and advanced technologies, especially AI. I explore multiple perspectives of data.</p>
-                <p>I'm a gamer, music lover, and ACG fan. I love fantasy, sci-fi, and marine creatures:)</p>
-                
-                
-                <div class="skills">
-                    <span class="skill-tag">UI/UX Design</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">Web Design</span>
-                    <span class="skill-tag">Arduino</span>
-                    <span class="skill-tag">3D</span>
-                    <span class="skill-tag">Design Research</span>
-                    <span class="skill-tag">Computational Design</span>
-                    <span class="skill-tag">Data Visualization</span>
+    <main>
 
+        <!-- Page Intro -->
+        <div class="about-intro reveal">
+            <div class="about-file-line">
+                <span class="cf-no">№ 000</span>
+                <span class="cf-sep">—</span>
+                <span class="cf-cat">The Observer</span>
+            </div>
+            <h1 class="about-page-title">About</h1>
+            <div class="about-tags">
+                <span class="about-tag">Interaction Designer</span>
+                <span class="about-tag">AI Product Designer</span>
+            </div>
+            <div class="about-intro-rule"></div>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="about-grid">
+
+            <!-- Left: Portrait staged as specimen -->
+            <aside class="about-portrait-col reveal">
+                <figure class="specimen">
+                    <span class="specimen-mark tl"></span>
+                    <span class="specimen-mark tr"></span>
+                    <span class="specimen-mark bl"></span>
+                    <span class="specimen-mark br"></span>
+                    <div class="specimen-frame">
+                        <img
+                            src="image/mewalk.webp"
+                            alt="Pixel illustration of Gloria Zhu walking"
+                            loading="lazy"
+                            decoding="async"
+                            class="about-img"
+                        >
+                    </div>
+                    <figcaption class="fig-label">fig. 00 — the designer, walking</figcaption>
+                </figure>
+            </aside>
+
+            <!-- Right: Field notes -->
+            <div class="about-text-col">
+
+                <div class="about-body reveal reveal-delay">
+                    <p>Hi! I am Gloria/Zimu Zhu, an interaction designer and developer specialized in creating innovative digital experiences and solutions. My design research focuses on the sustainable relationship between human and advanced technologies, especially AI. I explore multiple perspectives of data.</p>
+                    <p>I'm a gamer, music lover, and ACG fan. I love fantasy, sci-fi, and marine creatures:)</p>
                 </div>
-                <!-- Resume Link Button -->
-                <div class="resume-container">
-                    <a href="https://acrobat.adobe.com/id/urn:aaid:sc:VA6C2:b8a083f7-6176-492d-b53b-a5b8c7ed940e" target="_blank" class="btn-cta">
-                        <span>Resume</span>
-                        <i class="fas fa-arrow-right"></i>
+
+                <div class="section-divider reveal"></div>
+
+                <!-- Field-note modules -->
+                <div class="field-notes reveal reveal-delay">
+                    <div class="note">
+                        <div class="note-label">current obsessions</div>
+                        <ul>
+                            <li>uncanny-cute things</li>
+                            <li>vintage necklaces</li>
+                            <li>super-bitter snacks</li>
+                        </ul>
+                    </div>
+                    <div class="note">
+                        <div class="note-label">on loop</div>
+                        <ul>
+                            <li>ACG soundtracks</li>
+                            <li>metal</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section-divider reveal"></div>
+
+                <!-- Disciplines index -->
+                <div class="index-block reveal reveal-delay">
+                    <span class="index-label">Disciplines</span>
+                    <ul class="index-list">
+                        <li>AI Product Design</li>
+                        <li>UI / UX Design</li>
+                        <li>Design Research</li>
+                        <li>Web Design</li>
+                        <li>Computational Design</li>
+                        <li>Data Visualization</li>
+                        <li>JavaScript</li>
+                        <li>Arduino</li>
+                        <li>3D</li>
+                    </ul>
+                </div>
+
+                <div class="about-cta reveal reveal-delay-2">
+                    <a href="GloriaZhu-resume-26summer.pdf" target="_blank" class="card-open">
+                        <span>Open Résumé</span>
+                        <svg class="icon-arrow" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
                 </div>
+
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
+    </main>
+
+    <!-- Footer — homepage style -->
     <footer>
-        <div class="footer-content">
-            <a href="index.html" class="footer-logo">Gloria Zhu</a>
-            <ul class="footer-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
+        <div class="footer-inner-about">
+            <div class="footer-left-about">© 2026 Gloria Zhu</div>
+            <div class="footer-right-about">
+                <span class="blink-dot"></span> System Online
+            </div>
         </div>
-        <p class="copyright">© 2026 Gloria Zhu. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript -->
     <script src="script.js"></script>
+    <script>
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window) {
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+                });
+            }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+            reveals.forEach(el => obs.observe(el));
+        } else {
+            reveals.forEach(el => el.classList.add('visible'));
+        }
+
+        // Companion mote — one soft attention dot that followed you here.
+        // Loosely wanders; drifts toward the cursor when it's near. No swarm, no WebGL.
+        (function () {
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const touch = window.matchMedia('(hover: none)').matches;
+            if (reduce || touch) return;
+
+            const cv = document.createElement('canvas');
+            cv.className = 'about-mote';
+            document.body.appendChild(cv);
+            const ctx = cv.getContext('2d');
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            let W = 0, H = 0;
+
+            function resize() {
+                W = window.innerWidth; H = window.innerHeight;
+                cv.width = W * dpr; cv.height = H * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            let x = W * 0.72, y = H * 0.38, vx = 0, vy = 0;
+            let tx = x, ty = y, nextRetarget = 0;
+            const mouse = { x: -999, y: -999, active: false };
+
+            window.addEventListener('mousemove', e => {
+                mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true;
+            });
+            window.addEventListener('mouseleave', () => { mouse.active = false; });
+
+            function frame(t) {
+                // pick a new lazy wander target every few seconds
+                if (t > nextRetarget) {
+                    tx = W * (0.15 + Math.random() * 0.7);
+                    ty = H * (0.2 + Math.random() * 0.55);
+                    nextRetarget = t + 2600 + Math.random() * 2600;
+                }
+                // goal is the wander target, but curiosity pulls it toward a nearby cursor
+                let gx = tx, gy = ty;
+                if (mouse.active) {
+                    const dx = mouse.x - x, dy = mouse.y - y;
+                    const d = Math.hypot(dx, dy);
+                    if (d < 240) {
+                        gx = mouse.x - dx * 0.18;
+                        gy = mouse.y - dy * 0.18;
+                    }
+                }
+                // underwater spring
+                vx += (gx - x) * 0.0016; vy += (gy - y) * 0.0016;
+                vx *= 0.94; vy *= 0.94;
+                x += vx; y += vy;
+
+                ctx.clearRect(0, 0, W, H);
+                // soft halo
+                const halo = ctx.createRadialGradient(x, y, 0, x, y, 15);
+                halo.addColorStop(0, 'rgba(112, 117, 255, 0.28)');
+                halo.addColorStop(1, 'rgba(112, 117, 255, 0)');
+                ctx.fillStyle = halo;
+                ctx.beginPath(); ctx.arc(x, y, 15, 0, Math.PI * 2); ctx.fill();
+                // bright core
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                ctx.beginPath(); ctx.arc(x, y, 2, 0, Math.PI * 2); ctx.fill();
+
+                requestAnimationFrame(frame);
+            }
+            requestAnimationFrame(frame);
+        })();
+    </script>
 </body>
 </html>

@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maya 3D Projects | Gloria Zhu</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../project-style.css">
+    <meta name="description" content="Maya 3D — computer graphics works featuring 3D modeling, rendering, and animation built in Autodesk Maya.">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../project-theme.css">
 </head>
 <body>
     <!-- Custom Cursor -->
@@ -14,151 +14,183 @@
 
     <!-- Header -->
     <header>
-        <a href="../index.html" class="logo">GZ</a>
+        <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../about.html">About</a></li>
-                <li><a href="../index.html#projects" class="active">Projects</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#research">Research</a></li>
             </ul>
         </nav>
         <div class="hamburger">
             <span class="bar"></span>
             <span class="bar"></span>
-            <span class="bar"></span>
         </div>
     </header>
 
-    <!-- Clean Back Link with direct jump to projects section -->
-    <a href="../index.html#projects" class="back-arrow">
-        Back
-    </a>
-
-    <!-- Project Hero with back arrow -->
-    <section class="project-hero">
-        <div class="project-hero-content">
-            <div class="project-title-area">
-                <span class="project-category">3D Modeling and Animation</span>
-                <h1 class="project-title">Maya 3D Projects</h1>
-                <span class="project-year">2024-2025</span>
+    <main>
+        <div class="container">
+            <!-- Back Navigation -->
+            <div class="nav-wrapper">
+                <a href="../index.html#art" class="back-link">
+                    <svg class="icon-arrow" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>Back</span>
+                </a>
             </div>
-            <div class="project-intro">
-                <p style="font-size: 1rem; line-height: 1.5;">This page demonstrates my Computer Graphics works that features 3D modeling, rendering, and animation built in Autodesk Maya.</p>
-            </div>
-        </div>
-        <div class="project-cover">
-            <img src="../image/maya-aquapus.jpg" alt="Maya 3D Projects">
-        </div>
-    </section>
 
-    <!-- Project Content -->
-    <section class="project-content">
-        <div class="project-section">
-            <h2>Aquapus: Original Character</h2>
-            
-            <div class="two-column" style="margin-top: 20px; display: flex; align-items: flex-start; gap: 30px;">
-                <div class="left-half" style="flex: 2;">
-                    <img src="../image/maya-aquapus1.jpg" alt="Aquapus Character Front View" class="project-image-full">
-                    <h3 style="text-align: center; margin-top: -30px;">Aquapus Character - Front View</h3>
-                </div>
-                <div class="right-half" style="flex: 1; padding-top: 40px;">
-                    <p>Aquapus is an originally designed character--an agendered humanoid that lives 6000 meters undersea. All the texture are self made in Substance 3D Painter.</p>
-                    
-                    <div style="margin-top: 20px;">
-                        <span id="storyToggle" style="color: var(--accent-color); text-decoration: underline; cursor: pointer; font-weight: 500; transition: color 0.3s ease;" 
-                              onclick="toggleStory()">
-                            More about background story
-                        </span>
-                        <div id="storyContent" style="max-height: 0; overflow: hidden; margin-top: 15px; padding: 0 15px; background-color: var(--secondary-color); border-radius: 8px; text-align: left; line-height: 1.6; font-size: 0.9rem; transition: all 0.4s ease;">
-                            <div style="padding: 15px 0;">
-                                <p>Instead of hands and feet, Aquapus has eight octopus arms and several jellyfish tentacles to support its movement. It can survive out of the water, but without feet, it cannot leave the sea. It moves quite slowly—probably takes a month to swim to the sea surface.</p>
-                                <p style="margin-top: 15px;">Aquapus is friendly, in some sense. But it sometimes wakes up to realize it ruined several ships, which bothers it a lot.</p>
-                            </div>
-                        </div>
+            <!-- Project Hero -->
+            <section class="project-hero">
+                <div class="hero-content">
+                    <div class="card-file-line">
+                        <span class="cf-no">№ 03</span>
+                        <span class="cf-sep">—</span>
+                        <span class="cf-cat">3D Modeling & Animation</span>
+                        <span class="cf-sep">—</span>
+                        <span class="cf-year">2024–2025</span>
+                    </div>
+                    <div class="card-rule"></div>
+
+                    <h1 class="project-title">Maya 3D Projects</h1>
+
+                    <div class="project-intro">
+                        <p class="lede">Computer graphics works featuring 3D modeling, rendering, and animation built in Autodesk Maya.</p>
                     </div>
                 </div>
-            </div>
-            
-            <div class="image-with-caption" style="margin-top: 20px;">
-                <img src="../image/maya-aquapus2.jpg" alt="Aquapus Character Detail 2" class="project-image-full">
-                <h3 style="text-align: center; margin-top: -30px;">Aquapus Character - Detail View </h3>
-            </div>
 
-            <div class="image-with-caption">
-                <img src="../image/maya-aquapus.jpg" alt="Aquapus Character" class="project-image-full">
-                <h3 style="text-align: center; margin-top: -30px;">Aquapus Character - Scene</h3>
-            </div>
-        </div>
-
-        <div class="project-section" style="margin-top: 40px;">
-            <h2>The Nautilus</h2>
-            <div class="image-with-caption">
-                <img src="../image/maya-nau1.jpg" alt="The Nautilus 3D Model" class="project-image-full">
-                <h3 style="text-align: center; margin-top: -25px;">The Nautilus Model - Rendered</h3>
-            </div>
-            
-            <div class="two-column" style="margin-top: 20px; display: flex; align-items: flex-start; gap: 30px;">
-                <div class="left-half" style="flex: 2;">
-                    <img src="../image/maya-nau2.gif" alt="The Nautilus Animation" class="project-image-full">
-                    <h3 style="text-align: center; margin-top: -30px;">Animated Version</h3>
+                <div class="hero-media">
+                    <div class="media-frame">
+                        <img src="../image/maya-aquapus.webp" alt="Maya 3D Projects">
+                    </div>
                 </div>
-                <div class="right-half" style="flex: 1.5; padding-top: 40px;">
-                    <p>This animation demonstrates the fluid movement of the nautilus-inspired design, with each head-tentacles rigged. The animation highlights both the exterior design details and the mechanical functionality of the model.</p>
-                </div>
+            </section>
+
+            <!-- Main Content Area -->
+            <div class="project-body">
+
+                <!-- Aquapus -->
+                <section class="project-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Aquapus: Original Character</h2>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="section-text-block">
+                        <p class="section-text">Aquapus is an originally designed character — an agendered humanoid that lives 6000 meters undersea. All the textures are self-made in Substance 3D Painter.</p>
+                        <p class="section-text" style="margin-top: 1rem;">
+                            <span id="storyToggle" style="color: var(--accent-primary); text-decoration: underline; cursor: pointer;" onclick="toggleStory()">More about background story</span>
+                        </p>
+                        <div id="storyContent" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease;">
+                            <p class="section-text" style="padding-top: 1rem;">Instead of hands and feet, Aquapus has eight octopus arms and several jellyfish tentacles to support its movement. It can survive out of the water, but without feet, it cannot leave the sea. It moves quite slowly—probably takes a month to swim to the sea surface.</p>
+                            <p class="section-text" style="padding-top: 0.75rem;">Aquapus is friendly, in some sense. But it sometimes wakes up to realize it ruined several ships, which bothers it a lot.</p>
+                        </div>
+                    </div>
+
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/maya-aquapus1.webp" alt="Aquapus Character - Front View" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/maya-aquapus2.webp" alt="Aquapus Character - Detail View" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/maya-aquapus.webp" alt="Aquapus Character - Scene" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Nautilus -->
+                <section class="project-section">
+                    <div class="section-header">
+                        <h2 class="section-title">The Nautilus</h2>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="section-text-block">
+                        <p class="section-text">This animation demonstrates the fluid movement of the nautilus-inspired design, with each head-tentacle rigged. It highlights both the exterior design details and the mechanical functionality of the model.</p>
+                    </div>
+
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/maya-nau1.webp" alt="The Nautilus Model - Rendered" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/maya-nau2.webp" alt="The Nautilus - Animated" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Undersea Scene -->
+                <section class="project-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Undersea Scene</h2>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/maya-cover.webp" alt="Undersea Scene" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- House Project -->
+                <section class="project-section">
+                    <div class="section-header">
+                        <h2 class="section-title">House Project</h2>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/maya-house1.webp" alt="Indoor - Living Room" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/maya-house2.webp" alt="Outdoor & Balcony" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <div class="media-stack">
+                        <div class="media-frame">
+                            <img src="../image/maya-house3.webp" alt="Indoor - Bedroom" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                </section>
+
             </div>
+
+            <!-- Next Project Navigation -->
+            <nav class="next-project-nav">
+                <a href="../installation/vital.html" class="next-project-card">
+                    <div class="next-content-wrapper">
+                        <div class="next-label">Next Piece</div>
+                        <h3 class="next-title">Vital</h3>
+                        <div class="next-meta">Interactive Installation · 2021</div>
+                    </div>
+                    <div class="next-cta">
+                        <svg class="icon-arrow" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                </a>
+            </nav>
         </div>
-
-        <div class="project-section" style="margin-top: 40px;">
-            <h2>Undersea Scene</h2>
-            <div class="image-with-caption">
-                <img src="../image/maya-cover.jpg" alt="Undersea Scene" class="project-image-full">
-            </div>
-        </div>
-
-
-
-        <div class="project-section" style="margin-top: 40px;">
-            <h2>House Project</h2>
-            
-            <div class="image-with-caption">
-                <img src="../image/maya-house1.jpg" alt="Indoor Living Room" class="project-image-full">
-                <h3 style="text-align: center; margin-top: -30px;">Indoor - Living Room</h3>
-            </div>
-            
-            <div class="image-with-caption" style="margin-top: 20px;">
-                <img src="../image/maya-house2.jpg" alt="Outdoor and Balcony" class="project-image-full">
-                <h3 style="text-align: center; margin-top: -30px;">Outdoor & Balcony</h3>
-            </div>
-            
-            <div class="image-with-caption" style="margin-top: 20px;">
-                <img src="../image/maya-house3.jpg" alt="Indoor Bedroom" class="project-image-full">
-                <h3 style="text-align: center; margin-top: -30px;">Indoor - Bedroom</h3>
-            </div>
-        </div>
-
-        <!-- Next Project Navigation -->
-        <div class="project-navigation">
-            <a href="survivorsimulator.html" class="next-project">
-                <span>Next Project</span>
-                <h3>Survivor Simulator</h3>
-                <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="footer-inner">
             <a href="../index.html" class="footer-logo">Gloria Zhu</a>
-            <ul class="footer-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About</a></li>
-                <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
-            </ul>
+            <div class="footer-status">
+                <span class="blink-dot"></span> System Online
+            </div>
+            <p class="copyright">© 2026 Gloria Zhu</p>
         </div>
-        <p class="copyright">© 2024 Gloria Zhu. All rights reserved.</p>
     </footer>
 
     <!-- JavaScript -->
@@ -167,7 +199,6 @@
         function toggleStory() {
             const content = document.getElementById('storyContent');
             const toggle = document.getElementById('storyToggle');
-            
             if (content.style.maxHeight === '0px' || content.style.maxHeight === '') {
                 content.style.maxHeight = content.scrollHeight + 'px';
                 toggle.textContent = 'Hide background story';
