@@ -1,0 +1,463 @@
+/* ============================================================
+   RESEARCH RECORD — "Specimen-led Field Note"
+   Page-scoped stylesheet for research/inferring-an-elephant.html
+   Loaded AFTER project-theme.css (fonts, header, footer, nav, cursor
+   are inherited from there). Everything here is scoped under
+   .research-record / .record so it cannot leak into Project pages.
+   ============================================================ */
+
+.research-record {
+    /* Local record tokens (warm Field Notes surface) */
+    --canvas: #F4F1E9;      /* warm field-notes background */
+    --paper:  #FDFCF8;      /* the continuous record sheet */
+    --rule:      rgba(15, 23, 42, 0.12);
+    --rule-soft: rgba(15, 23, 42, 0.08);
+    --ink:   #1A2233;
+    --muted: #4E5A67;       /* darkened for caption/label legibility */
+    --faint: #6C7683;       /* darkened for provenance / colophon labels */
+    --mark:  #7075FF;       /* restrained periwinkle: index, links, focus */
+    background: var(--canvas);
+    color: var(--ink);
+}
+
+/* --- Canvas + continuous sheet --------------------------------- */
+.research-record main { padding-top: 128px; padding-bottom: 4rem; }
+
+/* Sticky header: solid warm-white on this route (no image-smearing blur) */
+.research-record header {
+    background: #F5F2EA;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid var(--rule-soft);
+}
+
+/* Custom cursor: keep a small quiet dot; never a filled disc over artifacts */
+.research-record .cursor {
+    mix-blend-mode: normal;
+    background: var(--mark);
+    width: 10px; height: 10px;
+    opacity: 0.55;
+}
+.research-record .cursor.is-big {   /* neutralise any expanded state */
+    width: 10px; height: 10px;
+    background: var(--mark);
+    mix-blend-mode: normal;
+}
+
+.record-canvas {
+    width: 92%;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.record {
+    width: 92%;
+    max-width: 1240px;
+    margin: 1.5rem auto 0;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: clamp(1.75rem, 4.5vw, 4.5rem);
+}
+
+/* Back link sits on the warm canvas, above the sheet */
+.research-record .back-link { color: var(--muted); }
+.research-record .back-link:hover { color: var(--mark); }
+
+/* Full/partial hairline dividers between plates */
+.rule {
+    border: 0;
+    border-top: 1px solid var(--rule-soft);
+    margin: 0;
+}
+
+/* Shared plate rhythm */
+.plate { padding: clamp(3rem, 6.5vw, 7rem) 0; }
+.plate:last-of-type { padding-bottom: clamp(2rem, 4vw, 3.5rem); }
+
+.plate-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.4rem;
+}
+.plate-label::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--mark);
+    border-radius: 1px;
+    flex-shrink: 0;
+}
+
+.plate-lead {
+    font-family: var(--font-ui);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink);
+    max-width: 64ch;
+}
+.plate-lead + .plate-lead { margin-top: 1rem; }
+
+.record figure { margin: 0; }
+.record img { display: block; width: 100%; height: auto; border-radius: 2px; }
+
+figcaption, .cap {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    color: var(--muted);
+    margin-top: 0.6rem;
+}
+
+/* --- COVER ------------------------------------------------------ */
+.cover { padding-bottom: clamp(2.5rem, 5vw, 5rem); }
+
+.cover-index {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 1.4rem;
+    margin-bottom: clamp(1.75rem, 3.5vw, 3rem);
+    border-bottom: 1px solid var(--rule-soft);
+}
+.cover-index .cov-no { color: var(--mark); }
+
+.cover-grid {
+    display: grid;
+    grid-template-columns: 5fr 5.4fr;   /* image ~11% smaller; text a touch wider */
+    gap: clamp(1.75rem, 4vw, 4rem);
+    align-items: center;
+}
+/* Let both tracks shrink to the paper rail. Without this the nowrap title
+   sets a min-content floor that widens the grid and pushes the cover image
+   past the sheet edge on narrow screens. The title itself is untouched. */
+.cover-body,
+.cover-figure { min-width: 0; }
+
+.cover-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(44px, 5vw, 70px);
+    line-height: 1.0;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0 0 1.4rem;
+}
+.cover-title .ttl2 { white-space: nowrap; }   /* keep "an Elephant" on one line */
+
+.cover-desc {
+    font-family: var(--font-ui);
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink);
+    max-width: 42ch;
+    margin-bottom: 1.8rem;
+}
+
+.cover-line {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    line-height: 1.7;
+    color: var(--muted);
+}
+.cover-line .cov-role { text-transform: uppercase; letter-spacing: 0.1em; }
+.cover-status { margin-top: 0.5rem; color: var(--ink); }
+.cover-status .dot { color: var(--mark); }
+
+.cover-actions {
+    display: flex;
+    gap: 1.6rem;
+    margin-top: 1.8rem;
+}
+.cover-actions a {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.25rem;
+    transition: color 0.25s ease, border-color 0.25s ease;
+}
+.cover-actions a:hover { color: var(--mark); border-color: var(--mark); }
+
+/* Paper / Repository before release: same slot and rhythm as the links,
+   but inert — dashed rule and a status tag instead of an arrow. */
+.cover-actions .pending {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+    border-bottom: 1px dashed var(--rule);
+    padding-bottom: 0.25rem;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    cursor: default;
+}
+.cover-actions .pending .tag {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--mark);
+}
+
+/* Full-frame cover at its natural 1600:1001 — capped, never cropped. */
+.cover-figure {
+    max-width: 520px;          /* ≈520 × 325 at desktop */
+    justify-self: end;
+}
+.cover-figure img { border: 1px solid var(--rule-soft); }
+
+/* --- PLATE 01 — PARTIAL SIGHT ---------------------------------- */
+.frag-row {
+    display: flex;
+    gap: clamp(1.25rem, 3vw, 2.75rem);
+    align-items: flex-end;   /* share a baseline, unequal heights */
+    margin: 2.5rem 0 1.5rem;
+    flex-wrap: wrap;
+}
+/* Three source frames at a near-even 30/25/30 relationship, each held to a
+   fixed maximum so no single fragment reads as the subject of the plate. */
+.frag { min-width: 0; }
+.frag.trunk   { flex: 0 1 30%; max-width: 240px; }
+.frag.eye     { flex: 0 1 25%; max-width: 208px; }
+.frag.tailfur { flex: 0 1 30%; max-width: 240px; }
+.frag img {
+    filter: grayscale(1) contrast(1.03);
+    border: 1px solid var(--rule-soft);
+}
+.frag figcaption strong { color: var(--ink); font-weight: 600; font-family: var(--font-mono); }
+.frag .assoc { color: var(--muted); }
+
+.evidence-note {
+    font-family: var(--font-ui);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 60ch;
+    padding-left: 1rem;
+    border-left: 1px solid var(--rule);
+}
+
+/* --- PLATE 02 — THE INSTRUMENT --------------------------------- */
+.instrument {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;                 /* joined contact strip on desktop */
+    margin: 2.25rem 0 1.25rem;
+}
+.movement figure { position: relative; }
+.movement img { border: 1px solid var(--rule-soft); }
+.movement .mv {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.55rem;
+    display: flex; align-items: baseline; gap: 0.5rem;
+}
+.movement .mv .n { color: var(--mark); }
+
+.system-line {
+    font-family: var(--font-ui);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink);
+    max-width: 64ch;
+    margin-top: 1.75rem;
+}
+.instrument-cap {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    margin-top: 0.9rem;
+}
+
+/* --- PLATE 03 — COLLECTED SPECIMENS ---------------------------- */
+
+/* Archive context first: the pilot table, then the isolated outputs. */
+.archive-context {
+    display: grid;
+    grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
+    gap: clamp(1.75rem, 4vw, 3.5rem);
+    align-items: center;
+    margin: 2.5rem 0 clamp(2.5rem, 5vw, 4rem);
+}
+.pilot-figure { min-width: 0; }
+.pilot-figure img { border: 1px solid var(--rule-soft); }
+
+/* Four isolated specimens, deliberately sized — a quiet 2×2 sheet that
+   sits well under the pilot and well under the Plate 02 contact strip. */
+.specimen-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, clamp(240px, 27vw, 330px)));
+    gap: clamp(1.75rem, 3.5vw, 3.25rem) clamp(1.5rem, 3vw, 3rem);
+    align-items: start;
+    justify-content: start;
+    margin: 0;
+}
+.specimen { min-width: 0; }
+
+/* Archival mount: white card, internal negative space, image never cropped */
+.specimen .mount {
+    background: #fff;
+    border: 1px solid var(--rule-soft);
+    border-radius: 2px;
+    padding: clamp(0.9rem, 1.8vw, 1.4rem);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.specimen .mount img {
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border: 0;
+    border-radius: 0;
+}
+
+.provenance {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    margin-top: 0.7rem;
+}
+.provenance .frag-tag { color: var(--ink); text-transform: uppercase; letter-spacing: 0.1em; }
+.provenance .k { color: var(--faint); }
+
+.observations { display: grid; gap: 1.5rem; }
+.obs {
+    font-family: var(--font-ui);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+    padding-left: 1rem;
+    border-left: 1px solid var(--rule);
+}
+.obs b { color: var(--ink); font-weight: 600; }
+
+/* --- COLOPHON — shallow ledger --------------------------------- */
+.colophon { padding-top: clamp(2rem, 4vw, 3rem); }
+.colophon-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 1.4rem;
+}
+.ledger { display: grid; gap: 0; max-width: 760px; margin: 0; }
+.ledger div {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 1.25rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--rule-soft);
+    font-size: 14px;
+}
+.ledger dt {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--faint);
+}
+.ledger dd {
+    margin: 0;
+    font-family: var(--font-ui);
+    color: var(--muted);
+}
+.ledger dd .me { color: var(--ink); font-weight: 600; }
+.ledger dd a { color: var(--mark); border-bottom: 1px solid transparent; }
+.ledger dd a:hover { border-bottom-color: var(--mark); }
+
+.record-return {
+    margin-top: clamp(2rem, 4vw, 3rem);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule-soft);
+}
+.record-return a {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.record-return a:hover { color: var(--mark); }
+
+/* --- Restrained reveal (opacity + tiny travel) ----------------- */
+.research-record .rise {
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.32s ease, transform 0.32s ease;
+}
+.research-record .rise.in { opacity: 1; transform: none; }
+
+/* --- Focus visibility (all interactive elements) --------------- */
+.research-record a:focus-visible,
+.research-record .hamburger:focus-visible {
+    outline: 2px solid var(--mark);
+    outline-offset: 4px;
+    border-radius: 2px;
+}
+
+/* --- RESPONSIVE ------------------------------------------------- */
+@media (max-width: 900px) {
+    /* Title and body read first; the cover frame follows. */
+    .cover-grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+    .cover-figure { justify-self: start; }
+    .cover-desc { max-width: none; }
+
+    /* Pilot over observations, both on the full inner rail */
+    .archive-context { grid-template-columns: minmax(0, 1fr); align-items: start; }
+}
+
+@media (max-width: 720px) {
+    .research-record main { padding-top: 108px; }
+    .record { width: 94%; padding: 1.5rem 1.25rem 2rem; }
+    .record-canvas { width: 94%; }
+
+    /* fragments stack as three centred, individually capped artifacts */
+    .frag-row { display: block; }
+    /* `.record figure` also sets margin, so match its specificity to win */
+    .frag-row .frag { width: auto; margin: 0 auto 1.75rem; }
+    .frag-row .frag:last-child { margin-bottom: 0; }
+    .frag.trunk, .frag.tailfur { max-width: 230px; }
+    .frag.eye { max-width: 192px; }
+
+    /* instrument keeps its grouping as a 2×2 contact sheet */
+    .instrument { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+
+    /* pilot fills the inner rail; specimens stay small, centred mounts */
+    .specimen-grid {
+        grid-template-columns: repeat(auto-fit, minmax(0, 235px));
+        justify-content: center;
+    }
+
+    .ledger div { grid-template-columns: 1fr; gap: 0.2rem; }
+    .cover-actions { flex-wrap: wrap; }
+}
+
+/* --- Reduced motion -------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .research-record .rise { transition: none; opacity: 1; transform: none; }
+}

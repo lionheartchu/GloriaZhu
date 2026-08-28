@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inferring an Elephant — Field Note | Gloria Zhu</title>
+    <meta name="description" content="A field note on Inferring an Elephant: a tangible human–AI interface that turns competing interpretations of a partial image into a printed hybrid specimen. Accepted demo, ACM UIST 2026. By Gloria Zhu (published as Zimu Zhu).">
+    <link rel="canonical" href="https://lionheartchu.github.io/GloriaZhu/research/inferring-an-elephant.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Inferring an Elephant — a tangible human–AI interface">
+    <meta property="og:description" content="Competing interpretations of a partial image, turned into a printed hybrid specimen. Accepted demo, ACM UIST 2026.">
+    <meta property="og:url" content="https://lionheartchu.github.io/GloriaZhu/research/inferring-an-elephant.html">
+    <meta property="og:image" content="https://lionheartchu.github.io/GloriaZhu/image/inferring-elephant/og.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Inferring an Elephant — a tangible human–AI interface">
+    <meta name="twitter:description" content="Competing interpretations of a partial image, turned into a printed hybrid specimen. Accepted demo, ACM UIST 2026.">
+    <meta name="twitter:image" content="https://lionheartchu.github.io/GloriaZhu/image/inferring-elephant/og.webp">
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Shared system (fonts, header, footer, nav, cursor) -->
+    <link rel="stylesheet" href="../project-theme.css">
+    <!-- Page-scoped Field Notes record -->
+    <link rel="stylesheet" href="../research-theme.css">
+</head>
+<body class="research-record">
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Header -->
+    <header>
+        <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#research" class="active">Research</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger" role="button" tabindex="0" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header>
+
+    <main>
+        <!-- Back navigation on the warm canvas -->
+        <div class="record-canvas">
+            <div class="nav-wrapper">
+                <a href="../index.html#research" class="back-link">
+                    <svg class="icon-arrow" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>Back to Field Notes</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- One continuous record sheet -->
+        <article class="record">
+
+            <!-- ═══ RECORD COVER ═══ -->
+            <section class="cover rise">
+                <div class="cover-index">
+                    <span class="cov-no">№ 001</span> · 2025–2026 · Human–AI Interaction Research
+                </div>
+                <div class="cover-grid">
+                    <div class="cover-body">
+                        <h1 class="cover-title">Inferring<br><span class="ttl2">an Elephant</span></h1>
+                        <p class="cover-desc">A tangible human–AI interface that turns competing interpretations of a partial image into a printed hybrid specimen.</p>
+                        <p class="cover-line">
+                            <span class="cov-role">Interaction design · Physical prototyping · Research &amp; writing</span><br>
+                            <span class="cover-status"><span class="dot">▪</span> Accepted Demo · ACM UIST 2026</span>
+                        </p>
+                        <!-- Not yet public: stated as status, not linked -->
+                        <div class="cover-actions">
+                            <span class="pending">Paper <span class="tag">Upcoming</span></span>
+                            <span class="pending">Repository <span class="tag">Upcoming</span></span>
+                        </div>
+                    </div>
+                    <figure class="cover-figure">
+                        <img src="../image/elephant-cover.webp" width="1600" height="1001" fetchpriority="high" decoding="async" alt="The gray felt-covered device on a white surface: two metal knobs, a white rotary dial, a small OLED screen, and a printed elephant on thermal paper emerging from a slot, with black-and-white elephant fragment cards scattered around and a hand holding one card.">
+                    </figure>
+                </div>
+            </section>
+
+            <hr class="rule">
+
+            <!-- ═══ PLATE 01 — PARTIAL SIGHT ═══ -->
+            <section class="plate rise">
+                <div class="plate-label">Plate 01 · Partial Sight</div>
+                <p class="plate-lead">The piece began with a fragment. We showed a single part of an elephant to an animal-recognition model and to people, and compared what each inferred. Neither sees the whole animal; both extrapolate confidently from a sliver. Where the model’s guesses and a person’s rarely coincide, a gap opens — and that gap, not the correct answer, is where the interaction lives.</p>
+
+                <div class="frag-row">
+                    <figure class="frag trunk">
+                        <img src="../image/inferring-elephant/frag-trunk.webp" width="427" height="596" loading="lazy" decoding="async" alt="Photograph of an elephant's curled trunk with a tusk above it.">
+                        <figcaption><strong>Trunk</strong><span class="assoc"> — read as elephant, then Turkey · Black Vulture · Emu</span></figcaption>
+                    </figure>
+                    <figure class="frag eye">
+                        <img src="../image/inferring-elephant/frag-eye.webp" width="608" height="848" loading="lazy" decoding="async" alt="Close-up photograph of an elephant's eye with an amber iris set in wrinkled gray skin.">
+                        <figcaption><strong>Eye</strong><span class="assoc"> — Mirounga · Cutlassfish · Pug</span></figcaption>
+                    </figure>
+                    <figure class="frag tailfur">
+                        <img src="../image/inferring-elephant/frag-tailfur.webp" width="640" height="894" loading="lazy" decoding="async" alt="Photograph of the coarse black hair at the end of an elephant's tail against dry grass.">
+                        <figcaption><strong>Tail fur</strong><span class="assoc"> — Rhea · Bustard · Porcupine</span></figcaption>
+                    </figure>
+                </div>
+
+                <p class="evidence-note">Across seven parts, about half of the people we asked still named the elephant; the rest saw everything from killer whale to peacock. The machine misreads too — but almost never along the same path. That mismatch, not the right answer, is the material the interface works with.</p>
+            </section>
+
+            <hr class="rule">
+
+            <!-- ═══ PLATE 02 — THE INSTRUMENT ═══ -->
+            <section class="plate rise">
+                <div class="plate-label">Plate 02 · The Instrument</div>
+                <p class="plate-lead">The whole exchange happens on one handheld device, in four movements.</p>
+
+                <div class="instrument">
+                    <div class="movement">
+                        <figure>
+                            <img src="../image/inferring-elephant/teaser-1.webp" width="760" height="506" loading="lazy" decoding="async" alt="A hand inserting an elephant-fragment card into the device's scanning slot.">
+                        </figure>
+                        <div class="mv"><span class="n">01</span> Perceive</div>
+                    </div>
+                    <div class="movement">
+                        <figure>
+                            <img src="../image/inferring-elephant/teaser-2.webp" width="760" height="507" loading="lazy" decoding="async" alt="A hand turning the device's rotary knob to choose from the species list shown on the small screen.">
+                        </figure>
+                        <div class="mv"><span class="n">02</span> Choose</div>
+                    </div>
+                    <div class="movement">
+                        <figure>
+                            <img src="../image/inferring-elephant/teaser-3.webp" width="760" height="507" loading="lazy" decoding="async" alt="A hand adjusting the device's slider to weight the two chosen species against each other.">
+                        </figure>
+                        <div class="mv"><span class="n">03</span> Weight</div>
+                    </div>
+                    <div class="movement">
+                        <figure>
+                            <img src="../image/inferring-elephant/teaser-4.webp" width="760" height="506" loading="lazy" decoding="async" alt="A hand pressing the device's button as a printed hybrid specimen emerges on thermal paper.">
+                        </figure>
+                        <div class="mv"><span class="n">04</span> Print</div>
+                    </div>
+                </div>
+
+                <p class="system-line">One device runs the whole loop. It reads the fragment, offers ten candidate species with the confidence scores hidden, and lets you keep two — an anchor you find plausible and a challenger that intrigues you — then weight one against the other. Computer vision, a language model, and image generation turn that choice into a creature, printed as a specimen.</p>
+                <p class="instrument-cap">Arduino-driven controls — NFC scan-in, rotary select, dominance slider, thermal print.</p>
+            </section>
+
+            <hr class="rule">
+
+            <!-- ═══ PLATE 03 — COLLECTED SPECIMENS ═══ -->
+            <section class="plate rise">
+                <div class="plate-label">Plate 03 · Collected Specimens</div>
+                <p class="plate-lead">Each print fuses two chosen species at the weight you set. Because the anchor, the challenger, and the balance are all yours, one fragment can resolve into very different creatures — a rhinoceros armored like a trilobite, a zebra surfacing from an elephant seal. None is correct; each is a record of a choice someone made.</p>
+
+                <!-- Archive context first: the pilot table the prints came off -->
+                <div class="archive-context">
+                    <figure class="pilot-figure">
+                        <img src="../image/inferring-elephant/pilot.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Overhead photograph of pilot artifacts: long thermal-paper strips printed with hybrid creatures and text, smaller printed hybrid cards, and scattered black-and-white elephant fragment cards, with part of the device at the lower left.">
+                        <figcaption class="cap">Specimens and thermal-paper strips collected during pilot sessions.</figcaption>
+                    </figure>
+                    <div class="observations">
+                        <p class="obs">Given ten readings, most people reached for the <b>surprising</b> one over the plausible one — and described the surprise as engaging, not frustrating.</p>
+                        <p class="obs">An earlier build showed confidence scores; they pulled attention to the top and bottom of the list, so we <b>removed them</b>.</p>
+                    </div>
+                </div>
+
+                <!-- Then the isolated outputs, each on its own archival mount -->
+                <div class="specimen-grid">
+                    <figure class="specimen sp-1">
+                        <div class="mount"><img src="../image/inferring-elephant/spec-back-trilobita-rhino.webp" width="680" height="566" loading="lazy" decoding="async" alt="Black-and-white engraving of a hybrid creature: a rhinoceros head and body armored with segmented, trilobite-like plates."></div>
+                        <figcaption class="provenance"><span class="frag-tag">Back</span> · <span class="k">anchor</span> Trilobita · <span class="k">challenger</span> Chinese Rhinocero · <span class="k">80:20</span></figcaption>
+                    </figure>
+                    <figure class="specimen sp-2">
+                        <div class="mount"><img src="../image/inferring-elephant/spec-back-mirounga-zebra.webp" width="680" height="617" loading="lazy" decoding="async" alt="Black-and-white engraving of a hybrid creature: a zebra-striped body carrying a heavy, seal-like head."></div>
+                        <figcaption class="provenance"><span class="frag-tag">Back</span> · <span class="k">anchor</span> Mirounga · <span class="k">challenger</span> Zebra · <span class="k">30:70</span></figcaption>
+                    </figure>
+                    <figure class="specimen sp-3">
+                        <div class="mount"><img src="../image/inferring-elephant/spec-eye-oarfish-elkhound.webp" width="680" height="601" loading="lazy" decoding="async" alt="Black-and-white engraving of a hybrid creature: a dog-like body with a spiny dorsal crest and a long, ribbon-like fish tail."></div>
+                        <figcaption class="provenance"><span class="frag-tag">Eye</span> · <span class="k">anchor</span> Giant Oarfish · <span class="k">challenger</span> Swedish Elkhound · <span class="k">60:40</span></figcaption>
+                    </figure>
+                    <figure class="specimen sp-4">
+                        <div class="mount"><img src="../image/inferring-elephant/spec-trunk-emu-walrus.webp" width="680" height="610" loading="lazy" decoding="async" alt="Black-and-white engraving of a hybrid creature: a bird-like standing body with a walrus head and tusks."></div>
+                        <figcaption class="provenance"><span class="frag-tag">Trunk</span> · <span class="k">anchor</span> Emu · <span class="k">challenger</span> Walrus · <span class="k">60:40</span></figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <hr class="rule">
+
+            <!-- ═══ COLOPHON ═══ -->
+            <footer class="colophon">
+                <div class="colophon-title">Colophon</div>
+                <dl class="ledger">
+                    <div><dt>Authors</dt><dd>Zixi Zhang, <span class="me">Gloria Zimu Zhu</span>, Lucius Ruoxuan Hu, and Sang-won Leigh · Cornell University</dd></div>
+                    <div><dt>Exhibition</dt><dd><a href="https://www.machinepoetics.org/2026/02/some-shapes-of-intelligence-in-physical.html" target="_blank" rel="noopener">(Some) Shapes of Intelligence in the Physical World</a> · Jill Stuart Gallery, Cornell</dd></div>
+                    <div><dt>DOI</dt><dd><a href="https://doi.org/10.1145/3830397.3842437" target="_blank" rel="noopener">10.1145/3830397.3842437</a> · forthcoming in the UIST ’26 Adjunct Proceedings</dd></div>
+                </dl>
+                <div class="record-return">
+                    <a href="../index.html#research">
+                        <svg class="icon-arrow" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Return to Field Notes
+                    </a>
+                </div>
+            </footer>
+
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <a href="../index.html" class="footer-logo">Gloria Zhu</a>
+            <div class="footer-status">
+                <span class="blink-dot"></span> System Online
+            </div>
+            <p class="copyright">© 2026 Gloria Zhu</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Hamburger menu (mouse + keyboard)
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks) navLinks.id = 'primary-nav';
+        function toggleMenu() {
+            const open = navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active', open);
+            hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+        hamburger.addEventListener('click', toggleMenu);
+        hamburger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
+        });
+
+        // Custom cursor (pointer devices only)
+        const cursor = document.querySelector('.cursor');
+        const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        if (finePointer && cursor) {
+            // Small dot follows the pointer; no expanded/filled state on this
+            // route so the cursor can never obscure an artifact or caption.
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+        }
+
+        // Restrained reveal (respects reduced motion; degrades to visible)
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const rises = document.querySelectorAll('.rise');
+        if (reduce || !('IntersectionObserver' in window)) {
+            rises.forEach(el => el.classList.add('in'));
+        } else {
+            const io = new IntersectionObserver((entries, obs) => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+            }, { threshold: 0.08 });
+            rises.forEach(el => io.observe(el));
+        }
+    </script>
+</body>
+</html>
