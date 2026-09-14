@@ -45,11 +45,19 @@
 /* Opening: the haze lifts off the field, then the type settles into it.
    Driven by animation (not a JS class) so the hero can never stay hidden. */
 @keyframes membrane-settle { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: none; } }
-.membrane-intro .membrane-role { animation: membrane-settle .9s cubic-bezier(.22,.7,.3,1) 1.9s both; }
-.membrane-intro .membrane-bottom { animation: membrane-settle .9s cubic-bezier(.22,.7,.3,1) 2.1s both; }
+/* The field itself stays dark under the haze, then comes up through it as the veil
+   lifts (JS lifts at 1.6s over .9s) — otherwise the veil is only a filter over a
+   hero that already arrived. The name is painted into the canvas, so it rises with it. */
+.membrane-intro .membrane-stage,
+.membrane-intro .membrane-name { animation: membrane-focus 1.25s ease 1.15s both; }
+@keyframes membrane-focus { from { opacity: 0; } to { opacity: 1; } }
+.membrane-intro .membrane-role { animation: membrane-settle .9s cubic-bezier(.22,.7,.3,1) 2.2s both; }
+.membrane-intro .membrane-bottom { animation: membrane-settle .9s cubic-bezier(.22,.7,.3,1) 2.4s both; }
 /* Return visit, deep link or reduced motion: the veil never plays, so neither does this. */
+.membrane-skip-intro .membrane-stage, .membrane-skip-intro .membrane-name,
 .membrane-skip-intro .membrane-role, .membrane-skip-intro .membrane-bottom { animation: none; }
 @media (prefers-reduced-motion: reduce) {
     .membrane-work svg { animation: none; }
+    .membrane-intro .membrane-stage, .membrane-intro .membrane-name,
     .membrane-intro .membrane-role, .membrane-intro .membrane-bottom { animation: none; }
 }
