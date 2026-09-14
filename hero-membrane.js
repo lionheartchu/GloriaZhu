@@ -53,7 +53,10 @@
             vec2 uv=vec2(v_uv.x,1.-v_uv.y);vec2 p=uv*vec2(1.,u_size.y/u_design);
             vec3 color=atmosphere(p,u_time);
             float type=texture2D(u_text,uv).a;
-            vec3 ink=mix(vec3(.44,.42,.98),vec3(.56,.68,1.),smoothstep(.2,.65,p.y)*.60+p.x*.62);
+            // Gradient is normalised to the title's own span (p.x ~.05-.45), not the viewport,
+            // or it only samples its first quarter and reads as one flat colour.
+            float lift=clamp((p.x-.05)/.45*.95+smoothstep(.2,.65,p.y)*.22,0.,1.);
+            vec3 ink=mix(vec3(.40,.38,.97),vec3(.62,.73,1.),lift);
             float glow=exp(-dot(uv*u_size-u_titleLight,uv*u_size-u_titleLight)/2600.)*u_titleHover;
             ink=mix(ink,vec3(.69,.77,1.),glow*.48);
             gl_FragColor=vec4(mix(color,ink,type),type);
