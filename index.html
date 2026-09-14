@@ -17,127 +17,43 @@
     <link rel="preload" href="Space_Mono/SpaceMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
     
     <!-- Local fonts are loaded via CSS @font-face, no need for external font links -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=20260913-brand2">
+    <link rel="stylesheet" href="hero-membrane.css?v=20260913-full-height">
+    <link rel="stylesheet" href="cursor.css?v=20260911c">
+    <script src="cursor.js?v=20260913-brand2" defer></script>
 </head>
-<body>
-    <!-- Full Screen Dynamic Aurora (Enhanced: "The Self") -->
-    <div class="aurora-container">
-        <div class="aurora-layer aurora-1"></div>
-        <div class="aurora-layer aurora-2"></div>
-        <div class="aurora-layer aurora-3"></div>
-        <div class="aurora-layer aurora-4"></div>
-        <!-- aurora-5 removed for GPU performance -->
-    </div>
-
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-
-    <!-- Header -->
-    <header>
-        <a href="#" class="logo">GZ<span class="logo-dot">.</span></a>
-        <nav>
-            <ul class="nav-links">
+<body class="membrane-home field-active">
+    <a class="membrane-skip" href="#projects">Skip to selected work</a>
+    <header class="in-hero visible">
+        <a href="#welcome" class="logo" aria-label="Gloria Zhu home">GZ<span class="logo-dot">.</span></a>
+        <nav aria-label="Main navigation">
+            <ul class="nav-links" id="main-navigation">
                 <li><a href="#welcome">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#research">Research</a></li>
             </ul>
         </nav>
-        <div class="hamburger">
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
+        <button class="hamburger" type="button" aria-label="Toggle navigation" aria-controls="main-navigation" aria-expanded="false"><span class="bar"></span><span class="bar"></span></button>
     </header>
-
-    <!-- Welcome Section -->
-    <section id="welcome">
-        
-        <!-- PROTOCOL RINGS: Visual Protagonist System -->
-        <!-- Layered groups for Parallax Depth -->
-        <div class="hero-rings-container">
-            
-            <!-- Group 1: Background Elements (Slower Parallax) -->
-            <div class="ring-group ring-group-secondary">
-                <div class="geo-ring ring-outer-field"></div>
-                <div class="geo-ring ring-dashed-orbit is-dashed"></div>
-            </div>
-
-            <!-- Group 2: Foreground Scanner (Faster Parallax, Stronger Presence) -->
-            <div class="ring-group ring-group-primary">
-                <div class="geo-ring ring-main-scanner"></div>
-                <div class="geo-ring ring-data-track is-dashed"></div>
-                <div class="geo-ring ring-inner-calibration"></div>
-                
-                <!-- Ring Arcs -->
-                <div class="ring-arc ring-arc-1"></div>
-                <div class="ring-arc ring-arc-2"></div>
-                
-                <!-- Explicit Lower Detail Elements -->
-                <div class="scanner-detail detail-arc-left"></div>
-                <div class="scanner-detail detail-arc-right"></div>
-                <div class="scanner-detail detail-ticks is-dashed"></div>
-            </div>
-
+    <section id="welcome" class="membrane-hero" aria-labelledby="membrane-name">
+        <div class="membrane-stage" aria-hidden="true"><canvas id="membrane-canvas" class="membrane-canvas"></canvas></div>
+        <h1 id="membrane-name" class="membrane-name"><span>GLORIA</span><span>ZHU</span></h1>
+        <p class="membrane-role">Interaction Designer<br>Creative Technologist</p>
+        <div class="membrane-bottom">
+            <span class="membrane-location">NEW YORK, NY</span>
+            <a class="membrane-work" href="#projects">Explore selected work
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
         </div>
-
-        <!-- Soft Air/Spotlight (Behind Rings) -->
-        <div class="hero-spotlight"></div>
-
-        <!-- LOADER: focus pull — a veil the field comes into focus through -->
-        <div class="loading-screen">
-            <span class="loader-line">adjusting to the light…</span>
-        </div>
-
-        <!-- Poster Composition: monumental cropped name, upper-left.
-             Letters are split so the attention field can pass across them. -->
-        <div class="name-wrapper">
-            <h1 class="brand-name" aria-label="GLORIA"><span class="bl" aria-hidden="true">G</span><span class="bl" aria-hidden="true">L</span><span class="bl" aria-hidden="true">O</span><span class="bl" aria-hidden="true">R</span><span class="bl" aria-hidden="true">I</span><span class="bl" aria-hidden="true">A</span></h1>
-            <h1 class="brand-name" aria-label="ZHU"><span class="bl" aria-hidden="true">Z</span><span class="bl" aria-hidden="true">H</span><span class="bl" aria-hidden="true">U</span></h1>
-        </div>
-
-        <!-- Role annotation, upper-right -->
-        <div class="title-container">
-            <span class="title-mark">+</span>
-            <div class="title-item">Interaction Designer</div>
-            <div class="title-item">Creative Technologist</div>
-        </div>
-
-        <!-- Metadata column + scroll cue -->
-        <div class="hero-footer">
-            <div class="poster-meta">
-                <div class="pm-row">
-                    <span class="pm-mark">+</span>
-                    <span class="pm-key">New York, NY</span>
-                    <span class="pm-rule"></span>
-                </div>
-                <div class="pm-row">
-                    <span class="pm-mark">+</span>
-                    <span class="pm-key">№ 001 — PORTFOLIO</span>
-                    <span class="pm-rule"></span>
-                </div>
-                <!-- <div class="pm-row">
-                    <span class="pm-mark">+</span>
-                    <span class="pm-key">LOCAL TIME</span>
-                    <span class="pm-val" id="hero-time">--:--:--</span>
-                </div> -->
-            </div>
-
-            <div class="hf-scroll">
-                <div class="scroll-label">SCROLL</div>
-                <div class="scroll-line"></div>
-            </div>
-        </div>
-        
-        <!-- Mist Transition -->
-        <div class="hero-transition-mist"></div>
+        <button class="membrane-pause" id="membrane-pause" type="button" aria-pressed="false">Pause motion</button>
     </section>
 
-    <!-- Whispers Bar -->
+    <!-- Original introduction and Whisper, restored before the work -->
     <div class="whispers">
         <span class="whisper">A gentle selection of recent projects</span>
     </div>
 
-    <!-- Intro Full-Bleed (Unchanged) -->
     <section id="intro-fb" class="intro-fb theme-dreamy" aria-label="About me teaser">
         <div class="fb-wrapper">
             <div class="fb-media-grid">
@@ -145,7 +61,7 @@
                 <div class="media-item item-2"><img src="image/inspo-2.webp" decoding="async" onerror="this.style.display='none'" alt=""></div>
                 <div class="media-item item-3"><img src="image/inspo-3.webp" decoding="async" onerror="this.style.display='none'" alt=""></div>
             </div>
-      
+
             <aside class="fb-panel">
                 <div class="fb-content">
                     <div class="deco-line"></div>
@@ -166,7 +82,7 @@
         </div>
     </section>
 
-    <!-- Work Section: one system, three modes -->
+    <!-- Work Section: Projects / Art -->
     <section id="projects" data-mode="projects">
         <div class="section-header">
             <div class="mode-heading">
@@ -369,7 +285,8 @@
             </div>
         </div>
 
-        <!-- MODE 03: RESEARCH / FIELD NOTES (reached via top nav only) -->
+
+        <!-- MODE 03: RESEARCH (opened by the main navigation) -->
         <div class="mode-panel" id="panel-research" hidden>
             <div class="research-log">
                 <!-- Opened dossier: № 001 -->
@@ -452,7 +369,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="hero-field.js"></script>
+    <script src="script.js?v=20260913-brand2"></script>
+    <script src="hero-membrane.js?v=20260913-brand2"></script>
 </body>
 </html>

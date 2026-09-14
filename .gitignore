@@ -3,3 +3,11 @@
 
 # Internal / dev-only planning (keep out of the public repo)
 redesign-roadmap.md
+
+# Local QA / review artifacts
+tools/evidence/
+tools/brand-review.html
+tools/hero-review.html
+design-qa.md
+LOCAL-PREVIEW.md
+tools/serve.py

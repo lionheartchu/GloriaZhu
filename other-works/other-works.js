@@ -5,22 +5,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ── 1. CUSTOM CURSOR — matches homepage behavior ──────
-    const cursor = document.querySelector('.cursor');
-    if (cursor) {
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top  = e.clientY + 'px';
-        });
-
-        const hoverTargets = document.querySelectorAll('a, .work-card, button, .hamburger');
-        hoverTargets.forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('is-big'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('is-big'));
-        });
-    }
-
-
     // ── 2. SCROLL REVEAL ──────────────────────────────────
     const reveals = document.querySelectorAll('.reveal');
 

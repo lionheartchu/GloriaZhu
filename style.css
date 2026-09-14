@@ -138,7 +138,7 @@ header {
     mix-blend-mode: normal; 
     background: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%);
 }
-header.visible { transform: translateY(0); }
+header.visible { transform: none; }
 
 .logo {
     font-family: var(--font-display); font-weight: 800; font-size: 1.1rem;
@@ -162,11 +162,11 @@ header.in-hero .nav-links a:hover { opacity: 1; }
     font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;
     color: var(--text-main); letter-spacing: 0.05em; text-decoration: none; 
     transition: color 0.3s; opacity: 0.7;
-    font-weight: 500;
+    font-weight: 400;
 }
 .nav-links a:hover { color: var(--accent-primary); opacity: 1; }
 .nav-links a.active { color: var(--accent-primary); opacity: 1; }
-.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
+.hamburger { padding: 8px; border: 0; background: none; display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
 .bar { width: 25px; height: 2px; background: var(--text-main); transition: 0.3s; }
 
 
@@ -522,7 +522,7 @@ body.field-active .hero-spotlight { display: none; }
 .fb-panel { padding-left: 2rem; }
 .deco-line { width: 60px; height: 2px; background: var(--accent-lilac); margin-bottom: 2rem; }
 .eyebrow { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem; letter-spacing: 0.1em; text-transform: uppercase; }
-.fb-title { font-family: var(--font-display); font-size: clamp(2rem, 3vw, 3rem); line-height: 1.1; margin-bottom: 2rem; color: var(--text-main); }
+.fb-title { font-family: var(--font-display); font-weight: 800; font-size: clamp(2rem, 3vw, 3rem); line-height: 1.1; margin-bottom: 2rem; color: var(--text-main); }
 .highlight-text { color: var(--accent-primary); position: relative; display: inline-block; }
 .fb-lede { font-family: var(--font-ui); font-size: 1.1rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 3rem; max-width: 90%; }
 .btn-cta { display: inline-flex; align-items: center; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--text-main); font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-main); transition: all 0.3s ease; text-decoration: none; }
@@ -541,7 +541,7 @@ body.field-active .hero-spotlight { display: none; }
 #projects[data-mode="art"] { background-color: #F0EAFA; }
 #projects[data-mode="research"] { background-color: #F4F1E9; }
 
-.section-title { font-family: var(--font-display); font-size: 3rem; text-transform: uppercase; color: var(--text-main); margin-bottom: 0; }
+.section-title { font-family: var(--font-display); font-weight: 800; font-size: 3rem; text-transform: uppercase; color: var(--text-main); margin-bottom: 0; }
 .section-header {
     display: flex; flex-direction: row; justify-content: space-between; align-items: flex-end;
     margin-bottom: 3.5rem;
@@ -981,25 +981,6 @@ footer { padding: 3rem var(--container-padding); border-top: 1px solid var(--bor
 .footer-inner { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
 .blink-dot { display: inline-block; width: 6px; height: 6px; background: #10B981; border-radius: 50%; margin-right: 5px; animation: blink 2s infinite; }
 
-/* Cursor */
-.cursor {
-    position: fixed; width: 12px; height: 12px;
-    background: var(--accent-primary); border-radius: 50%;
-    pointer-events: none; z-index: 9999; transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, background 0.3s;
-    opacity: 0.85;
-}
-.cursor.is-big { width: 60px; height: 60px; background: white; mix-blend-mode: difference; }
-/* Inside the hero the cursor becomes a small precise ring — clearly an
-   interface mark, distinct from the soft organic attention swarm */
-.cursor.dimmed, .cursor.dimmed.is-big {
-    width: 10px; height: 10px;
-    opacity: 0.55;
-    background: transparent;
-    border: 1.5px solid var(--accent-primary);
-    mix-blend-mode: normal;
-}
-
 @media (max-width: 900px) {
     .project-card, .contact-details, .fb-wrapper { grid-template-columns: 1fr; flex-direction: column; }
     .project-card { height: auto; padding: 2rem; gap: 2rem; top: 0; }
@@ -1045,19 +1026,14 @@ footer { padding: 3rem var(--container-padding); border-top: 1px solid var(--bor
         flex-direction: column; align-items: center; justify-content: center;
         gap: 2.4rem;
         background: rgba(244, 245, 255, 0.97);
-        transform: translateY(-102%);
+        transform: translateY(-102%); visibility: hidden; pointer-events: none;
         transition: transform 0.35s ease;
     }
-    .nav-links.active { transform: translateY(0); }
+    .nav-links.active { transform: translateY(0); visibility: visible; pointer-events: auto; }
     .nav-links a,
     header.in-hero .nav-links a { font-size: 1rem; opacity: 1; letter-spacing: 0.1em; }
     .hamburger.active .bar:nth-child(1) { transform: translateY(4px) rotate(45deg); }
     .hamburger.active .bar:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
-}
-
-/* Touch devices: the custom cursor makes no sense there */
-@media (hover: none), (pointer: coarse) {
-    .cursor { display: none; }
 }
 
 /* Reduced motion: stop every looping animation */
@@ -1065,4 +1041,13 @@ footer { padding: 3rem var(--container-padding); border-top: 1px solid var(--bor
     .aurora-layer, .scroll-line, .blink-dot, .wip-dot, .log-caret,
     .ring-main-scanner { animation: none !important; }
     html { scroll-behavior: auto; }
+}
+
+/* Shared navigation and small-screen evidence layout, independent of the hero. */
+#projects { scroll-margin-top: 80px; }
+header a:focus-visible, header button:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 5px; }
+@media (max-width: 600px) {
+    .project-card { grid-template-columns: minmax(0,1fr); }
+    .project-info, .card-evidence { min-width: 0; }
+    .project-title { font-size: clamp(1.65rem,7.8vw,2.3rem); overflow-wrap: break-word; }
 }

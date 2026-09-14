@@ -1,0 +1,11 @@
+/* One optical pointer across the portfolio. Native selection remains native. */
+.optical-cursor { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 10000; mix-blend-mode: normal; }
+.cursor { display: none !important; }
+@media (hover: hover) and (pointer: fine) {
+    html.optical-cursor-active, html.optical-cursor-active * { cursor: none !important; }
+    html.optical-cursor-reading, html.optical-cursor-reading * { cursor: text !important; }
+    .optical-title-hover { text-shadow: 0 0 18px rgba(155,169,244,.38); }
+    a.optical-link-hover { color: #7370bc; text-decoration-color: #8582d7; text-underline-offset: .24em; }
+    button.optical-link-hover:not(:focus-visible), [role="button"].optical-link-hover:not(:focus-visible), summary.optical-link-hover:not(:focus-visible) { outline: 1px solid rgba(125,127,211,.48); outline-offset: 5px; }
+}
+@media (hover: none), (pointer: coarse) { .optical-cursor { display: none; } }

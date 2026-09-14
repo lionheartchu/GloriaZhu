@@ -26,10 +26,11 @@
     <link rel="stylesheet" href="../project-theme.css">
     <!-- Page-scoped Field Notes record -->
     <link rel="stylesheet" href="../research-theme.css">
+    <link rel="stylesheet" href="../cursor.css?v=20260911c">
+    <script src="../cursor.js?v=20260911c" defer></script>
 </head>
 <body class="research-record">
     <!-- Custom Cursor -->
-    <div class="cursor"></div>
 
     <!-- Header -->
     <header>
@@ -237,18 +238,6 @@
         hamburger.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
         });
-
-        // Custom cursor (pointer devices only)
-        const cursor = document.querySelector('.cursor');
-        const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-        if (finePointer && cursor) {
-            // Small dot follows the pointer; no expanded/filled state on this
-            // route so the cursor can never obscure an artifact or caption.
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-            });
-        }
 
         // Restrained reveal (respects reduced motion; degrades to visible)
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

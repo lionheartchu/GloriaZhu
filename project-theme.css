@@ -673,10 +673,6 @@ footer { padding: 3rem 0; border-top: 1px solid var(--border-light); background:
 .blink-dot { width: 6px; height: 6px; background: #10B981; border-radius: 50%; display: inline-block; animation: blink 2s infinite; margin-right: 5px; }
 @keyframes blink { 50% { opacity: 0; } }
 
-/* Custom Cursor */
-.cursor { position: fixed; width: 12px; height: 12px; background: var(--accent-primary); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); mix-blend-mode: exclusion; transition: width 0.2s ease, height 0.2s ease; }
-.cursor.is-big { width: 60px; height: 60px; background: white; mix-blend-mode: difference; }
-
 /* --- RESPONSIVE --- */
 @media (max-width: 992px) {
     .project-hero { grid-template-columns: 1fr; gap: 3rem; }
@@ -717,11 +713,6 @@ footer { padding: 3rem 0; border-top: 1px solid var(--border-light); background:
     .nav-links a { font-size: 1rem; letter-spacing: 0.1em; }
     .hamburger.active .bar:nth-child(1) { transform: translateY(4px) rotate(45deg); }
     .hamburger.active .bar:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
-}
-
-/* Touch devices: no custom cursor */
-@media (hover: none), (pointer: coarse) {
-    .cursor { display: none; }
 }
 
 /* Reduced motion */

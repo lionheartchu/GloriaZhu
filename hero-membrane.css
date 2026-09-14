@@ -1,0 +1,44 @@
+/* A stable reading layer above the shared light / membrane / type renderer. */
+.membrane-hero { --membrane-ink: #5053a3; }
+.membrane-hero a:focus-visible, .membrane-hero button:focus-visible { outline: 2px solid #5150a0; outline-offset: 5px; }
+.membrane-skip { position: fixed; top: 12px; left: 16px; padding: 10px 15px; background: white; transform: translateY(-160%); z-index: 1002; }
+.membrane-skip:focus { transform: none; }
+/* Fill the live viewport; the fixed header overlays it. Keep room for type and controls on short, wide screens. */
+.membrane-home #welcome.membrane-hero { position: relative; height: 100vh; height: 100dvh; min-height: 660px; min-height: max(660px, calc(min(28.1vw, 534px) + 232px)); overflow: visible; isolation: isolate; display: block; padding: 0; background: transparent; }
+.membrane-stage { position: absolute; inset: 0 0 -180px; z-index: -1; overflow: hidden; pointer-events: none; background: url("image/hero-membrane-still.png") center / cover no-repeat; }
+.membrane-ready .membrane-stage { background: none; }
+.membrane-canvas { display: block; width: 100%; height: 100%; }
+.membrane-canvas[hidden] { display: none; }
+.membrane-name { position: absolute; top: 35.4%; left: 5.4%; margin: 0; font: 800 clamp(70px,10vw,190px)/.89 var(--font-brand); letter-spacing: -.035em; color: #6766f2; pointer-events: none; }
+.membrane-name span { display: block; }
+.membrane-name span:last-child { transform: scaleX(1.13); transform-origin: left; }
+.membrane-ready .membrane-name { color: transparent; }
+.membrane-role { position: absolute; left: 5.55%; top: calc(35.4% + 18.1vw); font: 400 .72rem/1.6 var(--font-mono); letter-spacing: .16em; color: var(--text-muted); text-transform: uppercase; pointer-events: none; }
+.membrane-bottom { position: absolute; bottom: clamp(50px,4.036vw,62px); left: 5.4%; right: 5.4%; display: flex; align-items: center; justify-content: space-between; color: var(--membrane-ink); }
+.membrane-location { display: flex; align-items: center; gap: 15px; font: 400 clamp(10px,.781vw,12px) var(--font-mono); letter-spacing: .16em; }
+.membrane-location::after { content: ''; display: block; width: 134px; height: 1px; background: #abafd2; }
+.membrane-work { display: inline-flex; align-items: center; gap: 9px; color: inherit; text-decoration: none; font: 400 clamp(10px,.781vw,12px) var(--font-mono); letter-spacing: .16em; text-transform: uppercase; }
+.membrane-work svg { width: 15px; height: 15px; transform: rotate(90deg); animation: membrane-cue 2.6s ease-in-out infinite; }
+/* Rotated first, so translateX drifts the arrow downward. */
+@keyframes membrane-cue { 0%, 100% { transform: rotate(90deg) translateX(0); } 50% { transform: rotate(90deg) translateX(4px); } }
+.membrane-work:hover svg { animation-duration: 1.1s; }
+.membrane-pause { opacity: 0; pointer-events: none; position: absolute; bottom: 18px; right: 5.4%; padding: 4px 0; color: #666990; font: 400 10px var(--font-mono); letter-spacing: .04em; background: none; border: 0; border-bottom: 1px solid #bfc1d6; cursor: pointer; }
+.membrane-pause:focus-visible { opacity: 1; pointer-events: auto; }
+@media (min-width:1900px) { .membrane-role { top: calc(35.4% + 344px); } }
+@media (max-width:900px) {
+    .membrane-home #welcome.membrane-hero { min-height: 680px; }
+    .membrane-name { font-size: 12vw; top: 29%; left: 6%; }
+    .membrane-role { top: calc(29% + 22vw); left: 6%; font-size: 12px; }
+    .membrane-bottom { left: 6%; right: 6%; bottom: 54px; }
+    .membrane-location::after { width: 65px; }.membrane-work { font-size: 10px; }
+}
+@media (max-width:600px) {
+    .membrane-home #welcome.membrane-hero { min-height: 650px; }
+    .membrane-name { top: 29%; font-size: 17vw; line-height: .91; letter-spacing: -.035em; }
+    .membrane-role { top: calc(29% + 32vw); font-size: 10px; line-height: 1.85; letter-spacing: .11em; }
+    .membrane-bottom { align-items: flex-start; gap: 18px; flex-direction: column; bottom: 43px; }
+    .membrane-location { font-size: 9px; gap: 12px; }.membrane-location::after { width: 57px; }
+    .membrane-work { font-size: 9px; gap: 8px; }.membrane-work svg { width: 13px; height: 13px; }
+    .membrane-pause { bottom: 20px; font-size: 9px; right: 6%; }
+}
+@media (prefers-reduced-motion: reduce) { .membrane-work svg { animation: none; } }

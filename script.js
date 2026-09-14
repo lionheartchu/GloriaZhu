@@ -1,5 +1,6 @@
 // 1. LOADER: focus pull (first visit per session only, skippable)
 document.addEventListener('DOMContentLoaded', () => {
+    if (document.body.classList.contains('membrane-home')) return;
     const loadingScreen = document.querySelector('.loading-screen');
 
     const aurora = document.querySelector('.aurora-container');
@@ -79,9 +80,13 @@ if (heroSection) {
             isHeroVisible = entry.isIntersecting;
             // Header dissolves into the poster while the hero is on screen
             const headerEl = document.querySelector('header');
-            if (headerEl) headerEl.classList.toggle('in-hero', entry.isIntersecting);
+            if (headerEl) {
+                headerEl.classList.toggle('in-hero', entry.isIntersecting);
+                const logo = headerEl.querySelector('.logo');
+                if (logo) logo.tabIndex = entry.isIntersecting ? -1 : 0;
+            }
             // Resume parallax loop when hero becomes visible again
-            if (isHeroVisible && !parallaxRAF) {
+            if ((groupPrimary || groupSecondary) && isHeroVisible && !parallaxRAF) {
                 parallaxRAF = requestAnimationFrame(animateParallax);
             }
             // Pause/resume aurora CSS animations (aurora is position:fixed, can't observe it directly)
@@ -97,15 +102,8 @@ if (heroSection) {
 }
 
 document.addEventListener('mousemove', (e) => {
-    // Custom Cursor - always update regardless of scroll position
-    const cursor = document.querySelector('.cursor');
-    if(cursor) {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    }
-
     // Only track parallax mouse data when hero is visible
-    if (!isHeroVisible) return;
+    if (!isHeroVisible || (!groupPrimary && !groupSecondary)) return;
     mouseX = (e.clientX / window.innerWidth - 0.5);
     mouseY = (e.clientY / window.innerHeight - 0.5);
 });
@@ -155,7 +153,7 @@ function animateParallax() {
 
     parallaxRAF = requestAnimationFrame(animateParallax);
 }
-parallaxRAF = requestAnimationFrame(animateParallax);
+if (groupPrimary || groupSecondary) parallaxRAF = requestAnimationFrame(animateParallax);
 
 
 // 3. WHISPERS
@@ -196,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 800); // Wait for initial fade-in
 });
 
-// 4. MODE SYSTEM (Projects / Art / Research — driven by the global nav)
+// 4. MODE SYSTEM (Projects / Art / Research)
 const modeSection = document.getElementById('projects');
 const modeTitle = document.getElementById('mode-title');
 const modeSublabel = document.getElementById('mode-sublabel');
@@ -277,26 +275,18 @@ document.querySelectorAll('.mode-tab').forEach(tab => {
     });
 });
 
-// Deep links & nav: #projects / #art / #research activate modes
+// Deep links and navigation activate the original three work modes.
 function applyHashMode(scroll) {
     const h = window.location.hash.replace('#', '');
     if (h !== 'projects' && h !== 'art' && h !== 'research') return;
     setMode(h, true);
-    if (scroll && modeSection) modeSection.scrollIntoView({ behavior: 'smooth' });
+    const targetSection = modeSection;
+    if (scroll && targetSection) targetSection.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
 }
 window.addEventListener('hashchange', () => applyHashMode(true));
 document.addEventListener('DOMContentLoaded', () => {
     applyHashMode(true);
     moveModeUnderline(currentMode);
-});
-
-// 5. HOVER EFFECTS
-const hoverTargets = document.querySelectorAll('a, button, .project-card, .logo, .elegant-email, .brand-name, .project-title, .section-title, .fb-title, .media-item, .project-img, .project-img-container, .about-img, .skill-tag, .back-link, .next-project-card, .btn-cta, .resume-button, .card-open, .art-piece:not(.is-static)');
-const cursor = document.querySelector('.cursor');
-
-hoverTargets.forEach(el => {
-    el.addEventListener('mouseenter', () => cursor?.classList.add('is-big'));
-    el.addEventListener('mouseleave', () => cursor?.classList.remove('is-big'));
 });
 
 // 6. TIME UPDATE
@@ -323,10 +313,17 @@ const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
 if (hamburger && navLinks) {
+    const closeMenu = () => {
+        hamburger.classList.remove('active'); navLinks.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+    };
     hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navLinks.classList.toggle('active');
+        const open = hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active', open);
+        hamburger.setAttribute('aria-expanded', String(open));
     });
+    navLinks.addEventListener('click', e => { if (e.target.closest('a')) closeMenu(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && hamburger.classList.contains('active')) { closeMenu(); hamburger.focus(); } });
 }
 
 // 8. EVIDENCE CONDENSATION WIPE

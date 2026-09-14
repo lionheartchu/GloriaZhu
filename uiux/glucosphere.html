@@ -9,10 +9,11 @@
 
     <!-- Main Project Page CSS (Generic Theme) -->
     <link rel="stylesheet" href="../project-theme.css">
+    <link rel="stylesheet" href="../cursor.css?v=20260911c">
+    <script src="../cursor.js?v=20260911c" defer></script>
 </head>
 <body>
     <!-- Custom Cursor -->
-    <div class="cursor"></div>
 
     <!-- Header -->
     <header>
@@ -325,19 +326,6 @@
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             hamburger.classList.toggle('active');
-        });
-
-        // Custom Cursor Logic
-        const cursor = document.querySelector('.cursor');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        document.querySelectorAll('a, button, .media-frame, .insight-card, .feature-card, .next-project-card, .persona-card, .cs-block').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('is-big'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('is-big'));
         });
 
         // --- 1. Reveal on Scroll Animation ---

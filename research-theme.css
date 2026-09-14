@@ -31,18 +31,6 @@
     border-bottom: 1px solid var(--rule-soft);
 }
 
-/* Custom cursor: keep a small quiet dot; never a filled disc over artifacts */
-.research-record .cursor {
-    mix-blend-mode: normal;
-    background: var(--mark);
-    width: 10px; height: 10px;
-    opacity: 0.55;
-}
-.research-record .cursor.is-big {   /* neutralise any expanded state */
-    width: 10px; height: 10px;
-    background: var(--mark);
-    mix-blend-mode: normal;
-}
 
 .record-canvas {
     width: 92%;
