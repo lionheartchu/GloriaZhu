@@ -41,4 +41,15 @@
     .membrane-work { font-size: 9px; gap: 8px; }.membrane-work svg { width: 13px; height: 13px; }
     .membrane-pause { bottom: 20px; font-size: 9px; right: 6%; }
 }
-@media (prefers-reduced-motion: reduce) { .membrane-work svg { animation: none; } }
+
+/* Opening: the haze lifts off the field, then the type settles into it.
+   Driven by animation (not a JS class) so the hero can never stay hidden. */
+@keyframes membrane-settle { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: none; } }
+.membrane-intro .membrane-role { animation: membrane-settle .9s cubic-bezier(.22,.7,.3,1) 1.9s both; }
+.membrane-intro .membrane-bottom { animation: membrane-settle .9s cubic-bezier(.22,.7,.3,1) 2.1s both; }
+/* Return visit, deep link or reduced motion: the veil never plays, so neither does this. */
+.membrane-skip-intro .membrane-role, .membrane-skip-intro .membrane-bottom { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+    .membrane-work svg { animation: none; }
+    .membrane-intro .membrane-role, .membrane-intro .membrane-bottom { animation: none; }
+}

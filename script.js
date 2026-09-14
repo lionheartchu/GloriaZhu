@@ -1,6 +1,5 @@
 // 1. LOADER: focus pull (first visit per session only, skippable)
 document.addEventListener('DOMContentLoaded', () => {
-    if (document.body.classList.contains('membrane-home')) return;
     const loadingScreen = document.querySelector('.loading-screen');
 
     const aurora = document.querySelector('.aurora-container');
@@ -17,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Skip entirely for return visits (this session), deep links, or reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (hasHash || alreadyVisited || prefersReducedMotion) {
+        document.body.classList.add('membrane-skip-intro');
         if (loadingScreen) loadingScreen.style.display = 'none';
         if (aurora) aurora.style.opacity = '1';
         if (heroRings) heroRings.classList.add('visible');

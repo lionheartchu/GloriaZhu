@@ -53,7 +53,7 @@
             vec2 uv=vec2(v_uv.x,1.-v_uv.y);vec2 p=uv*vec2(1.,u_size.y/u_design);
             vec3 color=atmosphere(p,u_time);
             float type=texture2D(u_text,uv).a;
-            vec3 ink=mix(vec3(.41,.39,.985),vec3(.40,.49,.96),smoothstep(.2,.65,p.y)*.60+p.x*.12);
+            vec3 ink=mix(vec3(.44,.42,.98),vec3(.56,.68,1.),smoothstep(.2,.65,p.y)*.60+p.x*.62);
             float glow=exp(-dot(uv*u_size-u_titleLight,uv*u_size-u_titleLight)/2600.)*u_titleHover;
             ink=mix(ink,vec3(.69,.77,1.),glow*.48);
             gl_FragColor=vec4(mix(color,ink,type),type);
