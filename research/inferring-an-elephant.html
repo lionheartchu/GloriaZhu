@@ -23,11 +23,12 @@
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 
     <!-- Shared system (fonts, header, footer, nav, cursor) -->
-    <link rel="stylesheet" href="../project-theme.css">
+    <link rel="stylesheet" href="../project-theme.css?v=20260918">
     <!-- Page-scoped Field Notes record -->
-    <link rel="stylesheet" href="../research-theme.css">
+    <link rel="stylesheet" href="../research-theme.css?v=20260918">
     <link rel="stylesheet" href="../cursor.css?v=20260911c">
     <script src="../cursor.js?v=20260911c" defer></script>
+    <script src="../project-ui.js?v=20260918" defer></script>
 </head>
 <body class="research-record">
     <!-- Custom Cursor -->
@@ -36,17 +37,17 @@
     <header>
         <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
-            <ul class="nav-links">
+            <ul class="nav-links" id="primary-nav">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../about.html">About</a></li>
                 <li><a href="../index.html#projects">Projects</a></li>
                 <li><a href="../index.html#research" class="active">Research</a></li>
             </ul>
         </nav>
-        <div class="hamburger" role="button" tabindex="0" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+        <button class="hamburger" type="button" data-project-menu aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
+        </button>
     </header>
 
     <main>
@@ -83,7 +84,7 @@
                         </div>
                     </div>
                     <figure class="cover-figure">
-                        <img src="../image/elephant-cover.webp" width="1600" height="1001" fetchpriority="high" decoding="async" alt="The gray felt-covered device on a white surface: two metal knobs, a white rotary dial, a small OLED screen, and a printed elephant on thermal paper emerging from a slot, with black-and-white elephant fragment cards scattered around and a hand holding one card.">
+                        <img src="../image/elephant-cover.webp" fetchpriority="high" decoding="async" alt="The gray felt-covered device on a white surface: two metal knobs, a white rotary dial, a small OLED screen, and a printed elephant on thermal paper emerging from a slot, with black-and-white elephant fragment cards scattered around and a hand holding one card." width="1600" height="1001">
                     </figure>
                 </div>
             </section>
@@ -97,15 +98,15 @@
 
                 <div class="frag-row">
                     <figure class="frag trunk">
-                        <img src="../image/inferring-elephant/frag-trunk.webp" width="427" height="596" loading="lazy" decoding="async" alt="Photograph of an elephant's curled trunk with a tusk above it.">
+                        <img src="../image/inferring-elephant/frag-trunk.webp" loading="lazy" decoding="async" alt="Photograph of an elephant's curled trunk with a tusk above it." width="427" height="596">
                         <figcaption><strong>Trunk</strong><span class="assoc"> — read as elephant, then Turkey · Black Vulture · Emu</span></figcaption>
                     </figure>
                     <figure class="frag eye">
-                        <img src="../image/inferring-elephant/frag-eye.webp" width="608" height="848" loading="lazy" decoding="async" alt="Close-up photograph of an elephant's eye with an amber iris set in wrinkled gray skin.">
+                        <img src="../image/inferring-elephant/frag-eye.webp" loading="lazy" decoding="async" alt="Close-up photograph of an elephant's eye with an amber iris set in wrinkled gray skin." width="608" height="848">
                         <figcaption><strong>Eye</strong><span class="assoc"> — Mirounga · Cutlassfish · Pug</span></figcaption>
                     </figure>
                     <figure class="frag tailfur">
-                        <img src="../image/inferring-elephant/frag-tailfur.webp" width="640" height="894" loading="lazy" decoding="async" alt="Photograph of the coarse black hair at the end of an elephant's tail against dry grass.">
+                        <img src="../image/inferring-elephant/frag-tailfur.webp" loading="lazy" decoding="async" alt="Photograph of the coarse black hair at the end of an elephant's tail against dry grass." width="640" height="894">
                         <figcaption><strong>Tail fur</strong><span class="assoc"> — Rhea · Bustard · Porcupine</span></figcaption>
                     </figure>
                 </div>
@@ -123,25 +124,25 @@
                 <div class="instrument">
                     <div class="movement">
                         <figure>
-                            <img src="../image/inferring-elephant/teaser-1.webp" width="760" height="506" loading="lazy" decoding="async" alt="A hand inserting an elephant-fragment card into the device's scanning slot.">
+                            <img src="../image/inferring-elephant/teaser-1.webp" loading="lazy" decoding="async" alt="A hand inserting an elephant-fragment card into the device's scanning slot." width="760" height="506">
                         </figure>
                         <div class="mv"><span class="n">01</span> Perceive</div>
                     </div>
                     <div class="movement">
                         <figure>
-                            <img src="../image/inferring-elephant/teaser-2.webp" width="760" height="507" loading="lazy" decoding="async" alt="A hand turning the device's rotary knob to choose from the species list shown on the small screen.">
+                            <img src="../image/inferring-elephant/teaser-2.webp" loading="lazy" decoding="async" alt="A hand turning the device's rotary knob to choose from the species list shown on the small screen." width="760" height="507">
                         </figure>
                         <div class="mv"><span class="n">02</span> Choose</div>
                     </div>
                     <div class="movement">
                         <figure>
-                            <img src="../image/inferring-elephant/teaser-3.webp" width="760" height="507" loading="lazy" decoding="async" alt="A hand adjusting the device's slider to weight the two chosen species against each other.">
+                            <img src="../image/inferring-elephant/teaser-3.webp" loading="lazy" decoding="async" alt="A hand adjusting the device's slider to weight the two chosen species against each other." width="760" height="507">
                         </figure>
                         <div class="mv"><span class="n">03</span> Weight</div>
                     </div>
                     <div class="movement">
                         <figure>
-                            <img src="../image/inferring-elephant/teaser-4.webp" width="760" height="506" loading="lazy" decoding="async" alt="A hand pressing the device's button as a printed hybrid specimen emerges on thermal paper.">
+                            <img src="../image/inferring-elephant/teaser-4.webp" loading="lazy" decoding="async" alt="A hand pressing the device's button as a printed hybrid specimen emerges on thermal paper." width="760" height="506">
                         </figure>
                         <div class="mv"><span class="n">04</span> Print</div>
                     </div>
@@ -161,7 +162,7 @@
                 <!-- Archive context first: the pilot table the prints came off -->
                 <div class="archive-context">
                     <figure class="pilot-figure">
-                        <img src="../image/inferring-elephant/pilot.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Overhead photograph of pilot artifacts: long thermal-paper strips printed with hybrid creatures and text, smaller printed hybrid cards, and scattered black-and-white elephant fragment cards, with part of the device at the lower left.">
+                        <img src="../image/inferring-elephant/pilot.webp" loading="lazy" decoding="async" alt="Overhead photograph of pilot artifacts: long thermal-paper strips printed with hybrid creatures and text, smaller printed hybrid cards, and scattered black-and-white elephant fragment cards, with part of the device at the lower left." width="1600" height="900">
                         <figcaption class="cap">Specimens and thermal-paper strips collected during pilot sessions.</figcaption>
                     </figure>
                     <div class="observations">
@@ -173,19 +174,19 @@
                 <!-- Then the isolated outputs, each on its own archival mount -->
                 <div class="specimen-grid">
                     <figure class="specimen sp-1">
-                        <div class="mount"><img src="../image/inferring-elephant/spec-back-trilobita-rhino.webp" width="680" height="566" loading="lazy" decoding="async" alt="Black-and-white engraving of a hybrid creature: a rhinoceros head and body armored with segmented, trilobite-like plates."></div>
+                        <div class="mount"><img src="../image/inferring-elephant/spec-back-trilobita-rhino.webp" loading="lazy" decoding="async" alt="Black-and-white engraving of a hybrid creature: a rhinoceros head and body armored with segmented, trilobite-like plates." width="680" height="566"></div>
                         <figcaption class="provenance"><span class="frag-tag">Back</span> · <span class="k">anchor</span> Trilobita · <span class="k">challenger</span> Chinese Rhinocero · <span class="k">80:20</span></figcaption>
                     </figure>
                     <figure class="specimen sp-2">
-                        <div class="mount"><img src="../image/inferring-elephant/spec-back-mirounga-zebra.webp" width="680" height="617" loading="lazy" decoding="async" alt="Black-and-white engraving of a hybrid creature: a zebra-striped body carrying a heavy, seal-like head."></div>
+                        <div class="mount"><img src="../image/inferring-elephant/spec-back-mirounga-zebra.webp" loading="lazy" decoding="async" alt="Black-and-white engraving of a hybrid creature: a zebra-striped body carrying a heavy, seal-like head." width="680" height="617"></div>
                         <figcaption class="provenance"><span class="frag-tag">Back</span> · <span class="k">anchor</span> Mirounga · <span class="k">challenger</span> Zebra · <span class="k">30:70</span></figcaption>
                     </figure>
                     <figure class="specimen sp-3">
-                        <div class="mount"><img src="../image/inferring-elephant/spec-eye-oarfish-elkhound.webp" width="680" height="601" loading="lazy" decoding="async" alt="Black-and-white engraving of a hybrid creature: a dog-like body with a spiny dorsal crest and a long, ribbon-like fish tail."></div>
+                        <div class="mount"><img src="../image/inferring-elephant/spec-eye-oarfish-elkhound.webp" loading="lazy" decoding="async" alt="Black-and-white engraving of a hybrid creature: a dog-like body with a spiny dorsal crest and a long, ribbon-like fish tail." width="680" height="601"></div>
                         <figcaption class="provenance"><span class="frag-tag">Eye</span> · <span class="k">anchor</span> Giant Oarfish · <span class="k">challenger</span> Swedish Elkhound · <span class="k">60:40</span></figcaption>
                     </figure>
                     <figure class="specimen sp-4">
-                        <div class="mount"><img src="../image/inferring-elephant/spec-trunk-emu-walrus.webp" width="680" height="610" loading="lazy" decoding="async" alt="Black-and-white engraving of a hybrid creature: a bird-like standing body with a walrus head and tusks."></div>
+                        <div class="mount"><img src="../image/inferring-elephant/spec-trunk-emu-walrus.webp" loading="lazy" decoding="async" alt="Black-and-white engraving of a hybrid creature: a bird-like standing body with a walrus head and tusks." width="680" height="610"></div>
                         <figcaption class="provenance"><span class="frag-tag">Trunk</span> · <span class="k">anchor</span> Emu · <span class="k">challenger</span> Walrus · <span class="k">60:40</span></figcaption>
                     </figure>
                 </div>
@@ -225,20 +226,6 @@
 
     <!-- JavaScript -->
     <script>
-        // Hamburger menu (mouse + keyboard)
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        if (navLinks) navLinks.id = 'primary-nav';
-        function toggleMenu() {
-            const open = navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active', open);
-            hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
-        }
-        hamburger.addEventListener('click', toggleMenu);
-        hamburger.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
-        });
-
         // Restrained reveal (respects reduced motion; degrades to visible)
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const rises = document.querySelectorAll('.rise');

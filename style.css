@@ -639,6 +639,24 @@ body.field-active .hero-spotlight { display: none; }
 .project-img { width: 100%; height: 100%; object-fit: cover; transition: filter 0.4s ease; }
 .project-card:hover .project-img { filter: saturate(1.04); }
 
+/* Glucosphere uses separate wide and mobile scenes at their native compositions. */
+.project-card--glucosphere .card-evidence { justify-content: center; }
+.project-card--glucosphere .project-img-container {
+    flex: 0 0 auto;
+    aspect-ratio: 2 / 1;
+}
+.project-card--glucosphere picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.project-card--glucosphere .project-img {
+    object-fit: cover;
+    background: transparent;
+}
+.project-card--glucosphere:hover .project-img { filter: none; }
+.project-card--glucosphere .project-img-container::after { display: none; }
+
 /* Pearl veil over the evidence; clears around the cursor (condensation) */
 .project-img-container::after {
     content: '';
@@ -697,16 +715,19 @@ body.field-active .hero-spotlight { display: none; }
     display: grid; grid-template-columns: repeat(12, 1fr);
     column-gap: 2rem; row-gap: 0;
     padding: 0 0 4rem;
+    /* Works hang from their own top edge; without this each link box stretches to
+       the row height and its empty tail covers the piece hung below it. */
+    align-items: start;
 }
 .art-piece { display: block; text-decoration: none; color: inherit; }
 
-/* Exhibition spread: pulled toward the center, works hung close together.
-   Gramophone lifts up into the space beneath YU to close the gap. */
+/* Exhibition spread: each row pairs a tall work with a short one, so the two
+   portraits (Vital, YU) hang on a diagonal instead of side by side. */
 .art-wall { max-width: 1150px; margin: 0 auto; }
 .piece-vital { grid-column: 1 / 8;  grid-row: 1; }
-.piece-yu    { grid-column: 8 / 13; grid-row: 1; margin-top: 4rem; }
-.piece-maya  { grid-column: 2 / 7;  grid-row: 2; margin-top: 2rem; }
-.piece-gramo { grid-column: 7 / 13; grid-row: 2; margin-top: -7rem; }
+.piece-maya  { grid-column: 9 / 13; grid-row: 1; margin-top: 4rem; }
+.piece-yu    { grid-column: 8 / 13; grid-row: 2; margin-top: -20rem; }
+.piece-gramo { grid-column: 2 / 7;  grid-row: 2; margin-top: 3rem; }
 
 .art-frame {
     position: relative; overflow: hidden;
@@ -982,8 +1003,8 @@ footer { padding: 3rem var(--container-padding); border-top: 1px solid var(--bor
 .blink-dot { display: inline-block; width: 6px; height: 6px; background: #10B981; border-radius: 50%; margin-right: 5px; animation: blink 2s infinite; }
 
 @media (max-width: 900px) {
-    .project-card, .contact-details, .fb-wrapper { grid-template-columns: 1fr; flex-direction: column; }
-    .project-card { height: auto; padding: 2rem; gap: 2rem; top: 0; }
+    .project-card, .contact-details, .fb-wrapper { grid-template-columns: minmax(0, 1fr); flex-direction: column; }
+    .project-card { position: relative; height: auto; padding: 2rem; gap: 2rem; top: 0; }
     .project-card::before { transform: rotate(0.3deg) translate(4px, 4px); }
     .art-wall { grid-template-columns: 1fr; row-gap: 3.5rem; }
     .piece-vital, .piece-yu, .piece-maya, .piece-gramo {
@@ -998,7 +1019,11 @@ footer { padding: 3rem var(--container-padding); border-top: 1px solid var(--bor
     }
     .dossier-side { max-width: 280px; }
     .card-evidence { order: 1; height: auto; }
-    .project-img-container { height: 300px; flex: none; }
+    .project-img-container { height: auto; flex: none; }
+    .project-img { height: auto; object-fit: contain; }
+    .project-card--glucosphere .card-evidence { justify-content: flex-start; }
+    .project-card--glucosphere .project-img-container { aspect-ratio: 3 / 2; }
+    .project-card--glucosphere .project-img { width: 100%; height: 100%; object-fit: cover; }
     .project-info { order: 2; padding: 0; }
     /* touch: no cursor-following wipe, veil stays subtle & static;
        stamp gets a comfortable tap target */
@@ -1050,4 +1075,15 @@ header a:focus-visible, header button:focus-visible { outline: 2px solid var(--a
     .project-card { grid-template-columns: minmax(0,1fr); }
     .project-info, .card-evidence { min-width: 0; }
     .project-title { font-size: clamp(1.65rem,7.8vw,2.3rem); overflow-wrap: break-word; }
+    .project-card--glucosphere .project-title {
+        font-size: clamp(1.5rem, 7vw, 2rem);
+        overflow-wrap: normal;
+        word-break: normal;
+    }
+}
+
+/* Keep the existing headings inside the narrowest content rail. */
+@media (max-width: 380px) {
+    .fb-title { font-size: clamp(1.5rem, 7.7vw, 2rem); }
+    .section-title { font-size: clamp(2rem, 10vw, 3rem); }
 }

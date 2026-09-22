@@ -8,9 +8,10 @@
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 
     <!-- Main Project Page CSS (Generic Theme) -->
-    <link rel="stylesheet" href="../project-theme.css">
+    <link rel="stylesheet" href="../project-theme.css?v=20260918">
     <link rel="stylesheet" href="../cursor.css?v=20260911c">
     <script src="../cursor.js?v=20260911c" defer></script>
+    <script src="../project-ui.js?v=20260918" defer></script>
 </head>
 <body>
     <!-- Custom Cursor -->
@@ -19,18 +20,18 @@
     <header>
         <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
-            <ul class="nav-links">
+            <ul class="nav-links" id="primary-nav">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../about.html">About</a></li>
                 <li><a href="../index.html#projects" class="active">Projects</a></li>
                 <li><a href="../index.html#research">Research</a></li>
             </ul>
         </nav>
-        <div class="hamburger">
+        <button class="hamburger" type="button" data-project-menu aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
+        </button>
     </header>
 
     <main>
@@ -68,14 +69,16 @@
                     <div class="media-frame">
                         <div class="parallax-wrapper">
                             <!-- Placeholder for Cover Image -->
-                            <img src="../image/tnp-cover.webp" class="parallax-img" alt="The Next Port Project Cover" onerror="this.src='https://placehold.co/800x1000/F0F4F8/2563EB?text=The+Next+Port+Cover'">
+                            <img src="../image/tnp-new-cover.webp" class="parallax-img" alt="Concept visualization of the delivery robot carrying a package above a low-altitude transport hub" width="1536" height="1024" decoding="async">
                         </div>
                     </div>
+                    <p class="media-caption">Low-altitude transport concept. Original 3D model in Maya & AI-assisted rendering. Concept visualization.</p>
                 </div>
             </section>
 
             <!-- Main Content Area -->
             <div class="project-body">
+                
                 
                 <!-- SECTION 1: RESEARCH & CONTEXT -->
                 <section class="project-section">
@@ -185,6 +188,13 @@
                     </div>
                 </section>
 
+                <figure class="media-stack project-section reveal-item">
+                    <div class="media-frame" style="max-width:840px;">
+                        <img src="../image/interact-scene.png" alt="Concept visualization of an open lid and a hand collecting a package from the robot" width="1536" height="1024" decoding="async" loading="lazy">
+                    </div>
+                    <figcaption class="media-caption">Package handoff concept. Original 3D model in Maya & AI-assisted rendering. Concept visualization.</figcaption>
+                </figure>
+
                 <!-- SECTION 3: SERVICE BLUEPRINT -->
                 <section class="project-section">
                     <div class="section-header reveal-item">
@@ -283,10 +293,12 @@
                         <div class="media-frame">
                             <div class="parallax-wrapper">
                                 <!-- Placeholder for 3D Model Image -->
-                                <img src="../image/tnp-mod.webp" class="parallax-img" alt="3D Model Views" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=3D+Model+Views:+Side,+Front,+Back'">
+                                <img src="../image/tnp-mod.webp" class="parallax-img" alt="3D Model Views" width="1191" height="596" decoding="async" loading="lazy">
                             </div>
                         </div>
                     </div>
+
+                    <p class="media-caption">Sketches and model views showing the collapsed-leg configuration and mechanism annotations.</p>
 
                     <!-- Feature Cards -->
                     <div class="feature-grid reveal-item">
@@ -310,12 +322,13 @@
                     </div>
                     
                     <div class="media-stack reveal-item" style="margin-top: 3rem;">
-                        <div class="media-frame">
+                        <div class="media-frame" style="max-width:840px;">
                             <div class="parallax-wrapper">
                                 <!-- Placeholder for Concept Effect -->
-                                <img src="../image/tnp-fe.webp" class="parallax-img" alt="Final Concept Effect" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=Concept+Effect:+Drone+in+Context'">
+                                <img src="../image/structure.webp" class="parallax-img" alt="Concept visualization showing the open compartment and two closed-body views of the robot" width="1536" height="1024" decoding="async" loading="lazy">
                             </div>
                         </div>
+                        <p class="media-caption">Form and structure study. Modeled in Maya &  AI-assisted rendering. Concept visualization.</p>
                     </div>
                 </section>
 
@@ -350,15 +363,6 @@
 
     <!-- JavaScript -->
     <script>
-        // Hamburger Menu Logic
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
-
         // --- 1. Reveal on Scroll Animation ---
         const observerOptions = {
             root: null,

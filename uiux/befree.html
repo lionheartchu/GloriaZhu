@@ -7,9 +7,10 @@
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Main Project Page CSS (Standalone) -->
-    <link rel="stylesheet" href="../project-theme.css">
+    <link rel="stylesheet" href="../project-theme.css?v=20260918">
     <link rel="stylesheet" href="../cursor.css?v=20260911c">
     <script src="../cursor.js?v=20260911c" defer></script>
+    <script src="../project-ui.js?v=20260918" defer></script>
 </head>
 <body>
     <!-- Custom Cursor -->
@@ -18,18 +19,18 @@
     <header>
         <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
-            <ul class="nav-links">
+            <ul class="nav-links" id="primary-nav">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../about.html">About</a></li>
                 <li><a href="../index.html#projects" class="active">Projects</a></li>
                 <li><a href="../other-works/index.html">Other Works</a></li>
             </ul>
         </nav>
-        <div class="hamburger">
+        <button class="hamburger" type="button" data-project-menu aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
+        </button>
     </header>
 
     <main>
@@ -62,7 +63,7 @@
 
                 <div class="hero-media">
                     <div class="media-frame">
-                        <img src="../image/bef-cover.png" alt="Befree Project Cover">
+                        <img src="../image/bef-cover.png" alt="Befree Project Cover" width="1257" height="1224" decoding="async">
                     </div>
                 </div>
             </section>
@@ -80,17 +81,17 @@
                     
                     <div class="media-stack">
                         <div class="media-frame">
-                            <img src="../image/bef-01.png" alt="Befree Research">
+                            <img src="../image/bef-01.webp" width="2400" height="1697" alt="Befree Research" decoding="async" loading="lazy">
                         </div>
                     </div>
                     <div class="media-stack">
                         <div class="media-frame">
-                            <img src="../image/bef-02.png" alt="Befree User Research">
+                            <img src="../image/bef-02.webp" width="2400" height="1697" alt="Befree User Research" decoding="async" loading="lazy">
                         </div>
                     </div>
                     <div class="media-stack">
                         <div class="media-frame">
-                            <img src="../image/bef-03.png" alt="Befree Concept Development">
+                            <img src="../image/bef-03.webp" width="2400" height="1697" alt="Befree Concept Development" decoding="async" loading="lazy">
                         </div>
                     </div>
                 </section>
@@ -105,7 +106,7 @@
                     
                     <div class="media-stack">
                         <div class="media-frame">
-                            <img src="../image/bef-04.png" alt="Befree Final Design">
+                            <img src="../image/bef-04.webp" width="2400" height="1697" alt="Befree Final Design" decoding="async" loading="lazy">
                         </div>
                     </div>
                 </section>

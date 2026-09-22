@@ -8,9 +8,10 @@
     <meta name="description" content="YU — a responsive installation exploring sound, space, and human connection.">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <!-- Main Project Page CSS (Standalone) -->
-    <link rel="stylesheet" href="../project-theme.css">
+    <link rel="stylesheet" href="../project-theme.css?v=20260918">
     <link rel="stylesheet" href="../cursor.css?v=20260911c">
     <script src="../cursor.js?v=20260911c" defer></script>
+    <script src="../project-ui.js?v=20260918" defer></script>
 </head>
 <body>
     <!-- Custom Cursor -->
@@ -19,18 +20,18 @@
     <header>
         <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
-            <ul class="nav-links">
+            <ul class="nav-links" id="primary-nav">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../about.html">About</a></li>
                 <li><a href="../index.html#projects">Projects</a></li>
                 <li><a href="../index.html#research">Research</a></li>
             </ul>
         </nav>
-        <div class="hamburger">
+        <button class="hamburger" type="button" data-project-menu aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
+        </button>
     </header>
 
     <main>
@@ -66,7 +67,7 @@
 
                 <div class="hero-media">
                     <div class="media-frame">
-                        <img src="../image/yu-cover.webp" alt="YU Project Cover">
+                        <img src="../image/yu-cover.webp" alt="YU Project Cover" width="1104" height="1758" decoding="async">
                     </div>
                 </div>
             </section>
@@ -84,12 +85,12 @@
                     
                     <div class="media-stack">
                         <div class="media-frame">
-                            <img src="../image/yu-19.webp" alt="YU Research">
+                            <img src="../image/yu-19.webp" alt="YU Research" width="1600" height="1131" decoding="async" loading="lazy">
                         </div>
                     </div>
                     <div class="media-stack">
                         <div class="media-frame">
-                            <img src="../image/yu-20.webp" alt="YU Concept Development">
+                            <img src="../image/yu-20.webp" alt="YU Concept Development" width="1600" height="1131" decoding="async" loading="lazy">
                         </div>
                     </div>
                 </section>
@@ -104,7 +105,7 @@
                     
                     <div class="media-stack">
                         <div class="media-frame">
-                            <img src="../image/yu-21.webp" alt="YU Final Installation">
+                            <img src="../image/yu-21.webp" alt="YU Final Installation" width="1600" height="1131" decoding="async" loading="lazy">
                         </div>
                     </div>
                 </section>

@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glucosphere | Project Detail</title>
-    <meta name="description" content="Glucosphere — a UI/UX case study: a diabetes management system for kids combining hardware and software.">
+    <meta name="description" content="Glucosphere pairs a guided glucose-testing kit for children with an app for parents to follow results and trends.">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 
     <!-- Main Project Page CSS (Generic Theme) -->
-    <link rel="stylesheet" href="../project-theme.css">
+    <link rel="stylesheet" href="../project-theme.css?v=20260918">
+    <link rel="stylesheet" href="../glucosphere.css?v=20260922-r7">
     <link rel="stylesheet" href="../cursor.css?v=20260911c">
     <script src="../cursor.js?v=20260911c" defer></script>
+    <script src="../project-ui.js?v=20260918" defer></script>
+    <script src="../glucosphere-ui.js?v=20260920-snap2" defer></script>
 </head>
 <body>
     <!-- Custom Cursor -->
@@ -19,18 +22,18 @@
     <header>
         <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
-            <ul class="nav-links">
+            <ul class="nav-links" id="primary-nav">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../about.html">About</a></li>
                 <li><a href="../index.html#projects" class="active">Projects</a></li>
                 <li><a href="../index.html#research">Research</a></li>
             </ul>
         </nav>
-        <div class="hamburger">
+        <button class="hamburger" type="button" data-project-menu aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
+        </button>
     </header>
 
     <main>
@@ -54,239 +57,223 @@
                         <span class="cf-year">2024</span>
                     </div>
                     <div class="card-rule"></div>
-                    
+
                     <h1 class="project-title">Gluco<br>Sphere</h1>
-                    
+
                     <div class="project-intro">
-                        <p class="lede">Kids-friendly glucose test kit & paired monitoring app for diabetic families.</p>
+                        <p class="lede">A guided glucose-testing kit for children, paired with an app for parents.</p>
                         <hr class="intro-divider">
-                        <p><strong>Glucosphere</strong> bridges the gap between kid-friendly glucose testing and parental monitoring. It addresses the insufficient awareness of kids' diabetes management, making the medical process intuitive and less intimidating for the rising number of young patients.</p>
+                        <p><strong>GlucoPal</strong> is the child-facing physical kit: its screen breaks a finger-stick test into visible steps while the case keeps tools in fixed locations. <strong>Gluardian</strong> is the caregiver app: it receives each completed test result, then organizes records and trends.</p>
                     </div>
                 </div>
 
-                <div class="hero-media reveal-item" style="transition-delay: 0.1s;">
+                <figure class="hero-media reveal-item" style="transition-delay: 0.1s;">
                     <div class="media-frame">
                         <div class="parallax-wrapper">
-                            <!-- Placeholder for Cover Image -->
-                            <img src="../image/glusp-cover3.webp" class="parallax-img" alt="Glucosphere Project Cover" onerror="this.src='https://placehold.co/800x1000/F0F4F8/2563EB?text=Glucosphere+Cover'">
+                            <img src="../image/glusp-head.webp" class="parallax-img" alt="Open yellow GlucoPal test kit with step-by-step instructions beside the Gluardian caregiver app showing history and weekly trends." width="1536" height="1024" decoding="async" fetchpriority="high">
                         </div>
                     </div>
-                </div>
+                    <figcaption class="media-caption">GlucoPal and Gluardian bring the child’s test flow and the parent’s result review into one coordinated system.</figcaption>
+                </figure>
             </section>
 
             <!-- Main Content Area -->
             <div class="project-body">
-                
-                <!-- SECTION 1: RESEARCH & TRENDS -->
-                <section class="project-section">
+                <section class="project-section" aria-labelledby="system-heading">
                     <div class="section-header reveal-item">
-                        <h2 class="section-title">01. Global Context</h2>
+                        <h2 class="section-title" id="system-heading">01. System at a glance</h2>
                         <div class="section-line"></div>
                     </div>
-                    
-                    <div class="section-text-block reveal-item">
-                        <h3>A Rising Trend</h3>
-                        <p class="section-text">Diabetes is not just an adult issue anymore. With <strong>537 million people</strong> affected worldwide and a projected 46% increase by 2045, the disease is spreading rapidly. China leads globally with over 140.9 million cases.</p>
-                        <p class="section-text">More alarmingly, the incidence among <strong>children under 20 years</strong> is rising steadily, transforming diabetes into a significant young-onset concern.</p>
-                    </div>
 
-                    <!-- Stats Grid -->
-                    <div class="insight-grid reveal-item">
-                        <div class="insight-card">
-                            <div class="insight-header">
-                                <span class="insight-title">Youth Impact</span>
-                                <svg class="insight-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.5" r="2.5"/><path d="M12 8v6M7.5 11h9M12 14l-3 5.5M12 14l3 5.5"/></svg>
+                    <div class="gluco-overview reveal-item">
+                        <p class="gluco-overview-lede">One completed test, handed from the child who runs it to the parent who reviews it.</p>
+
+                        <div class="gluco-diagram">
+                            <figure class="gluco-node gluco-node--child">
+                                <img src="../image/glusp-ui/screen-ui-04.png" alt="GlucoPal completion screen reading Well done, Alex, with a result of 121 mg/dL." width="726" height="428" loading="lazy" decoding="async">
+                                <figcaption><span class="gluco-kicker">Child-facing</span>GlucoPal</figcaption>
+                            </figure>
+
+                            <div class="gluco-diagram-link" aria-hidden="true">
+                                <span class="gluco-diagram-value">121 mg/dL</span>
+                                <svg viewBox="0 0 120 24"><path d="M2 12h112M106 5l8 7-8 7"/></svg>
+                                <span class="gluco-diagram-label">Completed result</span>
                             </div>
-                            <div class="insight-stat">1.21m</div>
-                            <p style="color:var(--accent-primary); font-size:0.8rem; margin-bottom:1rem; font-family:var(--font-mono);">CHILDREN & ADOLESCENTS</p>
-                            <p class="section-text" style="font-size:0.95rem;">Living with Type 1 diabetes globally, with cases increasing annually.</p>
-                        </div>
 
-                        <div class="insight-card">
-                            <div class="insight-header">
-                                <span class="insight-title">The Target</span>
-                                <svg class="insight-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/></svg>
-                            </div>
-                            <div class="insight-stat">6-12</div>
-                            <p style="color:var(--accent-primary); font-size:0.8rem; margin-bottom:1rem; font-family:var(--font-mono);">YEARS OLD</p>
-                            <p class="section-text" style="font-size:0.95rem;">School-age children face unique challenges: puberty-induced insulin resistance and social stigma at school.</p>
-                        </div>
-                    </div>
-
-                    <!-- Research Deep Dive -->
-                    <div class="challenge-solution reveal-item" style="margin-top: 3rem;">
-                        <div class="cs-block" style="background: var(--bg-surface);">
-                            <h3 class="cs-title">Why existing products fail kids?</h3>
-                            <p class="section-text" style="font-size: 0.95rem; margin-bottom: 1rem;">My analysis of current market leaders like Care Touch and Abbott revealed a significant gap:</p>
-                            <ul class="pain-point-list">
-                                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9 9l6 6M15 9l-6 6"/></svg> <strong>Scary Appearance:</strong> Tools look "rustic" and medical, frightening young users.</li>
-                                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9 9l6 6M15 9l-6 6"/></svg> <strong>Painful Process:</strong> Fingersticks hurt, leading to resistance and crying.</li>
-                                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9 9l6 6M15 9l-6 6"/></svg> <strong>Unclear Feedback:</strong> Kids can't interpret complex numbers on generic screens.</li>
-                                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9 9l6 6M15 9l-6 6"/></svg> <strong>Social Stigma:</strong> Embarrassment prevents testing at school or with friends.</li>
-                            </ul>
-                        </div>
-                        <div class="cs-block solution">
-                            <span class="cs-label">Design Opportunity</span>
-                            <h3 class="cs-title">Gamified Health</h3>
-                            <p class="section-text">How might we make kids check blood more spontaneously?</p>
-                            <p class="section-text"><strong>Key Goal:</strong> Transform the terrifying medical routine into a "game-like" task using a redesigned kit and a reward-based app ecosystem.</p>
+                            <figure class="gluco-node gluco-node--phone gluco-node--caregiver">
+                                <img src="../image/glusp-ui/app-ui-03.png" alt="Gluardian homepage showing the same 121 mg/dL reading in recent history and weekly analysis." width="1125" height="2436" loading="lazy" decoding="async">
+                                <figcaption><span class="gluco-kicker">Caregiver-facing</span>Gluardian</figcaption>
+                            </figure>
                         </div>
                     </div>
                 </section>
 
-                <!-- SECTION 2: PERSONA -->
-                <section class="project-section">
+                <section class="project-section" aria-labelledby="why-heading">
                     <div class="section-header reveal-item">
-                        <h2 class="section-title">02. User Personas</h2>
+                        <h2 class="section-title" id="why-heading">02. Why it matters</h2>
                         <div class="section-line"></div>
                     </div>
 
-                    <div class="persona-grid reveal-item">
-                        <!-- Persona 1: Alexander (The Kid) -->
-                        <div class="persona-card">
-                            <div class="persona-header">
-                                <div class="persona-avatar">A</div>
-                                <div class="persona-info">
-                                    <h4>Alexander</h4>
-                                    <span>Age 7 · Type 1</span>
-                                </div>
-                            </div>
-                            <div class="persona-body">
-                                <p class="persona-quote">"Why do they always ask me to stick my fingers? It really hurts!"</p>
-                                <p class="section-text" style="font-size: 0.95rem;">Alex finds current products confusing. The fingerstick pain makes him resist testing. He needs less pain and more fun.</p>
-                                <div class="persona-tags">
-                                    <span class="persona-tag">Hates Pain</span>
-                                    <span class="persona-tag">Scared</span>
-                                    <span class="persona-tag">Needs Fun</span>
-                                </div>
-                            </div>
+                    <div class="gluco-evidence reveal-item">
+                        <div class="gluco-evidence-figure">
+                            <p class="insight-stat">1.21M</p>
+                            <p class="gluco-evidence-caption">Children and adolescents under 20 living with type&nbsp;1 diabetes worldwide.</p>
+                            <a href="https://diabetesatlas.org/media/uploads/sites/3/2025/02/IDF_Atlas_10th_Edition_2021.pdf" target="_blank" rel="noopener">IDF Diabetes Atlas, 10th edition &middot; 2021</a>
                         </div>
 
-                        <!-- Persona 2: Jessica (The Kid) -->
-                        <div class="persona-card">
-                            <div class="persona-header">
-                                <div class="persona-avatar" style="background:var(--accent-secondary);">J</div>
-                                <div class="persona-info">
-                                    <h4>Jessica</h4>
-                                    <span>Age 10 · Type 2</span>
-                                </div>
+                        <figure class="gluco-chart">
+                            <figcaption><span class="gluco-kicker">New US cases per 100,000 &middot; under 20</span></figcaption>
+                            <div class="gluco-chart-row">
+                                <span class="gluco-chart-label">Type 1</span>
+                                <span class="gluco-chart-bars">
+                                    <span class="gluco-bar gluco-bar--past" style="--v:20"><b>2002</b><i>20</i></span>
+                                    <span class="gluco-bar gluco-bar--now" style="--v:22"><b>2018</b><i>22</i></span>
+                                </span>
+                                <span class="gluco-chart-delta">+2%/yr</span>
                             </div>
-                            <div class="persona-body">
-                                <p class="persona-quote">"I really don't like the color of my glucometer, not cute at all!"</p>
-                                <p class="section-text" style="font-size: 0.95rem;">Jessica thinks existing products look "rustic" and scary. She often "forgets" to check her blood because she dislikes the device.</p>
-                                <div class="persona-tags">
-                                    <span class="persona-tag">Visual Appeal</span>
-                                    <span class="persona-tag">Reminders</span>
-                                    <span class="persona-tag">Self-esteem</span>
-                                </div>
+                            <div class="gluco-chart-row">
+                                <span class="gluco-chart-label">Type 2</span>
+                                <span class="gluco-chart-bars">
+                                    <span class="gluco-bar gluco-bar--past" style="--v:9"><b>2002</b><i>9</i></span>
+                                    <span class="gluco-bar gluco-bar--now" style="--v:18"><b>2018</b><i>18</i></span>
+                                </span>
+                                <span class="gluco-chart-delta gluco-chart-delta--strong">+5%/yr</span>
                             </div>
-                        </div>
-                        
-                         <!-- Persona 3: Zoey (The Mom) -->
-                        <div class="persona-card">
-                            <div class="persona-header">
-                                <div class="persona-avatar" style="background:#10B981;">Z</div>
-                                <div class="persona-info">
-                                    <h4>Zoey</h4>
-                                    <span>Mom · Sales Rep</span>
-                                </div>
-                            </div>
-                            <div class="persona-body">
-                                <p class="persona-quote">"It's hard to track his blood sugar... Too many business trips for my job."</p>
-                                <p class="section-text" style="font-size: 0.95rem;">Zoey is a single mom who travels often. She worries constantly and needs a way to monitor her son's glucose remotely.</p>
-                                <div class="persona-tags">
-                                    <span class="persona-tag">Remote Tracking</span>
-                                    <span class="persona-tag">Peace of Mind</span>
-                                    <span class="persona-tag">Reliability</span>
-                                </div>
-                            </div>
-                        </div>
+                            <a href="https://www.cdc.gov/diabetes/data-research/research/trends-new-diabetes-cases-young-people.html" target="_blank" rel="noopener">CDC youth incidence trends, 2002&ndash;2018</a>
+                        </figure>
+                    </div>
+
+                    <div class="section-text-block reveal-item gluco-why-text">
+                        <h3>Designed for adults, handed to children</h3>
+                        <p class="section-text">Type 2 incidence among young people doubled across the study period. The brief narrowed to <strong>children aged 6 to 12</strong> &mdash; old enough to run the test, young enough that a clinical device reads as frightening. A review of market leaders including Care Touch and Abbott found the same four frictions repeated.</p>
+                    </div>
+
+                    <ul class="gluco-gap-list reveal-item">
+                        <li><strong>Clinical appearance.</strong> Reads as medical equipment.</li>
+                        <li><strong>Pain and resistance.</strong> Fingersticks hurt, so testing gets refused.</li>
+                        <li><strong>Unclear feedback.</strong> A bare number means nothing to a child.</li>
+                        <li><strong>Social stigma.</strong> Visible testing gets skipped at school.</li>
+                    </ul>
+
+                    <div class="gluco-opportunity reveal-item">
+                        <span class="gluco-kicker">Design opportunity</span>
+                        <p>How might a glucose test become something a child starts on their own? Reframe a clinical routine as a guided, rewarded task &mdash; a kit that does not announce itself as medical, paired with a caregiver view that makes consistency visible.</p>
                     </div>
                 </section>
 
-                <!-- SECTION 3: CONCEPT & STRATEGY -->
-                <section class="project-section">
+                <section class="project-section" aria-labelledby="people-heading">
                     <div class="section-header reveal-item">
-                        <h2 class="section-title">03. The Strategy</h2>
+                        <h2 class="section-title" id="people-heading">03. People and needs</h2>
                         <div class="section-line"></div>
                     </div>
 
-                    <div class="challenge-solution reveal-item">
-                        <div class="cs-block problem">
-                            <span class="cs-label">The Conflict</span>
-                            <h3 class="cs-title">Fear & Forgetfulness</h3>
-                            <p class="section-text">Medical devices look "sick" and scary. Kids avoid using them due to stigma at school and physical pain. Parents struggle to monitor compliance remotely.</p>
-                        </div>
-                        <div class="cs-block solution">
-                            <span class="cs-label">The Solution</span>
-                            <h3 class="cs-title">Gamified Ecosystem</h3>
-                            <p class="section-text">A "Lunchbox-style" kit that hides the medical nature, paired with a gamified app that rewards consistency and enables real-time parent monitoring.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="feature-grid reveal-item">
-                        <div class="feature-card">
-                            <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><line x1="10.5" y1="18" x2="13.5" y2="18"/></svg></div>
-                            <h4 class="feature-title">App: Gluardian</h4>
-                            <p class="feature-desc">Enables parents to monitor results remotely, view historical trends, and send rewards to their kids.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M12 10v5M9.5 12.5h5"/></svg></div>
-                            <h4 class="feature-title">Product: GlucoPal</h4>
-                            <p class="feature-desc">A cute, box-like storage with redesigned lancing tools that are safe, kid-friendly, and convenient.</p>
-                        </div>
-                    </div>
-                </section>
-                
-                 <!-- SECTION 4: UI DESIGN (Gluardian App) — image swapped: uses glusp-18 -->
-                <section class="project-section">
-                    <div class="section-header reveal-item">
-                        <h2 class="section-title">04. UI Design</h2>
-                        <div class="section-line"></div>
-                    </div>
-                    
-                    <div class="section-text-block reveal-item">
-                        <h3>The Gluardian App</h3>
-                        <p class="section-text">The interface uses large, friendly typography and a reward system to encourage daily use. Data is visualized simply for kids, while parents get detailed analytics.</p>
-                    </div>
-
-                    <div class="media-stack reveal-item">
-                        <div class="media-frame">
-                            <div class="parallax-wrapper">
-                                <img src="../image/glusp-18.webp" class="parallax-img" alt="Gluardian App UI Screens" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=UI+Design:+App+Screens'">
-                            </div>
-                        </div>
+                    <div class="gluco-persona-grid reveal-item">
+                        <article class="gluco-persona gluco-persona--child">
+                            <span class="gluco-kicker">Child &middot; Age 7 &middot; Type 1</span>
+                            <h4>Alexander</h4>
+                            <blockquote class="gluco-persona-quote">Why do they always ask me to stick my fingers? It really hurts!</blockquote>
+                            <p>Pain makes him resist starting the test at all.</p>
+                        </article>
+                        <article class="gluco-persona gluco-persona--child">
+                            <span class="gluco-kicker">Child &middot; Age 10 &middot; Type 2</span>
+                            <h4>Jessica</h4>
+                            <blockquote class="gluco-persona-quote">I really don&rsquo;t like the color of my glucometer, not cute at all!</blockquote>
+                            <p>Reads the device as clinical, so she avoids carrying it.</p>
+                        </article>
+                        <article class="gluco-persona gluco-persona--caregiver">
+                            <span class="gluco-kicker">Caregiver &middot; Travels for work</span>
+                            <h4>Zoey</h4>
+                            <blockquote class="gluco-persona-quote">It&rsquo;s hard to track his blood sugar&hellip; Too many business trips for my job.</blockquote>
+                            <p>Needs to know a test happened without being in the room.</p>
+                        </article>
                     </div>
                 </section>
 
-                <!-- SECTION 5: PRODUCT OUTCOME (Physical Kit) — image swapped: uses glusp-19 -->
-                <section class="project-section">
+                <section class="project-section" aria-labelledby="process-heading">
                     <div class="section-header reveal-item">
-                        <h2 class="section-title">05. Product Effect</h2>
+                        <h2 class="section-title" id="process-heading">04. From needs to design</h2>
                         <div class="section-line"></div>
                     </div>
 
                     <div class="section-text-block reveal-item">
-                        <h3>A Friend, Not a Device</h3>
-                        <p class="section-text">The physical kit redefines the medical experience. It looks like a toy or school supply, reducing social anxiety when used in public.</p>
+                        <h3>From sequence to form</h3>
+                        <p class="section-text">The process material tests three connected questions: how the case opens and stores tools, how the child moves through the test, and how the early wireframes divide information between screens.</p>
                     </div>
 
-                    <div class="media-stack reveal-item">
-                        <div class="media-frame">
-                            <div class="parallax-wrapper">
-                                <img src="../image/glusp-17.webp" class="parallax-img" alt="Final Product Effect" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=Product+Effect:+Physical+Kit'">
-                            </div>
-                        </div>
-                    </div>
+                    <ol class="gluco-principles reveal-item">
+                        <li><span>01</span><strong>Keep the sequence visible.</strong> Show one step at a time, name the tool, and tie each prompt to a physical control.</li>
+                        <li><span>02</span><strong>Make completion explicit.</strong> Confirm the test is finished, show its timestamp, and place the reading in history.</li>
+                        <li><span>03</span><strong>Separate child and caregiver tasks.</strong> The child&rsquo;s flow stays on the procedure; the caregiver view supports review.</li>
+                    </ol>
 
-                    <div class="media-stack reveal-item">
-                        <div class="media-frame">
-                            <div class="parallax-wrapper">
-                                <img src="../image/glusp-19.webp" class="parallax-img" alt="Final Product Effect" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=Product+Effect:+Physical+Kit'">
-                            </div>
-                        </div>
+                    <div class="gluco-process-grid reveal-item">
+                        <figure class="gluco-process-card">
+                            <img src="../image/glusp-process-sketch.webp" alt="Sketches exploring the GlucoPal case, opening direction, controls, and tool storage." width="700" height="1180" loading="lazy" decoding="async">
+                            <figcaption><span>01</span><strong>Form sketches</strong> explore the lid, controls, and fixed storage layout.</figcaption>
+                        </figure>
+                        <figure class="gluco-process-card gluco-process-card--wide">
+                            <img src="../image/glusp-process-workflow.webp" alt="Workflow connecting the GlucoPal screen sequence, physical buttons, test result, and evaluation states." width="1150" height="1180" loading="lazy" decoding="async">
+                            <figcaption><span>02</span><strong>Workflow</strong> maps screen states to physical actions and the completed result.</figcaption>
+                        </figure>
+                        <figure class="gluco-process-card">
+                            <img src="../image/glusp-process-wireframe.webp" alt="Early wireframes for child prompts, result history, rewards, and caregiver records." width="590" height="1180" loading="lazy" decoding="async">
+                            <figcaption><span>03</span><strong>Wireframes</strong> establish the first information hierarchy for both interfaces.</figcaption>
+                        </figure>
                     </div>
                 </section>
+
+                <section class="project-section gluco-showcase-section" aria-labelledby="child-flow-heading">
+                    <div class="gluco-showcase-intro reveal-item">
+                        <span class="gluco-showcase-label">Guided experience</span>
+                        <h2 class="gluco-showcase-title" id="child-flow-heading">Guidance at every step</h2>
+                        <p>The interface turns each part of the glucose test into one clear, visual action.</p>
+                    </div>
+
+                    <div class="gluco-gallery gluco-gallery--landscape reveal-item" data-ui-gallery>
+                        <div class="gluco-gallery-track" data-ui-track tabindex="0" aria-label="Swipe through six GlucoPal screens">
+                            <figure class="gluco-gallery-slide" role="group" aria-roledescription="slide" aria-label="1 of 6: Ready to begin" data-title="Ready to begin" data-description="One clear action starts the guided test."><img src="../image/glusp-ui/screen-ui-01.png" alt="GlucoPal overview screen showing a 103 mg/dL status and one touch-to-start action." width="726" height="428" loading="lazy" decoding="async"></figure>
+                            <figure class="gluco-gallery-slide" role="group" aria-roledescription="slide" aria-label="2 of 6: Start the first step" data-title="Start the first step" data-description="The screen names the current task and links it to the first physical button."><img src="../image/glusp-ui/screen-ui-02.png" alt="GlucoPal step screen asking the child to activate the pen with Button 1." width="726" height="428" loading="lazy" decoding="async"></figure>
+                            <figure class="gluco-gallery-slide" role="group" aria-roledescription="slide" aria-label="3 of 6: Follow the instruction" data-title="Follow the instruction" data-description="Short prompts connect preparation actions with the tools stored inside the kit."><img src="../image/glusp-ui/screen-ui-03.png" alt="GlucoPal instruction screen for washing hands, taking out the pen, and activating it." width="726" height="428" loading="lazy" decoding="async"></figure>
+                            <figure class="gluco-gallery-slide" role="group" aria-roledescription="slide" aria-label="4 of 6: Confirm completion" data-title="Confirm completion" data-description="The result and timestamp appear when the guided sequence ends."><img src="../image/glusp-ui/screen-ui-04.png" alt="GlucoPal completion screen showing a result of 121 mg/dL at 6:55 PM." width="726" height="428" loading="lazy" decoding="async"></figure>
+                            <figure class="gluco-gallery-slide" role="group" aria-roledescription="slide" aria-label="5 of 6: Reward participation" data-title="Reward participation" data-description="Progress feedback recognizes completing the routine and returning to it."><img src="../image/glusp-ui/screen-ui-05.png" alt="GlucoPal rewards screen showing progress earned for completed testing routines." width="726" height="428" loading="lazy" decoding="async"></figure>
+                            <figure class="gluco-gallery-slide" role="group" aria-roledescription="slide" aria-label="6 of 6: Review past tests" data-title="Review past tests" data-description="Date, time, and readings stay together for quick reference."><img src="../image/glusp-ui/screen-ui-06.png" alt="GlucoPal history screen listing dated glucose readings." width="726" height="428" loading="lazy" decoding="async"></figure>
+                        </div>
+
+                        <div class="gluco-gallery-dots" aria-label="Choose a GlucoPal screen">
+                            <button type="button" data-gallery-dot aria-current="true" aria-label="Show Ready to begin"></button><button type="button" data-gallery-dot aria-label="Show Start the first step"></button><button type="button" data-gallery-dot aria-label="Show Follow the instruction"></button><button type="button" data-gallery-dot aria-label="Show Confirm completion"></button><button type="button" data-gallery-dot aria-label="Show Reward participation"></button><button type="button" data-gallery-dot aria-label="Show Review past tests"></button>
+                        </div>
+                        <div class="gluco-gallery-caption" aria-live="polite"><h3 data-gallery-title>Ready to begin</h3><p data-gallery-description>One clear action starts the guided test.</p></div>
+                    </div>
+                </section>
+
+                <section class="project-section gluco-showcase-section" aria-labelledby="caregiver-heading">
+                    <div class="gluco-showcase-intro reveal-item">
+                        <span class="gluco-showcase-label">Caregiver experience</span>
+                        <h2 class="gluco-showcase-title" id="caregiver-heading">Care continues beyond the test</h2>
+                        <p>The companion app brings results, routines, resources, and care information into one place for guardians.</p>
+                    </div>
+
+                    <div class="gluco-gallery gluco-gallery--portrait reveal-item" data-ui-gallery>
+                        <div class="gluco-gallery-track" data-ui-track tabindex="0" aria-label="Swipe through ten Gluardian screens">
+                            <figure class="gluco-gallery-slide" role="group" aria-roledescription="slide" aria-label="1 of 10: Daily overview" data-title="Daily overview" data-description="Latest records, weekly patterns, and parent tasks appear in one scan."><img src="../image/glusp-ui/app-ui-03.png" alt="Gluardian homepage summarizing recent history, weekly analysis, and parent tasks." width="1125" height="2436" loading="lazy" decoding="async"></figure>
+                            <figure class="gluco-gallery-slide" role="group" aria-roledescription="slide" aria-label="2 of 10: Review history" data-title="Review history" data-description="Filters and dated entries help parents locate completed tests."><img src="../image/glusp-ui/app-ui-04.png" alt="Gluardian history screen with filters and dated glucose records." width="1125" height="2436" loading="lazy" decoding="async"></figure>
+                            <figure class="gluco-gallery-slide" role="group" aria-roledescription="slide" aria-label="3 of 10: Understand the result" data-title="Understand the result" data-description="A weekly summary places the latest records in context."><img src="../image/glusp-ui/app-ui-07.png" alt="Gluardian result evaluation screen with a weekly average and range summary." width="1125" height="2436" loading="lazy" decoding="async"></figure>
+                            <figure class="gluco-gallery-slide" role="group" aria-roledescription="slide" aria-label="4 of 10: Find care support" data-title="Find care support" data-description="Care contacts, appointments, checklists, and medication references share one view."><img src="../image/glusp-ui/app-ui-05.png" alt="Gluardian resources screen with specialists, appointments, checklists, and medication." width="1125" height="2436" loading="lazy" decoding="async"></figure>
+                            <figure class="gluco-gallery-slide" role="group" aria-roledescription="slide" aria-label="5 of 10: Plan the next step" data-title="Plan the next step" data-description="Current goals lead into relevant learning material."><img src="../image/glusp-ui/app-ui-08.png" alt="Gluardian improvement screen with current goals and learning resources." width="1125" height="2436" loading="lazy" decoding="async"></figure>
+                            <figure class="gluco-gallery-slide" role="group" aria-roledescription="slide" aria-label="6 of 10: Review nutrition guidance" data-title="Review nutrition guidance" data-description="Meal planning and nutrition references remain close at hand."><img src="../image/glusp-ui/app-ui-09.png" alt="Gluardian nutrition screen with meal planning and glucose-index references." width="1125" height="2436" loading="lazy" decoding="async"></figure>
+                            <figure class="gluco-gallery-slide" role="group" aria-roledescription="slide" aria-label="7 of 10: Review activity guidance" data-title="Review activity guidance" data-description="Exercise guidance and daily activity summaries support routine planning."><img src="../image/glusp-ui/app-ui-10.png" alt="Gluardian activity screen with exercise guidance and daily activity summaries." width="1125" height="2436" loading="lazy" decoding="async"></figure>
+                            <figure class="gluco-gallery-slide" role="group" aria-roledescription="slide" aria-label="8 of 10: Manage the child profile" data-title="Manage the child profile" data-description="Alerts, devices, and linked children stay available from one place."><img src="../image/glusp-ui/app-ui-11.png" alt="Gluardian profile screen with favorites, notifications, devices, account settings, and linked children." width="1125" height="2436" loading="lazy" decoding="async"></figure>
+                            <figure class="gluco-gallery-slide" role="group" aria-roledescription="slide" aria-label="9 of 10: Choose an account path" data-title="Choose an account path" data-description="A focused entry separates log in and sign up."><img src="../image/glusp-ui/app-ui-01.png" alt="Gluardian welcome screen with log-in and sign-up choices." width="1125" height="2436" loading="lazy" decoding="async"></figure>
+                            <figure class="gluco-gallery-slide" role="group" aria-roledescription="slide" aria-label="10 of 10: Sign in" data-title="Sign in" data-description="Account access stays focused on the required credentials."><img src="../image/glusp-ui/app-ui-02.png" alt="Gluardian sign-in screen with username and password fields." width="1125" height="2436" loading="lazy" decoding="async"></figure>
+                        </div>
+
+                        <div class="gluco-gallery-dots" aria-label="Choose a Gluardian screen">
+                            <button type="button" data-gallery-dot aria-current="true" aria-label="Show Daily overview"></button><button type="button" data-gallery-dot aria-label="Show Review history"></button><button type="button" data-gallery-dot aria-label="Show Understand the result"></button><button type="button" data-gallery-dot aria-label="Show Find care support"></button><button type="button" data-gallery-dot aria-label="Show Plan the next step"></button><button type="button" data-gallery-dot aria-label="Show Review nutrition guidance"></button><button type="button" data-gallery-dot aria-label="Show Review activity guidance"></button><button type="button" data-gallery-dot aria-label="Show Manage the child profile"></button><button type="button" data-gallery-dot aria-label="Show Choose an account path"></button><button type="button" data-gallery-dot aria-label="Show Sign in"></button>
+                        </div>
+                        <div class="gluco-gallery-caption" aria-live="polite"><h3 data-gallery-title>Daily overview</h3><p data-gallery-description>Latest records, weekly patterns, and parent tasks appear in one scan.</p></div>
+                    </div>
+                </section>
+
 
             </div>
 
@@ -319,15 +306,6 @@
 
     <!-- JavaScript -->
     <script>
-        // Hamburger Menu Logic
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
-
         // --- 1. Reveal on Scroll Animation ---
         const observerOptions = {
             root: null,

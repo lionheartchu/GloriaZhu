@@ -7,7 +7,7 @@
     <meta name="description" content="Otherworld — an immersive interactive installation blending physical and digital environments.">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <!-- Main Project Page CSS (Generic Theme) -->
-    <link rel="stylesheet" href="../project-theme.css">
+    <link rel="stylesheet" href="../project-theme.css?v=20260918">
     
     <!-- Inline styles for project-specific artistic tweaks -->
     <style>
@@ -45,9 +45,7 @@
         }
 
         /* Dark Mode Header Adaptation */
-        body.theme-dark header {
-            background: linear-gradient(to bottom, rgba(5,5,5,0.9) 0%, rgba(5,5,5,0) 100%);
-        }
+        body.theme-dark { --header-rgb: 5, 5, 5; }
         body.theme-dark .logo,
         body.theme-dark .nav-links a {
             color: #F8FAFC;
@@ -221,12 +219,14 @@
         }
 
         @media (max-width: 768px) {
-            .inspiration-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .inspiration-grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+            .timeline-title { font-size: clamp(1.1rem, 5vw, 1.5rem); overflow-wrap: anywhere; }
             .pros-cons-grid { grid-template-columns: 1fr; gap: 2rem; }
         }
     </style>
     <link rel="stylesheet" href="../cursor.css?v=20260911c">
     <script src="../cursor.js?v=20260911c" defer></script>
+    <script src="../project-ui.js?v=20260918" defer></script>
 </head>
 <body>
     <!-- Custom Cursor -->
@@ -235,18 +235,18 @@
     <header>
         <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
-            <ul class="nav-links">
+            <ul class="nav-links" id="primary-nav">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../about.html">About</a></li>
                 <li><a href="../index.html#projects" class="active">Projects</a></li>
                 <li><a href="../index.html#research">Research</a></li>
             </ul>
         </nav>
-        <div class="hamburger">
+        <button class="hamburger" type="button" data-project-menu aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
+        </button>
     </header>
 
     <main>
@@ -284,7 +284,7 @@
                     <div class="media-frame">
                         <div class="parallax-wrapper">
                             <!-- Original Cover Image -->
-                            <img src="../image/ow-cover.webp" class="parallax-img" alt="Otherworld Project Cover" onerror="this.src='https://placehold.co/800x1000/101010/FFFFFF?text=Otherworld+Cover'">
+                            <img src="../image/ow-cover.webp" class="parallax-img" alt="Otherworld Project Cover" width="734" height="604" decoding="async">
                         </div>
                     </div>
                 </div>
@@ -310,7 +310,7 @@
                         <div class="media-frame">
                             <div class="parallax-wrapper">
                                 <!-- Sodid Earth Inspiration Image -->
-                                <img src="../image/sodid-earth.webp" class="parallax-img" alt="Inspiration: Sodid Earth by Mat Collishaw" onerror="this.src='https://placehold.co/600x400/222/EEE?text=Inspiration:+Sodid+Earth'">
+                                <img src="../image/sodid-earth.webp" class="parallax-img" alt="Inspiration: Sodid Earth by Mat Collishaw" width="1600" height="1066" decoding="async" loading="lazy">
                             </div>
                             <p style="margin-top:0.5rem; font-size:0.75rem; color:var(--text-muted); text-align:right;">Inspiration: "Sodid Earth" by Mat Collishaw</p>
                         </div>
@@ -427,7 +427,7 @@
                         <div class="media-frame">
                             <div class="parallax-wrapper">
                                 <!-- Placeholder: ow-03-new -->
-                                <img src="../image/ow-03-new.webp" class="parallax-img" alt="Experiment and Process: Game vs Installation" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=Process:+Game+vs+Installation'">
+                                <img src="../image/ow-03-new.webp" class="parallax-img" alt="Experiment and Process: Game vs Installation" width="1600" height="840" decoding="async" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -449,7 +449,7 @@
                         <div class="media-frame">
                             <div class="parallax-wrapper">
                                 <!-- Placeholder: ow-04 -->
-                                <img src="../image/ow-04.webp" class="parallax-img" alt="Installation Diagram and Sketches" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=System+Diagram+&+Sketches'">
+                                <img src="../image/ow-04.webp" class="parallax-img" alt="Installation Diagram and Sketches" width="1600" height="800" decoding="async" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -466,14 +466,14 @@
                         <!-- Placeholder: ow-05 -->
                         <div class="media-frame">
                             <div class="parallax-wrapper">
-                                <img src="../image/ow-05.webp" class="parallax-img" alt="Final Installation View" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=Outcome:+Installation+View'">
+                                <img src="../image/ow-05.webp" class="parallax-img" alt="Final Installation View" width="1600" height="800" decoding="async" loading="lazy">
                             </div>
                         </div>
                         
                         <!-- Placeholder: ow-06 -->
                         <div class="media-frame" style="margin-top: 2rem;">
                             <div class="parallax-wrapper">
-                                <img src="../image/ow-06.webp" class="parallax-img" alt="Visitor Interaction" onerror="this.src='https://placehold.co/1000x600/F0F4F8/2563EB?text=Outcome:+Visitor+Interaction'">
+                                <img src="../image/ow-06.webp" class="parallax-img" alt="Visitor Interaction" width="1600" height="800" decoding="async" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -510,15 +510,6 @@
 
     <!-- JavaScript -->
     <script>
-        // Hamburger Menu Logic
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
-
         // --- 1. Reveal on Scroll Animation ---
         const observerOptions = {
             root: null,

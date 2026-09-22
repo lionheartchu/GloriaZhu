@@ -6,9 +6,10 @@
     <title>Maya 3D Projects | Gloria Zhu</title>
     <meta name="description" content="Maya 3D — computer graphics works featuring 3D modeling, rendering, and animation built in Autodesk Maya.">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <link rel="stylesheet" href="../project-theme.css">
+    <link rel="stylesheet" href="../project-theme.css?v=20260918">
     <link rel="stylesheet" href="../cursor.css?v=20260911c">
     <script src="../cursor.js?v=20260911c" defer></script>
+    <script src="../project-ui.js?v=20260918" defer></script>
 </head>
 <body>
     <!-- Custom Cursor -->
@@ -17,17 +18,17 @@
     <header>
         <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
-            <ul class="nav-links">
+            <ul class="nav-links" id="primary-nav">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../about.html">About</a></li>
                 <li><a href="../index.html#projects">Projects</a></li>
                 <li><a href="../index.html#research">Research</a></li>
             </ul>
         </nav>
-        <div class="hamburger">
+        <button class="hamburger" type="button" data-project-menu aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
+        </button>
     </header>
 
     <main>
@@ -61,7 +62,7 @@
 
                 <div class="hero-media">
                     <div class="media-frame">
-                        <img src="../image/maya-aquapus.webp" alt="Maya 3D Projects">
+                        <img src="../image/maya-aquapus.webp" alt="Maya 3D Projects" width="1600" height="1067" decoding="async">
                     </div>
                 </div>
             </section>
@@ -89,17 +90,17 @@
 
                     <div class="media-stack">
                         <div class="media-frame">
-                            <img src="../image/maya-aquapus1.webp" alt="Aquapus Character - Front View" loading="lazy" decoding="async">
+                            <img src="../image/maya-aquapus1.webp" alt="Aquapus Character - Front View" loading="lazy" decoding="async" width="1600" height="900">
                         </div>
                     </div>
                     <div class="media-stack">
                         <div class="media-frame">
-                            <img src="../image/maya-aquapus2.webp" alt="Aquapus Character - Detail View" loading="lazy" decoding="async">
+                            <img src="../image/maya-aquapus2.webp" alt="Aquapus Character - Detail View" loading="lazy" decoding="async" width="1600" height="900">
                         </div>
                     </div>
                     <div class="media-stack">
                         <div class="media-frame">
-                            <img src="../image/maya-aquapus.webp" alt="Aquapus Character - Scene" loading="lazy" decoding="async">
+                            <img src="../image/maya-aquapus.webp" alt="Aquapus Character - Scene" loading="lazy" decoding="async" width="1600" height="1067">
                         </div>
                     </div>
                 </section>
@@ -117,12 +118,12 @@
 
                     <div class="media-stack">
                         <div class="media-frame">
-                            <img src="../image/maya-nau1.webp" alt="The Nautilus Model - Rendered" loading="lazy" decoding="async">
+                            <img src="../image/maya-nau1.webp" alt="The Nautilus Model - Rendered" loading="lazy" decoding="async" width="1600" height="1200">
                         </div>
                     </div>
                     <div class="media-stack">
                         <div class="media-frame">
-                            <img src="../image/maya-nau2.webp" alt="The Nautilus - Animated" loading="lazy" decoding="async">
+                            <img src="../image/maya-nau2.webp" alt="The Nautilus - Animated" loading="lazy" decoding="async" width="720" height="405">
                         </div>
                     </div>
                 </section>
@@ -136,7 +137,7 @@
 
                     <div class="media-stack">
                         <div class="media-frame">
-                            <img src="../image/maya-cover.webp" alt="Undersea Scene" loading="lazy" decoding="async">
+                            <img src="../image/maya-cover.webp" alt="Undersea Scene" loading="lazy" decoding="async" width="1600" height="900">
                         </div>
                     </div>
                 </section>
@@ -150,17 +151,17 @@
 
                     <div class="media-stack">
                         <div class="media-frame">
-                            <img src="../image/maya-house1.webp" alt="Indoor - Living Room" loading="lazy" decoding="async">
+                            <img src="../image/maya-house1.webp" alt="Indoor - Living Room" loading="lazy" decoding="async" width="960" height="540">
                         </div>
                     </div>
                     <div class="media-stack">
                         <div class="media-frame">
-                            <img src="../image/maya-house2.webp" alt="Outdoor & Balcony" loading="lazy" decoding="async">
+                            <img src="../image/maya-house2.webp" alt="Outdoor & Balcony" loading="lazy" decoding="async" width="960" height="540">
                         </div>
                     </div>
                     <div class="media-stack">
                         <div class="media-frame">
-                            <img src="../image/maya-house3.webp" alt="Indoor - Bedroom" loading="lazy" decoding="async">
+                            <img src="../image/maya-house3.webp" alt="Indoor - Bedroom" loading="lazy" decoding="async" width="960" height="540">
                         </div>
                     </div>
                 </section>

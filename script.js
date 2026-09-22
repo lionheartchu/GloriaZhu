@@ -312,7 +312,7 @@ updateTime();
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
-if (hamburger && navLinks) {
+if (hamburger && navLinks && !hamburger.hasAttribute('data-project-menu')) {
     const closeMenu = () => {
         hamburger.classList.remove('active'); navLinks.classList.remove('active');
         hamburger.setAttribute('aria-expanded', 'false');

@@ -15,6 +15,7 @@
     /* Colors */
     --bg-base: #F8F9FA; /* Slightly lighter/softer than F0F4F8 */
     --bg-surface: #FFFFFF;
+    --header-rgb: 255, 255, 255;
     --text-main: #0F172A;
     --text-muted: #64748B;
     --text-light: #94A3B8;
@@ -52,7 +53,6 @@ body {
     color: var(--text-main);
     font-family: var(--font-ui);
     line-height: 1.6;
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -66,11 +66,14 @@ header {
     display: flex; justify-content: flex-end; align-items: center;
     z-index: 1000;
     /* Smoother Airy Gradient */
-    background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 100%);
+    background: linear-gradient(to bottom, rgba(var(--header-rgb),0.7) 0%, rgba(var(--header-rgb),0) 100%);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: none;
 }
+
+header.is-scrolled { background: rgba(var(--header-rgb), 0.96); }
+header a:focus-visible, .hamburger:focus-visible, .nav-links a:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 5px; }
 
 .logo { 
     font-family: var(--font-display); font-weight: 800; font-size: 1.1rem;
@@ -87,7 +90,7 @@ header {
 }
 .nav-links a:hover, .nav-links a.active { color: var(--accent-primary); opacity: 1; }
 
-.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
+.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; padding: 10px; border: 0; background: none; }
 .bar { width: 25px; height: 2px; background: var(--text-main); }
 
 /* --- 4. LAYOUT UTILITIES --- */
@@ -114,11 +117,13 @@ main { padding-top: 140px; padding-bottom: 6rem; }
 /* --- 6. PROJECT HERO --- */
 .project-hero {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
     gap: 4rem;
     align-items: start;
     margin-bottom: 8rem;
 }
+
+.hero-content, .hero-media { min-width: 0; }
 
 .hero-content {
     display: flex; flex-direction: column; gap: 2rem;
@@ -144,7 +149,7 @@ main { padding-top: 140px; padding-bottom: 6rem; }
 }
 
 .project-title {
-    font-family: var(--font-display); font-size: 2.5rem; line-height: 1.1; color: var(--text-main);
+    font-family: var(--font-display); font-size: 2.5rem; line-height: 1.1; color: var(--text-main); overflow-wrap: anywhere;
 }
 
 .project-intro {
@@ -170,33 +175,25 @@ main { padding-top: 140px; padding-bottom: 6rem; }
     position: relative;
 }
 
+/* Natural-ratio evidence images. Media with a fixed ratio owns its own wrapper. */
 .parallax-wrapper {
     width: 100%;
-    height: 100%;
     overflow: hidden;
     border-radius: var(--radius-lg);
     position: relative;
 }
-
-/* The Image itself - slightly taller than container */
-.media-frame img.parallax-img {
+.media-frame img {
+    display: block;
     width: 100%;
-    height: 115%; /* Extra height for movement */
-    object-fit: cover;
-    position: relative;
-    top: -7.5%; /* Center the overflow */
-    transform: translateY(0); /* Controlled by JS */
-    will-change: transform; /* Hint to browser for performance */
+    height: auto;
 }
-
-/* Fallback for normal images */
-.media-frame img:not(.parallax-img) {
-    /* Radius now matches container */
-    border-radius: var(--radius-lg); 
-    width: 100%; height: auto; display: block;
+.media-caption {
+    margin-top: 0.8rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-muted);
 }
-
-.hero-media .media-frame { height: 100%; min-height: 500px; }
+.media-unavailable { padding: 1.5rem; font-size: 0.9rem; color: var(--text-muted); }
 
 /* Stack of media frames (images) — spacing between consecutive blocks */
 .media-stack + .media-stack {
@@ -213,11 +210,11 @@ main { padding-top: 140px; padding-bottom: 6rem; }
 
 .section-title {
     font-family: var(--font-display); font-size: 1.5rem; text-transform: uppercase;
-    color: var(--text-main); white-space: nowrap;
+    color: var(--text-main); overflow-wrap: anywhere; min-width: 0;
 }
 
 .section-line {
-    width: 100%; height: 1px; background: var(--border-light); position: relative; top: -5px;
+    flex: 1; min-width: 1rem; height: 1px; background: var(--border-light); position: relative; top: -5px;
 }
 
 .section-text-block {
@@ -249,7 +246,7 @@ main { padding-top: 140px; padding-bottom: 6rem; }
 /* Insight Grid (For Stats/Trends) */
 .insight-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
 }
@@ -295,7 +292,7 @@ main { padding-top: 140px; padding-bottom: 6rem; }
 
 .process-step {
     display: grid;
-    grid-template-columns: 50px 1fr;
+    grid-template-columns: 50px minmax(0, 1fr);
     gap: 2rem;
     position: relative;
     z-index: 1;
@@ -424,7 +421,7 @@ main { padding-top: 140px; padding-bottom: 6rem; }
 /* --- MODULE: PERSONA SYSTEM --- */
 .persona-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
 }
@@ -492,7 +489,7 @@ main { padding-top: 140px; padding-bottom: 6rem; }
 .cs-title { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1rem; }
 
 /* Product Feature Cards */
-.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 1.5rem; margin-top: 3rem; }
 .feature-card {
     background: var(--sheet-bg);
     padding: 2rem;
@@ -684,11 +681,19 @@ footer { padding: 3rem 0; border-top: 1px solid var(--border-light); background:
 
 @media (max-width: 768px) {
     .project-hero { margin-bottom: 4rem; }
+    .project-title { font-size: clamp(1.65rem, 8vw, 3rem); }
+    .section-header { gap: 1rem; }
+    .section-title { font-size: clamp(1.1rem, 5vw, 1.5rem); }
+    .next-project-card { padding: 1.5rem; gap: 1rem; }
+    .next-content-wrapper { min-width: 0; }
+    .next-title { font-size: clamp(1.1rem, 5.5vw, 1.75rem); overflow-wrap: anywhere; }
+    .next-cta { flex-shrink: 0; }
+    .footer-inner { flex-wrap: wrap; gap: 1rem; }
+    .process-step .step-content { padding: 1.25rem; overflow-wrap: anywhere; }
     .media-frame { padding: 0; border-radius: var(--radius-md); }
     .process-flow::before { left: 19px; }
     .step-marker { width: 40px; height: 40px; }
-    .process-step { grid-template-columns: 40px 1fr; gap: 1rem; }
-    .media-frame img.parallax-img { height: 100%; top: 0; transform: none !important; }
+    .process-step { grid-template-columns: 40px minmax(0, 1fr); gap: 1rem; }
 
     /* About page responsive */
     #about { padding: 6rem clamp(2rem, 5vw, 4rem) 4rem; padding-top: calc(140px + 3rem); }
@@ -697,7 +702,8 @@ footer { padding: 3rem 0; border-top: 1px solid var(--border-light); background:
     .footer-content { flex-direction: column; gap: 1.5rem; text-align: center; }
     .footer-links { flex-direction: column; gap: 1rem; }
 }
-/* === MOBILE NAV (matches homepage behavior) === */
+/* Mobile navigation is moved outside the filtered header by project-ui.js. */
+html.project-menu-open { overflow: hidden; }
 @media (max-width: 900px) {
     .hamburger { display: flex; z-index: 1001; }
     .bar { transition: 0.3s; }
@@ -707,12 +713,18 @@ footer { padding: 3rem 0; border-top: 1px solid var(--border-light); background:
         gap: 2.4rem;
         background: rgba(244, 245, 255, 0.97);
         transform: translateY(-102%);
+        visibility: hidden; pointer-events: none;
+        padding: 100px 5% 2rem;
+        overflow-y: auto;
+        z-index: 999;
+        background: rgba(var(--header-rgb), 0.98);
         transition: transform 0.35s ease;
     }
-    .nav-links.active { transform: translateY(0); }
+    .nav-links.active { transform: translateY(0); visibility: visible; pointer-events: auto; }
     .nav-links a { font-size: 1rem; letter-spacing: 0.1em; }
-    .hamburger.active .bar:nth-child(1) { transform: translateY(4px) rotate(45deg); }
-    .hamburger.active .bar:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(2) { opacity: 0; }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 }
 
 /* Reduced motion */
@@ -743,12 +755,4 @@ footer { padding: 3rem 0; border-top: 1px solid var(--border-light); background:
     font-size: 0.6rem;
     letter-spacing: 0.12em;
     color: var(--text-light);
-}
-
-/* === PARALLAX RETIRED: evidence images hold still === */
-.media-frame img.parallax-img {
-    height: auto;
-    top: 0;
-    transform: none !important;
-    will-change: auto;
 }

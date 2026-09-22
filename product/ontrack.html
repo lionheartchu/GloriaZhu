@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Main Project Page CSS (Generic Theme) -->
-    <link rel="stylesheet" href="../project-theme.css">
+    <link rel="stylesheet" href="../project-theme.css?v=20260918">
 
     <!-- Project-Specific Styles (Extending the base theme) -->
     <style>
@@ -16,6 +16,7 @@
         .cta-group {
             display: flex;
             gap: 1.5rem;
+            flex-wrap: wrap;
             margin-top: 2rem;
         }
         .btn-primary {
@@ -79,14 +80,14 @@
         }
         .flow-screens {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
             gap: 1.5rem;
         }
         
         /* Final Gallery Grid */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -94,11 +95,12 @@
         /* Responsive Adjustments */
         @media (max-width: 992px) {
             .flow-block { grid-template-columns: 1fr; gap: 2rem; }
-            .flow-screens { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+            .flow-screens { grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); }
         }
     </style>
     <link rel="stylesheet" href="../cursor.css?v=20260911c">
     <script src="../cursor.js?v=20260911c" defer></script>
+    <script src="../project-ui.js?v=20260918" defer></script>
 </head>
 <body>
     <!-- Custom Cursor -->
@@ -107,18 +109,18 @@
     <header>
         <a href="../index.html" class="logo">GZ<span class="logo-dot">.</span></a>
         <nav>
-            <ul class="nav-links">
+            <ul class="nav-links" id="primary-nav">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../about.html">About</a></li>
                 <li><a href="../index.html#projects" class="active">Projects</a></li>
                 <li><a href="../other-works/index.html">Other Works</a></li>
             </ul>
         </nav>
-        <div class="hamburger">
+        <button class="hamburger" type="button" data-project-menu aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
+        </button>
     </header>
 
     <main>
@@ -161,7 +163,7 @@
                     <div class="media-frame">
                         <div class="parallax-wrapper">
                             <!-- Hero Mockup Composition -->
-                            <img src="../image/ontrack-hero.png" class="parallax-img" alt="OnTrack App Hero Mockup" onerror="this.src='https://placehold.co/800x1000/F0F4F8/7075FF?text=Hero+Mockup+Composition\n(2-3+Key+Screens)'">
+                            <img src="../image/ontrack-hero.png" class="parallax-img" alt="OnTrack App Hero Mockup" decoding="async">
                         </div>
                     </div>
                 </div>
@@ -334,9 +336,9 @@
                             <p class="section-text" style="font-size:0.95rem;">The onboarding process clearly explains read-only trust before asking users to link their payment methods. This ensures everyday spending is tracked automatically, which is crucial for retaining teen users who hate manual logging.</p>
                         </div>
                         <div class="flow-screens">
-                            <div class="media-frame"><img src="../image/flow1-1.png" alt="Onboarding Screen" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Onboarding'"></div>
-                            <div class="media-frame"><img src="../image/flow1-2.png" alt="Connect Payment Screen" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Connect+Payment'"></div>
-                            <div class="media-frame"><img src="../image/flow1-3.png" alt="Linked Account Trust Screen" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Trust/Security'"></div>
+                            <div class="media-frame"><img src="../image/flow1-1.png" alt="Onboarding Screen" decoding="async" loading="lazy"></div>
+                            <div class="media-frame"><img src="../image/flow1-2.png" alt="Connect Payment Screen" decoding="async" loading="lazy"></div>
+                            <div class="media-frame"><img src="../image/flow1-3.png" alt="Linked Account Trust Screen" decoding="async" loading="lazy"></div>
                         </div>
                     </div>
 
@@ -349,9 +351,9 @@
                             <p class="section-text" style="font-size:0.95rem;">Instead of a scary monthly pie chart, the Home tab highlights a "Safe to Spend" allowance based on the current week. The Goals tab visualizes saving progress in discrete, motivating stages (e.g., "Speedrun mode" vs. "Chill mode").</p>
                         </div>
                         <div class="flow-screens">
-                            <div class="media-frame"><img src="../image/flow2-1.png" alt="Home Dashboard" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Home+Dashboard'"></div>
-                            <div class="media-frame"><img src="../image/flow2-2.png" alt="Goals Overview" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Goals+Overview'"></div>
-                            <div class="media-frame"><img src="../image/flow2-3.png" alt="Goal Detail & Modes" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Goal+Detail'"></div>
+                            <div class="media-frame"><img src="../image/flow2-1.png" alt="Home Dashboard" decoding="async" loading="lazy"></div>
+                            <div class="media-frame"><img src="../image/flow2-2.png" alt="Goals Overview" decoding="async" loading="lazy"></div>
+                            <div class="media-frame"><img src="../image/flow2-3.png" alt="Goal Detail & Modes" decoding="async" loading="lazy"></div>
                         </div>
                     </div>
 
@@ -364,9 +366,9 @@
                             <p class="section-text" style="font-size:0.95rem;">When faced with a purchase decision, users can use the Ask entry point. The AI reads their current budget and goals to offer 2-3 concrete trade-off scenarios (e.g., "If you buy this, you'll reach your keyboard goal a week later").</p>
                         </div>
                         <div class="flow-screens">
-                            <div class="media-frame"><img src="../image/flow3-1.png" alt="Ask Entry Point" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Ask+Entry'"></div>
-                            <div class="media-frame"><img src="../image/flow3-2.png" alt="Recommendation State" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Recommendations'"></div>
-                            <div class="media-frame"><img src="../image/flow3-3.png" alt="Follow-up Suggestion" onerror="this.src='https://placehold.co/400x800/F8F9FA/7075FF?text=Follow-up'"></div>
+                            <div class="media-frame"><img src="../image/flow3-1.png" alt="Ask Entry Point" decoding="async" loading="lazy"></div>
+                            <div class="media-frame"><img src="../image/flow3-2.png" alt="Recommendation State" decoding="async" loading="lazy"></div>
+                            <div class="media-frame"><img src="../image/flow3-3.png" alt="Follow-up Suggestion" decoding="async" loading="lazy"></div>
                         </div>
                     </div>
                 </section>
@@ -387,7 +389,7 @@
                         </div>
                         
                         <div class="media-frame">
-                            <img src="../image/deepdive-ai.png" alt="Ask OnTrack Chat Interface" onerror="this.src='https://placehold.co/800x800/F0F4F8/7075FF?text=Ask+OnTrack+UI+Close-up'">
+                            <img src="../image/deepdive-ai.png" alt="Ask OnTrack Chat Interface" decoding="async" loading="lazy">
                         </div>
                     </div>
                 </section>
@@ -440,22 +442,22 @@
 
                     <!-- Big composition -->
                     <div class="media-frame reveal-item" style="margin-bottom: 2rem;">
-                        <img src="../image/final-hero.png" alt="Final UI Composition" onerror="this.src='https://placehold.co/1200x600/F0F4F8/7075FF?text=High-Fidelity+UI+Composition'">
+                        <img src="../image/final-hero.png" alt="Final UI Composition" decoding="async" loading="lazy">
                     </div>
 
                     <!-- Module Close-ups -->
                     <div class="gallery-grid reveal-item">
                         <div class="media-frame">
-                            <img src="../image/module-safe.png" alt="Safe to Spend Card Close-up" onerror="this.src='https://placehold.co/600x600/F8F9FA/A78BFA?text=Safe+to+Spend+Card'">
+                            <img src="../image/module-safe.png" alt="Safe to Spend Card Close-up" decoding="async" loading="lazy">
                         </div>
                         <div class="media-frame">
-                            <img src="../image/module-goal.png" alt="Goal Card Hierarchy Close-up" onerror="this.src='https://placehold.co/600x600/F8F9FA/A78BFA?text=Goal+Card+Hierarchy'">
+                            <img src="../image/module-goal.png" alt="Goal Card Hierarchy Close-up" decoding="async" loading="lazy">
                         </div>
                         <div class="media-frame">
-                            <img src="../image/module-ask.png" alt="Ask Strip Close-up" onerror="this.src='https://placehold.co/600x600/F8F9FA/A78BFA?text=Ask+Entry+Strip'">
+                            <img src="../image/module-ask.png" alt="Ask Strip Close-up" decoding="async" loading="lazy">
                         </div>
                         <div class="media-frame">
-                            <img src="../image/module-rec.png" alt="Recommendation Cards Close-up" onerror="this.src='https://placehold.co/600x600/F8F9FA/A78BFA?text=AI+Recommendation+Cards'">
+                            <img src="../image/module-rec.png" alt="Recommendation Cards Close-up" decoding="async" loading="lazy">
                         </div>
                     </div>
                 </section>
@@ -527,15 +529,6 @@
 
     <!-- JavaScript -->
     <script>
-        // Hamburger Menu Logic
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
-
         // --- 1. Reveal on Scroll Animation ---
         const observerOptions = {
             root: null,
@@ -557,40 +550,6 @@
             revealObserver.observe(el);
         });
 
-        // --- 2. Lightweight Parallax Effect ---
-        if (window.matchMedia("(min-width: 769px)").matches) {
-            const parallaxImages = document.querySelectorAll('.parallax-img');
-            let visibleImages = [];
-            
-            const imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        visibleImages.push(entry.target);
-                    } else {
-                        visibleImages = visibleImages.filter(img => img !== entry.target);
-                    }
-                });
-            });
-
-            parallaxImages.forEach(img => imageObserver.observe(img));
-
-            function animateParallax() {
-                if (visibleImages.length > 0) {
-                    const scrollY = window.scrollY;
-                    const windowHeight = window.innerHeight;
-
-                    visibleImages.forEach(img => {
-                        const rect = img.parentElement.getBoundingClientRect();
-                        const center = rect.top + (rect.height / 2);
-                        const distFromCenter = center - (windowHeight / 2);
-                        const offset = distFromCenter * 0.1; 
-                        img.style.transform = `translateY(${offset}px)`;
-                    });
-                }
-                requestAnimationFrame(animateParallax);
-            }
-            animateParallax();
-        }
     </script>
 </body>
 </html>

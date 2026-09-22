@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Gloria Zhu</title>
-    <meta name="description" content="Gloria Zhu — interaction designer & creative technologist in New York. Product design, perceptual and ambient interfaces, interactive installations, and human-AI interaction research.">
-    <meta property="og:title" content="Gloria Zhu — Interaction Designer & Creative Technologist">
+    <meta name="description" content="Gloria Zhu — interaction designer & product designer in New York. Product design, perceptual and ambient interfaces, interactive installations, and human-AI interaction research.">
+    <meta property="og:title" content="Gloria Zhu — Interaction Designer & product designer">
     <meta property="og:description" content="Product design, perceptual interfaces, interactive installations, and human-AI interaction research.">
     <meta property="og:type" content="website">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -17,7 +17,7 @@
     <link rel="preload" href="Space_Mono/SpaceMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
     
     <!-- Local fonts are loaded via CSS @font-face, no need for external font links -->
-    <link rel="stylesheet" href="style.css?v=20260914-hero4">
+    <link rel="stylesheet" href="style.css?v=20260920-glucosphere2">
     <link rel="stylesheet" href="hero-membrane.css?v=20260914-hero4">
     <link rel="stylesheet" href="cursor.css?v=20260911c">
     <script src="cursor.js?v=20260914-hero4" defer></script>
@@ -44,7 +44,7 @@
     <section id="welcome" class="membrane-hero" aria-labelledby="membrane-name">
         <div class="membrane-stage" aria-hidden="true"><canvas id="membrane-canvas" class="membrane-canvas"></canvas></div>
         <h1 id="membrane-name" class="membrane-name"><span>GLORIA</span><span>ZHU</span></h1>
-        <p class="membrane-role">Interaction Designer<br>Creative Technologist</p>
+        <p class="membrane-role">Interaction Designer<br>Product Designer</p>
         <div class="membrane-bottom">
             <span class="membrane-location">NEW YORK, NY</span>
             <a class="membrane-work" href="#projects">Explore selected work
@@ -114,7 +114,7 @@
                 <div class="card-tech-deco bottom-right"></div>
                 <a class="card-evidence" href="product/thenextport.html" aria-hidden="true" tabindex="-1">
                     <div class="project-img-container">
-                        <img src="image/tnp-cover.webp" loading="lazy" decoding="async" alt="The Next Port" class="project-img">
+                        <img src="image/tnp-new-cover.webp" loading="lazy" decoding="async" alt="The Next Port" class="project-img" width="1536" height="1024">
                     </div>
                     <span class="fig-label">fig. 01</span>
                 </a>
@@ -136,14 +136,17 @@
             </div>
 
             <!-- Project 2 -->
-            <div class="project-card" data-category="uiux" style="--i: 2">
+            <div class="project-card project-card--glucosphere" data-category="uiux" style="--i: 2">
                 <div class="card-tech-deco top-left"></div>
                 <div class="card-tech-deco top-right"></div>
                 <div class="card-tech-deco bottom-left"></div>
                 <div class="card-tech-deco bottom-right"></div>
                 <a class="card-evidence" href="uiux/glucosphere.html" aria-hidden="true" tabindex="-1">
                     <div class="project-img-container">
-                        <img src="image/glusp-cover3.webp" loading="lazy" decoding="async" alt="Glucosphere" class="project-img">
+                        <picture>
+                            <source media="(max-width: 900px)" srcset="image/glusp-family-cover.webp" width="1536" height="1024">
+                            <img src="image/glusp-family-cover-wide.webp" loading="lazy" decoding="async" alt="A child operates the yellow GlucoPal kit while a parent reviews results on the Gluardian app." class="project-img" width="1774" height="887">
+                        </picture>
                     </div>
                     <span class="fig-label">fig. 02</span>
                 </a>
@@ -157,7 +160,7 @@
                     </div>
                     <div class="card-rule"></div>
                     <h3 class="project-title">Glucosphere</h3>
-                    <p class="project-desc">Comprehensive diabetes management system for kids, combining hardware and software for seamless tracking.</p>
+                    <p class="project-desc">A guided glucose-testing kit for children, paired with an app that helps parents follow results and trends.</p>
                     <a href="uiux/glucosphere.html" class="card-open">
                         Open Case File <svg class="icon-arrow" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
@@ -172,7 +175,7 @@
                 <div class="card-tech-deco bottom-right"></div>
                 <a class="card-evidence" href="installation/otherw.html" aria-hidden="true" tabindex="-1">
                     <div class="project-img-container">
-                        <img src="image/ow-cover.webp" loading="lazy" decoding="async" alt="Otherworld" class="project-img">
+                        <img src="image/ow-cover.webp" loading="lazy" decoding="async" alt="Otherworld" class="project-img" width="734" height="604">
                     </div>
                     <span class="fig-label">fig. 03</span>
                 </a>
@@ -201,7 +204,7 @@
                 <div class="card-tech-deco bottom-right"></div>
                 <a class="card-evidence" href="medarts/dataskin.html" aria-hidden="true" tabindex="-1">
                     <div class="project-img-container">
-                        <img src="image/ds-cover.webp" loading="lazy" decoding="async" alt="Data Skinware" class="project-img">
+                        <img src="image/ds-cover.webp" loading="lazy" decoding="async" alt="Data Skinware" class="project-img" width="625" height="595">
                     </div>
                     <span class="fig-label">fig. 04</span>
                 </a>
@@ -250,7 +253,7 @@
             <div class="art-wall">
                 <a class="art-piece piece-vital" href="installation/vital.html">
                     <div class="art-frame">
-                        <img src="image/vit-cover.webp" loading="lazy" decoding="async" alt="Vital">
+                        <img src="image/vital-cover.webp" width="724" height="1082" loading="lazy" decoding="async" alt="Vital">
                     </div>
                     <div class="art-label">
                         <span class="art-title">Vital</span>
@@ -374,7 +377,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=20260914-hero4"></script>
+    <script src="script.js?v=20260918-media"></script>
     <script src="hero-membrane.js?v=20260914-hero4"></script>
 </body>
 </html>

@@ -443,6 +443,7 @@ figcaption, .cap {
 
     .ledger div { grid-template-columns: 1fr; gap: 0.2rem; }
     .cover-actions { flex-wrap: wrap; }
+    .cover-title .ttl2 { white-space: normal; }
 }
 
 /* --- Reduced motion -------------------------------------------- */
