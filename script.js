@@ -160,6 +160,8 @@ if (groupPrimary || groupSecondary) parallaxRAF = requestAnimationFrame(animateP
 document.addEventListener('DOMContentLoaded', () => {
     const el = document.querySelector('.whisper');
     if (!el) return;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reducedMotion.matches) return;
 
     const lines = [
         'A gentle selection of recent projects',
@@ -169,14 +171,17 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     let i = 0;
 
+    el.classList.add('fade-out');
     // Initial fade-in
     setTimeout(() => {
+        el.classList.remove('fade-out');
         el.classList.add('fade-in');
     }, 100);
     
     // Start switching after initial fade-in
     setTimeout(() => {
         setInterval(() => {
+            if (reducedMotion.matches || document.hidden) return;
             // Fade out (like slide transition)
             el.classList.remove('fade-in');
             el.classList.add('fade-out');
@@ -287,6 +292,50 @@ window.addEventListener('hashchange', () => applyHashMode(true));
 document.addEventListener('DOMContentLoaded', () => {
     applyHashMode(true);
     moveModeUnderline(currentMode);
+});
+
+// 5. ARCHIVE ENTRANCE — each element plays once, only when it is visible.
+document.addEventListener('DOMContentLoaded', () => {
+    const rule = document.querySelector('#projects .archive-rule');
+    const card = document.querySelector('#panel-projects .project-card');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!rule || !card || reducedMotion.matches || !window.IntersectionObserver || !rule.animate) return;
+
+    const played = new Set();
+    const running = new Set();
+    let ruleStarted = -Infinity;
+    const observer = new IntersectionObserver(entries => {
+        // A shared delivery may contain both entries; always start the rule first.
+        entries.sort((a, b) => (a.target === rule ? -1 : 1) - (b.target === rule ? -1 : 1));
+        entries.forEach(entry => {
+            const target = entry.target;
+            if (!entry.isIntersecting || played.has(target)) return;
+            played.add(target);
+            observer.unobserve(target);
+            const now = performance.now();
+            const isRule = target === rule;
+            if (isRule) ruleStarted = now;
+            const animation = target.animate(
+                isRule
+                    ? [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }]
+                    : [{ translate: '0 10px', opacity: 0 }, { translate: '0 0', opacity: 1 }],
+                { duration: isRule ? 450 : 520,
+                  delay: isRule ? 0 : Math.max(0, 125 - (now - ruleStarted)),
+                  easing: 'cubic-bezier(0.16, 1, 0.3, 1)', fill: 'backwards' }
+            );
+            running.add(animation);
+            animation.onfinish = () => running.delete(animation);
+        });
+        if (played.size === 2) observer.disconnect();
+    }, { rootMargin: '0px 0px -12px 0px', threshold: 0 });
+    observer.observe(rule);
+    observer.observe(card);
+    reducedMotion.addEventListener('change', event => {
+        if (!event.matches) return;
+        observer.disconnect();
+        running.forEach(animation => animation.cancel());
+        running.clear();
+    });
 });
 
 // 6. TIME UPDATE
